@@ -40,10 +40,6 @@ kotlinter {
     disabledRules = ["no-wildcard-imports"]
 }
 
-check {
-    dependsOn "installKotlinterPrePushHook"
-}
-
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.6.0'
