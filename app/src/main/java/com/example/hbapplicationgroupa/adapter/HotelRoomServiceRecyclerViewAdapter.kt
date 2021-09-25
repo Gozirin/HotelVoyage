@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
 
 /**
- * This is the ViewPager Adapter for the id:hotel_desc_services_viewPager
+ * This is the ViewPager Adapter for the id:hotel_desc_services_viewPager in HotelDescription Fragment
  */
 class HotelRoomServiceRecyclerViewAdapter(private val roomDataList: ArrayList<HotelRoomServiceModel>) : RecyclerView.Adapter<HotelRoomServiceRecyclerViewAdapter.HotelViewHolder>() {
     class HotelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
