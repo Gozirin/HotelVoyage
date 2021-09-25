@@ -105,6 +105,7 @@
                 android:clickable="true"
                 android:focusable="true"/>
             <com.borjabravo.readmoretextview.ReadMoreTextView
+                android:id="@+id/hotel_desc_expandable_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +119,17 @@
                 app:trimExpandedText="@string/read_less"
                 app:trimLength="150"
                 app:trimMode="trimModeLength"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_amenities_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/amenities"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_expandable_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
