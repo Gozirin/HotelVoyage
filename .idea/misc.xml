@@ -3,10 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/hotel_descirption_amenities_shape.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic__breakfast.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__glass_whine.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__pet.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__pool.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/ic_back_arrow.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_more_options.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_wifi.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.33" />
       </map>
     </option>
   </component>
