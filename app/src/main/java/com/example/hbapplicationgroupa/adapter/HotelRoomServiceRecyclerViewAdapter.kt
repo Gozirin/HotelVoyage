@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
@@ -13,7 +12,7 @@ import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
 /**
  * This is the ViewPager Adapter for the id:hotel_desc_services_viewPager
  */
-class HotelRoomServiceViewPagerAdapter(private val roomDataList: ArrayList<HotelRoomServiceModel>) : RecyclerView.Adapter<HotelRoomServiceViewPagerAdapter.HotelViewHolder>() {
+class HotelRoomServiceRecyclerViewAdapter(private val roomDataList: ArrayList<HotelRoomServiceModel>) : RecyclerView.Adapter<HotelRoomServiceRecyclerViewAdapter.HotelViewHolder>() {
     class HotelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val roomImage: ImageView = view.findViewById(R.id.hotel_desc_room_iv)
         private val roomTitle: TextView = view.findViewById(R.id.hotel_desc_roomTitle_tv)
@@ -26,7 +25,7 @@ class HotelRoomServiceViewPagerAdapter(private val roomDataList: ArrayList<Hotel
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelViewHolder {
-        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.hotel_services_viewpager_layout, parent, false)
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.hotel_services_recyclerview_layout, parent, false)
         return HotelViewHolder(inflater)
     }
 
