@@ -60,6 +60,9 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
 
-    //borja_bravo expandable textView Library
+    //borja_bravo expandable textView Library = https://github.com/bravoborja/ReadMoreTextView
     implementation 'com.borjabravo:readmoretextview:2.1.0'
+
+    //materialRatingBar library = https://github.com/zhanghai/MaterialRatingBar
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
 }
