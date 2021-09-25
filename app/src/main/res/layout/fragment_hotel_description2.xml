@@ -104,6 +104,20 @@
                 android:layout_marginStart="5dp"
                 android:clickable="true"
                 android:focusable="true"/>
+            <com.borjabravo.readmoretextview.ReadMoreTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_showInMap_link_tv"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/hotel_description"
+                app:trimCollapsedText="@string/read_more"
+                app:trimExpandedText="@string/read_less"
+                app:trimLength="150"
+                app:trimMode="trimModeLength"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
