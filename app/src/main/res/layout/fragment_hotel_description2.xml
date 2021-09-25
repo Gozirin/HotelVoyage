@@ -42,9 +42,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
             <TextView
+                android:id="@+id/hotel_desc_gallery_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/gallery"/>
+                android:text="@string/gallery"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/hotel_desc_gallery_view"
+                app:layout_constraintTop_toTopOf="@id/hotel_desc_gallery_view"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_gallery_view"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_front_arrow"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
