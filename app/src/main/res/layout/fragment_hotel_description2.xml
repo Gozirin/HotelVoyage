@@ -141,157 +141,255 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_expandable_tv" />
 
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_wifi_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="15dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_wifi"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_breakfast_ib"
-                app:layout_constraintHorizontal_bias="0.5"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hotel_desc_amenities_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_tv" />
-
-            <TextView
-                android:id="@+id/hotel_desc_amenities_wifi_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Free WiFi"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_wifi_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_wifi_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_wifi_ib" />
-
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_breakfast_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:padding="5dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:src="@drawable/ic__breakfast"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_wifi_ib"
-                app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_pet_ib"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_wifi_ib"
-                app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_wifi_ib" />
-
-            <TextView
-                android:id="@+id/hotel_desc_amenities_breakfast_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Breakfast"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_breakfast_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_breakfast_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_breakfast_ib" />
-
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_pet_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:padding="5dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:src="@drawable/ic__pet"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_breakfast_ib"
-                app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_bar_ib"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_breakfast_ib"
-                app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_breakfast_ib" />
-
-            <TextView
-                android:id="@+id/hotel_desc_amenities_pet_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Pets"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_pet_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_pet_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_pet_ib" />
-
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_bar_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:padding="5dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:src="@drawable/ic__glass_whine"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_pet_ib"
-                app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_pool_ib"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_pet_ib"
-                app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_pet_ib" />
-
-            <TextView
-                android:id="@+id/hotel_desc_amenities_bar_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Bar"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_bar_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_bar_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_bar_ib" />
-
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_pool_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:padding="5dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:src="@drawable/ic__pool"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_bar_ib"
-                app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_more_ib"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_bar_ib"
-                app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_bar_ib" />
-
-            <TextView
-                android:id="@+id/hotel_desc_amenities_pool_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Pool"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_pool_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_pool_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_pool_ib" />
-
-            <ImageButton
-                android:id="@+id/hotel_desc_amenities_more_ib"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/hotel_description_amenities_shape"
-                android:elevation="15dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_more_options"
-                app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_pool_ib"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_pool_ib"
-                app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_pool_ib" />
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_tv">
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_wifi_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_wifi"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_breakfast_ib"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_wifi_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Free WiFi"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_wifi_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_wifi_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_wifi_ib" />
+
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_breakfast_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="5dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:src="@drawable/ic__breakfast"
+                    app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_wifi_ib"
+                    app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_pet_ib"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_wifi_ib"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_wifi_ib" />
+
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_breakfast_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Breakfast"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_breakfast_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_breakfast_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_breakfast_ib" />
+
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_pet_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="5dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:src="@drawable/ic__pet"
+                    app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_breakfast_ib"
+                    app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_bar_ib"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_breakfast_ib"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_breakfast_ib" />
+
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_pet_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Pets"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_pet_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_pet_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_pet_ib" />
+
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_bar_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="5dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:src="@drawable/ic__glass_whine"
+                    app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_pet_ib"
+                    app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_pool_ib"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_pet_ib"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_pet_ib" />
+
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_bar_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Bar"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_bar_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_bar_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_bar_ib" />
+
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_pool_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:padding="5dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:src="@drawable/ic__pool"
+                    app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_bar_ib"
+                    app:layout_constraintEnd_toStartOf="@+id/hotel_desc_amenities_more_ib"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_bar_ib"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_bar_ib" />
+
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_pool_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Pool"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_pool_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_pool_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_pool_ib" />
+
+                <ImageButton
+                    android:id="@+id/hotel_desc_amenities_more_ib"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/hotel_description_amenities_shape"
+                    android:elevation="15dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_more_options"
+                    app:layout_constraintBottom_toBottomOf="@+id/hotel_desc_amenities_pool_ib"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hotel_desc_amenities_pool_ib"
+                    app:layout_constraintTop_toTopOf="@+id/hotel_desc_amenities_pool_ib" />
+
+                <TextView
+                    android:id="@+id/hotel_desc_amenities_more_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Free WiFi"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_more_ib"
+                    app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_more_ib"
+                    app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_more_ib" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/hotel_desc_mail_icon"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic__mail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_layout"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"/>
             <TextView
-                android:id="@+id/hotel_desc_amenities_more_tv"
+                android:id="@+id/hotel_desc_email_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Free WiFi"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_amenities_more_ib"
-                app:layout_constraintStart_toStartOf="@id/hotel_desc_amenities_more_ib"
-                app:layout_constraintTop_toBottomOf="@id/hotel_desc_amenities_more_ib" />
+                android:text="parkplaza@gmail.com"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/hotel_desc_mail_icon"
+                app:layout_constraintTop_toTopOf="@id/hotel_desc_mail_icon"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_mail_icon"
+                android:layout_marginStart="5dp"/>
+            <ImageButton
+                android:id="@+id/hotel_desc_phpone_icon"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_phone"
+                android:background="@color/white"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toStartOf="@id/hotel_desc_phone_tv"
+                app:layout_constraintTop_toTopOf="@id/hotel_desc_mail_icon"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_mail_icon"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_phone_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+91-627292365"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/hotel_desc_mail_icon"
+                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_mail_icon"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_email_tv"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"/>
+            <TextView
+                android:id="@+id/hotel_desc_price_value_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$6999"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_price_tv"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_ratings_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ratings"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_email_tv"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toStartOf="@id/hotel_desc_review_tv"
+                app:layout_constraintStart_toEndOf="@id/hotel_desc_price_tv"
+                android:layout_marginStart="20dp"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_review_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reviews"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/hotel_desc_email_tv"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"/>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
