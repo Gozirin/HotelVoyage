@@ -63,4 +63,7 @@ dependencies {
     //borja_bravo expandable textView Library = https://github.com/bravoborja/ReadMoreTextView
     implementation 'com.borjabravo:readmoretextview:2.1.0'
 
+    //lopsPower circleImageView https://github.com/lopspower/CircularImageView
+    implementation 'com.mikhaellopez:circularimageview:4.3.0'
+
 }
