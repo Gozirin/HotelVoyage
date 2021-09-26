@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/hotelDescription2Fragment">
+    app:startDestination="@id/ratingFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -16,4 +16,9 @@
         android:name="com.example.hbapplicationgroupa.ui.HotelDescription2Fragment"
         android:label="fragment_hotel_description2"
         tools:layout="@layout/fragment_hotel_description2" />
+    <fragment
+        android:id="@+id/ratingFragment"
+        android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
+        android:label="fragment_rating"
+        tools:layout="@layout/fragment_rating" />
 </navigation>

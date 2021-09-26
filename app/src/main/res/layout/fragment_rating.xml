@@ -1,85 +1,353 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.RatingFragment">
 
     <Toolbar
         android:id="@+id/rating_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="lollipop">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <ImageButton
                 android:id="@+id/rating_back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_arrow"
                 android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/black" />
+
             <TextView
                 android:id="@+id/rating_toolBar_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ratings"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:textSize="20sp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </Toolbar>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/rating_post_btn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:text="Post"
-        app:layout_constraintTop_toBottomOf="@id/rating_tool_bar"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textAllCaps="false"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:textColor="@color/c_grey"
         android:textSize="16sp"
-        android:layout_marginTop="5dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rating_tool_bar" />
 
     <RatingBar
         android:id="@+id/rating_ratingProgressBar"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:isIndicator="false"
         android:numStars="5"
+        android:progressTint="@color/c_red"
         android:rating="4.5"
         android:stepSize="0.5"
-        android:isIndicator="false"
-        android:progressTint="@color/c_red"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        app:layout_constraintTop_toBottomOf="@id/rating_post_btn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/rating_post_btn"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/rating_rb_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
         android:text="Tap a star to rate"
-        app:layout_constraintTop_toBottomOf="@id/rating_ratingProgressBar"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/rating_ratingProgressBar" />
+
+    <TextView
+        android:id="@+id/rating_writeRv_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:text="Write a review"
+        android:textColor="@color/c_red"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rating_rb_tv" />
+
+    <TextView
+        android:id="@+id/rating_ratingValueTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="4.5"
+        android:textColor="@color/c_red"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rating_writeRv_tv" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(Out of 5)"
+        app:layout_constraintEnd_toEndOf="@id/rating_ratingValueTv"
+        app:layout_constraintStart_toStartOf="@id/rating_ratingValueTv"
+        app:layout_constraintTop_toBottomOf="@id/rating_ratingValueTv" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rating_ratingBarLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/rating_ratingValueTv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rating_ratingValueTv">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/rating_fiveStarProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/c_red"
+            app:layout_constraintBottom_toTopOf="@+id/rating_FourStarProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/rating_FourStarProgressBar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/rating_fiveStarProgressBar"
+            app:layout_constraintTop_toTopOf="@id/rating_fiveStarProgressBar"
+            app:layout_constraintBottom_toBottomOf="@id/rating_fiveStarProgressBar">
+            <ImageView
+                android:id="@+id/starOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"/>
+            <ImageView
+                android:id="@+id/starTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/starOne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/starThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/starTwo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/starFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/starThree"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/starFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/starFour"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/rating_FourStarProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/c_red"
+            app:layout_constraintBottom_toTopOf="@+id/rating_ThreeStarProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/rating_ThreeStarProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_fiveStarProgressBar"
+            tools:targetApi="lollipop" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/rating_FourStarProgressBar"
+            app:layout_constraintTop_toTopOf="@id/rating_FourStarProgressBar"
+            app:layout_constraintBottom_toBottomOf="@id/rating_FourStarProgressBar">
+            <ImageView
+                android:id="@+id/p2_starOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"/>
+            <ImageView
+                android:id="@+id/p2_starTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p2_starOne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/p2_starThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p2_starTwo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/p2_starFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p2_starThree"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/rating_ThreeStarProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/c_red"
+            app:layout_constraintBottom_toTopOf="@+id/rating_twoStarProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/rating_twoStarProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_FourStarProgressBar"
+            tools:targetApi="lollipop" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/rating_ThreeStarProgressBar"
+            app:layout_constraintTop_toTopOf="@id/rating_ThreeStarProgressBar"
+            app:layout_constraintBottom_toBottomOf="@id/rating_ThreeStarProgressBar">
+            <ImageView
+                android:id="@+id/p3_starOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"/>
+            <ImageView
+                android:id="@+id/p3_starTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p3_starOne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ImageView
+                android:id="@+id/p3_starThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p3_starTwo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/rating_twoStarProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/c_red"
+            app:layout_constraintBottom_toTopOf="@+id/rating_oneStarProgressBar"
+            app:layout_constraintEnd_toEndOf="@+id/rating_oneStarProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_ThreeStarProgressBar"
+            tools:targetApi="lollipop" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/rating_twoStarProgressBar"
+            app:layout_constraintTop_toTopOf="@id/rating_twoStarProgressBar"
+            app:layout_constraintBottom_toBottomOf="@id/rating_twoStarProgressBar">
+            <ImageView
+                android:id="@+id/p4_starOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"/>
+            <ImageView
+                android:id="@+id/p4_starTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toStartOf="@id/p4_starOne"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/rating_oneStarProgressBar"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:progressTint="@color/c_red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rating_twoStarProgressBar"
+            app:layout_constraintTop_toBottomOf="@+id/rating_twoStarProgressBar"
+            tools:targetApi="lollipop" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/rating_oneStarProgressBar"
+            app:layout_constraintTop_toTopOf="@id/rating_oneStarProgressBar"
+            app:layout_constraintBottom_toBottomOf="@id/rating_oneStarProgressBar">
+            <ImageView
+                android:id="@+id/p5_starOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_star_border_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="5dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/rating_ratingCount_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25 Ratings"
+        app:layout_constraintTop_toBottomOf="@id/rating_ratingBarLayout"
+        app:layout_constraintEnd_toEndOf="@id/rating_ratingBarLayout"
+        android:textColor="@color/black"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
