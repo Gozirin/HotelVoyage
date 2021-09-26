@@ -1,10 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-//    id "org.jmailen.kotlinter"
+    id "org.jmailen.kotlinter"
     id "androidx.navigation.safeargs.kotlin"
 }
-apply plugin: 'kotlin-android'
 
 android {
     compileSdk 31
@@ -38,13 +37,13 @@ android {
     }
 }
 
-//kotlinter {
-//    ignoreFailures = false
-//    indentSize = 4
-//    reporters = ['checkstyle', 'plain']
-//    experimentalRules = false
-//    disabledRules = ["no-wildcard-imports"]
-//}
+kotlinter {
+    ignoreFailures = false
+    indentSize = 4
+    reporters = ['checkstyle', 'plain']
+    experimentalRules = false
+    disabledRules = ["no-wildcard-imports"]
+}
 
 dependencies {
 
