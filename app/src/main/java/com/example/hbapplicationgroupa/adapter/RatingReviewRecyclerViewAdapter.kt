@@ -8,13 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.borjabravo.readmoretextview.ReadMoreTextView
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.model.RatingReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
+import org.w3c.dom.Text
 
+/**
+ * RecyclerView Adapter for rating_reviewsRecyclerView
+ */
 class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyclerViewAdapter.RatingViewHolder>() {
-
+    var reviewDataList : ArrayList<RatingReviewModel> = arrayListOf()
     class RatingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val raterImage: CircularImageView = view.findViewById(R.id.ratingReview_iv)
         private val raterName: TextView = view.findViewById(R.id.ratingReviewName_tv)
+        private val ratingDate: TextView = view.findViewById(R.id.ratingReviewDate_tv)
         private val raterReview: ReadMoreTextView = view.findViewById(R.id.ratingReview_tv)
         private val starOne: ImageView = view.findViewById(R.id.ratingStarOne_iv)
         private val starTwo: ImageView = view.findViewById(R.id.ratingStarTwo_iv)
@@ -22,8 +28,26 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
         private val starFour: ImageView = view.findViewById(R.id.ratingStarFour_iv)
         private val starFive: ImageView = view.findViewById(R.id.ratingStarFive_iv)
 
-        fun bindReviewData(){
-
+        fun bindReviewData(reviewData : RatingReviewModel){
+            raterImage.setImageResource(reviewData.reviewImage)
+            raterName.text = reviewData.reviewName
+            ratingDate.text = reviewData.reviewDate
+            raterReview.text = reviewData.reviewBody
+            if (reviewData.starOne != null){
+                starOne.setImageResource(reviewData.starOne)
+            }
+            if (reviewData.starTwo != null){
+                starTwo.setImageResource(reviewData.starTwo)
+            }
+            if (reviewData.starThree != null){
+                starThree.setImageResource(reviewData.starThree)
+            }
+            if (reviewData.starFour != null){
+                starFour.setImageResource(reviewData.starFour)
+            }
+            if (reviewData.starFive != null){
+                starFive.setImageResource(reviewData.starFive)
+            }
         }
     }
 
@@ -33,10 +57,10 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
     }
 
     override fun onBindViewHolder(holder: RatingViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bindReviewData(reviewDataList[position])
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return reviewDataList.size
     }
 }
