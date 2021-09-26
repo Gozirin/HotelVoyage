@@ -11,4 +11,22 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
     </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.hbapplicationgroupa.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/exploreHomeFragment"
+        android:name="com.example.hbapplicationgroupa.ui.ExploreHomeFragment"
+        android:label="fragment_explore_home"
+        tools:layout="@layout/fragment_explore_home" />
+    <fragment
+        android:id="@+id/wishListFragment"
+        android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
+
+
 </navigation>
