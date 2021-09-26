@@ -7,7 +7,7 @@
     tools:context=".ui.RatingFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/rating_tool_bar"
+        android:id="@+id/rating_appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <androidx.appcompat.widget.Toolbar
+        <Toolbar
+            android:id="@+id/rating_toolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:elevation="16dp"
@@ -55,41 +56,46 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
+        </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rating_tool_bar">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rating_appBarLayout">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/rating_post_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Post"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/outline_button_radius"
+                android:text="Post"
                 android:textAllCaps="false"
                 android:textColor="@color/c_red"
                 android:textSize="16sp"
-                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RatingBar
                 android:id="@+id/rating_ratingProgressBar"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:isIndicator="false"
                 android:numStars="5"
                 android:progressTint="@color/c_red"
                 android:rating="4.5"
-                android:layout_marginTop="10dp"
                 android:stepSize="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -143,21 +149,22 @@
                 android:id="@+id/rating_ratingBarLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginEnd="20dp"
                 android:layout_marginStart="30dp"
-                app:layout_constraintStart_toEndOf="@id/rating_ratingValueTv"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="@id/rating_ratingValueTv"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rating_ratingValueTv"
                 app:layout_constraintTop_toTopOf="@id/rating_ratingValueTv">
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/rating_fiveStarProgressBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressTint="@color/c_red"
-                    app:layout_constraintStart_toEndOf="@id/rating_fiveStarLayout"
+                    app:indicatorColor="@color/c_red"
+                    android:progress="50"
                     app:layout_constraintBottom_toTopOf="@+id/rating_FourStarProgressBar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/rating_fiveStarLayout"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:targetApi="lollipop" />
 
@@ -220,28 +227,31 @@
                     android:id="@+id/rating_FourStarProgressBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressTint="@color/c_red"
+                    app:indicatorColor="@color/c_red"
+                    android:progress="100"
                     app:layout_constraintBottom_toTopOf="@+id/rating_ThreeStarProgressBar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/rating_fiveStarProgressBar"
                     app:layout_constraintTop_toBottomOf="@+id/rating_fiveStarProgressBar"
                     tools:targetApi="lollipop" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/rating_fourStarLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_FourStarProgressBar"
                     app:layout_constraintEnd_toStartOf="@id/rating_FourStarProgressBar"
-                    app:layout_constraintTop_toTopOf="@id/rating_FourStarProgressBar"
-                    app:layout_constraintBottom_toBottomOf="@id/rating_FourStarProgressBar">
+                    app:layout_constraintTop_toTopOf="@id/rating_FourStarProgressBar">
+
                     <ImageView
                         android:id="@+id/p2_starOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_star"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="5dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/p2_starTwo"
@@ -251,100 +261,111 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p2_starOne"
                         app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/p2_starThree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p2_starTwo"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/p2_starFour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p2_starThree"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/rating_ThreeStarProgressBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressTint="@color/c_red"
-                    app:layout_constraintStart_toStartOf="@id/rating_fiveStarProgressBar"
+                    app:indicatorColor="@color/c_red"
+                    android:progress="10"
                     app:layout_constraintBottom_toTopOf="@+id/rating_twoStarProgressBar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/rating_fiveStarProgressBar"
                     app:layout_constraintTop_toBottomOf="@+id/rating_FourStarProgressBar"
                     tools:targetApi="lollipop" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_ThreeStarProgressBar"
                     app:layout_constraintEnd_toStartOf="@id/rating_ThreeStarProgressBar"
-                    app:layout_constraintTop_toTopOf="@id/rating_ThreeStarProgressBar"
-                    app:layout_constraintBottom_toBottomOf="@id/rating_ThreeStarProgressBar">
+                    app:layout_constraintTop_toTopOf="@id/rating_ThreeStarProgressBar">
+
                     <ImageView
                         android:id="@+id/p3_starOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_star"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="5dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/p3_starTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p3_starOne"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/p3_starThree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p3_starTwo"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/rating_twoStarProgressBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressTint="@color/c_red"
-                    app:layout_constraintStart_toStartOf="@id/rating_fiveStarProgressBar"
+                    app:indicatorColor="@color/c_red"
+                    android:progress="0"
                     app:layout_constraintBottom_toTopOf="@+id/rating_oneStarProgressBar"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/rating_fiveStarProgressBar"
                     app:layout_constraintTop_toBottomOf="@+id/rating_ThreeStarProgressBar"
                     tools:targetApi="lollipop" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_twoStarProgressBar"
                     app:layout_constraintEnd_toStartOf="@id/rating_FourStarProgressBar"
-                    app:layout_constraintTop_toTopOf="@id/rating_twoStarProgressBar"
-                    app:layout_constraintBottom_toBottomOf="@id/rating_twoStarProgressBar">
+                    app:layout_constraintTop_toTopOf="@id/rating_twoStarProgressBar">
+
                     <ImageView
                         android:id="@+id/p4_starOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_star"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="5dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ImageView
                         android:id="@+id/p4_starTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_star"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/p4_starOne"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -352,46 +373,51 @@
                     android:id="@+id/rating_oneStarProgressBar"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:progressTint="@color/c_red"
+                    app:indicatorColor="@color/c_red"
+                    android:progress="2"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/rating_fiveStarProgressBar"
                     app:layout_constraintTop_toBottomOf="@+id/rating_twoStarProgressBar"
                     tools:targetApi="lollipop" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/rating_oneStarProgressBar"
                     app:layout_constraintEnd_toStartOf="@id/rating_oneStarProgressBar"
-                    app:layout_constraintTop_toTopOf="@id/rating_oneStarProgressBar"
-                    app:layout_constraintBottom_toBottomOf="@id/rating_oneStarProgressBar">
+                    app:layout_constraintTop_toTopOf="@id/rating_oneStarProgressBar">
+
                     <ImageView
                         android:id="@+id/p5_starOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_star"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginEnd="5dp"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/rating_ratingCount_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="25 Ratings"
-                app:layout_constraintTop_toBottomOf="@id/rating_ratingBarLayout"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@id/rating_ratingBarLayout"
-                android:textColor="@color/black"/>
+                app:layout_constraintTop_toBottomOf="@id/rating_ratingBarLayout" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rating_reviewsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/rating_ratingCount_tv"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rating_ratingCount_tv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
