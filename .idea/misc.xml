@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1" />
       </map>
     </option>
   </component>
