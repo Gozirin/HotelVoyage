@@ -7,14 +7,15 @@ import com.example.hbapplicationgroupa.R
  */
 data class HotelRoomServiceModel(
     val roomImage: Int,
-    val roomTitle: String
+    val roomTitle: String,
+    val roomPrice: String
 ){
     companion object{
         //Fake data list populated for UI sake
         val roomDataList = arrayListOf(
-            HotelRoomServiceModel(R.drawable.deluxeroom, "Deluxe Room"),
-            HotelRoomServiceModel(R.drawable.heritagedeluxe, "Single Deluxe Room"),
-            HotelRoomServiceModel(R.drawable.heritagedeluxetwo, "Studio King")
+            HotelRoomServiceModel(R.drawable.deluxeroom, "Deluxe Room", "$6999"),
+            HotelRoomServiceModel(R.drawable.heritagedeluxe, "Single Deluxe Room", "$5499"),
+            HotelRoomServiceModel(R.drawable.heritagedeluxetwo, "Studio King", "$2599")
         )
     }
 }

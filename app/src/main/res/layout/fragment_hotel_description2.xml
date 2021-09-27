@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/hotel_desc_iv"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:background="@drawable/deluxeroom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +42,9 @@
 
             <View
                 android:id="@+id/hotel_desc_gallery_view"
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:background="@color/c_red"
+                android:background="@drawable/top_left_radius_btn"
                 app:layout_constraintBottom_toBottomOf="@id/hotel_desc_iv"
                 app:layout_constraintEnd_toEndOf="@id/hotel_desc_iv" />
 
@@ -123,6 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:textColor="@color/black"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:text="@string/hotel_description"
@@ -131,7 +132,7 @@
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_showInMap_link_tv"
                 app:trimCollapsedText="@string/read_more"
                 app:trimExpandedText="@string/read_less"
-                app:trimLength="150"
+                app:trimLength="165"
                 app:trimMode="trimModeLength" />
 
             <TextView
@@ -140,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
                 android:text="@string/amenities"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -333,7 +335,7 @@
             <ImageButton
                 android:id="@+id/hotel_desc_phpone_icon"
                 android:layout_width="20dp"
-                android:layout_height="15dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_phone"
                 android:background="@color/white"
                 android:layout_marginEnd="5dp"
@@ -394,18 +396,16 @@
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_email_tv"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"/>
+                app:layout_constraintEnd_toEndOf="@id/hotel_desc_overlapRv"
+                app:layout_constraintStart_toStartOf="@id/hotel_desc_overlapRv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_desc_overlapRv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_review_tv"
-                app:layout_constraintStart_toEndOf="@id/hotel_desc_ratings_tv"
-                app:layout_constraintEnd_toEndOf="@id/hotel_desc_review_tv"
-                android:layout_marginStart="80dp"/>
+                app:layout_constraintEnd_toEndOf="@id/hotel_desc_phone_tv"
+                app:layout_constraintStart_toStartOf="@id/hotel_desc_phone_tv" />
 
             <RatingBar
                 android:id="@+id/hotel_desc_ratingBar"
@@ -414,7 +414,7 @@
                 android:numStars="5"
                 android:rating="4.5"
                 android:stepSize="0.5"
-                android:isIndicator="false"
+                android:isIndicator="true"
                 android:progressTint="@color/c_red"
                 style="?android:attr/ratingBarStyleSmall"
                 tools:targetApi="lollipop"
@@ -433,7 +433,7 @@
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_price_value_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_desc_services_recyclerView"
@@ -442,7 +442,7 @@
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_ourServices_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"/>
             
             <androidx.appcompat.widget.AppCompatButton
@@ -461,7 +461,7 @@
                 android:textColor="@color/white"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="30dp"/>
 
             <ImageButton
                 android:layout_width="50dp"

@@ -16,11 +16,13 @@ class HotelRoomServiceRecyclerViewAdapter(private val roomDataList: ArrayList<Ho
     class HotelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val roomImage: ImageView = view.findViewById(R.id.hotel_desc_room_iv)
         private val roomTitle: TextView = view.findViewById(R.id.hotel_desc_roomTitle_tv)
+        private val roomPrice: TextView = view.findViewById(R.id.hotel_desc_valueTv)
 
         //This method binds HotelViewHolder properties with HotelRoomServiceModel data
         fun bindHotelRoomData(roomData: HotelRoomServiceModel){
             roomImage.setImageResource(roomData.roomImage)
             roomTitle.text = roomData.roomTitle
+            roomPrice.text = roomData.roomPrice
         }
     }
 
