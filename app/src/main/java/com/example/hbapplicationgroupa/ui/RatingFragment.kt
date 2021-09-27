@@ -10,6 +10,11 @@ import com.example.hbapplicationgroupa.adapter.RatingReviewRecyclerViewAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentRatingBinding
 import com.example.hbapplicationgroupa.model.RatingReviewModel
 
+/**
+ * This Fragment is the Rating page where users can rate hotels
+ * It consists of 1 RecyclerView: RatingReviewRecyclerView
+ * View id from the xml layouts starts with suffix of; "rating_"
+ */
 class RatingFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentRatingBinding? = null
@@ -35,6 +40,7 @@ class RatingFragment : Fragment() {
         initRatingReviewRecyclerView()
     }
 
+    //Method Initializing attributes for RatingReviewRecyclerView
     private fun initRatingReviewRecyclerView(){
         binding.ratingReviewsRecyclerView.apply {
             adapter = ratingReviewRecyclerViewAdapter

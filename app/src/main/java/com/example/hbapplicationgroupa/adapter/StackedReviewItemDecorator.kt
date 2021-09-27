@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class StackedReviewItemDecorator : RecyclerView.ItemDecoration() {
 
-    private val verticalOverlap = -30
+    private val horizontalOverlap = -30
 
     override fun getItemOffsets(
         outRect: Rect,
@@ -17,6 +17,6 @@ class StackedReviewItemDecorator : RecyclerView.ItemDecoration() {
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        outRect.set(0,0,verticalOverlap, 0)
+        outRect.set(0,0,horizontalOverlap, 0)
     }
 }

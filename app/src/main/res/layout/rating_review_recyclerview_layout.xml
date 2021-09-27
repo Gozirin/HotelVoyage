@@ -9,7 +9,7 @@
         android:id="@+id/ratingReview_iv"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/deluxeroom"
+        android:src="@drawable/ic_launcher_background"
         app:civ_shadow="true"
         app:civ_border_width="1dp"
         app:civ_shadow_radius="1dp"

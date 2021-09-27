@@ -19,7 +19,7 @@ data class RatingReviewModel(
 ){
     companion object{
         val fakeRatingDataList = arrayListOf(
-            RatingReviewModel(R.drawable.deluxeroom,
+            RatingReviewModel(R.drawable.ic_launcher_background,
                 "Abass",
                 "Jun, 2019",
                 "Renowned for creating memorable moments, " +
@@ -35,7 +35,7 @@ data class RatingReviewModel(
                 null,
                 null,
             ),
-            RatingReviewModel(R.drawable.deluxeroom,
+            RatingReviewModel(R.drawable.ic_launcher_background,
                 "Kufre",
                 "Jul, 2021",
                 "Renowned for creating memorable moments, " +
@@ -51,7 +51,7 @@ data class RatingReviewModel(
                 R.drawable.ic_star,
                 R.drawable.ic_star,
             ),
-            RatingReviewModel(R.drawable.deluxeroom,
+            RatingReviewModel(R.drawable.ic_launcher_background,
                 "Chineye",
                 "Jun, 2020",
                 "Renowned for creating memorable moments, " +

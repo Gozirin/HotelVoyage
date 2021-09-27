@@ -13,9 +13,9 @@ data class HotelRoomServiceModel(
     companion object{
         //Fake data list populated for UI sake
         val roomDataList = arrayListOf(
-            HotelRoomServiceModel(R.drawable.deluxeroom, "Deluxe Room", "$6999"),
-            HotelRoomServiceModel(R.drawable.heritagedeluxe, "Single Deluxe Room", "$5499"),
-            HotelRoomServiceModel(R.drawable.heritagedeluxetwo, "Studio King", "$2599")
+            HotelRoomServiceModel(R.drawable.ic_launcher_background, "Deluxe Room", "$6999"),
+            HotelRoomServiceModel(R.drawable.ic_launcher_background, "Single Deluxe Room", "$5499"),
+            HotelRoomServiceModel(R.drawable.ic_launcher_background, "Studio King", "$2599")
         )
     }
 }

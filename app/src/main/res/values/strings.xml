@@ -2,8 +2,8 @@
     <string name="app_name">HBApplicationGroupA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="gallery">Gallery</string>
-    <string name="park_plaza">Park Plaza</string>
+    <string name="hotel_desc_gallery">Gallery</string>
+    <string name="hotel_desc_park_plaza">Park Plaza</string>
     <string name="hotel_description">Renowned for creating memorable moments, Park Plaza caters to both leisure and business travellers with stylish guest rooms and versatile meeting facilities which are perfectly complemented by award-winning restaurants and bars. We present a wide choice of travel destinations and accommodation options, from vibrant city-centre hotels to tranquil beach-side resorts, all united by authentic service and modern, inviting spaces.</string>
-    <string name="amenities">Amenities</string>
+    <string name="hotel_desc_amenities">Amenities</string>
 </resources>

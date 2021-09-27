@@ -9,6 +9,9 @@ import com.example.hbapplicationgroupa.model.StackedReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
 import java.util.zip.Inflater
 
+/**
+ * This is the adapter for the id: hotelDescOverlapRv RecyclerView in HotelDescription Fragment
+ */
 class StackedReviewAdapter : RecyclerView.Adapter<StackedReviewAdapter.StackedReviewViewHolder>(){
     var stackedImageList : ArrayList<StackedReviewModel> = arrayListOf()
     class StackedReviewViewHolder(view: View) : RecyclerView.ViewHolder(view){

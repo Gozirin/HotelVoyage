@@ -12,8 +12,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:cardPreventCornerOverlap="false">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +24,7 @@
                 android:id="@+id/hotel_desc_room_iv"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/deluxeroom"
+                android:background="@drawable/ic_launcher_background"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

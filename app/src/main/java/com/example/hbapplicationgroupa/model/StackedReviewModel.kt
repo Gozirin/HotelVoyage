@@ -9,10 +9,10 @@ data class StackedReviewModel(val img : Int) {
     companion object{
         //Fake data list to test recyclerView; This can be deleted
         val imgList = arrayListOf(
-            StackedReviewModel(R.drawable.person1),
-            StackedReviewModel(R.drawable.person2),
-            StackedReviewModel(R.drawable.person3),
-            StackedReviewModel(R.drawable.person4)
+            StackedReviewModel(R.drawable.ic_launcher_background),
+            StackedReviewModel(R.drawable.ic_launcher_background),
+            StackedReviewModel(R.drawable.ic_launcher_background),
+            StackedReviewModel(R.drawable.ic_launcher_background)
         )
     }
 }

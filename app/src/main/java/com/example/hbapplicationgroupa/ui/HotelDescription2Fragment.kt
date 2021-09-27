@@ -13,6 +13,12 @@ import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Bind
 import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
 import com.example.hbapplicationgroupa.model.StackedReviewModel
 
+
+/**
+ * The Fragment displays hotel descriptions; from gallery, to reviews, amenities, price etc.
+ * All id from the xml layout starts with a suffix of "hotel_desc"
+ * There are two RecyclerViews attached to this fragment: HotelRoomServiceRecyclerView & HotelOverlayReviewRecyclerView
+ */
 class HotelDescription2Fragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentHotelDescription2Binding? = null

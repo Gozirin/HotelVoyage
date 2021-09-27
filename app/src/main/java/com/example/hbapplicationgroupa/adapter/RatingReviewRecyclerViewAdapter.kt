@@ -28,6 +28,7 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
         private val starFour: ImageView = view.findViewById(R.id.ratingStarFour_iv)
         private val starFive: ImageView = view.findViewById(R.id.ratingStarFive_iv)
 
+        //This method binds RatingViewHolder properties with RatingReviewModel data
         fun bindReviewData(reviewData : RatingReviewModel){
             raterImage.setImageResource(reviewData.reviewImage)
             raterName.text = reviewData.reviewName

@@ -22,7 +22,7 @@
                 android:id="@+id/hotel_desc_iv"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:background="@drawable/deluxeroom"
+                android:background="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/gallery"
+                android:text="@string/hotel_desc_gallery"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/hotel_desc_gallery_view"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/park_plaza"
+                android:text="@string/hotel_desc_park_plaza"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -142,7 +142,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/black"
-                android:text="@string/amenities"
+                android:text="@string/hotel_desc_amenities"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_expandable_tv" />
@@ -443,6 +443,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="15dp"
+                android:paddingStart="10dp"
                 android:orientation="horizontal"/>
             
             <androidx.appcompat.widget.AppCompatButton
