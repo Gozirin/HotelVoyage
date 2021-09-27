@@ -10,6 +10,13 @@
         android:name="com.example.hbapplicationgroupa.ui.SplashFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboarding01Fragment2"
+            app:destination="@id/onboarding01Fragment2"
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/slide_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
 
     <fragment
@@ -27,6 +34,21 @@
         android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
         android:label="fragment_wish_list"
         tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/onboarding01Fragment2"
+        android:name="com.example.hbapplicationgroupa.ui.Onboarding01Fragment"
+        android:label="fragment_onboarding01"
+        tools:layout="@layout/fragment_onboarding01" >
+        <action
+            android:id="@+id/action_onboarding01Fragment2_to_splashScreenFragment"
+            app:destination="@id/splashScreenFragment"
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/slide_in"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
 
 
 </navigation>
