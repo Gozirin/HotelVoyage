@@ -8,10 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.adapter.HotelGalleryAdapter
 import com.example.hbapplicationgroupa.adapter.HotelRoomServiceRecyclerViewAdapter
 import com.example.hbapplicationgroupa.adapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.StackedReviewItemDecorator
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
+import com.example.hbapplicationgroupa.model.HotelGalleryModel
 import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
 import com.example.hbapplicationgroupa.model.StackedReviewModel
 
@@ -32,6 +34,8 @@ class HotelDescription2Fragment : Fragment() {
     lateinit var stackedImageList: ArrayList<StackedReviewModel>
     lateinit var stackedReviewLayoutManager: LinearLayoutManager
     lateinit var stackedReviewDecorator: StackedReviewItemDecorator
+    lateinit var hotelGalleryAdapter: HotelGalleryAdapter
+    lateinit var galleryList: ArrayList<HotelGalleryModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         //Enabled view binding here
@@ -42,24 +46,38 @@ class HotelDescription2Fragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Setting fake list to HotelRoomServiceRecyclerView Adapter
         hotelRoomList = HotelRoomServiceModel.roomDataList
         hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter(hotelRoomList)
 
+        //Setting fake list to StackedReview Adapter
         stackedReviewAdapter = StackedReviewAdapter()
         stackedImageList = StackedReviewModel.imgList
         stackedReviewAdapter.stackedImageList = stackedImageList
 
+        //Setting fake list to HotelGallery Adapter
+        hotelGalleryAdapter = HotelGalleryAdapter()
+        galleryList = HotelGalleryModel.galleryList
+        hotelGalleryAdapter.galleryList = galleryList
+
         viewClickListeners()
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
+        initHotelGalleryViewPager()
     }
 
     //Method Triggering onClickEvents
     private fun viewClickListeners(){
         //Click listener on view with Gallery text
         binding.hotelDescGalleryView.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_one), Toast.LENGTH_SHORT).show()
+            binding.hotelDescIv.setCurrentItem(binding.hotelDescIv.currentItem + 1, true)
         }
+
+        //Click listener on back btn
+        binding.hotelDescBackIv.setOnClickListener {
+            //backStack
+        }
+
         //Click listener on TextView with Show in Map text
         binding.hotelDescShowInMapLinkTv.setOnClickListener {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_two), Toast.LENGTH_SHORT).show()
@@ -98,4 +116,12 @@ class HotelDescription2Fragment : Fragment() {
             layoutManager = stackedReviewLayoutManager
         }
     }
+
+    //Method setting HotelGalleryViewPager attributes
+    private fun initHotelGalleryViewPager(){
+        binding.hotelDescIv.apply {
+            adapter = hotelGalleryAdapter
+        }
+    }
+
 }

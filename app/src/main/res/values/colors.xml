@@ -14,4 +14,6 @@
     <color name="c_light_blue">#C7E5F4</color>
     <color name="c_grey">#b0bec5</color>
     <color name="c_background">#e0f2f1</color>
+    <color name="red">#E94138</color>
+    <color name="splash_screen_background_color">#E94138</color>
 </resources>
