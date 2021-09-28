@@ -6,4 +6,11 @@
     <string name="hotel_desc_park_plaza">Park Plaza</string>
     <string name="hotel_description">Renowned for creating memorable moments, Park Plaza caters to both leisure and business travellers with stylish guest rooms and versatile meeting facilities which are perfectly complemented by award-winning restaurants and bars. We present a wide choice of travel destinations and accommodation options, from vibrant city-centre hotels to tranquil beach-side resorts, all united by authentic service and modern, inviting spaces.</string>
     <string name="hotel_desc_amenities">Amenities</string>
+    <string name="hotel_desc_toast_string_one">This should navigate to a gallery</string>
+    <string name="hotel_desc_toast_string_two">This should navigate to a map</string>
+    <string name="hotel_desc_toast_string_three">This should bring more Amenities option</string>
+    <string name="hotel_desc_toast_string_four">This should navigate to a Bookings</string>
+    <string name="hotel_desc_toast_string_five">This should bookmark Hotels</string>
+    <string name="rating_post_btn_toast">This should navigate to Write A Review</string>
+    <string name="rating_back_btn_toast">This should go back to the previous Fragment</string>
 </resources>

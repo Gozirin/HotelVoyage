@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.RatingReviewRecyclerViewAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentRatingBinding
 import com.example.hbapplicationgroupa.model.RatingReviewModel
@@ -38,6 +40,7 @@ class RatingFragment : Fragment() {
         ratingDataList = RatingReviewModel.fakeRatingDataList
         ratingReviewRecyclerViewAdapter.reviewDataList = ratingDataList
         initRatingReviewRecyclerView()
+        clickListeners()
     }
 
     //Method Initializing attributes for RatingReviewRecyclerView
@@ -45,6 +48,17 @@ class RatingFragment : Fragment() {
         binding.ratingReviewsRecyclerView.apply {
             adapter = ratingReviewRecyclerViewAdapter
             layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    //Method Triggering onClickEvents
+    private fun clickListeners(){
+        binding.ratingPostBtn.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.rating_post_btn_toast), Toast.LENGTH_SHORT).show()
+        }
+
+        binding.ratingBackBtn.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.rating_back_btn_toast), Toast.LENGTH_SHORT).show()
         }
     }
 }

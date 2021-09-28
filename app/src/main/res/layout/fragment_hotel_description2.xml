@@ -465,6 +465,7 @@
                 android:layout_marginBottom="30dp"/>
 
             <ImageButton
+                android:id="@+id/hotel_desc_bookmarkBtn"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:layout_constraintTop_toTopOf="@id/hotel_desc_book_btn"

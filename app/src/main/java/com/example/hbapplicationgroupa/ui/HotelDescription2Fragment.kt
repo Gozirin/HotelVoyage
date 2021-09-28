@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.HotelRoomServiceRecyclerViewAdapter
 import com.example.hbapplicationgroupa.adapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.StackedReviewItemDecorator
@@ -47,8 +49,33 @@ class HotelDescription2Fragment : Fragment() {
         stackedImageList = StackedReviewModel.imgList
         stackedReviewAdapter.stackedImageList = stackedImageList
 
+        viewClickListeners()
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
+    }
+
+    //Method Triggering onClickEvents
+    private fun viewClickListeners(){
+        //Click listener on view with Gallery text
+        binding.hotelDescGalleryView.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_one), Toast.LENGTH_SHORT).show()
+        }
+        //Click listener on TextView with Show in Map text
+        binding.hotelDescShowInMapLinkTv.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_two), Toast.LENGTH_SHORT).show()
+        }
+        //Click Listener for More button
+        binding.hotelDescAmenitiesMoreIb.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_three), Toast.LENGTH_SHORT).show()
+        }
+        //Click Listener for Book button
+        binding.hotelDescBookBtn.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_four), Toast.LENGTH_SHORT).show()
+        }
+        //Click Listener for BookMark Button
+        binding.hotelDescBookmarkBtn.setOnClickListener {
+            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
+        }
     }
 
     //Method setting HotelRoomServiceViewPager attributes
