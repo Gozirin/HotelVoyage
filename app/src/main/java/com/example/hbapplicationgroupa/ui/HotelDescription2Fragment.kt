@@ -8,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.HotelGalleryAdapter
-import com.example.hbapplicationgroupa.adapter.HotelRoomServiceRecyclerViewAdapter
-import com.example.hbapplicationgroupa.adapter.StackedReviewAdapter
-import com.example.hbapplicationgroupa.adapter.StackedReviewItemDecorator
+import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryAdapter
+import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoomServiceRecyclerViewAdapter
+import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
+import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
 import com.example.hbapplicationgroupa.model.HotelGalleryModel
 import com.example.hbapplicationgroupa.model.HotelRoomServiceModel

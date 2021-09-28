@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco
 
 import android.graphics.Rect
 import android.view.View

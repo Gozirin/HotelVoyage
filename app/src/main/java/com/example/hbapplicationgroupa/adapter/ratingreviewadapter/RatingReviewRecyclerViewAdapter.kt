@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.ratingreviewadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,6 @@ import com.borjabravo.readmoretextview.ReadMoreTextView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.RatingReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
-import org.w3c.dom.Text
 
 /**
  * RecyclerView Adapter for rating_reviewsRecyclerView

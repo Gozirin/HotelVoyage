@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.RatingReviewRecyclerViewAdapter
+import com.example.hbapplicationgroupa.adapter.ratingreviewadapter.RatingReviewRecyclerViewAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentRatingBinding
 import com.example.hbapplicationgroupa.model.RatingReviewModel
 

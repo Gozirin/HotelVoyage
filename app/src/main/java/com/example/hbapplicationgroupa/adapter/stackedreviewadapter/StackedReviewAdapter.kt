@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.stackedreviewadapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.StackedReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
-import java.util.zip.Inflater
 
 /**
  * This is the adapter for the id: hotelDescOverlapRv RecyclerView in HotelDescription Fragment

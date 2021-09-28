@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.hotelgalleryadapter
 
 import android.view.LayoutInflater
 import android.view.View
