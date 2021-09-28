@@ -27,6 +27,11 @@
         android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
         android:label="fragment_wish_list"
         tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/bookingConfirmationFragment"
+        android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
+        android:label="fragment_booking_confirmation"
+        tools:layout="@layout/fragment_booking_confirmation" />
 
 
 </navigation>
