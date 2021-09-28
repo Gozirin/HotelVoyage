@@ -58,7 +58,11 @@
         android:id="@+id/bookingDetailsFragment"
         android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
         android:label="fragment_booking_details"
-        tools:layout="@layout/fragment_booking_details" />
+        tools:layout="@layout/fragment_booking_details" >
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+    </fragment>
 
 
 </navigation>
