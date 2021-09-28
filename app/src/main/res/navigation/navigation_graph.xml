@@ -23,7 +23,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.hbapplicationgroupa.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_helpAndSupportFragment"
+            app:destination="@id/helpAndSupportFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_bookingDetailsFragment2"
+            app:destination="@id/bookingDetailsFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeFragment"
@@ -48,6 +55,28 @@
             app:popUpToInclusive="true"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpAndSupportFragment"
+        android:name="com.example.hbapplicationgroupa.ui.HelpAndSupportFragment"
+        android:label="fragment_help_and_support"
+        tools:layout="@layout/fragment_help_and_support" >
+        <action
+            android:id="@+id/action_helpAndSupportFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingDetailsFragment2"
+        android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
+        android:label="fragment_booking_details"
+        tools:layout="@layout/fragment_booking_details" >
+        <action
+            android:id="@+id/action_bookingDetailsFragment2_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
 

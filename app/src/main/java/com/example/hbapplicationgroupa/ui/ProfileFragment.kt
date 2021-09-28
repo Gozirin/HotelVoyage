@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ class ProfileFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private lateinit var dialog: Dialog
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         //Enabled view binding here
@@ -24,19 +27,22 @@ class ProfileFragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dialog = Dialog(requireContext())
+
         binding.fragmentProfileBookingsCon.setOnClickListener {
-            findNavController().navigate(R.id.pastBookingsFragment)
+            findNavController().navigate(R.id.action_profileFragment_to_bookingDetailsFragment2)
         }
         binding.fragmentProfileHelpCon.setOnClickListener {
-            findNavController().navigate(R.id.helpFragment)
+            findNavController().navigate(R.id.action_profileFragment_to_helpAndSupportFragment)
         }
         binding.fragmentProfilePrivacyCon.setOnClickListener {
             Toast.makeText(requireContext(), "This navigates to privacy and policy fragment",
                 Toast.LENGTH_SHORT).show()
         }
         binding.fragmentProfileLogoutTv.setOnClickListener {
-            Toast.makeText(requireContext(), "This logs out of the profile fragment",
-                Toast.LENGTH_SHORT).show()
+
+            dialog.setContentView(R.layout.log_out_dialogbox)
+            dialog.show()
         }
     }
 }
