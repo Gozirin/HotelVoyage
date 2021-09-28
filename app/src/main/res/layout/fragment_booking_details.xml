@@ -64,6 +64,8 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:hint="Name"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_person_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,8 +82,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:hint="Contact Number"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_local_phone_24"
         app:layout_constraintEnd_toEndOf="@+id/name_text_input_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/name_text_input_layout"
@@ -90,7 +94,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"/>
+            android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -98,8 +102,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:hint="Check In"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
         app:layout_constraintEnd_toEndOf="@+id/contact_number_text_input_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/contact_number_text_input_layout"
@@ -109,8 +115,8 @@
             android:id="@+id/check_in_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -118,8 +124,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:hint="Check Out"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_calendar_today_24"
         app:layout_constraintEnd_toEndOf="@+id/check_in_text_input_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/check_in_text_input_layout"
@@ -129,8 +137,8 @@
             android:id="@+id/check_out_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -138,8 +146,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:hint="People"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_people_24"
         app:layout_constraintEnd_toEndOf="@+id/check_out_text_input_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/check_out_text_input_layout"
@@ -149,8 +159,8 @@
             android:id="@+id/people_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -158,8 +168,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:hint="Rooms"
+        app:errorEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_king_bed_24"
         app:layout_constraintEnd_toEndOf="@+id/people_text_input_layout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/people_text_input_layout"
@@ -169,8 +181,8 @@
             android:id="@+id/rooms_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
