@@ -3,27 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/ratingFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.hbapplicationgroupa.ui.SplashFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_onboarding01Fragment2"
+            app:destination="@id/onboarding01Fragment2"
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/slide_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
     </fragment>
+
     <fragment
-        android:id="@+id/hotelDescription2Fragment"
-        android:name="com.example.hbapplicationgroupa.ui.HotelDescription2Fragment"
-        android:label="fragment_hotel_description2"
-        tools:layout="@layout/fragment_hotel_description2" />
+        android:id="@+id/profileFragment"
+        android:name="com.example.hbapplicationgroupa.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/ratingFragment"
-        android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
-        android:label="fragment_rating"
-        tools:layout="@layout/fragment_rating" />
+        android:id="@+id/exploreHomeFragment"
+        android:name="com.example.hbapplicationgroupa.ui.ExploreHomeFragment"
+        android:label="fragment_explore_home"
+        tools:layout="@layout/fragment_explore_home" />
     <fragment
-        android:id="@+id/writeAReviewFragment"
-        android:name="com.example.hbapplicationgroupa.ui.WriteAReviewFragment"
-        android:label="fragment_write_a_review"
-        tools:layout="@layout/fragment_write_a_review" />
+        android:id="@+id/wishListFragment"
+        android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
+        android:label="fragment_wish_list"
+        tools:layout="@layout/fragment_wish_list" />
+    <fragment
+        android:id="@+id/onboarding01Fragment2"
+        android:name="com.example.hbapplicationgroupa.ui.Onboarding01Fragment"
+        android:label="fragment_onboarding01"
+        tools:layout="@layout/fragment_onboarding01" >
+        <action
+            android:id="@+id/action_onboarding01Fragment2_to_splashScreenFragment"
+            app:destination="@id/splashScreenFragment"
+            app:enterAnim="@anim/fade_out"
+            app:exitAnim="@anim/slide_in"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
 </navigation>
