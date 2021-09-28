@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/bottom_sheet_curved_borders.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout-v21/fragment_booking_details.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.22" />
