@@ -29,10 +29,10 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="0dp"
                 android:singleLine="true"
                 android:text="@string/registration_registerTextview"
                 android:textColor="@color/black"
@@ -82,6 +82,33 @@
             android:focusable="false"
             android:textSize="18sp" />
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="32dp"
+        android:elevation="20dp"
+        android:focusedByDefault="false"
+        android:hint="@string/registration_email_field"
+        android:textColorHint="@color/black"
+        app:endIconMode="clear_text"
+        app:helperTextTextColor="#ED4639"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:startIconDrawable="@drawable/reg_email_icon"
+        app:startIconTint="#ED4639">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tvEmailText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
