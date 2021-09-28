@@ -54,6 +54,11 @@
         android:name="com.example.hbapplicationgroupa.ui.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
 
 </navigation>
