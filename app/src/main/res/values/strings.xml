@@ -8,4 +8,5 @@
     <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
+    <string name="login_welcome_back_textview">welcome_back</string>
 </resources>
