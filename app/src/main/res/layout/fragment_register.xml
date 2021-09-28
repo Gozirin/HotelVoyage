@@ -189,6 +189,44 @@
         app:layout_constraintTop_toTopOf="@id/registrationAgreementText" />
 
 
+    <TextView
+        android:id="@+id/tvRegistrationAlreadyMember"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:text="Already a member?"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/RegisterTickButton"
+        app:layout_constraintTop_toBottomOf="@id/registrationAgreementText" />
+
+    <TextView
+        android:id="@+id/tv_registrationLoginText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="1dp"
+        android:text="@string/login"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvRegistrationAlreadyMember"
+        app:layout_constraintTop_toTopOf="@id/tvRegistrationAlreadyMember" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="here"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_registrationLoginText"
+        app:layout_constraintTop_toTopOf="@id/tv_registrationLoginText" />
+
+
+
 
 
 
