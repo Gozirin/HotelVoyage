@@ -29,10 +29,10 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:padding="0dp"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:text="@string/registration_registerTextview"
                 android:textColor="@color/black"
@@ -92,8 +92,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:elevation="20dp"
         android:focusedByDefault="false"
+        android:elevation="20dp"
         android:hint="@string/registration_email_field"
         android:textColorHint="@color/black"
         app:endIconMode="clear_text"
@@ -108,6 +108,8 @@
             android:id="@+id/tvEmailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:focusable="false"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,8 +121,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:hint="***********"
         android:focusedByDefault="false"
+        android:hint="Password"
         android:textColorHint="@color/black"
         app:endIconMode="password_toggle"
         app:helperTextTextColor="#ED4639"
@@ -135,13 +137,12 @@
             android:id="@+id/tvEditPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:inputType="textPassword"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="18sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <RadioButton
         android:id="@+id/RegisterTickButton"
@@ -194,7 +195,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:text="Already a member?"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/RegisterTickButton"
@@ -210,7 +211,6 @@
         android:focusable="true"
         android:padding="1dp"
         android:text="@string/login"
-        android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/tvRegistrationAlreadyMember"
@@ -225,10 +225,11 @@
         app:layout_constraintStart_toEndOf="@id/tv_registrationLoginText"
         app:layout_constraintTop_toTopOf="@id/tv_registrationLoginText" />
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="294dp"
         android:layout_height="52dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/registration_custom_button"
         android:gravity="center"
         android:text="Register"
@@ -237,14 +238,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember" />
-
-
-
-
-
-
+        app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember"
+        app:layout_constraintVertical_bias="0.344" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
