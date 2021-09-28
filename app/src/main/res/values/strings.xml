@@ -14,4 +14,5 @@
     <string name="login_don_t_have_account_text">don_t_have_account</string>
     <string name="login_dont_have_acct_text">Don\'t have account?</string>
     <string name="login_register_text"><u>Register</u> here</string>
+    <string name="forgot_password_textview">Forgot Password</string>
 </resources>
