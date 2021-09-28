@@ -70,7 +70,7 @@ class HotelDescription2Fragment : Fragment() {
     private fun viewClickListeners(){
         //Click listener on view with Gallery text
         binding.hotelDescGalleryView.setOnClickListener {
-            binding.hotelDescIv.setCurrentItem(binding.hotelDescIv.currentItem + 1, true)
+            binding.hotelDescViewPager.setCurrentItem(binding.hotelDescViewPager.currentItem + 1, true)
         }
 
         //Click listener on back btn
@@ -119,7 +119,7 @@ class HotelDescription2Fragment : Fragment() {
 
     //Method setting HotelGalleryViewPager attributes
     private fun initHotelGalleryViewPager(){
-        binding.hotelDescIv.apply {
+        binding.hotelDescViewPager.apply {
             adapter = hotelGalleryAdapter
         }
     }

@@ -2,7 +2,6 @@ package com.example.hbapplicationgroupa.ui
 
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -27,7 +26,7 @@ class HotelDescription2FragmentTest{
 
     @Test
     fun test_isDisplayed_views(){
-        onView(withId(R.id.hotel_desc_iv)).check(matches(isDisplayed()))
+        onView(withId(R.id.hotel_desc_viewPager)).check(matches(isDisplayed()))
         onView(withId(R.id.hotel_desc_gallery_view)).check(matches(isDisplayed()))
         onView(withId(R.id.hotel_desc_hotelName_tv)).check(matches(isDisplayed()))
         onView(withId(R.id.hotel_desc_location_tv)).check(matches(isDisplayed()))
@@ -66,6 +65,16 @@ class HotelDescription2FragmentTest{
         onView(withId(R.id.hotel_desc_services_recyclerView)).check(matches(isDisplayed()))
         onView(withId(R.id.hotel_desc_services_recyclerView))
             .perform(swipeLeft())
+    }
+
+    @Test
+    fun test_hotel_gallery_viewpager(){
+        onView(withId(R.id.hotel_desc_viewPager)).check(matches(isDisplayed()))
+        onView(withId(R.id.hotel_desc_gallery_view)).check(matches(isDisplayed()))
+        onView(withId(R.id.hotel_desc_gallery_view)).perform(click())
+        onView(withId(R.id.hotel_desc_gallery_view)).perform(click())
+        onView(withId(R.id.hotel_desc_viewPager)).perform(swipeRight())
+        onView(withId(R.id.hotel_desc_viewPager)).perform(swipeRight())
     }
 
 }

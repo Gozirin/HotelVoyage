@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.HotelGalleryModel
 
+/**
+ * This is the Adapter for hotel_desc_viewPager
+ */
 class HotelGalleryAdapter : RecyclerView.Adapter<HotelGalleryAdapter.GalleryViewHolder>() {
     var galleryList: ArrayList<HotelGalleryModel> = arrayListOf()
     class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val galleryImage: ImageView = view.findViewById(R.id.hotel_gallery_iv)
 
+        //Method hotel_desc_viewPager data with HotelGalleryModel data
         fun bindGalleryImage(image: HotelGalleryModel){
             galleryImage.setImageResource(image.galleryImage)
         }
