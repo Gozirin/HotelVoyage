@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">HBApplicationGroupA</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //profile_fragment
+    <string name="fragment_profile_name">Kiran Carmen</string>
+    <string name="fragment_profile_email">kcarmen@gmail.com</string>
+    <string name="fragment_profile_title">Edit profile</string>
+
+    //booking fragment layout
+    <string name="fragment_booking_time">Today, 07:45am</string>
+    <string name="fragment_booking_hotel">Sheraton Grand</string>
+    <string name="fragment_booking_location">Marathalli, Bangalore, India</string>
+    <string name="fragment_booking_amount">$6999</string>
+
+    //help and support layout
+    <string name="fragment_help_intro">Hi, Karen. How can we help?</string>
+    <string name="fragment_help_address">7, Asajon way, Sangotedo, Eti-Osa, Lagos.</string>
+    <string name="fragment_help_contact">08022320123, 08034343434 </string>
 </resources>
