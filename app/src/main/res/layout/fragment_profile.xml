@@ -100,7 +100,8 @@
             android:layout_weight="0.2"
             android:paddingVertical="20dp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-    <View
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:layout_constraintStart_toStartOf="@id/fragment_profile_bookings_con"
@@ -141,6 +142,9 @@
         app:layout_constraintEnd_toEndOf="@id/fragment_profile_help_con"
         android:background="#F5F5F5"
         app:layout_constraintTop_toBottomOf="@id/fragment_profile_help_con"/>
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment"
+        android:gravity="center"/>
 
 
     <LinearLayout
