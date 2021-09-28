@@ -21,7 +21,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/page_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Booking"
@@ -35,7 +35,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/booking_confirmation_image_view"
         android:layout_width="0dp"
         android:layout_height="301dp"
         android:scaleType="centerCrop"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.26999998" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/congratulations_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -56,25 +56,25 @@
         android:text="Congratulations!"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/go_back_to_home_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/booking_confirmation_image_view"
         app:layout_constraintVertical_bias="0.35000002" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/booking_confirmation_message_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Your booking has been confirmed"
         android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintEnd_toEndOf="@+id/congratulations_text_view"
+        app:layout_constraintStart_toStartOf="@+id/congratulations_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/congratulations_text_view" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/go_back_to_home_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
