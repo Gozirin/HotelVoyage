@@ -121,8 +121,8 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:hint="***********"
         android:focusedByDefault="false"
+        android:hint="***********"
         android:textColorHint="@color/black"
         app:endIconMode="password_toggle"
         app:helperTextTextColor="#ED4639"
@@ -145,10 +145,105 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <RadioButton
+        android:id="@+id/RegisterTickButton"
+        android:layout_width="38dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:checked="true"
+        android:buttonTint="#ED4639"
+        android:onClick="checkButton"
+        app:layout_constraintEnd_toStartOf="@+id/registrationAgreementText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_password" />
+
+    <TextView
+        android:id="@+id/registrationAgreementText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="I hereby agree to the"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_registrationTAndC"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/RegisterTickButton"
+        app:layout_constraintTop_toTopOf="@id/RegisterTickButton" />
+
+    <TextView
+        android:id="@+id/tv_registrationTAndC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/t_c_and_privacy_policy"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/registrationAgreementText"
+        app:layout_constraintTop_toTopOf="@id/registrationAgreementText" />
 
 
+    <TextView
+        android:id="@+id/tvRegistrationAlreadyMember"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:text="Already a member?"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/RegisterTickButton"
+        app:layout_constraintTop_toBottomOf="@id/registrationAgreementText" />
+
+    <TextView
+        android:id="@+id/tv_registrationLoginText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:autoLink="all"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="1dp"
+        android:text="@string/login"
+        android:textColor="@color/custom_blue"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/tvRegistrationAlreadyMember"
+        app:layout_constraintTop_toTopOf="@id/tvRegistrationAlreadyMember" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="here"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/tv_registrationLoginText"
+        app:layout_constraintTop_toTopOf="@id/tv_registrationLoginText" />
 
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="294dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/registration_custom_button"
+        android:gravity="center"
+        android:text="Register"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember"
+        app:layout_constraintVertical_bias="0.344" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
