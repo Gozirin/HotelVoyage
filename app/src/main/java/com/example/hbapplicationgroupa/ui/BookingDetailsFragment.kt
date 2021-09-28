@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
@@ -21,7 +22,6 @@ class BookingDetailsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,8 +44,13 @@ class BookingDetailsFragment : Fragment() {
         binding.roomsEditText.setOnClickListener {
             roomsBottomSheet()
         }
+
+        binding.bookNowButton.setOnClickListener {
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_bookingConfirmationFragment)
+        }
     }
 
+    //Inflate fragment_number_of_people_bottom_sheet_dialog as bottom sheet dialog
     private fun peopleBottomSheet(){
         val bottomSheet = context?.let { BottomSheetDialog(it) }
         val view = layoutInflater.inflate(R.layout.fragment_number_of_people_bottom_sheet_dialog, null)
@@ -53,6 +58,7 @@ class BookingDetailsFragment : Fragment() {
         bottomSheet?.show()
     }
 
+    //Inflate fragment_number_of_rooms_bottom_sheet_dialog as bottom sheet dialog
     private fun roomsBottomSheet(){
         val bottomSheet = context?.let { BottomSheetDialog(it) }
         val view = layoutInflater.inflate(R.layout.fragment_number_of_rooms_bottom_sheet_dialog, null)
@@ -60,6 +66,12 @@ class BookingDetailsFragment : Fragment() {
         bottomSheet?.show()
     }
 
+    /*
+    The prime date picker library was used to implement the bottom sheet calendar date range picker.
+    Documentation is found in https://github.com/aminography/PrimeDatePicker.
+    The themeFactory object controls the customization of the date range picker.
+    Customization includes colours, fonts, drawables, etc.
+     */
     private val themeFactory = object : LightThemeFactory(){
         override val pickedDayBackgroundShapeType: BackgroundShapeType
             get() = BackgroundShapeType.CIRCLE
@@ -105,5 +117,10 @@ class BookingDetailsFragment : Fragment() {
         fragmentManager?.let {
             datePicker.show(it, "dateRange")
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
