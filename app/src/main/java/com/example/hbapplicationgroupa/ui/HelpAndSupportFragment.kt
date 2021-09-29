@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentHelpAndSupportBinding
 
 class HelpAndSupportFragment : Fragment() {
@@ -21,5 +24,29 @@ class HelpAndSupportFragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        binding.fragmentHelpBackwardIv.setOnClickListener{
+//            findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
+            Toast.makeText(context, "This navigates back to the profile page",
+                Toast.LENGTH_SHORT).show()
+        }
+        binding.fragmentHelpSendInquiryBtn.setOnClickListener {
+//            var email = binding.fragmentHelpEmailEt.text.toString()
+//            var title = binding.fragmentHelpInquiryTitleEt.text.toString()
+//            var inquiry = binding.fragmentHelpInquiryEt.text.toString()
+
+//            if (email.isEmpty() || title.isEmpty() || inquiry.isEmpty()){
+//                Toast.makeText(context, "Please, fill the empty spaces to ensure proper details",
+//                    Toast.LENGTH_SHORT).show()
+//            }else{
+//                Toast.makeText(context, "Thanks for the info",
+//                    Toast.LENGTH_SHORT).show()
+//                findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
+//            }
+
+            Toast.makeText(context, "This submits the information submitted",
+                    Toast.LENGTH_SHORT).show()
+        }
     }
 }
