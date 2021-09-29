@@ -37,6 +37,8 @@ class Onboarding01Fragment : Fragment() {
 
         setUpOnBoardingPage()
         setUpIndicator()
+        onClickOptionEvent()
+        onClickChangeViewEvent()
     }
 
     //create method to set up the onBoarding pages
@@ -72,13 +74,13 @@ class Onboarding01Fragment : Fragment() {
         } )
         (binding.viewpager2.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
-        binding.fragmentOnBoarding01OptionTv.setOnClickListener {
-            if (binding.viewpager2.currentItem + 1 < onBoardingAdapter.itemCount) {
-                binding.viewpager2.currentItem += 1
-            }else {
-                navigateToRegisterFragment()
-            }
-        }
+//        binding.fragmentOnBoarding01OptionTv.setOnClickListener {
+//            if (binding.viewpager2.currentItem + 1 < onBoardingAdapter.itemCount) {
+//                binding.viewpager2.currentItem += 1
+//            }else {
+//                navigateToRegisterFragment()
+//            }
+//        }
     }
 
     private fun setUpIndicator() {
@@ -147,5 +149,17 @@ class Onboarding01Fragment : Fragment() {
 
     private fun navigateToRegisterFragment() {
         findNavController().navigate(R.id.action_onboarding01Fragment2_to_registerFragment)
+    }
+     private fun onClickOptionEvent() {
+         binding.fragmentOnBoarding01OptionTv.setOnClickListener {
+                 navigateToRegisterFragment()
+         }
+     }
+    private fun onClickChangeViewEvent() {
+        binding.viewpager2.apply {
+            beginFakeDrag()
+            fakeDragBy(-10f)
+            endFakeDrag()
+        }
     }
 }
