@@ -27,11 +27,6 @@ class BookingDetailsFragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.fragmentBookingBackIv.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment2_to_profileFragment)
-        }
-        adapter = PastBookingsAdapter()
-        binding.bookingRecyclerview.adapter = adapter
-        binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+
     }
 }

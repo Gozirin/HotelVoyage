@@ -30,19 +30,26 @@ class ProfileFragment : Fragment() {
         dialog = Dialog(requireContext())
 
         binding.fragmentProfileBookingsCon.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_bookingDetailsFragment2)
+//            findNavController().navigate(R.id.action_profileFragment_to_pastBookingsFragment2)
+            Toast.makeText(requireContext(), "booking history clicked", Toast.LENGTH_SHORT).show()
+
         }
         binding.fragmentProfileHelpCon.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_helpAndSupportFragment)
+//            findNavController().navigate(R.id.action_profileFragment_to_helpAndSupportFragment)
+            Toast.makeText(requireContext(), "help and support clicked", Toast.LENGTH_SHORT).show()
+
         }
         binding.fragmentProfilePrivacyCon.setOnClickListener {
-            Toast.makeText(requireContext(), "This navigates to privacy and policy fragment",
+            Toast.makeText(requireContext(), "privacy and policy clicked",
                 Toast.LENGTH_SHORT).show()
+
         }
         binding.fragmentProfileLogoutTv.setOnClickListener {
 
-            dialog.setContentView(R.layout.log_out_dialogbox)
-            dialog.show()
+//            dialog.setContentView(R.layout.log_out_dialogbox)
+//            dialog.show()
+            Toast.makeText(requireContext(), "logout clicked", Toast.LENGTH_SHORT).show()
+
         }
     }
 }

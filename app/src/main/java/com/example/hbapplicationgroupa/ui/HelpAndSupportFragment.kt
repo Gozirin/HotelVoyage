@@ -27,21 +27,26 @@ class HelpAndSupportFragment : Fragment() {
 
 
         binding.fragmentHelpBackwardIv.setOnClickListener{
-            findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
+//            findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
+            Toast.makeText(context, "This navigates back to the profile page",
+                Toast.LENGTH_SHORT).show()
         }
         binding.fragmentHelpSendInquiryBtn.setOnClickListener {
-            var email = binding.fragmentHelpEmailEt.text.toString()
-            var title = binding.fragmentHelpInquiryTitleEt.text.toString()
-            var inquiry = binding.fragmentHelpInquiryEt.text.toString()
+//            var email = binding.fragmentHelpEmailEt.text.toString()
+//            var title = binding.fragmentHelpInquiryTitleEt.text.toString()
+//            var inquiry = binding.fragmentHelpInquiryEt.text.toString()
 
-            if (email.isEmpty() || title.isEmpty() || inquiry.isEmpty()){
-                Toast.makeText(context, "Please, fill the empty spaces to ensure proper details",
+//            if (email.isEmpty() || title.isEmpty() || inquiry.isEmpty()){
+//                Toast.makeText(context, "Please, fill the empty spaces to ensure proper details",
+//                    Toast.LENGTH_SHORT).show()
+//            }else{
+//                Toast.makeText(context, "Thanks for the info",
+//                    Toast.LENGTH_SHORT).show()
+//                findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
+//            }
+
+            Toast.makeText(context, "This submits the information submitted",
                     Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(context, "Thanks for the info",
-                    Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_helpAndSupportFragment_to_profileFragment)
-            }
         }
     }
 }

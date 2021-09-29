@@ -28,8 +28,8 @@
             android:id="@+id/action_profileFragment_to_helpAndSupportFragment"
             app:destination="@id/helpAndSupportFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_bookingDetailsFragment2"
-            app:destination="@id/bookingDetailsFragment2" />
+            android:id="@+id/action_profileFragment_to_pastBookingsFragment2"
+            app:destination="@id/pastBookingsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
@@ -68,12 +68,12 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/bookingDetailsFragment2"
-        android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
-        android:label="fragment_booking_details"
-        tools:layout="@layout/fragment_booking_details" >
+        android:id="@+id/pastBookingsFragment2"
+        android:name="com.example.hbapplicationgroupa.ui.PastBookingsFragment"
+        android:label="fragment_past_bookings"
+        tools:layout="@layout/fragment_past_bookings" >
         <action
-            android:id="@+id/action_bookingDetailsFragment2_to_profileFragment"
+            android:id="@+id/action_pastBookingsFragment2_to_profileFragment"
             app:destination="@id/profileFragment"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true" />

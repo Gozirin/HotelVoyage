@@ -1,11 +1,14 @@
 package com.example.hbapplicationgroupa
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.PastBookingItemsBinding
 
-class PastBookingsAdapter: RecyclerView.Adapter<PastBookingsAdapter.MyViewHolder>() {
+class PastBookingsAdapter(val context: Context): RecyclerView.Adapter<PastBookingsAdapter.MyViewHolder>() {
 
 
     class MyViewHolder(val binding:PastBookingItemsBinding):RecyclerView.ViewHolder(binding.root)
@@ -19,8 +22,10 @@ class PastBookingsAdapter: RecyclerView.Adapter<PastBookingsAdapter.MyViewHolder
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         holder.binding.fragmentBookingBookBtn.setOnClickListener {
-            holder.binding.fragmentBookingBookBtn.text = "Cancelled"
-            holder.binding.fragmentBookingBookBtn.strokeWidth = 0
+//            holder.binding.fragmentBookingBookBtn.text = "Cancelled"
+            Toast.makeText(context, "This cancels the booking", Toast.LENGTH_SHORT).show()
+
+//            holder.binding.fragmentBookingBookBtn.strokeWidth = 0
         }
 
 

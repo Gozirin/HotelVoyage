@@ -61,4 +61,12 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
     implementation 'com.google.android.material:material:1.5.0-alpha03'
 
+    //mockito testing dependency
+    testImplementation 'org.mockito:mockito-core:2.24.5'
+    androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+
+
+    //Fragment testing dependency
+    def fragment_version = "1.4.0-alpha09"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
 }
