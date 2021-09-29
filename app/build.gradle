@@ -82,6 +82,9 @@ dependencies {
 
 
 
+    //circle indicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
     //borja_bravo expandable textView Library = https://github.com/bravoborja/ReadMoreTextView
     implementation 'com.borjabravo:readmoretextview:2.1.0'
 
