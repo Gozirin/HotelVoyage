@@ -12,16 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.hbapplicationgroupa.OnBoardingInfo
-import com.example.hbapplicationgroupa.OnBoardingViewPagerAdapter
+import com.example.hbapplicationgroupa.model.OnBoardingModel
+import com.example.hbapplicationgroupa.adapter.OnBoardingViewPagerAdapter
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.databinding.FragmentOnboarding01Binding
+import com.example.hbapplicationgroupa.databinding.FragmentOnboardingBinding
 
-class Onboarding01Fragment : Fragment() {
+class OnboardingFragment : Fragment() {
     //Set up view binding here
-    private var _binding: FragmentOnboarding01Binding? = null
+    private var _binding: FragmentOnboardingBinding? = null
     private val binding get() = _binding!!
-    private lateinit var onBoardingList: MutableList<OnBoardingInfo>
+    private lateinit var onBoardingList: MutableList<OnBoardingModel>
     private lateinit var onBoardingAdapter: OnBoardingViewPagerAdapter
 
     override fun onCreateView(
@@ -30,7 +30,7 @@ class Onboarding01Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //Enabled view binding here
-        _binding = FragmentOnboarding01Binding.inflate(inflater, container, false)
+        _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -46,30 +46,30 @@ class Onboarding01Fragment : Fragment() {
     //create method to set up the onBoarding pages
     private fun setUpOnBoardingPage() {
         onBoardingAdapter = OnBoardingViewPagerAdapter()    //initialise onboarding adapter
-        binding.viewpager2.adapter = onBoardingAdapter         //assign the viewpager2 adapter to the onboarding adapter
+        binding.fragmentOnBoardingViewpager2.adapter = onBoardingAdapter         //assign the viewpager2 adapter to the onboarding adapter
 
-        //initialise the onBoarding list using the model class onBoardingInfo. The onBoardingList contains the data to be listed in the viewpager
+        //initialise the onBoarding list using the model class onBoardingModel. The onBoardingList contains the data to be listed in the viewpager
         onBoardingList = mutableListOf(
-            OnBoardingInfo(
+            OnBoardingModel(
                 R.drawable.onboarding_01_img,
                 "Search and save your preference",
                 "Browse best hotels from 40,000+ database that fits your unique needs"
             ),
-            OnBoardingInfo(
+            OnBoardingModel(
                 R.drawable.onboarding_02_img,
                 "Find the best deals",
                 "Find the best deals from any season and book from a curated list"
             ),
-            OnBoardingInfo(
+            OnBoardingModel(
                 R.drawable.onboarding_03_img,
                 "Book and enjoy your stay",
                 "Select the hotel and date as per your preference to book and have a pleasant stay"
             ),
         )
 
-        onBoardingAdapter.onBoardingInfo = onBoardingList       //set the onBoardingList to the adapter
+        onBoardingAdapter.onBoardingModel = onBoardingList       //set the onBoardingList to the adapter
 
-        binding.viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.fragmentOnBoardingViewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 isCurrentIndicator(position)
@@ -77,7 +77,7 @@ class Onboarding01Fragment : Fragment() {
                 onClickChangeViewEvent(position)
             }
         })
-        (binding.viewpager2.getChildAt(0) as RecyclerView).overScrollMode =
+        (binding.fragmentOnBoardingViewpager2.getChildAt(0) as RecyclerView).overScrollMode =
             RecyclerView.OVER_SCROLL_NEVER
     }
         //setup indicator
@@ -98,26 +98,26 @@ class Onboarding01Fragment : Fragment() {
                     }
                 )
                 it.layoutParams = layoutParams
-                binding.circleIndicator.addView(it)
+                binding.fragmentOnBoardingCircleIndicator.addView(it)
             }
         }
 
     }
 //set default text in views
     private fun defaultOnClickViewText() {
-        binding.fragmentOnBoarding01OptionTv.text = "Skip"
-        binding.fragmentOnBoarding01ChangeViewButton.text = "Next"
+        binding.fragmentOnBoardingOptionTv.text = "Skip"
+        binding.fragmentOnBoardingChangeViewButton.text = "Next"
     }
 //set text when view is changed
     private fun changeOnClickViewText() {
-        binding.fragmentOnBoarding01OptionTv.text = "Done"
-        binding.fragmentOnBoarding01ChangeViewButton.text = "Get Started"
+        binding.fragmentOnBoardingOptionTv.text = "Done"
+        binding.fragmentOnBoardingChangeViewButton.text = "Get Started"
     }
 //set the indicator light to the current page
     fun isCurrentIndicator(position: Int) {
-        val childCount = binding.circleIndicator.childCount
+        val childCount = binding.fragmentOnBoardingCircleIndicator.childCount
         for (spot in 0 until childCount) {
-            val view = binding.circleIndicator.getChildAt(spot) as ImageView
+            val view = binding.fragmentOnBoardingCircleIndicator.getChildAt(spot) as ImageView
             if (spot == position) {
                 view.setImageDrawable(
                     context?.let {
@@ -152,18 +152,18 @@ class Onboarding01Fragment : Fragment() {
 
         //function that effects changes on click of options view
     private fun onClickOptionEvent() {
-        binding.fragmentOnBoarding01OptionTv.setOnClickListener {
+        binding.fragmentOnBoardingOptionTv.setOnClickListener {
             navigateToRegisterFragment()
         }
     }
 
     //function that effects changes on click of change view button
     fun onClickChangeViewEvent(position: Int) {
-        binding.fragmentOnBoarding01ChangeViewButton.setOnClickListener {
+        binding.fragmentOnBoardingChangeViewButton.setOnClickListener {
             if (position == onBoardingAdapter.itemCount - 1) {
                 navigateToRegisterFragment()
             } else {
-                binding.viewpager2.setCurrentItem(binding.viewpager2.currentItem + 1, true)
+                binding.fragmentOnBoardingViewpager2.setCurrentItem(binding.fragmentOnBoardingViewpager2.currentItem + 1, true)
             }
         }
     }

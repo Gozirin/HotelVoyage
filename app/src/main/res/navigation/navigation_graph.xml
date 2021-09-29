@@ -36,9 +36,9 @@
         tools:layout="@layout/fragment_wish_list" />
     <fragment
         android:id="@+id/onboarding01Fragment2"
-        android:name="com.example.hbapplicationgroupa.ui.Onboarding01Fragment"
+        android:name="com.example.hbapplicationgroupa.ui.OnboardingFragment"
         android:label="fragment_onboarding01"
-        tools:layout="@layout/fragment_onboarding01" >
+        tools:layout="@layout/fragment_onboarding" >
         <action
             android:id="@+id/action_onboarding01Fragment2_to_splashScreenFragment"
             app:destination="@id/splashScreenFragment"

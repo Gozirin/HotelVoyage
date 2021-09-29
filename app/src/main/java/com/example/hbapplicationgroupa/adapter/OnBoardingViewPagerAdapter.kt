@@ -1,19 +1,20 @@
-package com.example.hbapplicationgroupa
+package com.example.hbapplicationgroupa.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hbapplicationgroupa.model.OnBoardingModel
 import com.example.hbapplicationgroupa.databinding.OnboardingViewPagerBinding
 
 class OnBoardingViewPagerAdapter() : RecyclerView.Adapter<OnBoardingViewPagerAdapter.OnBoardingViewHolder>() {
-    var onBoardingInfo: MutableList<OnBoardingInfo> = mutableListOf()
+    var onBoardingModel: MutableList<OnBoardingModel> = mutableListOf()
 
     inner class OnBoardingViewHolder(binding: OnboardingViewPagerBinding) : RecyclerView.ViewHolder(binding.root) {
         private val image = binding.onboardingViewPagerIv
         private val outline = binding.onboardingViewPagerOutlineTv
         private val description = binding.onboardingViewPagerDescriptionRv
 
-        fun bindData(onBoard: OnBoardingInfo){
+        fun bindData(onBoard: OnBoardingModel){
             image.setImageResource(onBoard.imageView)
             outline.text = onBoard.outlineText
             description.text = onBoard.descriptionText
@@ -26,10 +27,10 @@ class OnBoardingViewPagerAdapter() : RecyclerView.Adapter<OnBoardingViewPagerAda
     }
 
     override fun onBindViewHolder(holder: OnBoardingViewHolder, position: Int) {
-        holder.bindData(onBoardingInfo[position])
+        holder.bindData(onBoardingModel[position])
     }
 
     override fun getItemCount(): Int {
-        return onBoardingInfo.size
+        return onBoardingModel.size
     }
 }

@@ -1,8 +1,8 @@
-package com.example.hbapplicationgroupa
+package com.example.hbapplicationgroupa.model
 
 import androidx.annotation.DrawableRes
 
-data class OnBoardingInfo(
+data class OnBoardingModel(
     @DrawableRes val imageView: Int,
     var outlineText: String,
     val descriptionText: String
