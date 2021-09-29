@@ -34,7 +34,7 @@
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.1328125" />
         <entry key="app/src/main/res/layout/fragment_onboarding02.xml" value="0.1609375" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.3098958333333333" />
