@@ -38,11 +38,11 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.peopleEditText.setOnClickListener {
-            peopleBottomSheet()
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment)
         }
 
         binding.roomsEditText.setOnClickListener {
-            roomsBottomSheet()
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
         }
 
         binding.bookNowButton.setOnClickListener {

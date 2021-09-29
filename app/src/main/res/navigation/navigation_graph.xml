@@ -62,7 +62,31 @@
         <action
             android:id="@+id/action_bookingDetailsFragment_to_bookingConfirmationFragment"
             app:destination="@id/bookingConfirmationFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment"
+            app:destination="@id/numberOfRoomsBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment"
+            app:destination="@id/numberOfPeopleBottomSheetDialogFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
+        android:name="com.example.hbapplicationgroupa.ui.NumberOfRoomsBottomSheetDialogFragment"
+        android:label="fragment_number_of_rooms_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_number_of_rooms_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_numberOfRoomsBottomSheetDialogFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/numberOfPeopleBottomSheetDialogFragment"
+        android:name="com.example.hbapplicationgroupa.ui.NumberOfPeopleBottomSheetDialogFragment"
+        android:label="fragment_number_of_people_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_number_of_people_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_numberOfPeopleBottomSheetDialogFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </dialog>
 
 
 </navigation>
