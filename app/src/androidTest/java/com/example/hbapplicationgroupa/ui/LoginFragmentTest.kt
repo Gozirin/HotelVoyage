@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.ui
 
+import androidx.fragment.app.somtesting.FragmentScenario
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
