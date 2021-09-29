@@ -21,6 +21,7 @@ class MainActivity:AppCompatActivity() {
     */
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
     val navController = navHostFragment.findNavController()
+
     binding.bottomNavigationBar.setupWithNavController(navController)
 showBottomNav()
         // set the bottom navigation in various fragment
