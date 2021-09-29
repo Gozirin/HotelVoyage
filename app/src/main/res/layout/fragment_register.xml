@@ -29,10 +29,10 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:gravity="center"
-                android:padding="10dp"
+                android:padding="0dp"
                 android:singleLine="true"
                 android:text="@string/registration_registerTextview"
                 android:textColor="@color/black"
@@ -47,7 +47,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_image_register"
         android:layout_width="wrap_content"
         android:layout_height="230dp"
         android:layout_marginTop="18dp"
@@ -57,7 +57,7 @@
         local:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textView"
+        android:id="@+id/tv_register_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -71,21 +71,20 @@
         app:helperTextTextColor="#ED4639"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/iv_image_register"
         app:startIconDrawable="@drawable/reg_person_image"
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEmailT"
+            android:id="@+id/tv_register_userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
             android:textSize="18sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvEmail"
+        android:id="@+id/tvEmail_register_field"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -100,16 +99,15 @@
         app:helperTextTextColor="#ED4639"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_name"
         app:startIconDrawable="@drawable/reg_email_icon"
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEmailText"
+            android:id="@+id/tvEmailText_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:focusable="false"
             android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,14 +125,14 @@
         app:endIconMode="password_toggle"
         app:helperTextTextColor="#ED4639"
         app:hintTextColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/tvEmail"
-        app:layout_constraintStart_toStartOf="@id/tvEmail"
-        app:layout_constraintTop_toBottomOf="@id/tvEmail"
+        app:layout_constraintEnd_toEndOf="@id/tvEmail_register_field"
+        app:layout_constraintStart_toStartOf="@id/tvEmail_register_field"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail_register_field"
         app:startIconDrawable="@drawable/registration_password_lock"
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEditPassword"
+            android:id="@+id/tvEditPassword_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -227,6 +225,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
         android:layout_width="294dp"
         android:layout_height="52dp"
         android:layout_marginTop="10dp"
