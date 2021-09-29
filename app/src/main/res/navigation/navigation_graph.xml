@@ -57,6 +57,11 @@
             app:popExitAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
+        android:id="@+id/bookingConfirmationFragment"
+        android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
+        android:label="fragment_booking_confirmation"
+        tools:layout="@layout/fragment_booking_confirmation" />
+    <fragment
         android:id="@+id/ratingFragment"
         android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
         android:label="fragment_rating"

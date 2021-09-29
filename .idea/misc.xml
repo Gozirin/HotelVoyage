@@ -31,6 +31,16 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1673611111111111" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -60,6 +70,13 @@
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.14" />
+      </ProjectState>
+    </option>
+  </component>
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
