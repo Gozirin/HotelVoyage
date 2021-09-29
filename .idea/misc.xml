@@ -5,6 +5,9 @@
       <map>
         <entry key="app/src/main/res/drawable/current_position_indicator.xml" value="0.27395833333333336" />
         <entry key="app/src/main/res/drawable/indicator_circle.xml" value="0.27395833333333336" />
+        <entry key="app/src/main/res/drawable/registration_custom_button.xml" value="0.178125" />
+        <entry key="app/src/main/res/layout-v26/fragment_register.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-v28/fragment_login.xml" value="0.16770833333333332" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
@@ -15,6 +18,9 @@
         <entry key="app/src/main/res/layout/onboarding_view_pager.xml" value="0.25" />
         <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1673611111111111" />
       </map>
     </option>
   </component>
