@@ -2,6 +2,90 @@
     <string name="app_name">HBApplicationGroupA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="explore">Explore</string>
+    <string name="banglore">Banglore</string>
+    <string name="profile">Profile</string>
+    <string name="filter_icon">filter</string>
+    <string name="stay">stay</string>
+    <string name="book_now">Book Now</string>
+    <string name="_99">99%</string>
+    <string name="per_night">per_night</string>
+    <string name="imageview">imageView</string>
+    <string name="we_have_deals_for">We have deals for</string>
+    <string name="your_favourite_and_relaxing">your favourite and relaxing</string>
+    <string name="view">View</string>
+    <string name="imageButton">imageButton</string>
+    <string name="view_all">View All</string>
+    <string name="top_deals">Top Deals</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="imagebutton">imageButton</string>
+
+    // string resource  added by benjamin
+    <string name="price">$ 6999</string>
+    <string name="hotelRating">5 star hotel .96%</string>
+    <string name="nameOfHotel">Taj WestSide</string>
+    <string name="inforCollected">in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your .</string>
+
+    <string name="infoProvided">in other to efficiently use the mobilfinder
+        in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="privacyPolicy">last updat August in other to efficiently
+        use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="hotel_voyage_privacy_policy"><u>hotel Voyage Privacy Policy</u>  </string>
+    <string name="information_we_collect"><u>Information we Collect</u></string>
+    <string name="information_you_provided"><u>Information You Provided</u></string>
+
+    //_________________________________________________
+
+
+    //profile_fragment
+    <string name="fragment_profile_name">Kiran Carmen</string>
+    <string name="fragment_profile_email">kcarmen@gmail.com</string>
+    <string name="fragment_profile_title">Edit profile</string>
+
+    //booking fragment layout
+    <string name="fragment_booking_time">Today, 07:45am</string>
+    <string name="fragment_booking_hotel">Sheraton Grand</string>
+    <string name="fragment_booking_location">Marathalli, Bangalore, India</string>
+    <string name="fragment_booking_amount">$6999</string>
+
+    //help and support layout
+    <string name="fragment_help_intro">Hi, Karen. How can we help?</string>
+    <string name="fragment_help_address">7, Asajon way, Sangotedo, Eti-Osa, Lagos.</string>
+    <string name="fragment_help_contact">08022320123, 08034343434 </string>
+    <string name="hotel_desc_gallery">Gallery</string>
+    <string name="hotel_desc_park_plaza">Park Plaza</string>
+    <string name="hotel_description">Renowned for creating memorable moments, Park Plaza caters to both leisure and business travellers with stylish guest rooms and versatile meeting facilities which are perfectly complemented by award-winning restaurants and bars. We present a wide choice of travel destinations and accommodation options, from vibrant city-centre hotels to tranquil beach-side resorts, all united by authentic service and modern, inviting spaces.</string>
+    <string name="hotel_desc_amenities">Amenities</string>
+    <string name="hotel_desc_toast_string_one">This should navigate to a gallery</string>
+    <string name="hotel_desc_toast_string_two">This should navigate to a map</string>
+    <string name="hotel_desc_toast_string_three">This should bring more Amenities option</string>
+    <string name="hotel_desc_toast_string_four">This should navigate to a Bookings</string>
+    <string name="hotel_desc_toast_string_five">This should bookmark Hotels</string>
+    <string name="rating_post_btn_toast">This should navigate to Write A Review</string>
+    <string name="rating_back_btn_toast">This should go back to the previous Fragment</string>
     <string name="login">Login</string>
     <string name="registration_registerTextview">Register</string>
     <string name="registration_hintName">Name</string>

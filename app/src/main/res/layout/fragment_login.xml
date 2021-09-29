@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:padding="5dp"
-        android:text="@string/login_welcome_back_textview"
+        android:text="Welcome back"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -91,6 +91,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tvEmailText_reset_password"
+            android:id="@+id/tvEmailTe_login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp" />
@@ -114,6 +115,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_confirm_Password_reset_password"
+            android:id="@+id/tvEditPassword_login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -164,7 +166,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_login_screen"
         android:layout_width="294dp"
         android:layout_height="52dp"
         android:layout_marginTop="40dp"
