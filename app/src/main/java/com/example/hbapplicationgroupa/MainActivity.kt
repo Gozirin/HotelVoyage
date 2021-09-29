@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,16 @@ class MainActivity:AppCompatActivity() {
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
     val navController = navHostFragment.findNavController()
     binding.bottomNavigationBar.setupWithNavController(navController)
+
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            if(destination.id == R.id.) {
+//
+//                binding.bottomNavigationBar.visibility = View.GONE
+//            } else {
+//
+//                binding.bottomNavigationBar.visibility = View.VISIBLE
+//            }
+//        }
 
     }
 }

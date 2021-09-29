@@ -35,12 +35,12 @@ class WishListFragment : Fragment() {
 
         val items = arrayListOf(item1,item2, item3, item4, item5)
 
-        val wishlistRV = binding.recyclerView
-        wishlistRV.layoutManager = LinearLayoutManager(context)
+        val wishlistRecyclerView = binding.wishListRecyclerView
+        wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
 
         // initialise the adapter and pass the items to the adapter
         val adapter = WishListAdapter(items, requireContext())
-        wishlistRV.adapter = adapter
+        wishlistRecyclerView.adapter = adapter
 
 
 
