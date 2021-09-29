@@ -13,4 +13,10 @@
     <string name="hotel_desc_toast_string_five">This should bookmark Hotels</string>
     <string name="rating_post_btn_toast">This should navigate to Write A Review</string>
     <string name="rating_back_btn_toast">This should go back to the previous Fragment</string>
+    <string name="login">Login</string>
+    <string name="registration_registerTextview">Register</string>
+    <string name="registration_hintName">Name</string>
+    <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
+    <string name="registration_login"><u>Login</u></string>
+    <string name="registration_email_field">Email</string>
 </resources>
