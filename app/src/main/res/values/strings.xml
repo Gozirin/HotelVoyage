@@ -19,6 +19,22 @@
     <string name="top_deals">Top Deals</string>
     <string name="top_hotels">Top Hotels</string>
     <string name="imagebutton">imageButton</string>
+
+    //profile_fragment
+    <string name="fragment_profile_name">Kiran Carmen</string>
+    <string name="fragment_profile_email">kcarmen@gmail.com</string>
+    <string name="fragment_profile_title">Edit profile</string>
+
+    //booking fragment layout
+    <string name="fragment_booking_time">Today, 07:45am</string>
+    <string name="fragment_booking_hotel">Sheraton Grand</string>
+    <string name="fragment_booking_location">Marathalli, Bangalore, India</string>
+    <string name="fragment_booking_amount">$6999</string>
+
+    //help and support layout
+    <string name="fragment_help_intro">Hi, Karen. How can we help?</string>
+    <string name="fragment_help_address">7, Asajon way, Sangotedo, Eti-Osa, Lagos.</string>
+    <string name="fragment_help_contact">08022320123, 08034343434 </string>
     <string name="hotel_desc_gallery">Gallery</string>
     <string name="hotel_desc_park_plaza">Park Plaza</string>
     <string name="hotel_description">Renowned for creating memorable moments, Park Plaza caters to both leisure and business travellers with stylish guest rooms and versatile meeting facilities which are perfectly complemented by award-winning restaurants and bars. We present a wide choice of travel destinations and accommodation options, from vibrant city-centre hotels to tranquil beach-side resorts, all united by authentic service and modern, inviting spaces.</string>
@@ -36,4 +52,10 @@
     <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
+    <string name="login_welcome_back_textview">welcome_back</string>
+    <string name="login_email">Email</string>
+    <string name="login_forgot_password_text">forgot_password?</string>
+    <string name="login_don_t_have_account_text">don_t_have_account</string>
+    <string name="login_dont_have_acct_text">Don\'t have account?</string>
+    <string name="login_register_text"><u>Register</u> here</string>
 </resources>

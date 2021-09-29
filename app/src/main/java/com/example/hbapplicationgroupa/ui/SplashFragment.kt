@@ -37,11 +37,11 @@ class SplashFragment : Fragment() {
     //create function that animates text in splash screen view
     private fun scaleText() {
         val appNameView = binding.fragmentSplashScreenHotelVoyageVw
-        val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 400f)
-        val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 200f)
+        val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 4f)
+        val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 4f)
         val animator = ObjectAnimator.ofPropertyValuesHolder(
             appNameView, scaleX, scaleY)
-        animator.duration = 5000
+        animator.duration = 3000
         animator.repeatCount = 1
         animator.repeatMode = ObjectAnimator.REVERSE
         animator.start()
@@ -51,8 +51,8 @@ class SplashFragment : Fragment() {
     private fun navigateToNextFragment(){
         val handler = Handler()
         handler.postDelayed({
-//            findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
-        }, 5000)
+            findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
+        }, 3000)
     }
 
 }

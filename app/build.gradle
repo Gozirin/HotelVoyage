@@ -75,6 +75,14 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+    implementation 'com.google.android.material:material:1.5.0-alpha03'
+
+    //mockito testing dependency
+    testImplementation 'org.mockito:mockito-core:2.24.5'
+    androidTestImplementation 'org.mockito:mockito-android:2.24.5'
+
+    //circle indicator
+    implementation 'me.relex:circleindicator:2.1.6'
 
     //Google material design
     implementation "com.google.android.material:material:1.4.0"

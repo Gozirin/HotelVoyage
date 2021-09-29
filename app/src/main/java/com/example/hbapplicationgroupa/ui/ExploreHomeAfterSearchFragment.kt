@@ -38,7 +38,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
 
         val viewText = view.findViewById<TextView>(R.id.explore_home_after_search_cardview_view_textview)
         viewText.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
+
         }
 
         //creating dummy Hotel Data
