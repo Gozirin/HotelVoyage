@@ -20,6 +20,46 @@
     <string name="top_hotels">Top Hotels</string>
     <string name="imagebutton">imageButton</string>
 
+    // string resource  added by benjamin
+    <string name="price">$ 6999</string>
+    <string name="hotelRating">5 star hotel .96%</string>
+    <string name="nameOfHotel">Taj WestSide</string>
+    <string name="inforCollected">in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your .</string>
+
+    <string name="infoProvided">in other to efficiently use the mobilfinder
+        in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="privacyPolicy">last updat August in other to efficiently
+        use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="hotel_voyage_privacy_policy"><u>hotel Voyage Privacy Policy</u>  </string>
+    <string name="information_we_collect"><u>Information we Collect</u></string>
+    <string name="information_you_provided"><u>Information You Provided</u></string>
+
+    //_________________________________________________
+
+
     //profile_fragment
     <string name="fragment_profile_name">Kiran Carmen</string>
     <string name="fragment_profile_email">kcarmen@gmail.com</string>
