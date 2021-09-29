@@ -13,6 +13,11 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_onboarding01Fragment2"
             app:destination="@id/onboarding01Fragment2" />
+            app:destination="@id/onboarding01Fragment2"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -39,18 +44,25 @@
         tools:layout="@layout/fragment_wish_list" />
     <fragment
         android:id="@+id/onboarding01Fragment2"
-        android:name="com.example.hbapplicationgroupa.ui.Onboarding01Fragment"
+        android:name="com.example.hbapplicationgroupa.ui.OnboardingFragment"
         android:label="fragment_onboarding01"
-        tools:layout="@layout/fragment_onboarding01" >
+        tools:layout="@layout/fragment_onboarding" >
         <action
             android:id="@+id/action_onboarding01Fragment2_to_splashScreenFragment"
             app:destination="@id/splashScreenFragment"
-            app:enterAnim="@anim/fade_out"
-            app:exitAnim="@anim/slide_in"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/splashScreenFragment"
-            app:popUpToInclusive="true"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_onboarding01Fragment2_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_out_left"
+            app:exitAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_right" />
     </fragment>
     <fragment
         android:id="@+id/helpAndSupportFragment"
@@ -99,6 +111,11 @@
         android:name="com.example.hbapplicationgroupa.ui.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeAfterSearchFragment"

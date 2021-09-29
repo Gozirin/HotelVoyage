@@ -82,6 +82,9 @@ dependencies {
 
 
 
+    //circle indicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
     //Test dependency
     androidTestImplementation "com.google.truth:truth:1.0.1"
     androidTestImplementation 'androidx.test:runner:1.3.0'
