@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -21,5 +23,9 @@ class LoginFragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnLoginScreen.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment2)
+        }
     }
 }
