@@ -3,10 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.16041666666666668" />
+        <entry key="app/src/main/res/drawable/ic_forward_button.xml" value="0.2994791666666667" />
+        <entry key="app/src/main/res/layout-v21/fragment_explore_home_after_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_2nd_viewpager.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_viewpager.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/top_hotel_recyclerview_view_item.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_tool_bar.xml" value="0.22" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.14114583333333333" />
+      </ProjectState>
+    </option>
+  </component>
 </project>

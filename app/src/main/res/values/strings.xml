@@ -2,4 +2,21 @@
     <string name="app_name">HBApplicationGroupA</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="explore">Explore</string>
+    <string name="banglore">Banglore</string>
+    <string name="profile">Profile</string>
+    <string name="filter_icon">filter</string>
+    <string name="stay">stay</string>
+    <string name="book_now">Book Now</string>
+    <string name="_99">99%</string>
+    <string name="per_night">per_night</string>
+    <string name="imageview">imageView</string>
+    <string name="we_have_deals_for">We have deals for</string>
+    <string name="your_favourite_and_relaxing">your favourite and relaxing</string>
+    <string name="view">View</string>
+    <string name="imageButton">imageButton</string>
+    <string name="view_all">View All</string>
+    <string name="top_deals">Top Deals</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="imagebutton">imageButton</string>
 </resources>
