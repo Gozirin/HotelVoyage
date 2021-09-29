@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,7 +36,8 @@ class ExploreHomeAfterSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewAndArrow.setOnClickListener {
+        val viewText = view.findViewById<TextView>(R.id.explore_home_after_search_cardview_view_textview)
+        viewText.setOnClickListener {
             findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
         }
 

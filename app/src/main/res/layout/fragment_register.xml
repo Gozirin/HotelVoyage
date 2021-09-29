@@ -57,7 +57,7 @@
         local:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textView"
+        android:id="@+id/explore_home_after_search_cardview_view_textview"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
         app:helperTextTextColor="#ED4639"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/explore_home_after_search_cardview_view_textview"
         app:startIconDrawable="@drawable/reg_email_icon"
         app:startIconTint="#ED4639">
 

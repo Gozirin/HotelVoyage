@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/exploreHomeAfterSearchFragment">
 
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"
@@ -48,11 +48,7 @@
         android:id="@+id/splashFragment"
         android:name="com.example.hbapplicationgroupa.ui.SplashFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_splash_screen" />
     <fragment
         android:id="@+id/ratingFragment"
         android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
