@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/forgotPasswordFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -110,6 +110,16 @@
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
         android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment2"
+            app:destination="@id/forgotPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.example.hbapplicationgroupa.ui.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" />
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"

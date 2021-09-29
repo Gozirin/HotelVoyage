@@ -7,6 +7,12 @@
         <entry key="app/src/main/res/drawable/ic_forward_button.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/layout-v21/fragment_explore_home_after_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_onboarding02.xml" value="0.1673611111111111" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1673611111111111" />
         <entry key="app/src/main/res/layout/explore_home_after_search_2nd_viewpager.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />
