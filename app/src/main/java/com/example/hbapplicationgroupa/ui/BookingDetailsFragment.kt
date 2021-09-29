@@ -114,9 +114,7 @@ class BookingDetailsFragment : Fragment() {
 
             }.applyTheme(themeFactory).build()
 
-        fragmentManager?.let {
-            datePicker.show(it, "dateRange")
-        }
+        datePicker.show(parentFragmentManager, "dateRange")
     }
 
     override fun onDestroyView() {
