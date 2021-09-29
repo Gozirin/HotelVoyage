@@ -34,4 +34,10 @@
     <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
+    <string name="login_welcome_back_textview">welcome_back</string>
+    <string name="login_email">Email</string>
+    <string name="login_forgot_password_text">forgot_password?</string>
+    <string name="login_don_t_have_account_text">don_t_have_account</string>
+    <string name="login_dont_have_acct_text">Don\'t have account?</string>
+    <string name="login_register_text"><u>Register</u> here</string>
 </resources>
