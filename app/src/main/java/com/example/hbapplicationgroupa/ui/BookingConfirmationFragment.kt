@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.hbapplicationgroupa.databinding.FragmentBookingConfirmationBinding
 
@@ -18,8 +19,12 @@ class BookingConfirmationFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Set appropriate navigation here when the goBackToHomeButton is clicked
+        binding.goBackToHomeButton.setOnClickListener {
+            Toast.makeText(context, "Button clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }
