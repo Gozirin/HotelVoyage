@@ -115,12 +115,20 @@
         android:id="@+id/exploreHomeAfterSearchFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeAfterSearchFragment"
         android:label="fragment_explore_home_after_search"
-        tools:layout="@layout/fragment_explore_home_after_search" />
+        tools:layout="@layout/fragment_explore_home_after_search" >
+        <action
+            android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/topHotelsFragment"
         android:name="com.example.hbapplicationgroupa.ui.TopHotelsFragment"
         android:label="fragment_top_hotels"
-        tools:layout="@layout/fragment_top_hotels" />
+        tools:layout="@layout/fragment_top_hotels" >
+        <action
+            android:id="@+id/action_topHotelsFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
         android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
@@ -131,11 +139,6 @@
         android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
         android:label="fragment_booking_details"
         tools:layout="@layout/fragment_booking_details" />
-    <fragment
-        android:id="@+id/privacyPolicyFragment"
-        android:name="com.example.hbapplicationgroupa.ui.PrivacyPolicyFragment"
-        android:label="fragment_privacy_policy"
-        tools:layout="@layout/fragment_privacy_policy" />
 
 
 </navigation>
