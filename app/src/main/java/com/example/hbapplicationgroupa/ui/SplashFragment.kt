@@ -51,7 +51,7 @@ class SplashFragment : Fragment() {
     private fun navigateToNextFragment(){
         val handler = Handler()
         handler.postDelayed({
-            findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
+//            findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
         }, 5000)
     }
 
