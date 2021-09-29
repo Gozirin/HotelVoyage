@@ -85,6 +85,12 @@ class BookingDetailsFragment : Fragment() {
         override val calendarViewPickedDayInRangeLabelTextColor: Int
             get() = getColor(R.color.black)
 
+        override val calendarViewMonthLabelTextColor: Int
+            get() = getColor(R.color.red)
+
+        override val calendarViewTodayLabelTextColor: Int
+            get() = getColor(R.color.red)
+
         override val calendarViewWeekLabelTextColors: SparseIntArray
             get() = SparseIntArray(7).apply {
                 val black = getColor(android.R.color.black)
