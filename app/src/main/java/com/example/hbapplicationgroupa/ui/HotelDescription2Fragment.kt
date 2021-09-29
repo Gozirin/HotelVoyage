@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryAdapter
@@ -88,7 +89,8 @@ class HotelDescription2Fragment : Fragment() {
         }
         //Click Listener for Book button
         binding.hotelDescBookBtn.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_four), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
+//            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_four), Toast.LENGTH_SHORT).show()
         }
         //Click Listener for BookMark Button
         binding.hotelDescBookmarkBtn.setOnClickListener {

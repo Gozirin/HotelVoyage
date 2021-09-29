@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.ratingreviewadapter.RatingReviewRecyclerViewAdapter
@@ -54,6 +55,7 @@ class RatingFragment : Fragment() {
     //Method Triggering onClickEvents
     private fun clickListeners(){
         binding.ratingPostBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_ratingFragment_to_writeAReviewFragment)
             Toast.makeText(requireContext(), getString(R.string.rating_post_btn_toast), Toast.LENGTH_SHORT).show()
         }
 
