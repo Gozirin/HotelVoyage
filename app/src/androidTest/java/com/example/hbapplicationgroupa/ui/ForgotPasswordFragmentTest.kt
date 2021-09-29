@@ -16,7 +16,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ForgotPasswordFragmentTest{
     private lateinit var scenario: FragmentScenario<ForgotPasswordFragment>
-    private lateinit var scenario: FragmentScenario<LoginFragment>
+
 
 
     @Before
