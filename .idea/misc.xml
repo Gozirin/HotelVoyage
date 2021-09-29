@@ -7,6 +7,13 @@
         <entry key="app/src/main/res/drawable/ic_forward_button.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/layout-v21/fragment_explore_home_after_search.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1" />
         <entry key="app/src/main/res/layout/explore_home_after_search_2nd_viewpager.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />

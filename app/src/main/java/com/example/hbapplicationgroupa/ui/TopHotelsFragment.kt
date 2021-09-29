@@ -84,25 +84,30 @@ class TopHotelsFragment : Fragment() {
         backButton.setOnClickListener{
             findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
         }
-//        //setting view button
-//        val searchBtn = binding.topHotelSearchView
-//        searchBtn.setOnClickListener{
-//            Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
-//        }
-//
-//        //setting saveButton
-//        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
-//        saveButton.setOnClickListener{
-//            saveButton.setColorFilter(android.R.color.holo_red_light)
-//            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        //setting book hotel
-//        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
-//        bookHotelBtn.setOnClickListener{
-//            bookHotelBtn.setBackgroundColor(105)
-//            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
-//
-//        }
+        //setting view button
+        binding.topHotelSearchView.setOnSearchClickListener{
+            it.setBackgroundResource(R.color.splash_screen_background_color)
+            Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
+        }
+
+        //filter button
+        binding.topHotelFilter.setOnClickListener{
+            it.setBackgroundResource(R.color.purple_500)
+            Toast.makeText(context, "Filter icon is clicked", Toast.LENGTH_LONG).show()
+        }
+
+        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
+        saveButton.setOnClickListener{
+            it.setBackgroundResource(R.color.purple_700)
+            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
+        }
+
+        //setting book hotel
+        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
+        bookHotelBtn.setOnClickListener{
+            it.setBackgroundResource(R.color.purple_500)
+            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
+
+        }
     }
 }
