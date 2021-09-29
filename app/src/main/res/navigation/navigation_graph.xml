@@ -128,7 +128,11 @@
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.hbapplicationgroupa.ui.ResetPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" />
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
         tools:layout="@layout/fragment_forgot_password" />
         tools:layout="@layout/fragment_login" />
     <fragment
