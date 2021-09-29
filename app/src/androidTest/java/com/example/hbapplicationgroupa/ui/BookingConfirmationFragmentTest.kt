@@ -23,6 +23,7 @@ class BookingConfirmationFragmentTest {
         scenario = launchFragmentInContainer(themeResId = R.style.Theme_HBApplicationGroupA)
     }
 
+    //Test checks if button navigates to the next page
     @Test
     fun testGoBackToHomeButton(){
         onView(withId(R.id.go_back_to_home_button)).perform(click())
