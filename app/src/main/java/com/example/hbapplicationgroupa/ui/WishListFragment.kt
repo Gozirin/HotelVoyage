@@ -15,7 +15,11 @@ class WishListFragment : Fragment() {
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         //initialise  the view binding
         _binding = FragmentWishListBinding.inflate(inflater, container, false)
@@ -27,13 +31,13 @@ class WishListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // this is a temporary data, to be removed when the required data is available
-        val item1 =  WishListData( "\$2334", "BeachTowa", "5 Star hotel.96%")
-        val item2 =  WishListData( "\$6339", "Arizona Hotel", "3 Star hotel.90%")
-        val item3 =  WishListData( "\$4338", "Eko Hotel", "4 Star hotel.93%")
-        val item4 =  WishListData( "\$8374", "Sharaton", "5 Star hotel.96%")
-        val item5 =  WishListData( "\$1354", "Edo lunge", "4 Star hotel.93%")
+        val item1 = WishListData("\$2334", "BeachTowa", "5 Star hotel.96%")
+        val item2 = WishListData("\$6339", "Arizona Hotel", "3 Star hotel.90%")
+        val item3 = WishListData("\$4338", "Eko Hotel", "4 Star hotel.93%")
+        val item4 = WishListData("\$8374", "Sharaton", "5 Star hotel.96%")
+        val item5 = WishListData("\$1354", "Edo lunge", "4 Star hotel.93%")
 
-        val items = arrayListOf(item1,item2, item3, item4, item5)
+        val items = arrayListOf(item1, item2, item3, item4, item5)
 
         val wishlistRecyclerView = binding.wishListRecyclerView
         wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -41,7 +45,6 @@ class WishListFragment : Fragment() {
         // initialise the adapter and pass the items to the adapter
         val adapter = WishListAdapter(items, requireContext())
         wishlistRecyclerView.adapter = adapter
-
 
 
     }

@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.hbapplicationgroupa.databinding.FragmentWriteAReviewBinding
 
+/**
+ * This Fragment is where users write reviews and post
+ * View id in the Fragment start with suffix of; "review_"
+ */
 class WriteAReviewFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentWriteAReviewBinding? = null
