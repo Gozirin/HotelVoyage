@@ -45,171 +45,154 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-
-    <ScrollView
-        android:id="@+id/fragment_help_sv"
+    <TextView
+        android:id="@+id/fragment_help_intro_tv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/fragment_help_intro"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_appbar" />
+
+    <TextView
+        android:id="@+id/fragment_help_addressTitle_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="11dp"
+        android:text="Our address"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_intro_tv" />
+
+    <TextView
+        android:id="@+id/fragment_help_address_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/fragment_help_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_addressTitle_tv" />
+
+    <TextView
+        android:id="@+id/fragment_help_contactTitle_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="6dp"
+        android:text="Hot Lines"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_address_tv" />
+
+    <TextView
+        android:id="@+id/fragment_help_contact_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/fragment_help_contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_contactTitle_tv" />
+
+    <TextView
+        android:id="@+id/fragment_help_emailIntro_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="11dp"
+        android:text="Email us"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_help_appbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_contact_tv" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_help_email_etv"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="11dp"
+        android:hint="Kcarmen@gmail.com"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_emailIntro_tv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragment_help_email_et"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/fragment_help_intro_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/fragment_help_intro"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/fragment_help_addressTitle_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="30dp"
-                android:text="Our address"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_intro_tv" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_help_inquiryTitle_etv"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="21dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_email_etv">
 
-            <TextView
-                android:id="@+id/fragment_help_address_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/fragment_help_address"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_addressTitle_tv" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragment_help_inquiryTitle_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Inquiry title" />
 
-            <TextView
-                android:id="@+id/fragment_help_contactTitle_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:text="Hot Lines"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_address_tv" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/fragment_help_contact_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/fragment_help_contact"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_contactTitle_tv" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fragment_help_inquiry_etv"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="21dp"
+        android:hint="Add your inquiry..."
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_inquiryTitle_etv">
 
-            <TextView
-                android:id="@+id/fragment_help_emailIntro_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:text="Email us"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_contact_tv" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fragment_help_inquiry_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top" />
 
+    </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_help_email_etv"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
-                android:hint="Kcarmen@gmail.com"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_emailIntro_tv">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_help_email_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_help_inquiryTitle_etv"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="30dp"
-                app:endIconMode="clear_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_email_etv">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_help_inquiryTitle_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Inquiry title" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fragment_help_inquiry_etv"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="30dp"
-                android:hint="Add your inquiry..."
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_inquiryTitle_etv">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_help_inquiry_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="top" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/fragment_help_sendInquiry_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="55dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#E94138"
-                android:text="Send a message"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_help_inquiry_etv" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
+    <Button
+        android:id="@+id/fragment_help_sendInquiry_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="55dp"
+        android:layout_marginTop="21dp"
+        android:backgroundTint="#E94138"
+        android:text="Send a message"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_help_inquiry_etv" />
 </androidx.constraintlayout.widget.ConstraintLayout>
