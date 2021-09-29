@@ -16,6 +16,8 @@
         <entry key="app/src/main/res/layout/fragment_number_of_rooms_bottom_sheet_dialog.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/people_number_bottom_sheet_view_holder.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/room_number_bottom_sheet_view_holder.xml" value="0.22" />
         <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_navigation_bar.xml" value="0.1" />
       </map>
