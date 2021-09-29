@@ -134,7 +134,7 @@
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEditPassword"
+            android:id="@+id/tvEditPassword_login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
