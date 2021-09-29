@@ -23,7 +23,14 @@
         android:id="@+id/profileFragment"
         android:name="com.example.hbapplicationgroupa.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_helpAndSupportFragment"
+            app:destination="@id/helpAndSupportFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_pastBookingsFragment2"
+            app:destination="@id/pastBookingsFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeFragment"
@@ -55,6 +62,28 @@
             app:exitAnim="@anim/slide_in_right"
             app:popEnterAnim="@anim/slide_out_right"
             app:popExitAnim="@anim/slide_in_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpAndSupportFragment"
+        android:name="com.example.hbapplicationgroupa.ui.HelpAndSupportFragment"
+        android:label="fragment_help_and_support"
+        tools:layout="@layout/fragment_help_and_support" >
+        <action
+            android:id="@+id/action_helpAndSupportFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/pastBookingsFragment2"
+        android:name="com.example.hbapplicationgroupa.ui.PastBookingsFragment"
+        android:label="fragment_past_bookings"
+        tools:layout="@layout/fragment_past_bookings" >
+        <action
+            android:id="@+id/action_pastBookingsFragment2_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpTo="@id/navigation_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
