@@ -91,7 +91,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tvEmailText_reset_password"
-            android:id="@+id/tvEmailTe_login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp" />
@@ -115,7 +114,6 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_confirm_Password_reset_password"
-            android:id="@+id/tvEditPassword_login_screen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"

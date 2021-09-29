@@ -104,7 +104,6 @@
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEmailText_register"
             android:id="@+id/tvEmailText_reset_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -133,7 +132,6 @@
         app:startIconTint="#ED4639">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvEditPassword_register"
             android:id="@+id/tv_confirm_Password_reset_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
