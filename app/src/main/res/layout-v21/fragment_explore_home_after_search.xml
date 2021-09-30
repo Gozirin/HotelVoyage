@@ -231,7 +231,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/explore_home_after_search_card_view_tv_display_card" />
 
-
             <TextView
                 android:id="@+id/exploreHomeFragmentAftersearch_top_Hotel_topHotel_viewAll_tv"
                 android:layout_width="wrap_content"
@@ -298,8 +297,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/topDeals_title"
                 tools:layout_editor_absoluteX="16dp"
                 tools:listitem="@layout/explore_home_after_search_recyclerview_item_2" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

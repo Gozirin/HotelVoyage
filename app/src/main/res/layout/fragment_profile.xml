@@ -34,7 +34,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -45,6 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_profile_appbar"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -127,7 +127,6 @@
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_image_cv"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_image_cv" />
 
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/fragment_profile_bookings_con"
                 android:layout_width="match_parent"
@@ -205,7 +204,6 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_profile_help_con"
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_help_con"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_help_con" />
-
 
             <LinearLayout
                 android:id="@+id/fragment_profile_privacy_con"

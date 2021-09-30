@@ -52,8 +52,6 @@ tools:context=".ui.TopHotelsFragment">
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.appcompat.widget.Toolbar>
 
@@ -127,5 +125,4 @@ tools:context=".ui.TopHotelsFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layout_text"
         tools:listitem="@layout/top_hotel_recyclerview_view_item"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
