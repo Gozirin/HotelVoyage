@@ -41,8 +41,6 @@ class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         adapter.differ.submitList(listOfRooms)
 
-        Log.d("GKB", "NUMBER OF ROOMS: ${adapter.differ.currentList}")
-
         binding.cancelButton.setOnClickListener {
             findNavController().navigate(R.id.action_numberOfRoomsBottomSheetDialogFragment_to_bookingDetailsFragment)
         }
