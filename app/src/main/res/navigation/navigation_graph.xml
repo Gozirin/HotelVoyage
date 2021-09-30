@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_profileFragment_to_pastBookingsFragment2"
             app:destination="@id/pastBookingsFragment2" />
+        <action
+            android:id="@+id/action_profileFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
@@ -84,6 +90,9 @@
             app:destination="@id/profileFragment"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_pastBookingsFragment2_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
 
     <fragment
@@ -123,22 +132,50 @@
         android:id="@+id/ratingFragment"
         android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
         android:label="fragment_rating"
-        tools:layout="@layout/fragment_rating" />
+        tools:layout="@layout/fragment_rating" >
+        <action
+            android:id="@+id/action_ratingFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_ratingFragment_to_writeAReviewFragment"
+            app:destination="@id/writeAReviewFragment" />
+    </fragment>
     <fragment
         android:id="@+id/hotelDescription2Fragment"
         android:name="com.example.hbapplicationgroupa.ui.HotelDescription2Fragment"
         android:label="fragment_hotel_description2"
-        tools:layout="@layout/fragment_hotel_description2" />
+        tools:layout="@layout/fragment_hotel_description2" >
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
         android:name="com.example.hbapplicationgroupa.ui.WriteAReviewFragment"
         android:label="fragment_write_a_review"
-        tools:layout="@layout/fragment_write_a_review" />
+        tools:layout="@layout/fragment_write_a_review" >
+        <action
+            android:id="@+id/action_writeAReviewFragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.hbapplicationgroupa.ui.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
@@ -147,6 +184,12 @@
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment2"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -156,6 +199,9 @@
         <action
             android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -163,8 +209,8 @@
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
-            android:id="@+id/action_resetPasswordFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"
@@ -183,10 +229,26 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_exploreHomeAfterSearchFragment"
             app:destination="@id/exploreHomeAfterSearchFragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
         android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
         android:label="fragment_booking_confirmation"
         tools:layout="@layout/fragment_booking_confirmation" />
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.hbapplicationgroupa.ui.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/paymentCheckoutFragment"
+        android:name="com.example.hbapplicationgroupa.ui.PaymentCheckoutFragment"
+        android:label="fragment_payment_checkout"
+        tools:layout="@layout/fragment_payment_checkout" />
 </navigation>
