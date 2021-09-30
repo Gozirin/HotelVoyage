@@ -105,7 +105,11 @@
         android:id="@+id/registerFragment"
         android:name="com.example.hbapplicationgroupa.ui.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
@@ -130,8 +134,8 @@
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
-            android:id="@+id/action_resetPasswordFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_resetPasswordFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
         tools:layout="@layout/fragment_forgot_password" />
         tools:layout="@layout/fragment_login" />

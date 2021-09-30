@@ -25,7 +25,7 @@ class ResetPasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnResetPassword.setOnClickListener {
-            findNavController().navigate(R.id.action_resetPasswordFragment_to_exploreHomeAfterSearchFragment)
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_exploreHomeFragment)
         }
     }
 }
