@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentWriteAReviewBinding
 
 /**
@@ -12,18 +14,23 @@ import com.example.hbapplicationgroupa.databinding.FragmentWriteAReviewBinding
  * View id in the Fragment start with suffix of; "review_"
  */
 class WriteAReviewFragment : Fragment() {
-    //Set up view binding here
     private var _binding: FragmentWriteAReviewBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentWriteAReviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.reviewBackBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writeAReviewFragment_to_ratingFragment)
+        }
+
+        binding.reviewPostBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_writeAReviewFragment_to_ratingFragment)
+        }
     }
 }

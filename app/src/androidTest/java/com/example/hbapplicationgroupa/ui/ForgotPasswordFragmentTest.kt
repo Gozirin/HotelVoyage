@@ -3,7 +3,9 @@ package com.example.hbapplicationgroupa.ui
 import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -30,6 +32,12 @@ class ForgotPasswordFragmentTest{
             .perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
         Espresso.onView(withId(R.id.btn_forgot_password)).perform(ViewActions.click())
     }
+
+    @Test
+    fun check_if_login_button_navigates_to_login_screen(){
+        onView(withId(R.id.tv_forgot_password_Login_text)).perform(click())
+    }
+
 //    @Test
 //    fun check_if_view_is_responsive(){
 //        Espresso.onView(ViewMatchers.withId(R.id.tvEmailTe_login_screen)).perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
