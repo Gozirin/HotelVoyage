@@ -37,7 +37,7 @@ showBottomNav()
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
                 R.id.bookingConfirmationFragment -> showBottomNav()
                 R.id.bookingDetailsFragment -> showBottomNav()
-             else -> binding.bottomNavigationBar.visibility = View.GONE
+             else -> hideBottomNav()
             }
         }
     }
