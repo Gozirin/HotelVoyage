@@ -95,17 +95,17 @@ class TopHotelsFragment : Fragment() {
 //            Toast.makeText(context, "Filter icon is clicked", Toast.LENGTH_LONG).show()
 //        }
 
-        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
-        saveButton.setOnClickListener{
-            it.setBackgroundResource(R.color.purple_700)
-            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
-        }
+//        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
+//        saveButton.setOnClickListener{
+//            it.setBackgroundResource(R.color.purple_700)
+//            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
+//        }
 
         //setting book hotel
-        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
-        bookHotelBtn.setOnClickListener{
-            it.setBackgroundResource(R.color.purple_500)
-            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
-        }
+//        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
+//        bookHotelBtn.setOnClickListener{
+//            it.setBackgroundResource(R.color.purple_500)
+//            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
+//        }
     }
 }
