@@ -1,6 +1,64 @@
 <resources>
     <string name="app_name">HBApplicationGroupA</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="explore">Explore</string>
+    <string name="banglore">Banglore</string>
+    <string name="profile">Profile</string>
+    <string name="filter_icon">filter</string>
+    <string name="stay">stay</string>
+    <string name="book_now">Book Now</string>
+    <string name="_99">99%</string>
+    <string name="per_night">per_night</string>
+    <string name="imageview">imageView</string>
+    <string name="we_have_deals_for">We have deals for</string>
+    <string name="your_favourite_and_relaxing">your favourite and relaxing</string>
+    <string name="view">View</string>
+    <string name="imageButton">imageButton</string>
+    <string name="view_all">View All</string>
+    <string name="top_deals">Top Deals</string>
+    <string name="top_hotels">Top Hotels</string>
+    <string name="imagebutton">imageButton</string>
+
+    // string resource  added by benjamin
+    <string name="price">$ 6999</string>
+    <string name="hotelRating">5 star hotel .96%</string>
+    <string name="nameOfHotel">Taj WestSide</string>
+    <string name="inforCollected">in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your .</string>
+
+    <string name="infoProvided">in other to efficiently use the mobilfinder
+        in other to efficiently use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="privacyPolicy">last updat August in other to efficiently
+        use the mobilfinderTo
+        create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+               create an account, simply visit https://www.merrybet.com/ and click on
+        Register, fill in the required information (make sure you provide correct
+        information as you will not be paid if information provided is false).
+        A verification email will be sent to the email used in registering.
+        Please click on the link provided in the email to activate your</string>
+    <string name="hotel_voyage_privacy_policy"><u>hotel Voyage Privacy Policy</u>  </string>
+    <string name="information_we_collect"><u>Information we Collect</u></string>
+    <string name="information_you_provided"><u>Information You Provided</u></string>
+
+    //_________________________________________________
+
 
     //profile_fragment
     <string name="fragment_profile_name">Kiran Carmen</string>
@@ -34,4 +92,12 @@
     <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
+    <string name="login_welcome_back_textview">welcome_back</string>
+    <string name="login_email">Email</string>
+    <string name="login_forgot_password_text">forgot_password?</string>
+    <string name="login_don_t_have_account_text">don_t_have_account</string>
+    <string name="login_dont_have_acct_text">Don\'t have account?</string>
+    <string name="login_register_text"><u>Register</u> here</string>
+    <string name="forgot_password_textview">Forgot Password</string>
+    <string name="forgot_password_login"><u>Login</u></string>
 </resources>

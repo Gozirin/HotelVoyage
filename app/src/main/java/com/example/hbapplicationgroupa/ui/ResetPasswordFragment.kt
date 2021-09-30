@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
 
 class ResetPasswordFragment : Fragment() {
@@ -21,5 +23,9 @@ class ResetPasswordFragment : Fragment() {
     //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnResetPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_exploreHomeAfterSearchFragment)
+        }
     }
 }
