@@ -13,7 +13,6 @@ import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
 
 class BookingDetailsFragment : Fragment() {
@@ -48,22 +47,6 @@ class BookingDetailsFragment : Fragment() {
         binding.bookNowButton.setOnClickListener {
             findNavController().navigate(R.id.action_bookingDetailsFragment_to_bookingConfirmationFragment)
         }
-    }
-
-    //Inflate fragment_number_of_people_bottom_sheet_dialog as bottom sheet dialog
-    private fun peopleBottomSheet(){
-        val bottomSheet = context?.let { BottomSheetDialog(it) }
-        val view = layoutInflater.inflate(R.layout.fragment_number_of_people_bottom_sheet_dialog, null)
-        bottomSheet?.setContentView(view)
-        bottomSheet?.show()
-    }
-
-    //Inflate fragment_number_of_rooms_bottom_sheet_dialog as bottom sheet dialog
-    private fun roomsBottomSheet(){
-        val bottomSheet = context?.let { BottomSheetDialog(it) }
-        val view = layoutInflater.inflate(R.layout.fragment_number_of_rooms_bottom_sheet_dialog, null)
-        bottomSheet?.setContentView(view)
-        bottomSheet?.show()
     }
 
     /*
