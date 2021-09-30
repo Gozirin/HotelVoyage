@@ -5,6 +5,7 @@ import android.animation.PropertyValuesHolder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,8 +26,9 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        scaleText()
-        navigateToNextFragment()
+        Log.d("GKB", "onViewCreated: STARTED APP")
+//        scaleText()
+//        navigateToNextFragment()
     }
 
     //Create function that animates text in splash screen view
@@ -36,7 +38,7 @@ class SplashFragment : Fragment() {
         val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 4f)
         val animator = ObjectAnimator.ofPropertyValuesHolder(appNameView, scaleX, scaleY)
 
-        animator.duration = 2500
+        animator.duration = 3000
         animator.repeatCount = 1
         animator.repeatMode = ObjectAnimator.REVERSE
         animator.start()
@@ -44,7 +46,7 @@ class SplashFragment : Fragment() {
 
     //create function that moves to the next fragment
     private fun navigateToNextFragment(){
-        val handler = Handler(Looper.getMainLooper())
+        val handler = Handler()
         handler.postDelayed({
             findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
         }, 3000)

@@ -24,7 +24,9 @@ class MainActivity:AppCompatActivity() {
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
     val navController = navHostFragment.findNavController()
     binding.bottomNavigationBar.setupWithNavController(navController)
-showBottomNav()
+
+        showBottomNav()
+
         // set the bottom navigation in various fragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
@@ -43,12 +45,10 @@ showBottomNav()
     // this function is used to show the navigation bar in a fragment
     private fun showBottomNav() {
         binding.bottomNavigationBar.visibility = View.VISIBLE
-
     }
 
     // this function is used to show the navigation bar in a fragment
     private fun hideBottomNav() {
         binding.bottomNavigationBar.visibility = View.GONE
-
     }
 }
