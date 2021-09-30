@@ -46,7 +46,14 @@
         android:id="@+id/wishListFragment"
         android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
         android:label="fragment_wish_list"
-        tools:layout="@layout/fragment_wish_list" />
+        tools:layout="@layout/fragment_wish_list" >
+        <action
+            android:id="@+id/action_wishListFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/onboarding01Fragment2"
         android:name="com.example.hbapplicationgroupa.ui.OnboardingFragment"
@@ -151,6 +158,9 @@
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_ratingFragment"
             app:destination="@id/ratingFragment" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
@@ -240,7 +250,11 @@
         android:id="@+id/bookingConfirmationFragment"
         android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
         android:label="fragment_booking_confirmation"
-        tools:layout="@layout/fragment_booking_confirmation" />
+        tools:layout="@layout/fragment_booking_confirmation" >
+        <action
+            android:id="@+id/action_bookingConfirmationFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="com.example.hbapplicationgroupa.ui.PrivacyPolicyFragment"
