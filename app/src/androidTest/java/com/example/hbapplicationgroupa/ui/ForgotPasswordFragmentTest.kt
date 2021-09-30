@@ -25,14 +25,16 @@ class ForgotPasswordFragmentTest{
     }
 
     @Test
-    fun check_if_data_is_responsive(){
-        Espresso.onView(withId(R.id.tvEmailText_forgotpassword)).perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
+    fun check_if_data_is_responsive() {
+        Espresso.onView(withId(R.id.tvEmailText_forgotpassword))
+            .perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
         Espresso.onView(withId(R.id.btn_forgot_password)).perform(ViewActions.click())
-    @Test
-    fun check_if_view_is_responsive(){
-        Espresso.onView(ViewMatchers.withId(R.id.tvEmailTe_login_screen)).perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
-        Espresso.onView(ViewMatchers.withId(R.id.tvEditPassword_login_screen)).perform(ViewActions.typeText("08130228099"), ViewActions.closeSoftKeyboard())
-        Espresso.onView(ViewMatchers.withId(R.id.btn_login_screen)).perform(ViewActions.click())
     }
+//    @Test
+//    fun check_if_view_is_responsive(){
+//        Espresso.onView(ViewMatchers.withId(R.id.tvEmailTe_login_screen)).perform(ViewActions.typeText("mohammed4@gmail.com"), ViewActions.closeSoftKeyboard())
+//        Espresso.onView(ViewMatchers.withId(R.id.tvEditPassword_login_screen)).perform(ViewActions.typeText("08130228099"), ViewActions.closeSoftKeyboard())
+//        Espresso.onView(ViewMatchers.withId(R.id.btn_login_screen)).perform(ViewActions.click())
+//    }
 
 }

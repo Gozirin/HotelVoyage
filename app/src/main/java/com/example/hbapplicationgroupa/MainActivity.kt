@@ -13,7 +13,7 @@ class MainActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+//    setContentView(R.layout.activity_main)
 
     binding = ActivityMainBinding.inflate(layoutInflater)
        setContentView(binding.root)
@@ -22,9 +22,9 @@ class MainActivity:AppCompatActivity() {
         Wishlist fragment and Profile fragment
     */
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-    val navController = navHostFragment.findNavController()
+    val navController = navHostFragment.navController
     binding.bottomNavigationBar.setupWithNavController(navController)
-showBottomNav()
+        showBottomNav()
         // set the bottom navigation in various fragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
