@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa
+package com.example.hbapplicationgroupa.model
 
 data class RoomNumberBottomSheetData(
     val roomNumber: String,
