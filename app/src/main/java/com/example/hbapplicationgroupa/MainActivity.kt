@@ -29,13 +29,8 @@ class MainActivity:AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
                 R.id.wishListFragment -> showBottomNav()
-                R.id.hotelDescription2Fragment -> showBottomNav()
-                R.id.ratingFragment -> showBottomNav()
-                R.id.writeAReviewFragment -> showBottomNav()
                 R.id.topHotelsFragment -> showBottomNav()
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
-                R.id.bookingConfirmationFragment -> showBottomNav()
-                R.id.bookingDetailsFragment -> showBottomNav()
              else -> binding.bottomNavigationBar.visibility = View.GONE
             }
         }
