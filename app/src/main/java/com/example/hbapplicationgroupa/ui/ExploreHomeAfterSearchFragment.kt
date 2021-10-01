@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.model.Hotel
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter1
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter2
+import com.example.hbapplicationgroupa.adapter.ExploreHomeTopHotelsAdapter
+import com.example.hbapplicationgroupa.adapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeAfterSearchBinding
 import com.example.hbapplicationgroupa.model.TopHotel
 
 class ExploreHomeAfterSearchFragment : Fragment() {
 
-    private lateinit var adapter1: ExploreHomeAfterSearchRecyclerViewAdapter1
-    private lateinit var adapter2: ExploreHomeAfterSearchRecyclerViewAdapter2
+    private lateinit var adapter: ExploreHomeTopHotelsAdapter
+    private lateinit var adapter2: ExploreHomeTopDealsAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerView2: RecyclerView
 
@@ -78,11 +78,11 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter1 = ExploreHomeAfterSearchRecyclerViewAdapter1(listOfHotels)
+        adapter = ExploreHomeTopHotelsAdapter(listOfHotels)
         recyclerView = view.findViewById(R.id.exploreHomeAfterSearchFragmentrecyclerView)
 
         //populate data into recyclerview
-        recyclerView.adapter = adapter1
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.setHasFixedSize(false)
 
@@ -107,7 +107,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter2 = ExploreHomeAfterSearchRecyclerViewAdapter2(listOfTopHotels)
+        adapter2 = ExploreHomeTopDealsAdapter(listOfTopHotels)
         recyclerView2 = view.findViewById(R.id.exploreHomeAfterSearchFragmentRecyclerView2)
 
         //populate data into recyclerview

@@ -1,15 +1,13 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.RoomNumberBottomSheetAdapter
-import com.example.hbapplicationgroupa.RoomNumberBottomSheetData
+import com.example.hbapplicationgroupa.adapter.RoomNumberBottomSheetAdapter
+import com.example.hbapplicationgroupa.model.RoomNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfRoomsBottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
