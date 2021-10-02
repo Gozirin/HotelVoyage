@@ -23,7 +23,6 @@ class HelpAndSupportFragmentTest{
 
     @Test
     fun profile_helpAndSupport_test_and_the_clicks(){
-
         onView(ViewMatchers.withId(R.id.helpFragment)).check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.fragment_help_sendInquiry_btn)).perform(ViewActions.click())
         onView(ViewMatchers.withId(R.id.fragment_help_backward_iv)).perform(ViewActions.click())
