@@ -26,8 +26,8 @@ class RegisterFragmentTest{
     @Test
     fun check_if_data_is_inValid(){
         onView(withId(R.id.tv_register_userName)).perform(ViewActions.typeText("Abass Adisa Richard Tope"), ViewActions.closeSoftKeyboard())
-        onView(withId(R.id.tvEmailText_register)).perform(ViewActions.typeText("mohammedquraysh4@gmail.com"), ViewActions.closeSoftKeyboard())
-        onView(withId(R.id.tvEditPassword_register)).perform(ViewActions.typeText("6373737373"), ViewActions.closeSoftKeyboard())
+//        onView(withId(R.id.tvEmailText_register)).perform(ViewActions.typeText("mohammedquraysh4@gmail.com"), ViewActions.closeSoftKeyboard())
+//        onView(withId(R.id.tvEditPassword_register)).perform(ViewActions.typeText("6373737373"), ViewActions.closeSoftKeyboard())
         onView(withId(R.id.btn_register)).perform(ViewActions.click())
     }
 
