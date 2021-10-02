@@ -43,7 +43,6 @@ showBottomNav()
     // this function is used to show the navigation bar in a fragment
     private fun showBottomNav() {
         binding.bottomNavigationBar.visibility = View.VISIBLE
-
     }
 
     // this function is used to show the navigation bar in a fragment

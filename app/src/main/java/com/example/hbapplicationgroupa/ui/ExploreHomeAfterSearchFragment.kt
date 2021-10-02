@@ -32,7 +32,6 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -78,7 +77,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
 
         //instantiate recyclerview to populate it
         adapter1 = ExploreHomeAfterSearchRecyclerViewAdapter1(listOfHotels)
-        recyclerView = view.findViewById(R.id.exploreHomeAfterSearchFragmentrecyclerView)
+        recyclerView = binding.exploreHomeAfterSearchFragmentrecyclerView
 
         //populate data into recyclerview
 
@@ -108,8 +107,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
 
         //instantiate recyclerview to populate it
         adapter2 = ExploreHomeAfterSearchRecyclerViewAdapter2(listOfTopHotels)
-        recyclerView2 = view.findViewById(R.id.exploreHomeAfterSearchFragmentRecyclerView2)
-
+        recyclerView2 = binding.exploreHomeAfterSearchFragmentRecyclerView2
         //populate data into recyclerview
         recyclerView2.adapter = adapter2
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

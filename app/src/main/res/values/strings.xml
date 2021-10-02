@@ -98,4 +98,8 @@
     <string name="login_don_t_have_account_text">don_t_have_account</string>
     <string name="login_dont_have_acct_text">Don\'t have account?</string>
     <string name="login_register_text"><u>Register</u> here</string>
+    <string name="payment_options">Payment Options</string>
+    <string name="amount_to_be_paid">Amount to be paid</string>
+    <string name="choose_a_payment_option">Choose a payment option</string>
+    <string name="google_pay">Google Pay</string>
 </resources>
