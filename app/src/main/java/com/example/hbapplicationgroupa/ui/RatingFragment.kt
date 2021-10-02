@@ -22,17 +22,16 @@ class RatingFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentRatingBinding? = null
     private val binding get() = _binding!!
+
     //Late-initializing RecyclerView Adapter
     lateinit var ratingReviewRecyclerViewAdapter: RatingReviewRecyclerViewAdapter
     lateinit var ratingDataList: ArrayList<RatingReviewModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentRatingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ratingReviewRecyclerViewAdapter = RatingReviewRecyclerViewAdapter()
@@ -56,11 +55,10 @@ class RatingFragment : Fragment() {
     private fun clickListeners(){
         binding.ratingPostBtn.setOnClickListener {
             findNavController().navigate(R.id.action_ratingFragment_to_writeAReviewFragment)
-            Toast.makeText(requireContext(), getString(R.string.rating_post_btn_toast), Toast.LENGTH_SHORT).show()
         }
 
         binding.ratingBackBtn.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.rating_back_btn_toast), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_ratingFragment_to_hotelDescription2Fragment)
         }
     }
 }

@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_profileFragment_to_pastBookingsFragment2"
             app:destination="@id/pastBookingsFragment2" />
+        <action
+            android:id="@+id/action_profileFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
@@ -40,21 +43,19 @@
         android:id="@+id/wishListFragment"
         android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
         android:label="fragment_wish_list"
-        tools:layout="@layout/fragment_wish_list" />
+        tools:layout="@layout/fragment_wish_list" >
+        <action
+            android:id="@+id/action_wishListFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_wishListFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/onboarding01Fragment2"
         android:name="com.example.hbapplicationgroupa.ui.OnboardingFragment"
         android:label="fragment_onboarding01"
         tools:layout="@layout/fragment_onboarding" >
-        <action
-            android:id="@+id/action_onboarding01Fragment2_to_splashScreenFragment"
-            app:destination="@id/splashScreenFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_right"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/splashScreenFragment"
-            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_onboarding01Fragment2_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -84,13 +85,52 @@
             app:destination="@id/profileFragment"
             app:popUpTo="@id/navigation_graph"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_pastBookingsFragment2_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/bookingDetailsFragment"
+        android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
+        android:label="fragment_booking_details"
+        tools:layout="@layout/fragment_booking_details" >
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment"
+            app:destination="@id/numberOfRoomsBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment"
+            app:destination="@id/numberOfPeopleBottomSheetDialogFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
+        android:name="com.example.hbapplicationgroupa.ui.NumberOfRoomsBottomSheetDialogFragment"
+        android:label="fragment_number_of_rooms_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_number_of_rooms_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_numberOfRoomsBottomSheetDialogFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/numberOfPeopleBottomSheetDialogFragment"
+        android:name="com.example.hbapplicationgroupa.ui.NumberOfPeopleBottomSheetDialogFragment"
+        android:label="fragment_number_of_people_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_number_of_people_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_numberOfPeopleBottomSheetDialogFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </dialog>
     <fragment
         android:id="@+id/ratingFragment"
         android:name="com.example.hbapplicationgroupa.ui.RatingFragment"
         android:label="fragment_rating"
         tools:layout="@layout/fragment_rating" >
+        <action
+            android:id="@+id/action_ratingFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
         <action
             android:id="@+id/action_ratingFragment_to_writeAReviewFragment"
             app:destination="@id/writeAReviewFragment" />
@@ -101,19 +141,39 @@
         android:label="fragment_hotel_description2"
         tools:layout="@layout/fragment_hotel_description2" >
         <action
+            android:id="@+id/action_hotelDescription2Fragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+        <action
             android:id="@+id/action_hotelDescription2Fragment_to_ratingFragment"
             app:destination="@id/ratingFragment" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
         android:name="com.example.hbapplicationgroupa.ui.WriteAReviewFragment"
         android:label="fragment_write_a_review"
-        tools:layout="@layout/fragment_write_a_review" />
+        tools:layout="@layout/fragment_write_a_review" >
+        <action
+            android:id="@+id/action_writeAReviewFragment_to_ratingFragment"
+            app:destination="@id/ratingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.hbapplicationgroupa.ui.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
@@ -122,6 +182,12 @@
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment2"
             app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -131,6 +197,9 @@
         <action
             android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment" />
+        <action
+            android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
@@ -138,11 +207,9 @@
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
-            android:id="@+id/action_resetPasswordFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
-        tools:layout="@layout/fragment_forgot_password" />
-        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeAfterSearchFragment"
@@ -160,17 +227,30 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_exploreHomeAfterSearchFragment"
             app:destination="@id/exploreHomeAfterSearchFragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
         android:name="com.example.hbapplicationgroupa.ui.BookingConfirmationFragment"
         android:label="fragment_booking_confirmation"
-        tools:layout="@layout/fragment_booking_confirmation" />
+        tools:layout="@layout/fragment_booking_confirmation" >
+        <action
+            android:id="@+id/action_bookingConfirmationFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/bookingDetailsFragment"
-        android:name="com.example.hbapplicationgroupa.ui.BookingDetailsFragment"
-        android:label="fragment_booking_details"
-        tools:layout="@layout/fragment_booking_details" />
-
-
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.hbapplicationgroupa.ui.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/paymentCheckoutFragment"
+        android:name="com.example.hbapplicationgroupa.ui.PaymentCheckoutFragment"
+        android:label="fragment_payment_checkout"
+        tools:layout="@layout/fragment_payment_checkout" />
 </navigation>

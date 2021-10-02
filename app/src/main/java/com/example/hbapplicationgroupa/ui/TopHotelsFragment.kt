@@ -23,17 +23,19 @@ class TopHotelsFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentTopHotelsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.topHotelFilterIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
+            findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
+        }
+
+        binding.textView2.setOnClickListener {
+            findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
         }
 
         //creating dummy Hotel Data
@@ -66,7 +68,7 @@ class TopHotelsFragment : Fragment() {
             "12 Star Hotel", "100%", R.drawable.hotel_westin_excelsior_rome
         )
 
-        var listOfHotels = listOf(
+        val listOfHotels = listOf(
             atlantisParadise, burbArab, emiratePalace,
             meridianPalace, thePalms, thePlaza, westinExcelsior
         )
@@ -88,23 +90,22 @@ class TopHotelsFragment : Fragment() {
         }
 
         //filter button
-        binding.topHotelFilter.setOnClickListener{
-            it.setBackgroundResource(R.color.purple_500)
-            Toast.makeText(context, "Filter icon is clicked", Toast.LENGTH_LONG).show()
-        }
+//        binding.topHotelFilter.setOnClickListener{
+//            it.setBackgroundResource(R.color.purple_500)
+//            Toast.makeText(context, "Filter icon is clicked", Toast.LENGTH_LONG).show()
+//        }
 
-        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
-        saveButton.setOnClickListener{
-            it.setBackgroundResource(R.color.purple_700)
-            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
-        }
+//        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
+//        saveButton.setOnClickListener{
+//            it.setBackgroundResource(R.color.purple_700)
+//            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
+//        }
 
         //setting book hotel
-        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
-        bookHotelBtn.setOnClickListener{
-            it.setBackgroundResource(R.color.purple_500)
-            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
-
-        }
+//        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
+//        bookHotelBtn.setOnClickListener{
+//            it.setBackgroundResource(R.color.purple_500)
+//            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
+//        }
     }
 }

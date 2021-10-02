@@ -5,27 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupa.model.WishListData
 
 class WishListFragment : Fragment() {
-    //Set up view binding here
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        //initialise  the view binding
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentWishListBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,6 +40,14 @@ class WishListFragment : Fragment() {
         val adapter = WishListAdapter(items, requireContext())
         wishlistRecyclerView.adapter = adapter
 
+        //TODO: Set click listener on recycler view item
+        binding.appBarTitle.setOnClickListener {
+            findNavController().navigate(R.id.action_wishListFragment_to_bookingDetailsFragment)
+        }
 
+        //TODO: Set click listener on recycler view item
+        binding.searchBar.setOnClickListener {
+            findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
+        }
     }
 }

@@ -187,7 +187,6 @@
         app:layout_constraintStart_toEndOf="@+id/registrationAgreementText"
         app:layout_constraintTop_toTopOf="@id/registrationAgreementText" />
 
-
     <TextView
         android:id="@+id/tvRegistrationAlreadyMember"
         android:layout_width="0dp"
@@ -223,7 +222,6 @@
         app:layout_constraintStart_toEndOf="@id/tv_registrationLoginText"
         app:layout_constraintTop_toTopOf="@id/tv_registrationLoginText" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="294dp"
@@ -241,6 +239,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember"
         app:layout_constraintVertical_bias="0.344" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

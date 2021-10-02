@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.WishListFragment"
-    android:layout_marginBottom="30dp"
-    >
+    android:layout_marginBottom="30dp">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:orientation="vertical"
@@ -47,12 +47,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    o<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/wishList_recyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -63,7 +61,4 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@id/appBarLayout"
     tools:listitem="@layout/wish_list_items" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
