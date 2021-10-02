@@ -10,22 +10,27 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
-    //Set up view binding here
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnLoginScreen.setOnClickListener {
+        binding.tvForgotPasswordText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment2)
+        }
+
+        binding.tvLoginRegisterText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        binding.btnLoginScreen.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_exploreHomeAfterSearchFragment)
         }
     }
 }

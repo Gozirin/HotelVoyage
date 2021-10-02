@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryAdapter
@@ -38,12 +39,10 @@ class HotelDescription2Fragment : Fragment() {
     lateinit var galleryList: ArrayList<HotelGalleryModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentHotelDescription2Binding.inflate(inflater, container, false)
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Setting fake list to HotelRoomServiceRecyclerView Adapter
@@ -75,7 +74,12 @@ class HotelDescription2Fragment : Fragment() {
 
         //Click listener on back btn
         binding.hotelDescBackIv.setOnClickListener {
-            //backStack
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_topHotelsFragment)
+        }
+
+        //Navigate to ratings page
+        binding.hotelDescRatingsTv.setOnClickListener {
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
         }
 
         //Click listener on TextView with Show in Map text
@@ -88,7 +92,7 @@ class HotelDescription2Fragment : Fragment() {
         }
         //Click Listener for Book button
         binding.hotelDescBookBtn.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_four), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_bookingDetailsFragment)
         }
         //Click Listener for BookMark Button
         binding.hotelDescBookmarkBtn.setOnClickListener {

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapters
+package com.example.hbapplicationgroupa.adapter
 
 import android.view.LayoutInflater
 import android.view.View
