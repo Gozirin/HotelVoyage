@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapters
+package com.example.hbapplicationgroupa.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.TopHotel
 
-class ExploreHomeAfterSearchRecyclerViewAdapter2(
+class ExploreHomeTopDealsAdapter(
     private var listOfTopHotels : List<TopHotel>
-): RecyclerView.Adapter<ExploreHomeAfterSearchRecyclerViewAdapter2.MyViewHolder>() {
+): RecyclerView.Adapter<ExploreHomeTopDealsAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hotelName2 = itemView.findViewById<TextView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewTextviewName2)
@@ -23,14 +23,14 @@ class ExploreHomeAfterSearchRecyclerViewAdapter2(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ExploreHomeAfterSearchRecyclerViewAdapter2.MyViewHolder {
+    ): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.explore_home_after_search_recyclerview_item_2, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: ExploreHomeAfterSearchRecyclerViewAdapter2.MyViewHolder,
+        holder: MyViewHolder,
         position: Int
     ) {
         holder.hotelImage2.setImageResource(listOfTopHotels[position].image)

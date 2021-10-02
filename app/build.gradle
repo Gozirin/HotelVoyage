@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id "org.jmailen.kotlinter"
     id "androidx.navigation.safeargs.kotlin"
+    id 'kotlin-kapt'
 }
 
 android {
@@ -106,4 +107,17 @@ dependencies {
 
     //lopsPower circleImageView https://github.com/lopspower/CircularImageView
     implementation 'com.mikhaellopez:circularimageview:4.3.0'
+
+    //Room database
+    implementation "androidx.room:room-runtime:2.3.0"
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:2.3.0"
+
+    //Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.3.0"
+
+    //Room database - Test helpers
+    testImplementation "androidx.room:room-testing:2.3.0"
 }

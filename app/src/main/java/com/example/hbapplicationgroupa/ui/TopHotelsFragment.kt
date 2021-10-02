@@ -4,19 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapters.TopHotelAdapter
+import com.example.hbapplicationgroupa.adapter.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupa.model.Hotel
 
 class TopHotelsFragment : Fragment() {
-    private lateinit var adapter:TopHotelAdapter
+    private lateinit var adapter: TopHotelAdapter
 
     //Set up view binding here
     private var _binding: FragmentTopHotelsBinding? = null
