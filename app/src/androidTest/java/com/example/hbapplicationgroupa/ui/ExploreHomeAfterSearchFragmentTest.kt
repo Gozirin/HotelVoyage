@@ -9,11 +9,11 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.hbapplicationgroupa.R
-import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+
+
 @RunWith(AndroidJUnit4::class)
 class ExploreHomeAfterSearchFragmentTest {
 
@@ -27,9 +27,6 @@ class ExploreHomeAfterSearchFragmentTest {
     @Test
     fun test_exploreHomeAfterSearchFragment_onView() {
 
-        //ToolBar
-        Espresso.onView(withId(R.id.explore_home_after_search_tool_bar))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         //displaying the red view
         Espresso.onView(withId(R.id.explore_home_after_search_card_view_tv_display_card))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
@@ -42,7 +39,7 @@ class ExploreHomeAfterSearchFragmentTest {
         Espresso.onView(withId(R.id.explore_home_after_search_filter_img_btn))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         //View All
-        Espresso.onView(withId(R.id.explore_home_after_search_tool_bar))
+        Espresso.onView(withId(R.id.exploreHomeFragmentAftersearch_topDeal_viewAll_tv))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
     }
@@ -74,6 +71,6 @@ class ExploreHomeAfterSearchFragmentTest {
         Espresso.onView(withId(R.id.explore_home_after_search_filter_img_btn)).perform(click())
         Espresso.onView(withId(R.id.explore_home_after_search_filter_tv)).perform(click())
         Espresso.onView(withId(R.id.topHotel_searchView)).perform(scrollTo())
-        Espresso.onView(withId(R.id.exploreHomeFragmentAftersearch_top_Hotel_topHotel_viewAll_tv_2)).perform(click())
+        Espresso.onView(withId(R.id.exploreHomeFragmentAftersearch_topDeal_viewAll_tv)).perform(click())
     }
 }

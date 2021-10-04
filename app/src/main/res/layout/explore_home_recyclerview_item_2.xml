@@ -13,7 +13,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/exploreHomeAfterSearchFragmentRecyclerViewImageview1"
+            android:id="@+id/exploreHomeFragmentRecyclerViewImageview2"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="10dp"
@@ -24,23 +24,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/exploreHomeAfterSearchFragmentRecyclerViewTextviewName1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/meridian_palace"
-        android:padding="10dp"
-        android:textAlignment="textStart"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <TextView
-            android:id="@+id/exploreHomeAfterSearchFragmentRecyclerViewTextviewPrice1"
+        <TextView
+            android:id="@+id/exploreHomeFragmentRecyclerViewTextviewName2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/_7999"
+            android:text="Meridian Palace"
+            android:padding="10dp"
+            android:textAlignment="textStart"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/exploreHomeFragmentRecyclerViewTextviewPrice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$7554"
             android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:textAlignment="textStart"
             android:textStyle="bold"
             android:textSize="16sp"/>

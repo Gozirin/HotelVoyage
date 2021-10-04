@@ -25,7 +25,7 @@ class BookingConfirmationFragment : Fragment() {
 
         //Set appropriate navigation here when the goBackToHomeButton is clicked
         binding.goBackToHomeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingConfirmationFragment_to_exploreHomeAfterSearchFragment)
+            findNavController().navigate(R.id.action_bookingConfirmationFragment_to_exploreHomeFragment)
         }
     }
 }
