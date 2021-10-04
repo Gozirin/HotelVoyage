@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/exploreHomeFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -38,7 +38,17 @@
         android:id="@+id/exploreHomeFragment"
         android:name="com.example.hbapplicationgroupa.ui.ExploreHomeFragment"
         android:label="fragment_explore_home"
-        tools:layout="@layout/fragment_explore_home" />
+        tools:layout="@layout/fragment_explore_home" >
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_exploreHomeAfterSearchFragment"
+            app:destination="@id/exploreHomeAfterSearchFragment" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wishListFragment"
         android:name="com.example.hbapplicationgroupa.ui.WishListFragment"
@@ -96,14 +106,14 @@
         android:label="fragment_booking_details"
         tools:layout="@layout/fragment_booking_details" >
         <action
-            android:id="@+id/action_bookingDetailsFragment_to_bookingConfirmationFragment"
-            app:destination="@id/bookingConfirmationFragment" />
-        <action
             android:id="@+id/action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment"
             app:destination="@id/numberOfRoomsBottomSheetDialogFragment" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment"
             app:destination="@id/numberOfPeopleBottomSheetDialogFragment" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_paymentCheckoutFragment"
+            app:destination="@id/paymentCheckoutFragment" />
     </fragment>
     <dialog
         android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
@@ -171,8 +181,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_registerFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_registerFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -186,8 +196,8 @@
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_loginFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -218,6 +228,12 @@
         <action
             android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment"
             app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment2"
+            app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment3"
+            app:destination="@id/topHotelsFragment" />
     </fragment>
     <fragment
         android:id="@+id/topHotelsFragment"
@@ -240,8 +256,8 @@
         android:label="fragment_booking_confirmation"
         tools:layout="@layout/fragment_booking_confirmation" >
         <action
-            android:id="@+id/action_bookingConfirmationFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            android:id="@+id/action_bookingConfirmationFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
@@ -252,5 +268,9 @@
         android:id="@+id/paymentCheckoutFragment"
         android:name="com.example.hbapplicationgroupa.ui.PaymentCheckoutFragment"
         android:label="fragment_payment_checkout"
-        tools:layout="@layout/fragment_payment_checkout" />
+        tools:layout="@layout/fragment_payment_checkout" >
+        <action
+            android:id="@+id/action_paymentCheckoutFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
+    </fragment>
 </navigation>

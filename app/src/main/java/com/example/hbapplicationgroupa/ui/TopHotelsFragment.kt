@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.TopHotelAdapter
+import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupa.model.Hotel
 
@@ -32,8 +32,8 @@ class TopHotelsFragment : Fragment() {
             findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
         }
 
-        binding.textView2.setOnClickListener {
-            findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+        binding.topHotelBackBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
         }
 
         //creating dummy Hotel Data

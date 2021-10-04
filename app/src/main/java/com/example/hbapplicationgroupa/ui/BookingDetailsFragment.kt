@@ -45,7 +45,7 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.bookNowButton.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_bookingConfirmationFragment)
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
         }
     }
 
