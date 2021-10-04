@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingConfirmationBinding
 
 class BookingConfirmationFragment : Fragment() {
@@ -24,7 +25,7 @@ class BookingConfirmationFragment : Fragment() {
 
         //Set appropriate navigation here when the goBackToHomeButton is clicked
         binding.goBackToHomeButton.setOnClickListener {
-            Toast.makeText(context, "Button clicked", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_bookingConfirmationFragment_to_exploreHomeFragment)
         }
     }
 }

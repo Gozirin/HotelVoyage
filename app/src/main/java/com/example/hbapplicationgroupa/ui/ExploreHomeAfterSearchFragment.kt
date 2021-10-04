@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.model.Hotel
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter1
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter2
+import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
+import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
+import com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter.ExploreHomeAfterSearchRecyclerViewAdapter1
+import com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter.ExploreHomeAfterSearchRecyclerViewAdapter2
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeAfterSearchBinding
 import com.example.hbapplicationgroupa.model.TopHotel
 
@@ -18,7 +20,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
 
     private lateinit var adapter1: ExploreHomeAfterSearchRecyclerViewAdapter1
     private lateinit var adapter2: ExploreHomeAfterSearchRecyclerViewAdapter2
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView1: RecyclerView
     private lateinit var recyclerView2: RecyclerView
 
     //Set up view binding here
@@ -26,19 +28,21 @@ class ExploreHomeAfterSearchFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        //Enabled view binding here
         _binding = FragmentExploreHomeAfterSearchBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewText = view.findViewById<TextView>(R.id.explore_home_after_search_cardview_view_textview)
-        viewText.setOnClickListener {
+        //navigating to top Hotel fragment
+        binding.exploreHomeFragmentAftersearchTopHotelTopHotelViewAllTv.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
+        }
 
+        //navigating to top Hotel fragment [no top Deal Fragment yet] - could be changed later
+        binding.exploreHomeFragmentAftersearchTopDealViewAllTv.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
         }
 
         //creating dummy Hotel Data
@@ -71,20 +75,19 @@ class ExploreHomeAfterSearchFragment : Fragment() {
             "12 Star Hotel", "100%", R.drawable.hotel_westin_excelsior_rome
         )
 
-        var listOfHotels = listOf(
+        val listOfHotels = listOf(
             atlantisParadise, burbArab, emiratePalace,
             meridianPalace, thePalms, thePlaza, westinExcelsior
         )
 
         //instantiate recyclerview to populate it
         adapter1 = ExploreHomeAfterSearchRecyclerViewAdapter1(listOfHotels)
-        recyclerView = view.findViewById(R.id.exploreHomeAfterSearchFragmentrecyclerView)
+        recyclerView1 = view.findViewById(R.id.exploreHomeAfterSearchFragmentrecyclerView)
 
         //populate data into recyclerview
-
-        recyclerView.adapter = adapter1
-        recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.setHasFixedSize(false)
+        recyclerView1.adapter = adapter1
+        recyclerView1.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView1.setHasFixedSize(false)
 
 
         //dummy data to populate 2nd recyclerView
@@ -102,7 +105,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
             "5 Star Hotel", "100%", R.drawable.hotel_emirates_palace_abu_dhabi,
         )
 
-        var listOfTopHotels = listOf(
+        val listOfTopHotels = listOf(
             hotel1, hotel2, hotel3
         )
 
@@ -114,6 +117,5 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         recyclerView2.adapter = adapter2
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView2.setHasFixedSize(false)
-
     }
 }

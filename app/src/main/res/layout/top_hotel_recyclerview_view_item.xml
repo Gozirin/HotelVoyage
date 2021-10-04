@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="20dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="30dp">
+
+<!--    Fixed some constraint layout issues-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,7 +21,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/ignore"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/topHotel_recyclerview_imageview_save"
@@ -30,7 +32,8 @@
             android:background="@color/white"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_save"
+            android:src="@drawable/ic_outline_bookmark_border_24"
+            android:tint="#FCEA0707"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview" />
@@ -41,31 +44,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Save"
-            android:textColor="#E61A2E"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:text="@string/save"
+            android:textColor="#FCEA0707"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_imageview_save"
             app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/topHotel_recyclerview_book_now"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/book_now"
-            android:textColor="#E61A2E"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:textColor="#FCEA0707"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            android:background="@drawable/outline_button_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview"
-            app:layout_constraintVertical_bias="0.428"
-            app:strokeColor="#E61A2E"
-            app:strokeWidth="1dp" />
+            app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview"/>
 
         <TextView
             android:id="@+id/topHotel_recyclerview_hotel_name"
@@ -73,10 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="120dp"
-            android:text="Merdan Place Turkey"
+            android:text="@string/merdan_place_turkey"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/topHotel_recyclerview_imageview"
             app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_imageview" />
 
@@ -85,14 +84,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="12dp"
-            android:text="9 Star Hotel"
+            android:layout_marginTop="10dp"
+            android:text="@string/_9_star_hotel"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_imageview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+            app:layout_constraintTop_toBottomOf="@id/topHotel_recyclerview_hotel_name"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/topHotel_recyclerview_hotel_rating"
@@ -104,14 +101,22 @@
             android:text="@string/_99"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_imageview"
-            app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_hotel_status"
-            app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_hotel_name"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_hotel_status"
+            app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_hotel_status"/>
+
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_thumb_up"
+            app:layout_constraintBottom_toBottomOf="@id/topHotel_recyclerview_hotel_rating"
+            app:layout_constraintStart_toEndOf="@id/topHotel_recyclerview_hotel_rating"
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/ignore"/>
+
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/thumbUp_img"
             android:layout_width="35dp"
             android:layout_height="28dp"
             android:background="@color/cardview_shadow_start_color"
@@ -119,22 +124,19 @@
             app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_hotel_rating"
             app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_hotel_rating"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_thumb_up"
-            tools:ignore="VectorDrawableCompat" />
+            android:src="@drawable/ic_thumb_up"
+             />
 
         <TextView
             android:id="@+id/topHotel_recyclerview_hotel_price"
-            android:layout_width="84dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="120dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:padding="3dp"
-            android:text="$6456"
+            android:text="@string/_7999"
             android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_imageview" />
+            app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_hotel_name" />
 
         <TextView
             android:id="@+id/topHotel_recyclerview_hotel_time"
@@ -145,10 +147,8 @@
             android:text="@string/per_night"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_imageview"
+            app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_hotel_status"
             app:layout_constraintEnd_toEndOf="@+id/topHotel_recyclerview_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_hotel_price"
             app:layout_constraintVertical_bias="0.285" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

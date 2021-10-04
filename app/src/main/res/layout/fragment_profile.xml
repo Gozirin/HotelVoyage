@@ -15,7 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,7 +25,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile"
+                android:text="@string/profile"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -34,7 +35,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -45,9 +45,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_profile_appbar"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
                 android:id="@+id/fragment_profile_image_cv"
                 android:layout_width="100dp"
@@ -62,6 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
+                    android:contentDescription="@string/ignore"
                     android:src="@drawable/fragment_profile_image_iv" />
             </androidx.cardview.widget.CardView>
 
@@ -75,6 +77,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/ignore"
                     android:layout_gravity="center|center_vertical|center_horizontal"
                     android:src="@drawable/ic_camera" />
             </androidx.cardview.widget.CardView>
@@ -121,12 +124,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="My Account"
+                android:text="@string/my_account"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_image_cv"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_image_cv" />
-
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/fragment_profile_bookings_con"
@@ -148,13 +150,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.8"
                     android:paddingVertical="20dp"
-                    android:text="Bookings History" />
+                    android:text="@string/bookings_history" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:paddingVertical="20dp"
+                    android:contentDescription="@string/ignore"
                     android:src="@drawable/ic_forward" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -184,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.9"
                     android:paddingVertical="20dp"
-                    android:text="Help &amp; Support" />
+                    android:text="@string/help_amp_support" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -192,6 +195,7 @@
                     android:layout_weight="0.1"
                     android:paddingVertical="20dp"
                     android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/ignore"
                     app:layout_constraintBottom_toBottomOf="@id/fragment_profile_help_tv"
                     app:layout_constraintEnd_toEndOf="@id/fragment_profile_title_tv"
                     app:layout_constraintTop_toTopOf="@id/fragment_profile_help_tv" />
@@ -205,7 +209,6 @@
                 app:layout_constraintEnd_toEndOf="@id/fragment_profile_help_con"
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_help_con"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_help_con" />
-
 
             <LinearLayout
                 android:id="@+id/fragment_profile_privacy_con"
@@ -223,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1.9"
                     android:paddingVertical="20dp"
-                    android:text="Privacy Policy" />
+                    android:text="@string/privacy_policy" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -231,6 +234,7 @@
                     android:layout_weight="0.1"
                     android:paddingVertical="20dp"
                     android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/ignore"
                     app:layout_constraintBottom_toBottomOf="@id/fragment_profile_privacy_tv"
                     app:layout_constraintEnd_toEndOf="@id/fragment_profile_title_tv"
                     app:layout_constraintTop_toTopOf="@id/fragment_profile_privacy_tv" />
@@ -249,9 +253,10 @@
                 android:id="@+id/fragment_profile_logout_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="20dp"
-                android:text="Logout"
                 android:layout_marginHorizontal="20dp"
+                android:paddingVertical="20dp"
+                android:text="@string/logout"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_privacy_con"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_privacy_con" />

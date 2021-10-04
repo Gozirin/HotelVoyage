@@ -13,7 +13,6 @@ class MainActivity:AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    //setContentView(R.layout.activity_main)
 
     binding = ActivityMainBinding.inflate(layoutInflater)
        setContentView(binding.root)
@@ -23,33 +22,28 @@ class MainActivity:AppCompatActivity() {
     */
     val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
     val navController = navHostFragment.findNavController()
-
     binding.bottomNavigationBar.setupWithNavController(navController)
-showBottomNav()
+
+        showBottomNav()
+
         // set the bottom navigation in various fragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id) {
                 R.id.wishListFragment -> showBottomNav()
-                R.id.hotelDescription2Fragment -> showBottomNav()
-                R.id.ratingFragment -> showBottomNav()
-                R.id.writeAReviewFragment -> showBottomNav()
                 R.id.topHotelsFragment -> showBottomNav()
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
-                R.id.bookingConfirmationFragment -> showBottomNav()
-                R.id.bookingDetailsFragment -> showBottomNav()
-             else -> hideBottomNav()
+                R.id.exploreHomeFragment -> showBottomNav()
+             else -> binding.bottomNavigationBar.visibility = View.GONE
             }
         }
     }
     // this function is used to show the navigation bar in a fragment
     private fun showBottomNav() {
         binding.bottomNavigationBar.visibility = View.VISIBLE
-
     }
 
     // this function is used to show the navigation bar in a fragment
     private fun hideBottomNav() {
         binding.bottomNavigationBar.visibility = View.GONE
-
     }
 }
