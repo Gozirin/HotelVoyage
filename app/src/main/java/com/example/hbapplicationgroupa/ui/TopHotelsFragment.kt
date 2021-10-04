@@ -32,8 +32,8 @@ class TopHotelsFragment : Fragment() {
             findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
         }
 
-        binding.textView2.setOnClickListener {
-            findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+        binding.topHotelBackBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
         }
 
         //creating dummy Hotel Data

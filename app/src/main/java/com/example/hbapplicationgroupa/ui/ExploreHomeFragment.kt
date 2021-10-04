@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
@@ -36,16 +37,12 @@ class ExploreHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //navigating to topHotel Fragment
-        val viewAllTopHotel = binding.exploreHomeFragmentTopHotelViewAllTv
-        viewAllTopHotel.setOnClickListener {
-            val nav = Navigation.findNavController(requireActivity(), R.id.navigation_graph)
-            nav.navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+        binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
+           findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
         }
         //navigation to top Hotel Fragment [it should be topDeal which is yet to be created]
-        val viewAllTopDeals = binding.exploreHomeFragmentTopDealsViewAllTv
-        viewAllTopDeals.setOnClickListener {
-            val nav = Navigation.findNavController(requireActivity(), R.id.navigation_graph)
-            nav.navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+        binding.exploreHomeFragmentTopDealsViewAllTv.setOnClickListener {
+           findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
         }
 
 
