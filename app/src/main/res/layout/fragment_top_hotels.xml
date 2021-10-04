@@ -7,16 +7,17 @@ android:layout_height="match_parent"
 tools:context=".ui.TopHotelsFragment">
 
 <!--    Fixed some constraint layout issues-->
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/topHotel_cardview_appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="10dp"
         tools:targetApi="lollipop">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/topHotel_cardview_toolbar"
             android:layout_width="match_parent"
