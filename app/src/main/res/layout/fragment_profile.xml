@@ -247,9 +247,10 @@
                 android:id="@+id/fragment_profile_logout_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:paddingVertical="20dp"
                 android:text="Logout"
-                android:layout_marginHorizontal="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/fragment_profile_privacy_con"
                 app:layout_constraintTop_toBottomOf="@id/fragment_profile_privacy_con" />
