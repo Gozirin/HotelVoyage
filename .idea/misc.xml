@@ -3,6 +3,97 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/button_shape_corner_radiud.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/edit_text_layout.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/drawable/hotel_descirption_amenities_shape.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/hotel_service_viewpager_corner_shape.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__breakfast.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__glass_whine.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__mail.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic__pet.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic__pool.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_back_arrow.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_defalt_bookmark.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_hotel_room_image_one_background.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_more_options.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_outline_bookmark_border_24.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_phone.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/drawable/ic_star.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/ic_thumb_up.xml" value="0.15128205128205127" />
+        <entry key="app/src/main/res/drawable/ic_wifi.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/outline_button_radius.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/rounded_image_view.xml" value="0.18385416666666668" />
+        <entry key="app/src/main/res/drawable/top_left_radius_btn.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/layout-v21/fragment_booking_details.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-v21/fragment_explore_home_after_search.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout-v26/fragment_register.xml" value="0.18" />
+        <entry key="app/src/main/res/layout-v28/fragment_login.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/booking_history_items.xml" value="0.24615384615384617" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.10869565217391304" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_number_of_people_bottom_sheet_dialog.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_number_of_rooms_bottom_sheet_dialog.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/fragment_onboarding.xml" value="0.22" />
+        <entry key="app/src/main/res/layout-v21/fragment_explore_home_after_search.xml" value="0.20811965811965813" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.12864583333333332" />
+        <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.12864583333333332" />
+        <entry key="app/src/main/res/layout/fragment_number_of_people_bottom_sheet_dialog.xml" value="0.25427350427350426" />
+        <entry key="app/src/main/res/layout/fragment_onboarding01.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_onboarding02.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/fragment_onboarding03.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_past_bookings.xml" value="0.25427350427350426" />
+        <entry key="app/src/main/res/layout/fragment_payment_checkout.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.12864583333333332" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.12864583333333332" />
+        <entry key="app/src/main/res/layout/fragment_past_bookings.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_payment_checkout.xml" value="0.10869565217391304" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.1673611111111111" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.1673611111111111" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_2nd_viewpager.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/explore_home_after_search_viewpager.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/onboarding_view_pager.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/past_booking_items.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/top_hotel_recyclerview_view_item.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/wish_list_items.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/menu/menu_navigation.xml" value="0.25" />
+        <entry key="app/src/main/res/menu/menu_tool_bar.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.1673611111111111" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.16822916666666668" />
         <entry key="../../../../layout/custom_preview.xml" value="0.16041666666666668" />
         <entry key="app/src/main/res/drawable/ic_forward_button.xml" value="0.2994791666666667" />
         <entry key="app/src/main/res/layout-v21/fragment_explore_home.xml" value="0.2791666666666667" />
@@ -43,7 +134,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.22" />
+        <option name="scale" value="0.33" />
       </ProjectState>
     </option>
   </component>

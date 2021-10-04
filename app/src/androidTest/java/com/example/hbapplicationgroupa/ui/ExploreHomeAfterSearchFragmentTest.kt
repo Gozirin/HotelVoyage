@@ -33,7 +33,7 @@ class ExploreHomeAfterSearchFragmentTest {
         //displaying view button
         Espresso.onView(withId(R.id.explore_home_after_search_cardview_view_textview))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        //Top Hotels
+        //Top AllHotels
         Espresso.onView(withId(R.id.explore_home_after_search_filter_tv))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.explore_home_after_search_filter_img_btn))

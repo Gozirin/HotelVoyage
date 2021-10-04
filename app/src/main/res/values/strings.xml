@@ -4,7 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="explore">Explore</string>
     <string name="banglore">Banglore</string>
-    <string name="profile">Profile</string>
     <string name="filter_icon">filter</string>
     <string name="stay">stay</string>
     <string name="book_now">Book Now</string>
@@ -117,4 +116,10 @@
     <string name="_9_star_hotel">9 Star Hotel</string>
     <string name="meridian_palace">Meridian Palace</string>
     <string name="ignore">ignore</string>
+    <string name="logout">Logout</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="help_amp_support"><![CDATA[Help & Support]]></string>
+    <string name="bookings_history">Bookings History</string>
+    <string name="my_account">My Account</string>
+    <string name="profile">Profile</string>
 </resources>
