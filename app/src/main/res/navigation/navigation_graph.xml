@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/exploreHomeFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -17,6 +17,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_in_right" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
 
     <fragment
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_exploreHomeFragment_to_topHotelsFragment"
             app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
@@ -159,6 +165,9 @@
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_topHotelsFragment"
             app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
@@ -219,6 +228,9 @@
         <action
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeAfterSearchFragment"
@@ -249,6 +261,9 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"
@@ -263,7 +278,11 @@
         android:id="@+id/privacyPolicyFragment"
         android:name="com.example.hbapplicationgroupa.ui.PrivacyPolicyFragment"
         android:label="fragment_privacy_policy"
-        tools:layout="@layout/fragment_privacy_policy" />
+        tools:layout="@layout/fragment_privacy_policy" >
+        <action
+            android:id="@+id/action_privacyPolicyFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/paymentCheckoutFragment"
         android:name="com.example.hbapplicationgroupa.ui.PaymentCheckoutFragment"
