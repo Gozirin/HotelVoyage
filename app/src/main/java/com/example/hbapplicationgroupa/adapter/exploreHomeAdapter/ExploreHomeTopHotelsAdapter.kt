@@ -7,16 +7,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem1Binding
+import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem2Binding
 import com.example.hbapplicationgroupa.model.Hotel
 
 class ExploreHomeTopHotelsAdapter(
     var listOfTopHotels : List<Hotel>
     ) : RecyclerView.Adapter<ExploreHomeTopHotelsAdapter.Recycler1ViewHolder>() {
+    val binding: ExploreHomeRecyclerviewItem1Binding? = null
 
     inner class Recycler1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val hotelName = itemView.findViewById<TextView>(R.id.exploreHomeFragmentRecyclerViewTextviewName1)
-        val hotelPrice = itemView.findViewById<TextView>(R.id.exploreHomeFragmentRecyclerViewTextviewPrice1)
-        val hotelImage = itemView.findViewById<ImageView>(R.id.exploreHomeFragmentRecyclerViewImageview1)
+        val hotelName = binding?.exploreHomeFragmentRecyclerViewTextviewName1
+        val hotelPrice = binding?.exploreHomeFragmentRecyclerViewTextviewPrice1
+        val hotelImage = binding?.exploreHomeFragmentRecyclerViewImageview1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Recycler1ViewHolder {
@@ -26,9 +29,9 @@ class ExploreHomeTopHotelsAdapter(
     }
 
     override fun onBindViewHolder(holder: Recycler1ViewHolder, position: Int) {
-        holder.hotelImage.setImageResource(listOfTopHotels[position].image)
-        holder.hotelName.text = listOfTopHotels[position].name
-        holder.hotelPrice.text = listOfTopHotels[position].price.toString()
+        holder.hotelImage?.setImageResource(listOfTopHotels[position].image)
+        holder.hotelName?.text = listOfTopHotels[position].name
+        holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
     }
 
     override fun getItemCount(): Int {

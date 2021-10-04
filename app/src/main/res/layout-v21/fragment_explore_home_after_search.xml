@@ -109,7 +109,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/explore_home_after_search_card_view_tv_display_card"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="20dp"
                 app:cardBackgroundColor="#FCEA0707"
