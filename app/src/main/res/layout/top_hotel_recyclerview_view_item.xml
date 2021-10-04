@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,7 +21,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/ignore"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/topHotel_recyclerview_imageview_save"
@@ -33,6 +33,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_outline_bookmark_border_24"
+            android:tint="#FCEA0707"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview" />
@@ -43,8 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Save"
-            android:textColor="#E61A2E"
+            android:text="@string/save"
+            android:textColor="#FCEA0707"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_imageview_save"
@@ -58,7 +59,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:text="@string/book_now"
-            android:textColor="#E61A2E"
+            android:textColor="#FCEA0707"
             android:textAllCaps="false"
             android:textSize="14sp"
             android:background="@drawable/outline_button_radius"
@@ -72,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="120dp"
-            android:text="Merdan Place Turkey"
+            android:text="@string/merdan_place_turkey"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/topHotel_recyclerview_imageview"
@@ -84,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            android:text="9 Star Hotel"
+            android:text="@string/_9_star_hotel"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/topHotel_recyclerview_hotel_name"
@@ -108,10 +109,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_thumb_up"
-            android:background="@null"
             app:layout_constraintBottom_toBottomOf="@id/topHotel_recyclerview_hotel_rating"
             app:layout_constraintStart_toEndOf="@id/topHotel_recyclerview_hotel_rating"
-            android:layout_marginStart="5dp"/>
+            android:layout_marginStart="5dp"
+            android:contentDescription="@string/ignore"/>
 
 
 <!--        <ImageButton-->
@@ -130,7 +131,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="$6456"
+            android:text="@string/_7999"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.model.Hotel
 import com.example.hbapplicationgroupa.model.TopHotel
 
-class ExploreHomeTopDealsAdapter(
-    private var listOfTopHotels : List<TopHotel>
-): RecyclerView.Adapter<ExploreHomeTopDealsAdapter.MyViewHolder>() {
+class ExploreHomeAfterSearchRecyclerViewAdapter2(
+    private var listOfTopDealHotels : List<TopHotel>
+): RecyclerView.Adapter<ExploreHomeAfterSearchRecyclerViewAdapter2.MyViewHolder>() {
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hotelName2 = itemView.findViewById<TextView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewTextviewName2)
         val hotelPrice2 = itemView.findViewById<TextView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewTextviewPrice2)
         val hotelImage2 = itemView.findViewById<ImageView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewImageview2)
-        val hotelCancelledPrice = itemView.findViewById<TextView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewCancelledPrice2)
+        val cancelledPrice = itemView.findViewById<TextView>(R.id.exploreHomeAfterSearchFragmentRecyclerViewCancelledPrice2)
     }
 
     override fun onCreateViewHolder(
@@ -33,15 +34,14 @@ class ExploreHomeTopDealsAdapter(
         holder: MyViewHolder,
         position: Int
     ) {
-        holder.hotelImage2.setImageResource(listOfTopHotels[position].image)
-        holder.hotelName2.text = listOfTopHotels[position].name
-        holder.hotelPrice2.text = listOfTopHotels[position].price.toString()
-        holder.hotelCancelledPrice.text = listOfTopHotels[position].cancelledPrice.toString()
-
+        holder.hotelImage2.setImageResource(listOfTopDealHotels[position].image)
+        holder.hotelName2.text = listOfTopDealHotels[position].name
+        holder.hotelPrice2.text = listOfTopDealHotels[position].price.toString()
+        holder.cancelledPrice.text = listOfTopDealHotels[position].cancelledPrice.toString()
     }
 
     override fun getItemCount(): Int {
-        return listOfTopHotels.size
+        return listOfTopDealHotels.size
     }
 
 

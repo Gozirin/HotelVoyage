@@ -4,23 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter1
-import com.example.hbapplicationgroupa.adapters.ExploreHomeAfterSearchRecyclerViewAdapter2
-import com.example.hbapplicationgroupa.adapters.ExploreHomeRecyclerViewAdapter1
-import com.example.hbapplicationgroupa.adapters.ExploreHomeRecyclerViewAdapter2
+import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
+import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.model.Hotel
-import com.example.hbapplicationgroupa.model.TopHotel
 
 class ExploreHomeFragment : Fragment() {
 
-    private lateinit var adapter1: ExploreHomeRecyclerViewAdapter1
-    private lateinit var adapter2: ExploreHomeRecyclerViewAdapter2
+    private lateinit var adapter1: ExploreHomeTopHotelsAdapter
+    private lateinit var adapter2: ExploreHomeTopDealsAdapter
     private lateinit var recyclerView1: RecyclerView
     private lateinit var recyclerView2: RecyclerView
 
@@ -35,14 +32,22 @@ class ExploreHomeFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: UI manipulation can be done here
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewText = binding.exploreHomeFragmentTopHotelTopHotelViewAllTv
-        viewText.setOnClickListener {
-
+        //navigating to topHotel Fragment
+        val viewAllTopHotel = binding.exploreHomeFragmentTopHotelViewAllTv
+        viewAllTopHotel.setOnClickListener {
+            val nav = Navigation.findNavController(requireActivity(), R.id.navigation_graph)
+            nav.navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
         }
+        //navigation to top Hotel Fragment [it should be topDeal which is yet to be created]
+        val viewAllTopDeals = binding.exploreHomeFragmentTopDealsViewAllTv
+        viewAllTopDeals.setOnClickListener {
+            val nav = Navigation.findNavController(requireActivity(), R.id.navigation_graph)
+            nav.navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+        }
+
 
         //creating dummy Hotel Data
         val atlantisParadise = Hotel(
@@ -74,13 +79,13 @@ class ExploreHomeFragment : Fragment() {
             "12 Star Hotel", "100%", R.drawable.hotel_westin_excelsior_rome
         )
 
-        var listOfHotels = listOf(
+        val listOfHotels = listOf(
             atlantisParadise, burbArab, emiratePalace,
             meridianPalace, thePalms, thePlaza, westinExcelsior
         )
 
         //instantiate recyclerview to populate it
-        adapter1 = ExploreHomeRecyclerViewAdapter1(listOfHotels)
+        adapter1 = ExploreHomeTopHotelsAdapter(listOfHotels)
         recyclerView1 = view.findViewById(R.id.exploreHomeFragmentrecyclerView1)
 
         //populate data into recyclerview
@@ -91,17 +96,20 @@ class ExploreHomeFragment : Fragment() {
 
         //2nd RecyclerView
         // NOTE: It is using the same data as RecyclerView
-
+        val listOfTopDealHotels = listOf(
+            atlantisParadise, burbArab, emiratePalace,
+            meridianPalace, thePalms, thePlaza, westinExcelsior
+        )
 
         //instantiate recyclerview to populate it
-        adapter2 = ExploreHomeRecyclerViewAdapter2(listOfHotels)
+        adapter2 = ExploreHomeTopDealsAdapter(listOfTopDealHotels)
         recyclerView2 = view.findViewById(R.id.exploreHomeFragmentRecyclerView2)
 
         //populate data into recyclerview
         recyclerView2.adapter = adapter2
-        recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        recyclerView2.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView2.setHasFixedSize(false)
 
     }
-
 }

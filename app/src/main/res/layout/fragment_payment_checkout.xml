@@ -9,25 +9,13 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/paymentOption_appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
         android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:targetApi="lollipop">
-
-        <Toolbar
-            android:id="@+id/review_toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:elevation="16dp"
-            android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:targetApi="lollipop">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -42,15 +30,17 @@
                     android:focusable="true"
                     android:src="@drawable/ic_back_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/paymentOption_toolBar_title_tv"
+                    app:layout_constraintHorizontal_bias="0.162"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/black" />
+                    app:tint="@color/black"
+                    android:contentDescription="@string/payment_options"/>
 
                 <TextView
                     android:id="@+id/paymentOption_toolBar_title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:text="@string/payment_options"
                     android:textColor="@color/black"
                     android:textSize="25sp"
@@ -60,7 +50,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -83,7 +72,7 @@
                 android:layout_marginStart="172dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="196dp"
-                android:text="Amount to be paid"
+                android:text="@string/amount_to_be_paid"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="72dp"
                 android:padding="5dp"
-                android:text="$6998.00"
+                android:text="@string/_6998_00"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="40sp"
@@ -157,7 +146,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward" />
+                    android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/payment_options"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -196,7 +186,7 @@
                     android:paddingVertical="20dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="10dp"
-                    android:text="VISA"
+                    android:text="@string/visa"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -205,7 +195,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward" />
+                    android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/payment_options"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -245,7 +236,7 @@
                     android:paddingVertical="20dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="10dp"
-                    android:text="Master Card"
+                    android:text="@string/master_card"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -254,7 +245,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward" />
+                    android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/payment_options"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -293,16 +285,17 @@
                     android:paddingVertical="20dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="10dp"
-                    android:text="Debit Card"
+                    android:text="@string/debit_card"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward" />
+                    android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/payment_options"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View
@@ -341,7 +334,7 @@
                     android:paddingVertical="20dp"
                     android:paddingStart="30dp"
                     android:paddingEnd="10dp"
-                    android:text="Paytm"
+                    android:text="@string/paytm"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -350,7 +343,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward" />
+                    android:src="@drawable/ic_forward"
+                    android:contentDescription="@string/payment_options"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <View

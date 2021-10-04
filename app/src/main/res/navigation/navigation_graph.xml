@@ -42,6 +42,12 @@
         <action
             android:id="@+id/action_exploreHomeFragment_to_exploreHomeAfterSearchFragment"
             app:destination="@id/exploreHomeAfterSearchFragment" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
@@ -221,6 +227,12 @@
         tools:layout="@layout/fragment_explore_home_after_search" >
         <action
             android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment"
+            app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment2"
+            app:destination="@id/topHotelsFragment" />
+        <action
+            android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment3"
             app:destination="@id/topHotelsFragment" />
     </fragment>
     <fragment
