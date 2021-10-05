@@ -116,7 +116,6 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
 
-
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:2.3.0"
 
@@ -127,7 +126,6 @@ dependencies {
     testImplementation "androidx.room:room-testing:2.3.0"
 
     //Okhttp
-
     // define a BOM and its version
     implementation "com.squareup.okhttp3:okhttp-bom:4.9.0"
 
@@ -145,8 +143,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
     implementation 'androidx.multidex:multidex:2.0.1'
-
-
 }
 
 // Allow references to generated code
