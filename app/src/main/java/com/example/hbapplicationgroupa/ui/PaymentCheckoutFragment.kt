@@ -37,8 +37,6 @@ class PaymentCheckoutFragment : Fragment() {
         val backArrow = binding.paymentOptionBackBtn
         backArrow.setOnClickListener{
             findNavController().navigate(R.id.action_paymentCheckoutFragment_to_bookingDetailsFragment)
-//            val navController = Navigation.findNavController(requireActivity(), R.id.navigation_graph)
-//            navController.navigateUp()
         }
 
         //google pay navigation
