@@ -9,7 +9,9 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopHotelRecyclerviewViewItemBinding
 
 
-class TopHotelAdapter(private var adapterList : List<Hotel>)
+class TopHotelAdapter(private var adapterList : List<Hotel>,
+                        private val topHotelsItemClickListener: TopHotelsItemClickListener,
+                            private val topHotelsBookBtnClickListener: TopHotelsBookBtnClickListener)
     : RecyclerView.Adapter<TopHotelAdapter.ViewHolder>(){
 
     val binding: TopHotelRecyclerviewViewItemBinding? = null
@@ -20,7 +22,16 @@ class TopHotelAdapter(private var adapterList : List<Hotel>)
         val classOfHotel = binding?.topHotelRecyclerviewHotelStatus
         val ratingOfHotel = binding?.topHotelRecyclerviewHotelRating
         val imageOfHotel = binding?.topHotelRecyclerviewImageview
+        val hotelBookBtn = binding?.topHotelRecyclerviewBookNow
 
+    }
+
+    interface TopHotelsItemClickListener {
+        fun topHotelsItemClicked(position: Int)
+    }
+
+    interface TopHotelsBookBtnClickListener {
+        fun topHotelsBookBtnClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +47,15 @@ class TopHotelAdapter(private var adapterList : List<Hotel>)
         holder.classOfHotel?.text = adapterList[position].classOfHotel
         holder.ratingOfHotel?.text = adapterList[position].rating
         holder.imageOfHotel?.setImageResource(adapterList[position].image)
+
+        holder.imageOfHotel?.setOnClickListener {
+            topHotelsItemClickListener.topHotelsItemClicked(position)
+        }
+
+        holder.hotelBookBtn?.setOnClickListener {
+            topHotelsBookBtnClickListener.topHotelsBookBtnClicked(position)
+        }
+
 
     }
 

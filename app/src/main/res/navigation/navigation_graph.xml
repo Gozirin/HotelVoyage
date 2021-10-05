@@ -264,6 +264,9 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_wishListFragment"
             app:destination="@id/wishListFragment" />
+        <action
+            android:id="@+id/action_topHotelsFragment_to_exploreHomeFragment"
+            app:destination="@id/exploreHomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookingConfirmationFragment"

@@ -13,7 +13,7 @@ import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupa.model.Hotel
 
-class TopHotelsFragment : Fragment() {
+class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener, TopHotelAdapter.TopHotelsBookBtnClickListener {
     private lateinit var adapter: TopHotelAdapter
 
     //Set up view binding here
@@ -70,7 +70,7 @@ class TopHotelsFragment : Fragment() {
             atlantisParadise, burbArab, emiratePalace,
             meridianPalace, thePalms, thePlaza, westinExcelsior
         )
-        adapter = TopHotelAdapter(listOfHotels)
+        adapter = TopHotelAdapter(listOfHotels, this, this)
         val recyclerView = binding.topHotelRecyclerview
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
@@ -79,7 +79,7 @@ class TopHotelsFragment : Fragment() {
         // setting back button
         val backButton = binding.topHotelBackBtn
         backButton.setOnClickListener{
-            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
+            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeFragment)
         }
         //setting view button
         binding.topHotelSearchView.setOnSearchClickListener{
@@ -105,5 +105,13 @@ class TopHotelsFragment : Fragment() {
 //            it.setBackgroundResource(R.color.purple_500)
 //            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
 //        }
+    }
+
+    override fun topHotelsItemClicked(position: Int) {
+        findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+    }
+
+    override fun topHotelsBookBtnClicked(position: Int) {
+        findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
     }
 }

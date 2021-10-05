@@ -12,7 +12,7 @@ import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupa.model.WishListData
 
-class WishListFragment : Fragment() {
+class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
 
@@ -37,7 +37,7 @@ class WishListFragment : Fragment() {
         wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
 
         // initialise the adapter and pass the items to the adapter
-        val adapter = WishListAdapter(items, requireContext())
+        val adapter = WishListAdapter(items, requireContext(), this, this)
         wishlistRecyclerView.adapter = adapter
 
         //TODO: Set click listener on recycler view item
@@ -50,4 +50,16 @@ class WishListFragment : Fragment() {
             findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
         }
     }
+
+    //Click listener for navigation of saved items to hotel description fragment
+    override fun wishListClicked(position: Int) {
+        findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
+    }
+
+    //Click listener for navigation of book btn to booking details
+    override fun wishListBookBtnClicked(position: Int) {
+        findNavController().navigate(R.id.action_wishListFragment_to_bookingDetailsFragment)
+    }
+
+
 }
