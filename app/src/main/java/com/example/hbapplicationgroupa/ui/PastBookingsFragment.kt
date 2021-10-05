@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hbapplicationgroupa.PastBookingsAdapter
+import com.example.hbapplicationgroupa.adapter.PastBookingsAdapter
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentPastBookingsBinding
 
