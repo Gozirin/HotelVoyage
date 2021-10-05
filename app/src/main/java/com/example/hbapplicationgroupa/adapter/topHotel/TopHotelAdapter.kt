@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupa.adapter.topHotel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.model.Hotel
 import com.example.hbapplicationgroupa.R
@@ -22,7 +24,8 @@ class TopHotelAdapter(private var adapterList : List<Hotel>,
         val classOfHotel = binding?.topHotelRecyclerviewHotelStatus
         val ratingOfHotel = binding?.topHotelRecyclerviewHotelRating
         val imageOfHotel = binding?.topHotelRecyclerviewImageview
-        val hotelBookBtn = binding?.topHotelRecyclerviewBookNow
+        val hotelBookBtn: AppCompatButton = itemView.findViewById(R.id.topHotelBookBtn)
+        val topHotelView: CardView = itemView.findViewById(R.id.topHotelView)
 
     }
 
@@ -48,7 +51,7 @@ class TopHotelAdapter(private var adapterList : List<Hotel>,
         holder.ratingOfHotel?.text = adapterList[position].rating
         holder.imageOfHotel?.setImageResource(adapterList[position].image)
 
-        holder.imageOfHotel?.setOnClickListener {
+        holder.topHotelView?.setOnClickListener {
             topHotelsItemClickListener.topHotelsItemClicked(position)
         }
 

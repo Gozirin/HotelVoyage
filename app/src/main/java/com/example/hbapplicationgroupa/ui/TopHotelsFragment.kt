@@ -109,6 +109,7 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
 
     override fun topHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun topHotelsBookBtnClicked(position: Int) {

@@ -47,6 +47,10 @@ class BookingDetailsFragment : Fragment() {
         binding.bookNowButton.setOnClickListener {
             findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
         }
+
+        binding.bookingDetailsBackBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
+        }
     }
 
     /*
