@@ -13,5 +13,8 @@ interface HotelBookingApi {
 
 
     @GET("v1/Authentication/add-user")
-    suspend fun addUser(@Body userById: UserById): Response<UserById>
+    suspend fun getAddedUserResponse(@Body userById: UserById): Response<UserById>
+
+    @POST("v1/Authentication/login")
+    suspend fun getUserLogin(@Body userByIdData: UserByIdData): Response<UserByIdData>
 }
