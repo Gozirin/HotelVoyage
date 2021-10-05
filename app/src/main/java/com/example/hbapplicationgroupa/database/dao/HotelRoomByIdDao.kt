@@ -1,11 +1,13 @@
 package com.example.hbapplicationgroupa.database.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomByIdModel.HotelRoomByIdData
 
+@Dao
 interface HotelRoomByIdDao {
     //Get all hotel rooms using room id
     @Query("SELECT * FROM hotelRoom_by_id_table WHERE id LIKE :roomId")
