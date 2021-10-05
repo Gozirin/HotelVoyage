@@ -32,6 +32,7 @@ class MainActivity:AppCompatActivity() {
                 R.id.wishListFragment -> showBottomNav()
                 R.id.topHotelsFragment -> showBottomNav()
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
+                R.id.exploreHomeFragment -> showBottomNav()
              else -> binding.bottomNavigationBar.visibility = View.GONE
             }
         }

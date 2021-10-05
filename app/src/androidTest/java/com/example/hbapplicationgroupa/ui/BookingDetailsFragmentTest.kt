@@ -1,14 +1,12 @@
 package com.example.hbapplicationgroupa.ui
 
-import androidx.test.espresso.Espresso
+import androidx.fragment.app.testing.FragmentScenario
+import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.hbapplicationgroupa.R
-import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,26 +14,25 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class BookingDetailsFragmentTest {
 
-//    private lateinit var scenario = FragmentScenario<BookingDetailsFragment>
+    private lateinit var scenario: FragmentScenario<BookingDetailsFragment>
 
     @Before
     fun setUp() {
-//        scenario = launchFragmentInContainer
-//        scenario = moveToState
+        scenario = launchFragmentInContainer(themeResId = R.style.Theme_HBApplicationGroupA)
     }
 
     @Test
     fun testNameEntryI(){
         val name = "Kufre Udoh"
         onView(withId(R.id.name_text_input_edit_text)).perform(typeText(name))
-        Espresso.closeSoftKeyboard()
+        closeSoftKeyboard()
     }
 
     @Test
     fun testPhoneEntry(){
         val phone = "07067991832"
         onView(withId(R.id.phone_text_input_edit_text)).perform(typeText(phone))
-        Espresso.closeSoftKeyboard()
+        closeSoftKeyboard()
     }
 
     @Test
