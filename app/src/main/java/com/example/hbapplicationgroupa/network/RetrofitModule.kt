@@ -1,5 +1,9 @@
 package com.example.hbapplicationgroupa.network
 
+import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAdminModuleApi
+import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAmenitiesModuleApi
+import com.example.hbapplicationgroupa.network.hotelbookingapi.HBCustomerModuleApi
+import com.example.hbapplicationgroupa.network.hotelbookingapi.HBHotelModuleApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -8,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitModule {
 
-    private const val BASE_URL = ""
+    private const val BASE_URL = "https://<base_url>/api/v1/"
 
     //get retrofit instance
     private val retrofit by lazy {
@@ -27,7 +31,25 @@ object RetrofitModule {
 
 
     //get api instance from retrofit
-    val hotelBookingApi: HotelBookingApi by lazy {
-        retrofit.create(HotelBookingApi::class.java)
+
+
+    val hbAdminModuleApi: HBAdminModuleApi by lazy {
+        retrofit.create(HBAdminModuleApi::class.java)
+    }
+
+    val hbAmenitiesModuleApi: HBAmenitiesModuleApi by lazy {
+        retrofit.create(HBAmenitiesModuleApi::class.java)
+    }
+
+    val hbAuthenticationModuleApi: HBAuthenticationModuleApi by lazy {
+        retrofit.create(HBAuthenticationModuleApi::class.java)
+    }
+
+    val hbCustomerModuleApi: HBCustomerModuleApi by lazy {
+        retrofit.create(HBCustomerModuleApi::class.java)
+    }
+
+    val hbHotelModuleApi: HBHotelModuleApi by lazy {
+        retrofit.create(HBHotelModuleApi::class.java)
     }
 }

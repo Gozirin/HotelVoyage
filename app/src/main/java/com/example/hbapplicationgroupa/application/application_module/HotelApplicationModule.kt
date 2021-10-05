@@ -2,7 +2,6 @@ package com.example.hbapplicationgroupa.application.application_module
 
 
 
-import com.example.hbapplicationgroupa.network.HotelRetrofitServices
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
