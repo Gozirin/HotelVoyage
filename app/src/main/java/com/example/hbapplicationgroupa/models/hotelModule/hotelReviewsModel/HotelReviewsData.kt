@@ -1,7 +1,9 @@
 package com.example.hbapplicationgroupa.models.hotelModule.hotelReviewsModel
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity(tableName = "hotel_reviews_table")
 data class HotelReviewsData(
     @PrimaryKey(autoGenerate = true)
     val tableNumber: Int,
