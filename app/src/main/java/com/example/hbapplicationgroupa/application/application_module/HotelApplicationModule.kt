@@ -15,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object HotelApplicationModule {
-    
     //this function is used to setup the retrofit dependency
     @Singleton
     @Provides
