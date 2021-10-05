@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.topHotel
 
 import android.view.LayoutInflater
 import android.view.View
@@ -41,12 +41,5 @@ class TopHotelAdapter(private var adapterList : List<Hotel>)
 
     override fun getItemCount(): Int {
        return adapterList.size
-    }
-
-    fun populateRecyclerView(newList: List<Hotel>) {
-        if (newList.isNotEmpty()) {
-            adapterList = newList
-            notifyDataSetChanged()
-        }
     }
 }

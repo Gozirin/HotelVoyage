@@ -7,7 +7,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.hbapplicationgroupa.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity:AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 
@@ -32,7 +34,8 @@ class MainActivity:AppCompatActivity() {
                 R.id.wishListFragment -> showBottomNav()
                 R.id.topHotelsFragment -> showBottomNav()
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
-             else -> binding.bottomNavigationBar.visibility = View.GONE
+                R.id.exploreHomeFragment -> showBottomNav()
+             else ->  hideBottomNav()
             }
         }
     }
@@ -41,7 +44,7 @@ class MainActivity:AppCompatActivity() {
         binding.bottomNavigationBar.visibility = View.VISIBLE
     }
 
-    // this function is used to show the navigation bar in a fragment
+    // this function is used to hide the navigation bar in a fragment
     private fun hideBottomNav() {
         binding.bottomNavigationBar.visibility = View.GONE
     }
