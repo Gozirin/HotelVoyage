@@ -30,10 +30,14 @@
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_helpAndSupportFragment"
-            app:destination="@id/helpAndSupportFragment" />
+            app:destination="@id/helpAndSupportFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_profileFragment_to_pastBookingsFragment2"
-            app:destination="@id/pastBookingsFragment2" />
+            app:destination="@id/pastBookingsFragment2"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_profileFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
@@ -50,16 +54,22 @@
         tools:layout="@layout/fragment_explore_home" >
         <action
             android:id="@+id/action_exploreHomeFragment_to_exploreHomeAfterSearchFragment"
-            app:destination="@id/exploreHomeAfterSearchFragment" />
+            app:destination="@id/exploreHomeAfterSearchFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_exploreHomeFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
         <action
             android:id="@+id/action_exploreHomeFragment_to_topHotelsFragment"
-            app:destination="@id/topHotelsFragment" />
+            app:destination="@id/topHotelsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_exploreHomeFragment_to_hotelDescription2Fragment"
-            app:destination="@id/hotelDescription2Fragment" />
+            app:destination="@id/hotelDescription2Fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_exploreHomeFragment_to_wishListFragment2"
             app:destination="@id/wishListFragment"
@@ -77,10 +87,14 @@
         tools:layout="@layout/fragment_wish_list" >
         <action
             android:id="@+id/action_wishListFragment_to_hotelDescription2Fragment"
-            app:destination="@id/hotelDescription2Fragment" />
+            app:destination="@id/hotelDescription2Fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_wishListFragment_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_wishListFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment"
@@ -108,6 +122,8 @@
         <action
             android:id="@+id/action_helpAndSupportFragment_to_profileFragment"
             app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -119,11 +135,15 @@
         <action
             android:id="@+id/action_pastBookingsFragment2_to_profileFragment"
             app:destination="@id/profileFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/profileFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_pastBookingsFragment2_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
 
     <fragment
@@ -139,11 +159,22 @@
             app:destination="@id/numberOfPeopleBottomSheetDialogFragment" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_paymentCheckoutFragment"
-            app:destination="@id/paymentCheckoutFragment" />
+            app:destination="@id/paymentCheckoutFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_hotelDescription2Fragment"
             app:destination="@id/hotelDescription2Fragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/hotelDescription2Fragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_pastBookingsFragment2"
+            app:destination="@id/pastBookingsFragment2"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
+            app:popUpTo="@id/pastBookingsFragment2"
             app:popUpToInclusive="true" />
     </fragment>
     <dialog
@@ -189,7 +220,9 @@
         tools:layout="@layout/fragment_hotel_description2" >
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_ratingFragment"
             app:destination="@id/ratingFragment"
@@ -198,14 +231,20 @@
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_topHotelsFragment"
             app:destination="@id/topHotelsFragment"
+            app:exitAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topHotelsFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_wishListFragment"
-            app:destination="@id/wishListFragment" />
+            app:destination="@id/wishListFragment"
+            app:exitAnim="@android:anim/fade_out"
+            app:popExitAnim="@android:anim/fade_out" />
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/exploreHomeFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -232,7 +271,9 @@
             app:destination="@id/privacyPolicyFragment" />
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_registerFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment" />
@@ -244,7 +285,9 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment2"
-            app:destination="@id/forgotPasswordFragment" />
+            app:destination="@id/forgotPasswordFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -261,7 +304,9 @@
         tools:layout="@layout/fragment_forgot_password" >
         <action
             android:id="@+id/action_forgotPasswordFragment_to_resetPasswordFragment"
-            app:destination="@id/resetPasswordFragment" />
+            app:destination="@id/resetPasswordFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_forgotPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -291,10 +336,14 @@
             app:destination="@id/topHotelsFragment" />
         <action
             android:id="@+id/action_exploreHomeAfterSearchFragment_to_topHotelsFragment3"
-            app:destination="@id/topHotelsFragment" />
+            app:destination="@id/topHotelsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_exploreHomeAfterSearchFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/exploreHomeFragment"
             app:popUpToInclusive="true" />
         <action
@@ -309,17 +358,25 @@
         <action
             android:id="@+id/action_topHotelsFragment_to_exploreHomeAfterSearchFragment"
             app:destination="@id/exploreHomeAfterSearchFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/exploreHomeAfterSearchFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_topHotelsFragment_to_hotelDescription2Fragment"
-            app:destination="@id/hotelDescription2Fragment" />
+            app:destination="@id/hotelDescription2Fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_topHotelsFragment_to_bookingDetailsFragment"
-            app:destination="@id/bookingDetailsFragment" />
+            app:destination="@id/bookingDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
         <action
             android:id="@+id/action_topHotelsFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/exploreHomeFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -361,6 +418,8 @@
         <action
             android:id="@+id/action_paymentCheckoutFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment"
+            app:enterAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/bookingDetailsFragment"
             app:popUpToInclusive="true" />
     </fragment>
