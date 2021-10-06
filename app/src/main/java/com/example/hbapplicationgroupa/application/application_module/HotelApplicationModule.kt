@@ -16,13 +16,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object HotelApplicationModule {
     //this function is used to setup the retrofit dependency
-    @Singleton
-    @Provides
-    fun provideHotelRetrofitService(): HotelRetrofitServices {
-        return Retrofit.Builder()
-            .baseUrl("https://<base_url>/api/v1/Admin/get-statistics")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-            .create(HotelRetrofitServices::class.java)
-    }
+    //@Singleton
+  //  @Provides
+//    fun provideHotelRetrofitService(): HotelRetrofitServices {
+//       return
+//
+//    }
 }
