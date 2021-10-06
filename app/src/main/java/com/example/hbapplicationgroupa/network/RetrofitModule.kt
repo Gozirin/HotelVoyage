@@ -12,9 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 
-class NetworkModule {
-
-    object RetrofitModule {
+object RetrofitModule {
 
         private const val BASE_URL = "https://<base_url>/api/v1/"
 
@@ -71,4 +69,4 @@ class NetworkModule {
             retrofit.create(HBHotelModuleApi::class.java)
         }
     }
-}
+
