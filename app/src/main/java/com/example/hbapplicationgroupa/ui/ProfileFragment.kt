@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
@@ -23,6 +24,14 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog = Dialog(requireContext())
+
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_profileFragment_to_exploreHomeFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         binding.fragmentProfileBookingsCon.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_pastBookingsFragment2)

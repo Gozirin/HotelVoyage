@@ -5,6 +5,7 @@ import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.aminography.primecalendar.civil.CivilCalendar
@@ -49,8 +50,11 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.bookingDetailsBackBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
+            findNavController().popBackStack()
+//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
         }
+
+        onBackPressed()
     }
 
     /*
@@ -110,8 +114,20 @@ class BookingDetailsFragment : Fragment() {
         datePicker.show(parentFragmentManager, "dateRange")
     }
 
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

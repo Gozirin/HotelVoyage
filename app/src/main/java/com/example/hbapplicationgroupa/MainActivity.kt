@@ -38,6 +38,8 @@ class MainActivity:AppCompatActivity() {
              else ->  hideBottomNav()
             }
         }
+
+
     }
     // this function is used to show the navigation bar in a fragment
     private fun showBottomNav() {
@@ -48,4 +50,5 @@ class MainActivity:AppCompatActivity() {
     private fun hideBottomNav() {
         binding.bottomNavigationBar.visibility = View.GONE
     }
+
 }

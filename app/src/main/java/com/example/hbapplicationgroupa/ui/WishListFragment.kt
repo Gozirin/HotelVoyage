@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,6 +50,14 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         binding.searchBar.setOnClickListener {
             findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
         }
+
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_wishListFragment_to_exploreHomeFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
     //Click listener for navigation of saved items to hotel description fragment

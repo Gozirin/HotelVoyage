@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -79,13 +80,15 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
         // setting back button
         val backButton = binding.topHotelBackBtn
         backButton.setOnClickListener{
-            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeFragment)
+            findNavController().popBackStack()
         }
         //setting view button
         binding.topHotelSearchView.setOnSearchClickListener{
             it.setBackgroundResource(R.color.splash_screen_background_color)
             Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
         }
+
+        onBackPressed()
 
         //filter button
 //        binding.topHotelFilter.setOnClickListener{
@@ -114,5 +117,16 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
 
     override fun topHotelsBookBtnClicked(position: Int) {
         findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
+    }
+
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

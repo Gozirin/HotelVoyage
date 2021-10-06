@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,15 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Overriding onBack press to finish activity and exit app
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+                requireActivity().finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        findNavController().popBackStack(R.id.action_exploreHomeFragment_to_splashScreenFragment, true)
 
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
@@ -117,6 +127,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         recyclerView2.setHasFixedSize(false)
 
     }
+
 
     override fun onTopHotelClicked(position: Int) {
         //Click listener for Top hotel click listeners
