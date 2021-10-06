@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.adapter.PeopleNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfPeopleBottomSheetDialogBinding
-import com.example.hbapplicationgroupa.model.PeopleNumberBottomSheetData
+import com.example.hbapplicationgroupa.models.model.PeopleNumberBottomSheetData
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class NumberOfPeopleBottomSheetDialogFragment : BottomSheetDialogFragment() {

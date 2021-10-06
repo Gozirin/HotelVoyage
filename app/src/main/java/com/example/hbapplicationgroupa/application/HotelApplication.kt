@@ -7,13 +7,17 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class HotelApplication : Application() {
 
-
-
     companion object{
         private lateinit var instance:HotelApplication
 
         private val database : HotelDatabase by lazy {
             HotelDatabase.getDbInstance(instance)
         }
+
+//        val repository : HotelRepository by lazy {
+//            HotelRepositoryImp(
+//
+//            )
+//        }
     }
 }

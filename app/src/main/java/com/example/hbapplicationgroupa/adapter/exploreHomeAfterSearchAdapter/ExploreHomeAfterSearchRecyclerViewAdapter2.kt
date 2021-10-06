@@ -3,13 +3,10 @@ package com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.ExploreHomeAfterSearchRecyclerviewItem2Binding
-import com.example.hbapplicationgroupa.model.Hotel
-import com.example.hbapplicationgroupa.model.TopHotel
+import com.example.hbapplicationgroupa.models.model.TopHotel
 
 class ExploreHomeAfterSearchRecyclerViewAdapter2(
     private var listOfTopDealHotels : List<TopHotel>

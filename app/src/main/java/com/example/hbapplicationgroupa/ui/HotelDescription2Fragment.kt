@@ -14,9 +14,9 @@ import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoom
 import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
-import com.example.hbapplicationgroupa.model.HotelGalleryModel
-import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
-import com.example.hbapplicationgroupa.model.StackedReviewModel
+import com.example.hbapplicationgroupa.models.model.HotelGalleryModel
+import com.example.hbapplicationgroupa.models.model.HotelRoomServiceModel
+import com.example.hbapplicationgroupa.models.model.StackedReviewModel
 
 
 /**

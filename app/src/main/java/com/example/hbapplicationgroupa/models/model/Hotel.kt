@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.model
+package com.example.hbapplicationgroupa.models.model
 
 data class Hotel(
     val id:Int,

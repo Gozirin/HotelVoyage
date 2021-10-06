@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.model.Hotel
+import com.example.hbapplicationgroupa.models.model.Hotel
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopHotelRecyclerviewViewItemBinding
 

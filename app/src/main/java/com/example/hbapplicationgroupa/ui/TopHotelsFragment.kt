@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
-import com.example.hbapplicationgroupa.model.Hotel
+import com.example.hbapplicationgroupa.models.model.Hotel
 
 class TopHotelsFragment : Fragment() {
     private lateinit var adapter: TopHotelAdapter
