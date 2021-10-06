@@ -43,35 +43,35 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun createHBAdminModuleApi(): HBAdminModuleApi {
+    fun provideHBAdminModuleApi(): HBAdminModuleApi {
         return retrofit().create(HBAdminModuleApi::class.java)
     }
 
 
     @Singleton
     @Provides
-    fun createHBAmenitiesModuleApi(): HBAmenitiesModuleApi {
+    fun provideHBAmenitiesModuleApi(): HBAmenitiesModuleApi {
         return retrofit().create(HBAmenitiesModuleApi::class.java)
     }
 
 
     @Singleton
     @Provides
-    fun createHBAuthenticationModuleApi(): HBAuthenticationModuleApi {
+    fun provideHBAuthenticationModuleApi(): HBAuthenticationModuleApi {
         return retrofit().create(HBAuthenticationModuleApi::class.java)
     }
 
 
     @Singleton
     @Provides
-    fun createHBCustomerModuleApi(): HBCustomerModuleApi {
+    fun provideHBCustomerModuleApi(): HBCustomerModuleApi {
         return retrofit().create(HBCustomerModuleApi::class.java)
     }
 
 
     @Singleton
     @Provides
-    fun createHBHotelModuleApi(): HBHotelModuleApi {
+    fun provideHBHotelModuleApi(): HBHotelModuleApi {
         return retrofit().create(HBHotelModuleApi::class.java)
     }
 }
