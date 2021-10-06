@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.repository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.CustomerBookingDao
+import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
 import com.example.hbapplicationgroupa.models.customerModule.customerBookingsModel.CustomerBookings
 import com.example.hbapplicationgroupa.models.customerModule.customerBookingsModel.CustomerBookingsData
 import com.example.hbapplicationgroupa.models.customerModule.customerWishlistModel.CustomerWishList
@@ -28,6 +29,9 @@ class CustomerBookingDaoRepository  @Inject constructor(val api: HBCustomerModul
         dao.removeABooking(customerBookingsData)
     }
 
+    override suspend fun addCustomerBookingByHotelId(userId: String): Response<List<UsersByPageNumber>> {
+      return api.addCustomerBookingByHotelId(userId)
+    }
 
 
     override suspend fun getCustomerBookingsByUserId(

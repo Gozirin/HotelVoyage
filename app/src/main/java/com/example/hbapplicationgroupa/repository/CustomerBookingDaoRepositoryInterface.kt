@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.repository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
 import com.example.hbapplicationgroupa.models.customerModule.customerBookingsModel.CustomerBookings
 import com.example.hbapplicationgroupa.models.customerModule.customerBookingsModel.CustomerBookingsData
 import com.example.hbapplicationgroupa.models.customerModule.customerWishlistModel.CustomerWishList
@@ -20,6 +21,8 @@ interface CustomerBookingDaoRepositoryInterface {
 
     //Remove a booking
     fun removeABooking(customerBookingsData: CustomerBookingsData)
+
+    suspend fun addCustomerBookingByHotelId(userId: String): Response<List<UsersByPageNumber>>
 
 
     suspend fun getCustomerBookingsByUserId(userId: String, pageNumber: Int, pageSize: Int): Response<List<CustomerBookings>>
