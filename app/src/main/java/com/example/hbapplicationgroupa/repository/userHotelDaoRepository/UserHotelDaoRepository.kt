@@ -1,11 +1,12 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.userHotelDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.UserHotelDao
 import com.example.hbapplicationgroupa.models.hotelModule.userHotelsModel.UserHotelData
 import javax.inject.Inject
 
-class UserHotelDaoRepository @Inject constructor(val userHotelDao: UserHotelDao): UserHotelDaoRepositoryInterface {
+class UserHotelDaoRepository @Inject constructor(val userHotelDao: UserHotelDao):
+    UserHotelDaoRepositoryInterface {
     override fun getAllBookedHotels(): LiveData<List<UserHotelData>> {
         return userHotelDao.getAllBookedHotels()
     }

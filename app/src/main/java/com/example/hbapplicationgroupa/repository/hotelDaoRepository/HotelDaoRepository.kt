@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.hotelDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelDao
@@ -12,12 +12,12 @@ import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsVacancyModel
 import com.example.hbapplicationgroupa.models.hotelModule.hotelStatisticsModel.HotelStatistics
 import com.example.hbapplicationgroupa.models.hotelModule.topDealsModel.TopDeals
 import com.example.hbapplicationgroupa.models.hotelModule.topHotelsModel.TopHotels
-import com.example.hbapplicationgroupa.network.hotelbookingapi.HBCustomerModuleApi
 import com.example.hbapplicationgroupa.network.hotelbookingapi.HBHotelModuleApi
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelDaoRepository @Inject constructor(val hotelModuleApi: HBHotelModuleApi, val hotelDao: HotelDao): HotelDaoRepositoryInterface{
+class HotelDaoRepository @Inject constructor(val hotelModuleApi: HBHotelModuleApi, val hotelDao: HotelDao):
+    HotelDaoRepositoryInterface {
 
     override fun getAllHotels(): LiveData<List<HotelData>> {
       return hotelDao.getAllHotels()

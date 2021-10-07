@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.hotelDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.models.hotelModule.allHotelsModel.AllHotels

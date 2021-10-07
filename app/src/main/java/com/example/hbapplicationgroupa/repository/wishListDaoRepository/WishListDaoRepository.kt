@@ -1,11 +1,12 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.wishListDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.WishListDao
 import com.example.hbapplicationgroupa.models.customerModule.customerWishlistModel.CustomerWishListData
 import javax.inject.Inject
 
-class WishListDaoRepository @Inject constructor(val wishListDao: WishListDao): WishListDaoRepositoryInterface {
+class WishListDaoRepository @Inject constructor(val wishListDao: WishListDao):
+    WishListDaoRepositoryInterface {
     override fun getCustomerWishlists(): LiveData<List<CustomerWishListData>> {
         return wishListDao.getCustomerWishlists()
     }

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.amenitiesDaoRepository
 
 
 import androidx.lifecycle.LiveData
@@ -9,7 +9,8 @@ import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAmenitiesModule
 import retrofit2.Response
 import javax.inject.Inject
 
-class AmenitiesDaoRepository @Inject constructor(val api: HBAmenitiesModuleApi, val responseDao: AmenitiesDao): AmenitiesDaoRepositoryInterface {
+class AmenitiesDaoRepository @Inject constructor(val api: HBAmenitiesModuleApi, val responseDao: AmenitiesDao):
+    AmenitiesDaoRepositoryInterface {
 
 
 

@@ -1,13 +1,10 @@
 package com.example.hbapplicationgroupa.viewModel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserById
-import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
 import com.example.hbapplicationgroupa.models.hotelModule.amenities.AmenitiesData
 import com.example.hbapplicationgroupa.models.hotelModule.hotelAmenitiesModel.HotelAmenities
-import com.example.hbapplicationgroupa.repository.AmenitiesDaoRepository
+import com.example.hbapplicationgroupa.repository.amenitiesDaoRepository.AmenitiesDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

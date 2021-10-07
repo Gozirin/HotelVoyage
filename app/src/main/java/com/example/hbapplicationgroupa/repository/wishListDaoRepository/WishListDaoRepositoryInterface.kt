@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.wishListDaoRepository
 
 import androidx.lifecycle.LiveData
 import androidx.room.Delete

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.hotelRatingDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelRatingsDao
@@ -10,7 +10,8 @@ import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelRatingDaoRepository @Inject constructor(val hbAdminModuleApi: HBAdminModuleApi, val hotelRatingsDao: HotelRatingsDao): HotelRatingDaoRepositoryInterface {
+class HotelRatingDaoRepository @Inject constructor(val hbAdminModuleApi: HBAdminModuleApi, val hotelRatingsDao: HotelRatingsDao):
+    HotelRatingDaoRepositoryInterface {
 
     override fun getRatingsByHotelId(hotelId: String): LiveData<List<HotelRatingsData>> {
         return hotelRatingsDao.getRatingsByHotelId(hotelId)

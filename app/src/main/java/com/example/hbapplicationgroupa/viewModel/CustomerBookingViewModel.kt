@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
 import com.example.hbapplicationgroupa.models.customerModule.customerBookingsModel.CustomerBookingsData
 import com.example.hbapplicationgroupa.models.hotelModule.hotelByIdModel.HotelById
-import com.example.hbapplicationgroupa.repository.CustomerBookingDaoRepository
+import com.example.hbapplicationgroupa.repository.customerBookingDaoRepository.CustomerBookingDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

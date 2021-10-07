@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.hbapplicationgroupa.models.hotelModule.hotelModel.HotelData
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsByPriceModel.HotelRoomsByPrice
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsVacancyModel.HotelRoomsVacancy
-import com.example.hbapplicationgroupa.repository.HotelDaoRepository
+import com.example.hbapplicationgroupa.repository.hotelDaoRepository.HotelDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

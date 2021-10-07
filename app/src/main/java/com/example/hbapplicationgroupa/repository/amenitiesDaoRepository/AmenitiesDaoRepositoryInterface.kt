@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.amenitiesDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserById

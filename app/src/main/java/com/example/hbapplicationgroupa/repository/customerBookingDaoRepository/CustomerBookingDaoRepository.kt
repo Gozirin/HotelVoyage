@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.customerBookingDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.CustomerBookingDao
@@ -12,7 +12,8 @@ import com.example.hbapplicationgroupa.network.hotelbookingapi.HBCustomerModuleA
 import retrofit2.Response
 import javax.inject.Inject
 
-class CustomerBookingDaoRepository  @Inject constructor(val api: HBCustomerModuleApi, val dao: CustomerBookingDao): CustomerBookingDaoRepositoryInterface {
+class CustomerBookingDaoRepository  @Inject constructor(val api: HBCustomerModuleApi, val dao: CustomerBookingDao):
+    CustomerBookingDaoRepositoryInterface {
 
     override fun getCustomerBookings(): LiveData<List<CustomerBookingsData>> {
       return dao.getCustomerBookings()

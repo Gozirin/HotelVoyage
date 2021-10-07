@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repository
+package com.example.hbapplicationgroupa.repository.customerBookingDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
