@@ -101,6 +101,11 @@ class HotelDescription2Fragment : Fragment() {
         binding.hotelDescBookmarkBtn.setOnClickListener {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
         }
+
+        //Navigate to ratings page
+        binding.hotelDescReviewTv.setOnClickListener {
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
+        }
     }
 
     //Method setting HotelRoomServiceViewPager attributes
