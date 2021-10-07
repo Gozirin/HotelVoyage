@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -15,7 +16,7 @@ import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTop
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.model.Hotel
 
-class ExploreHomeFragment : Fragment() {
+class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 
     private lateinit var adapter1: ExploreHomeTopHotelsAdapter
     private lateinit var adapter2: ExploreHomeTopDealsAdapter
@@ -35,14 +36,31 @@ class ExploreHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Overriding onBack press to finish activity and exit app
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+                requireActivity().finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        findNavController().popBackStack(R.id.action_exploreHomeFragment_to_splashScreenFragment, true)
 
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
         }
+        //click listener for View button navigation to top hotel fragment
+        binding.exploreHomeViewAndArrowBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+        }
         //navigation to top Hotel Fragment [it should be topDeal which is yet to be created]
         binding.exploreHomeFragmentTopDealsViewAllTv.setOnClickListener {
            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+        }
+        //click listener for filter button navigation to exploreHomeAfterSearch
+        binding.exploreHomeFilterImgBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreHomeFragment_to_exploreHomeAfterSearchFragment)
         }
 
 
@@ -82,7 +100,7 @@ class ExploreHomeFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter1 = ExploreHomeTopHotelsAdapter(listOfHotels)
+        adapter1 = ExploreHomeTopHotelsAdapter(listOfHotels, this)
         recyclerView1 = view.findViewById(R.id.exploreHomeFragmentrecyclerView1)
 
         //populate data into recyclerview
@@ -99,7 +117,7 @@ class ExploreHomeFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter2 = ExploreHomeTopDealsAdapter(listOfTopDealHotels)
+        adapter2 = ExploreHomeTopDealsAdapter(listOfTopDealHotels, this)
         recyclerView2 = view.findViewById(R.id.exploreHomeFragmentRecyclerView2)
 
         //populate data into recyclerview
@@ -108,5 +126,16 @@ class ExploreHomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView2.setHasFixedSize(false)
 
+    }
+
+
+    override fun onTopHotelClicked(position: Int) {
+        //Click listener for Top hotel click listeners
+        findNavController().navigate(R.id.action_exploreHomeFragment_to_hotelDescription2Fragment)
+    }
+
+    override fun topDealsClicked(position: Int) {
+        //Click Listener for Top Deal Click Listeners
+        findNavController().navigate(R.id.action_exploreHomeFragment_to_hotelDescription2Fragment)
     }
 }

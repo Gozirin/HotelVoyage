@@ -46,7 +46,7 @@ class SplashFragment : Fragment() {
 
     //create function that moves to the next fragment
     private fun navigateToNextFragment(){
-        val handler = Handler()
+        val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)
         }, 3000)

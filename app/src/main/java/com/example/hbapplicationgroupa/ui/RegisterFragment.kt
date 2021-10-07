@@ -30,7 +30,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_exploreHomeFragment)
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
     }
 }

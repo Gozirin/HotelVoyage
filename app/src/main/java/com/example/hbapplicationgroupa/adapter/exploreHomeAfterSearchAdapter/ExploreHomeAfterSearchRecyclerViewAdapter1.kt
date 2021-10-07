@@ -9,7 +9,8 @@ import com.example.hbapplicationgroupa.databinding.ExploreHomeAfterSearchRecycle
 import com.example.hbapplicationgroupa.model.Hotel
 
 class ExploreHomeAfterSearchRecyclerViewAdapter1(
-    private var listOfTopHotels : List<Hotel>
+    private var listOfTopHotels : List<Hotel>,
+    private val exploreHomeAfterSearchItemViewClickListener: ExploreHomeAfterSearchItemViewClickListener1
 ): RecyclerView.Adapter<ExploreHomeAfterSearchRecyclerViewAdapter1.MyViewHolder>() {
     val binding: ExploreHomeAfterSearchRecyclerview1ItemBinding? = null
 
@@ -17,6 +18,10 @@ class ExploreHomeAfterSearchRecyclerViewAdapter1(
         val hotelName1 = binding?.exploreHomeAfterSearchFragmentRecyclerViewTextviewName1
         val hotelPrice1 = binding?.exploreHomeAfterSearchFragmentRecyclerViewTextviewPrice1
         val hotelImage1 = binding?.exploreHomeAfterSearchFragmentRecyclerViewImageview1
+    }
+
+    interface ExploreHomeAfterSearchItemViewClickListener1 {
+        fun searchItemViewClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -32,6 +37,10 @@ class ExploreHomeAfterSearchRecyclerViewAdapter1(
         holder.hotelImage1?.setImageResource(listOfTopHotels[position].image)
         holder.hotelName1?.text = listOfTopHotels[position].name
         holder.hotelPrice1?.text = listOfTopHotels[position].price.toString()
+
+        holder.itemView.setOnClickListener {
+            exploreHomeAfterSearchItemViewClickListener.searchItemViewClicked(position)
+        }
     }
 
     override fun getItemCount(): Int {

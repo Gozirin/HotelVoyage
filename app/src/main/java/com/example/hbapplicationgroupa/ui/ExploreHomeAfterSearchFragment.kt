@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupa.ui
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,9 @@ import com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter.Exp
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeAfterSearchBinding
 import com.example.hbapplicationgroupa.model.TopHotel
 
-class ExploreHomeAfterSearchFragment : Fragment() {
+class ExploreHomeAfterSearchFragment : Fragment(),
+    ExploreHomeAfterSearchRecyclerViewAdapter1.ExploreHomeAfterSearchItemViewClickListener1,
+    ExploreHomeAfterSearchRecyclerViewAdapter2.ExploreHomeAfterSearchClickListener2{
 
     private lateinit var adapter1: ExploreHomeAfterSearchRecyclerViewAdapter1
     private lateinit var adapter2: ExploreHomeAfterSearchRecyclerViewAdapter2
@@ -45,6 +48,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
             findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_topHotelsFragment)
         }
 
+        onBackPressed()
         //creating dummy Hotel Data
         val atlantisParadise = Hotel(
             1, "Atlantis Paradise", 6500,
@@ -81,7 +85,7 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter1 = ExploreHomeAfterSearchRecyclerViewAdapter1(listOfHotels)
+        adapter1 = ExploreHomeAfterSearchRecyclerViewAdapter1(listOfHotels, this)
         recyclerView1 = view.findViewById(R.id.exploreHomeAfterSearchFragmentrecyclerView)
 
         //populate data into recyclerview
@@ -110,12 +114,31 @@ class ExploreHomeAfterSearchFragment : Fragment() {
         )
 
         //instantiate recyclerview to populate it
-        adapter2 = ExploreHomeAfterSearchRecyclerViewAdapter2(listOfTopHotels)
+        adapter2 = ExploreHomeAfterSearchRecyclerViewAdapter2(listOfTopHotels, this)
         recyclerView2 = view.findViewById(R.id.exploreHomeAfterSearchFragmentRecyclerView2)
 
         //populate data into recyclerview
         recyclerView2.adapter = adapter2
         recyclerView2.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView2.setHasFixedSize(false)
+    }
+
+    override fun searchItemViewClicked(position: Int) {
+        findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_hotelDescription2Fragment)
+    }
+
+    override fun exploreHomeAfterSearchClicked(position: Int) {
+        findNavController().navigate(R.id.action_exploreHomeAfterSearchFragment_to_hotelDescription2Fragment)
+    }
+
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }
