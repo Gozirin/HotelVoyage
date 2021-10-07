@@ -29,7 +29,7 @@ class TopHotelsFragmentTest {
         Espresso.onView(withId(R.id.topHotel_filter_icon)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.topHotel_searchView)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.topHotel_backBtn)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        Espresso.onView(withId(R.id.topHotel_recyclerview_book_now)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(withId(R.id.topHotelBookBtn)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.topHotel_recyclerview_imageview_save)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.topHotel_recyclerview_hotel_name)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(withId(R.id.topHotel_recyclerview_hotel_price)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
