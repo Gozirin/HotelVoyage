@@ -9,7 +9,7 @@ import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem1B
 import com.example.hbapplicationgroupa.models.model.Hotel
 
 class ExploreHomeTopHotelsAdapter(
-    var listOfTopHotels : List<Hotel>
+    var listOfTopHotels : List<Hotel>, private val topHotelClickListener: TopHotelClickListener
     ) : RecyclerView.Adapter<ExploreHomeTopHotelsAdapter.Recycler1ViewHolder>() {
     val binding: ExploreHomeRecyclerviewItem1Binding? = null
 
@@ -17,6 +17,10 @@ class ExploreHomeTopHotelsAdapter(
         val hotelName = binding?.exploreHomeFragmentRecyclerViewTextviewName1
         val hotelPrice = binding?.exploreHomeFragmentRecyclerViewTextviewPrice1
         val hotelImage = binding?.exploreHomeFragmentRecyclerViewImageview1
+    }
+
+    interface TopHotelClickListener {
+        fun onTopHotelClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Recycler1ViewHolder {
@@ -29,6 +33,9 @@ class ExploreHomeTopHotelsAdapter(
         holder.hotelImage?.setImageResource(listOfTopHotels[position].image)
         holder.hotelName?.text = listOfTopHotels[position].name
         holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
+        holder.itemView.setOnClickListener {
+            topHotelClickListener.onTopHotelClicked(position)
+        }
     }
 
     override fun getItemCount(): Int {

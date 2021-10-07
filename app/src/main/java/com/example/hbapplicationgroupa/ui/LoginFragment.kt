@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
@@ -32,5 +33,18 @@ class LoginFragment : Fragment() {
         binding.btnLoginScreen.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
         }
+
+        onBackPressed()
+    }
+
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

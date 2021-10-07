@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,6 +64,7 @@ class HotelDescription2Fragment : Fragment() {
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
         initHotelGalleryViewPager()
+        onBackPressed()
     }
 
     //Method Triggering onClickEvents
@@ -74,7 +76,8 @@ class HotelDescription2Fragment : Fragment() {
 
         //Click listener on back btn
         binding.hotelDescBackIv.setOnClickListener {
-            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_topHotelsFragment)
+            findNavController().popBackStack()
+//            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_topHotelsFragment)
         }
 
         //Navigate to ratings page
@@ -126,6 +129,17 @@ class HotelDescription2Fragment : Fragment() {
         binding.hotelDescViewPager.apply {
             adapter = hotelGalleryAdapter
         }
+    }
+
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
 }

@@ -13,7 +13,9 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.models.model.WishListData
 
 
-class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: Context) :
+class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: Context,
+                      private val wishListItemClickListener: WishListItemClickListener,
+                        private val wishListBookButtonClickListener: WishListBookButtonClickListener) :
     RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
 
@@ -26,12 +28,21 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
         val saveButton: TextView = itemView.findViewById(R.id.txtSave)
         val bookmarkIcon: ImageView = itemView.findViewById(R.id.bookmarkIcon)
         val bookingBtn: Button = itemView.findViewById(R.id.bookingBtn)
+        val savedImage: ImageView = itemView.findViewById(R.id.hotelImageView)
 
         fun bind(itemList: WishListData) {
             hotelName.text = itemList.hotelName
             hotelPrice.text = itemList.hotelprice
             hotelRating.text = itemList.hotelRating
         }
+    }
+
+    interface WishListItemClickListener {
+        fun wishListClicked(position: Int)
+    }
+
+    interface WishListBookButtonClickListener {
+        fun wishListBookBtnClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WishListViewHolder {
@@ -64,11 +75,17 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
             bookingBtn.setOnClickListener {
 
                 //remove the toast and add navigation to required destination
-                Toast.makeText(
-                    context,
-                    " you will be redirected to the booking page, Thank you",
-                    Toast.LENGTH_LONG
-                ).show()
+                wishListBookButtonClickListener.wishListBookBtnClicked(position)
+//                Toast.makeText(
+//                    context,
+//                    " you will be redirected to the booking page, Thank you",
+//                    Toast.LENGTH_LONG
+//                ).show()
+            }
+
+            //click listener for each saved Item
+            holder.savedImage.setOnClickListener {
+                wishListItemClickListener.wishListClicked(position)
             }
         }
     }

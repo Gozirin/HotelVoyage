@@ -9,7 +9,8 @@ import com.example.hbapplicationgroupa.databinding.ExploreHomeAfterSearchRecycle
 import com.example.hbapplicationgroupa.models.model.TopHotel
 
 class ExploreHomeAfterSearchRecyclerViewAdapter2(
-    private var listOfTopDealHotels : List<TopHotel>
+    private var listOfTopDealHotels : List<TopHotel>,
+    private val exploreHomeAfterSearchClickListener2: ExploreHomeAfterSearchClickListener2
 ): RecyclerView.Adapter<ExploreHomeAfterSearchRecyclerViewAdapter2.MyViewHolder>() {
     val binding : ExploreHomeAfterSearchRecyclerviewItem2Binding? = null
 
@@ -20,6 +21,9 @@ class ExploreHomeAfterSearchRecyclerViewAdapter2(
         val cancelledPrice = binding?.exploreHomeAfterSearchFragmentRecyclerViewCancelledPrice2
     }
 
+    interface ExploreHomeAfterSearchClickListener2 {
+        fun exploreHomeAfterSearchClicked(position: Int)
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -37,6 +41,10 @@ class ExploreHomeAfterSearchRecyclerViewAdapter2(
         holder.hotelName2?.text = listOfTopDealHotels[position].name
         holder.hotelPrice2?.text = listOfTopDealHotels[position].price.toString()
         holder.cancelledPrice?.text = listOfTopDealHotels[position].cancelledPrice.toString()
+
+        holder.itemView.setOnClickListener {
+            exploreHomeAfterSearchClickListener2.exploreHomeAfterSearchClicked(position)
+        }
     }
 
     override fun getItemCount(): Int {

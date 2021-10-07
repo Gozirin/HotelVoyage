@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,7 @@ import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupa.models.model.Hotel
 
-class TopHotelsFragment : Fragment() {
+class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener, TopHotelAdapter.TopHotelsBookBtnClickListener {
     private lateinit var adapter: TopHotelAdapter
 
     //Set up view binding here
@@ -70,7 +71,7 @@ class TopHotelsFragment : Fragment() {
             atlantisParadise, burbArab, emiratePalace,
             meridianPalace, thePalms, thePlaza, westinExcelsior
         )
-        adapter = TopHotelAdapter(listOfHotels)
+        adapter = TopHotelAdapter(listOfHotels, this, this)
         val recyclerView = binding.topHotelRecyclerview
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
@@ -79,13 +80,15 @@ class TopHotelsFragment : Fragment() {
         // setting back button
         val backButton = binding.topHotelBackBtn
         backButton.setOnClickListener{
-            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
+            findNavController().popBackStack()
         }
         //setting view button
         binding.topHotelSearchView.setOnSearchClickListener{
             it.setBackgroundResource(R.color.splash_screen_background_color)
             Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
         }
+
+        onBackPressed()
 
         //filter button
 //        binding.topHotelFilter.setOnClickListener{
@@ -105,5 +108,25 @@ class TopHotelsFragment : Fragment() {
 //            it.setBackgroundResource(R.color.purple_500)
 //            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
 //        }
+    }
+
+    override fun topHotelsItemClicked(position: Int) {
+        findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun topHotelsBookBtnClicked(position: Int) {
+        findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
+    }
+
+    //Method to handle back press
+    private fun onBackPressed(){
+        //Overriding onBack press to navigate to home Fragment onBack Pressed
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }
