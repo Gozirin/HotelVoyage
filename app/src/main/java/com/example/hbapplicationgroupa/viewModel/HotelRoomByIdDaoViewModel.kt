@@ -8,8 +8,8 @@ import com.example.hbapplicationgroupa.repository.hotelRoomByIdDaoRepository.Hot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class HotelRoomByIdDaoViewModel @Inject constructor(val hotelRoomDaoByIdRepository: HotelRoomDaoByIdRepository): ViewModel() {
+
+class HotelRoomByIdDaoViewModel (val hotelRoomDaoByIdRepository: HotelRoomDaoByIdRepository): ViewModel() {
     val hotelRoomByIdLiveData : MutableLiveData<List<HotelRoomByIdData>> = MutableLiveData()
     val userLoginLiveData: MutableLiveData<UserById> = MutableLiveData()
 }

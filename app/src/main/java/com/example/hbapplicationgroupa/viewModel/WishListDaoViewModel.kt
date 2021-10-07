@@ -7,7 +7,7 @@ import com.example.hbapplicationgroupa.repository.wishListDaoRepository.WishList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class WishListDaoViewModel @Inject constructor( val wishListDaoRepository: WishListDaoRepository): ViewModel(){
+
+class WishListDaoViewModel ( val wishListDaoRepository: WishListDaoRepository): ViewModel(){
      val customerWishListLiveData: MutableLiveData<List<CustomerWishListData>> = MutableLiveData()
 }

@@ -9,7 +9,7 @@ import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAmenitiesModule
 import retrofit2.Response
 import javax.inject.Inject
 
-class AmenitiesDaoRepository @Inject constructor(val api: HBAmenitiesModuleApi, val responseDao: AmenitiesDao):
+class AmenitiesDaoRepository(val api: HBAmenitiesModuleApi, val responseDao: AmenitiesDao):
     AmenitiesDaoRepositoryInterface {
 
 

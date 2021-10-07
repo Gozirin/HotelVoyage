@@ -9,8 +9,8 @@ import com.example.hbapplicationgroupa.repository.customerBookingDaoRepository.C
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
-@HiltViewModel
-class CustomerBookingViewModel @Inject constructor(var customerBookingRepository: CustomerBookingDaoRepository): ViewModel() {
+
+class CustomerBookingViewModel (var customerBookingRepository: CustomerBookingDaoRepository): ViewModel() {
 
     var customerBookingLiveData: MutableLiveData<List<CustomerBookingsData>> = MutableLiveData()
     var customerReviewLiveData: MutableLiveData<List<HotelById>> = MutableLiveData()

@@ -10,7 +10,7 @@ import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelRatingDaoRepository @Inject constructor(val hbAdminModuleApi: HBAdminModuleApi, val hotelRatingsDao: HotelRatingsDao):
+class HotelRatingDaoRepository (val hbAdminModuleApi: HBAdminModuleApi, val hotelRatingsDao: HotelRatingsDao):
     HotelRatingDaoRepositoryInterface {
 
     override fun getRatingsByHotelId(hotelId: String): LiveData<List<HotelRatingsData>> {

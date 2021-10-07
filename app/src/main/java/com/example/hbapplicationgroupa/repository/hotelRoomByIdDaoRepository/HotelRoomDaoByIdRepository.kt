@@ -10,7 +10,7 @@ import com.example.hbapplicationgroupa.repository.hotelRoomByIdDaoRepository.Hot
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelRoomDaoByIdRepository @Inject constructor(val hbAuthenticationModule: HBAuthenticationModuleApi, val hotelRoomByIdDao: HotelRoomByIdDao):
+class HotelRoomDaoByIdRepository(val hbAuthenticationModule: HBAuthenticationModuleApi, val hotelRoomByIdDao: HotelRoomByIdDao):
     HotelRoomByIdRepositoryInterface {
     override fun getHotelRoomById(roomId: String): LiveData<List<HotelRoomByIdData>> {
         return hotelRoomByIdDao.getHotelRoomById(roomId)

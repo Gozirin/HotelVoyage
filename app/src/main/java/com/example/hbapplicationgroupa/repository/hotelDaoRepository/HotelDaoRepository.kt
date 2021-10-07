@@ -16,7 +16,7 @@ import com.example.hbapplicationgroupa.network.hotelbookingapi.HBHotelModuleApi
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelDaoRepository @Inject constructor(val hotelModuleApi: HBHotelModuleApi, val hotelDao: HotelDao):
+class HotelDaoRepository(val hotelModuleApi: HBHotelModuleApi, val hotelDao: HotelDao):
     HotelDaoRepositoryInterface {
 
     override fun getAllHotels(): LiveData<List<HotelData>> {
