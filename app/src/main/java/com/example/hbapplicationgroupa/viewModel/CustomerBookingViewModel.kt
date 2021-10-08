@@ -7,10 +7,12 @@ import com.example.hbapplicationgroupa.models.customerModule.customerBookingsMod
 import com.example.hbapplicationgroupa.models.hotelModule.hotelByIdModel.HotelById
 import com.example.hbapplicationgroupa.repository.customerBookingDaoRepository.CustomerBookingDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-
-class CustomerBookingViewModel(var customerBookingRepository: CustomerBookingDaoRepository): ViewModel() {
+@ViewModelScoped
+class CustomerBookingViewModel
+    @Inject constructor(var customerBookingRepository: CustomerBookingDaoRepository): ViewModel() {
     var customerBookingLiveData: MutableLiveData<List<CustomerBookingsData>> = MutableLiveData()
     var customerReviewLiveData: MutableLiveData<List<HotelById>> = MutableLiveData()
     var customerBookingByIdLiveData: MutableLiveData<List<UsersByPageNumber>> = MutableLiveData()

@@ -1,11 +1,11 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.models.model.RoomNumberBottomSheetData
+import com.example.hbapplicationgroupa.models.dummy_model.RoomNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
 
 class RoomNumberBottomSheetAdapter : RecyclerView.Adapter<RoomNumberBottomSheetAdapter.RoomNumberBottomSheetViewHolder>() {

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.models.model.StackedReviewModel
+import com.example.hbapplicationgroupa.models.dummy_model.StackedReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
 
 /**

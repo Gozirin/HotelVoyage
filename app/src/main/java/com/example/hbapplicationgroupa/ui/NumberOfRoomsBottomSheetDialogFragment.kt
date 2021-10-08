@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.RoomNumberBottomSheetAdapter
-import com.example.hbapplicationgroupa.models.model.RoomNumberBottomSheetData
+import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomNumberBottomSheetAdapter
+import com.example.hbapplicationgroupa.models.dummy_model.RoomNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfRoomsBottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

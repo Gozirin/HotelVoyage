@@ -6,15 +6,12 @@ import com.example.hbapplicationgroupa.models.hotelModule.amenities.AmenitiesDat
 import com.example.hbapplicationgroupa.models.hotelModule.hotelAmenitiesModel.HotelAmenities
 import com.example.hbapplicationgroupa.repository.amenitiesDaoRepository.AmenitiesDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-
-class HotelAmenitiesViewModel(var repository: AmenitiesDaoRepository): ViewModel() {
-
-
+@ViewModelScoped
+class HotelAmenitiesViewModel
+    @Inject constructor(var repository: AmenitiesDaoRepository): ViewModel() {
     var amenitiesDaoLiveData: MutableLiveData<List<AmenitiesData>> = MutableLiveData()
     var adminLiveData: MutableLiveData<List<HotelAmenities>> = MutableLiveData()
-
-
-
 }

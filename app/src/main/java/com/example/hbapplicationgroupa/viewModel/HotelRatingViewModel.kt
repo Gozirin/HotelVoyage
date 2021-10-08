@@ -6,10 +6,12 @@ import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRatingsModel.HotelRatingsData
 import com.example.hbapplicationgroupa.repository.hotelRatingDaoRepository.HotelRatingDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-
-class HotelRatingViewModel (val hotelRatingDaoRepository: HotelRatingDaoRepository): ViewModel() {
+@ViewModelScoped
+class HotelRatingViewModel
+    @Inject constructor(val hotelRatingDaoRepository: HotelRatingDaoRepository): ViewModel() {
     val  hotelRatingLiveData: MutableLiveData<List<HotelRatingsData>> = MutableLiveData()
     val usersPageLiveData: MutableLiveData<List<UsersByPageNumber>> = MutableLiveData()
 

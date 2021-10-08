@@ -7,10 +7,12 @@ import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsByPriceModel
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsVacancyModel.HotelRoomsVacancy
 import com.example.hbapplicationgroupa.repository.hotelDaoRepository.HotelDaoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-
-class HotelDaoViewModel (val hotelDaoRepository: HotelDaoRepository): ViewModel(){
+@ViewModelScoped
+class HotelDaoViewModel
+    @Inject constructor(val hotelDaoRepository: HotelDaoRepository): ViewModel(){
     val allHotelLiveData: MutableLiveData<List<HotelData>> = MutableLiveData()
     val hotelPriceLiveData: MutableLiveData<List<HotelRoomsByPrice>> = MutableLiveData()
     val hotelAvailabilityLiveData: MutableLiveData<List<HotelRoomsVacancy>> = MutableLiveData()

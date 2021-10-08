@@ -10,7 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.models.model.WishListData
+import com.example.hbapplicationgroupa.models.dummy_model.WishListData
 
 
 class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: Context,
