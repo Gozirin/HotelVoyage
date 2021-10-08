@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class WishListDaoRepositorymodule {
+object WishListDaoRepositorymodule {
     @Singleton
     @Provides
     fun provideWishListDaoRepository(wishListDao: WishListDao): WishListDaoRepository {

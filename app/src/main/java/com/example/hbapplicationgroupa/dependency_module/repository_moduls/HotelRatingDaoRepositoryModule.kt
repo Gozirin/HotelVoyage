@@ -10,7 +10,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-class HotelRatingDaoRepositoryModule {
+object HotelRatingDaoRepositoryModule {
 
     fun provideHotelRatingDaoRepository ( hbAdminModuleApi: HBAdminModuleApi, hotelRatingsDao: HotelRatingsDao): HotelRatingDaoRepository {
     return HotelRatingDaoRepository(hbAdminModuleApi, hotelRatingsDao)

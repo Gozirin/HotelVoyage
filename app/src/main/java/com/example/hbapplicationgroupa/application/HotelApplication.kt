@@ -12,7 +12,4 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Singleton
 
 @HiltAndroidApp
-class HotelApplication : Application() {
-
-
-}
+class HotelApplication : Application()

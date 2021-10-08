@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class HBAmenintiesRepositoryModule {
+object HBAmenintiesRepositoryModule {
 
     @Singleton
     @Provides

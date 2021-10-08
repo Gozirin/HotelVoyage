@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class UserHotelDaoRepositoryModule {
+object UserHotelDaoRepositoryModule {
     @Singleton
     @Provides
     fun provideUserHotelDaoRepository (userHotelDao: UserHotelDao): UserHotelDaoRepository {
