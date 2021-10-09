@@ -17,6 +17,7 @@ import retrofit2.http.Query
 
 interface HBHotelModuleApi {
 
+
     @GET("Hotel/{hotelId}")
     suspend fun getHotelById(
         @Path("hotelId") hotelId: String,
