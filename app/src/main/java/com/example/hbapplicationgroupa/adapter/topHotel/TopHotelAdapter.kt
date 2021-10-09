@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.model.Hotel
+import com.example.hbapplicationgroupa.models.dummy_model.Hotel
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopHotelRecyclerviewViewItemBinding
 
