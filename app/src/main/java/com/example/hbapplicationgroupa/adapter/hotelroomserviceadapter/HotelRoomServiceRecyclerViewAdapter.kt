@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.model.HotelRoomServiceModel
+import com.example.hbapplicationgroupa.models.dummy_model.HotelRoomServiceModel
 
 /**
  * This is the ViewPager Adapter for the id:hotel_desc_services_viewPager in HotelDescription Fragment

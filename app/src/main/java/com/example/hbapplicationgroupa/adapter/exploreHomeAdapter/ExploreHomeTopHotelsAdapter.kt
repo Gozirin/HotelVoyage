@@ -3,13 +3,10 @@ package com.example.hbapplicationgroupa.adapter.exploreHomeAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem1Binding
-import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem2Binding
-import com.example.hbapplicationgroupa.model.Hotel
+import com.example.hbapplicationgroupa.models.dummy_model.Hotel
 
 class ExploreHomeTopHotelsAdapter(
     var listOfTopHotels : List<Hotel>, private val topHotelClickListener: TopHotelClickListener
