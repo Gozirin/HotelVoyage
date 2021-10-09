@@ -19,7 +19,7 @@
     <string name="top_hotels">Top Hotels</string>
     <string name="imagebutton">imageButton</string>
 
-    // string resource  added by benjamin
+    // string resource added by benjamin
     <string name="price">$ 6999</string>
     <string name="hotelRating">5 star hotel .96%</string>
     <string name="nameOfHotel">Taj WestSide</string>

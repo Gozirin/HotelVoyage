@@ -77,7 +77,6 @@ class HotelDescription2Fragment : Fragment() {
         //Click listener on back btn
         binding.hotelDescBackIv.setOnClickListener {
             findNavController().popBackStack()
-//            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_topHotelsFragment)
         }
 
         //Navigate to ratings page
