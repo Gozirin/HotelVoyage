@@ -1,12 +1,9 @@
-package com.example.hbapplicationgroupa.adapter
+package com.example.hbapplicationgroupa.adapter.pastbookings_adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.PastBookingItemsBinding
-import com.google.android.material.button.MaterialButton
 
 class PastBookingsAdapter(val pastBookingBookingClickListener: PastBookingBookClickListener): RecyclerView.Adapter<PastBookingsAdapter.MyViewHolder>() {
 

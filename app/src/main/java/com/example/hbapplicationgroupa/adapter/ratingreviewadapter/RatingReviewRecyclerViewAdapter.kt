@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.borjabravo.readmoretextview.ReadMoreTextView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.model.RatingReviewModel
+import com.example.hbapplicationgroupa.models.dummy_model.RatingReviewModel
 import com.mikhaellopez.circularimageview.CircularImageView
 
 /**

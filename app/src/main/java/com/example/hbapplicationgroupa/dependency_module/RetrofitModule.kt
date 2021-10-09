@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.application
+package com.example.hbapplicationgroupa.dependency_module
 
 import com.example.hbapplicationgroupa.network.HBAuthenticationModuleApi
 import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAdminModuleApi
