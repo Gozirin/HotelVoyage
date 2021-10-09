@@ -145,8 +145,6 @@
         android:layout_height="43dp"
         android:layout_marginTop="5dp"
         android:buttonTint="#ED4639"
-        android:checked="true"
-        android:onClick="checkButton"
         app:layout_constraintEnd_toStartOf="@+id/registrationAgreementText"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
