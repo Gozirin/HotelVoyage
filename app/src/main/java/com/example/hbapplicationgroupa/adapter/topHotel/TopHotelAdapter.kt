@@ -51,11 +51,11 @@ class TopHotelAdapter(private var adapterList : List<Hotel>,
         holder.ratingOfHotel?.text = adapterList[position].rating
         holder.imageOfHotel?.setImageResource(adapterList[position].image)
 
-        holder.topHotelView?.setOnClickListener {
+        holder.topHotelView.setOnClickListener {
             topHotelsItemClickListener.topHotelsItemClicked(position)
         }
 
-        holder.hotelBookBtn?.setOnClickListener {
+        holder.hotelBookBtn.setOnClickListener {
             topHotelsBookBtnClickListener.topHotelsBookBtnClicked(position)
         }
 

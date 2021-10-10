@@ -406,6 +406,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_desc_overlapRv"
                 android:layout_width="0dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_review_tv"
                 app:layout_constraintEnd_toEndOf="@id/hotel_desc_phone_tv"
