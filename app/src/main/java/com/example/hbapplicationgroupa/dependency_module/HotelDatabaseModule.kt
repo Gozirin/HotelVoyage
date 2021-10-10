@@ -21,11 +21,11 @@ class HotelDatabaseModule {
         return HotelDatabase.getDbInstance(context)
     }
 
-    @Singleton
-    @Provides
-    fun provideBookingByUserIdDao(hotelDatabase: HotelDatabase): BookingByUserIdDao {
-        return hotelDatabase.getBookingByUserIdDao()
-    }
+//    @Singleton
+//    @Provides
+//    fun provideBookingByUserIdDao(hotelDatabase: HotelDatabase): BookingByUserIdDao {
+//        return hotelDatabase.getBookingByUserIdDao()
+//    }
 
     @Singleton
     @Provides

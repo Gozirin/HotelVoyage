@@ -10,9 +10,9 @@ interface UserByIdDao {
     @Query("SELECT * FROM getUserById")
     fun getUserById(): LiveData<List<GetUserByIdResponseItem>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNewUserDetails(updatedUserDetail: UpdateUserByIdModel)
+//    @Insert(onConflict = OnConflictStrategy.REPLACE)
+//    fun insertNewUserDetails(updatedUserDetail: UpdateUserByIdModel)
 
-    @Delete
-    fun removeUserDetails()
+//    @Delete
+//    fun removeUserDetails()
 }

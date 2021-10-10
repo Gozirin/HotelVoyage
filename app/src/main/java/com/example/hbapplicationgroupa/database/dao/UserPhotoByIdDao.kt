@@ -12,6 +12,6 @@ interface UserPhotoByIdDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNewUserPhoto(newUserPhoto: UpdateUserPhotoByUserIdResponseItem)
 
-    @Delete
-    fun removeUserDetails()
+//    @Delete
+//    fun removeUserDetails()
 }

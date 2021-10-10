@@ -14,13 +14,12 @@ import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdR
 import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.UpdateUserPhotoByUserIdResponseItem
 
 @Database(entities = [
-    BookingByUserIdResponseItems::class,
     WishlistByPageNumberResponseItems::class,
     GetUserByIdResponseItem::class,
     UpdateUserPhotoByUserIdResponseItem::class
 ], version = 1, exportSchema = false)
 abstract class HotelDatabase: RoomDatabase() {
-    abstract fun getBookingByUserIdDao(): BookingByUserIdDao
+//    abstract fun getBookingByUserIdDao(): BookingByUserIdDao
     abstract fun getWishlistByPageNumberDao(): WishlistByPageNumberDao
     abstract fun getUserByIdDao(): UserByIdDao
     abstract fun getUserPhotoByIdDao(): UserPhotoByIdDao
