@@ -5,6 +5,10 @@ import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAdminModuleApi
 import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAmenitiesModuleApi
 import com.example.hbapplicationgroupa.network.hotelbookingapi.HBCustomerModuleApi
 import com.example.hbapplicationgroupa.network.hotelbookingapi.HBHotelModuleApi
+import com.example.hbapplicationgroupa.networksss.AuthModuleApiInterface
+import com.example.hbapplicationgroupa.networksss.CustomerModuleApiInterface
+import com.example.hbapplicationgroupa.networksss.HotelModuleApiInterface
+import com.example.hbapplicationgroupa.networksss.UserModuleApiInterface
 import com.example.hbapplicationgroupa.utils.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -18,24 +22,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RetrofitModule {
+class RetrofitModule {
     @Singleton
     @Provides
-    //get retrofit instance
-//    fun retrofit(): Retrofit {
-//        //okhttp interceptor is used to to log retrofit responses especially when debugging.
-//        val interceptor = HttpLoggingInterceptor()
-//        interceptor.level = HttpLoggingInterceptor.Level.BODY
-//        val client = OkHttpClient.Builder()
-//            .addInterceptor(interceptor)
-//            .build()
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(client)
-//            .build()
-//    }
-    fun retrofit(): Retrofit {
+    fun provideRetrofitInstance(): Retrofit {
         //okhttp interceptor is used to to log retrofit responses especially when debugging.
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
@@ -46,36 +36,29 @@ object RetrofitModule {
             .build()
     }
 
-
     //get api instance from retrofit
     @Singleton
     @Provides
-    fun provideHBAdminModuleApi(): HBAdminModuleApi {
-        return retrofit().create(HBAdminModuleApi::class.java)
+    fun provideHBAdminModuleApi(): AuthModuleApiInterface {
+        return provideRetrofitInstance().create(AuthModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBAmenitiesModuleApi(): HBAmenitiesModuleApi {
-        return retrofit().create(HBAmenitiesModuleApi::class.java)
+    fun provideHBAmenitiesModuleApi(): CustomerModuleApiInterface {
+        return provideRetrofitInstance().create(CustomerModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBAuthenticationModuleApi(): HBAuthenticationModuleApi {
-        return retrofit().create(HBAuthenticationModuleApi::class.java)
+    fun provideHBAuthenticationModuleApi(): HotelModuleApiInterface {
+        return provideRetrofitInstance().create(HotelModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBCustomerModuleApi(): HBCustomerModuleApi {
-        return retrofit().create(HBCustomerModuleApi::class.java)
-    }
-
-    @Singleton
-    @Provides
-    fun provideHBHotelModuleApi(): HBHotelModuleApi {
-        return retrofit().create(HBHotelModuleApi::class.java)
+    fun provideHBCustomerModuleApi(): UserModuleApiInterface {
+        return provideRetrofitInstance().create(UserModuleApiInterface::class.java)
     }
 }
 
