@@ -39,25 +39,25 @@ class RetrofitModule {
     //get api instance from retrofit
     @Singleton
     @Provides
-    fun provideHBAdminModuleApi(): AuthModuleApiInterface {
+    fun provideAuthModuleApi(): AuthModuleApiInterface {
         return provideRetrofitInstance().create(AuthModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBAmenitiesModuleApi(): CustomerModuleApiInterface {
+    fun provideCustomerModuleApi(): CustomerModuleApiInterface {
         return provideRetrofitInstance().create(CustomerModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBAuthenticationModuleApi(): HotelModuleApiInterface {
+    fun provideHotelModuleApi(): HotelModuleApiInterface {
         return provideRetrofitInstance().create(HotelModuleApiInterface::class.java)
     }
 
     @Singleton
     @Provides
-    fun provideHBCustomerModuleApi(): UserModuleApiInterface {
+    fun provideUserModuleApi(): UserModuleApiInterface {
         return provideRetrofitInstance().create(UserModuleApiInterface::class.java)
     }
 }
