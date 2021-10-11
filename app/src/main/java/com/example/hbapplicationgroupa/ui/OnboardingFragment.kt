@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,7 @@ class OnboardingFragment : Fragment() {
         setUpOnBoardingPage()
         setUpIndicator()
         onClickOptionEvent()
+        onBackPressed()
     }
 
     //create method to set up the onBoarding pages
@@ -161,5 +163,17 @@ class OnboardingFragment : Fragment() {
                 binding.fragmentOnBoardingViewpager2.setCurrentItem(binding.fragmentOnBoardingViewpager2.currentItem + 1, true)
             }
         }
+    }
+
+    //Method to handle onBackBressed
+    fun onBackPressed(){
+        //Overriding onBack press to finish activity and exit app
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+                requireActivity().finishAffinity()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 }

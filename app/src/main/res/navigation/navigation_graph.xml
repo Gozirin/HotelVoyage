@@ -14,13 +14,19 @@
             android:id="@+id/action_splashScreenFragment_to_onboarding01Fragment2"
             app:destination="@id/onboarding01Fragment2"
             app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_in_right" />
         <action
             android:id="@+id/action_splashScreenFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
 
     <fragment
@@ -300,6 +306,11 @@
         <action
             android:id="@+id/action_registerFragment_to_exploreHomeFragment"
             app:destination="@id/exploreHomeFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_onboarding01Fragment2"
+            app:destination="@id/onboarding01Fragment2"
+            app:popUpTo="@id/onboarding01Fragment2"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
