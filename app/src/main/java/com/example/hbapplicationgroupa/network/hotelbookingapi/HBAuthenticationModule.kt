@@ -6,9 +6,13 @@ import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel
 import retrofit2.Response
 import retrofit2.http.*
 
-/** set up interface for network calls. Annotation @POST makes request to add new data to the API,
- * @GET requests data from API, @PATCH and @PUT updates data in API. @PATCH modifies while @PUT replaces. **/
-
+/**
+ * Set up interface for network calls.
+ * Annotation @POST makes request to add new data to the API,
+ * @GET requests data from API
+ * @PATCH and @PUT updates data in API.
+ * @PATCH modifies while @PUT replaces.
+ */
 
 interface HBAuthenticationModuleApi {
 
