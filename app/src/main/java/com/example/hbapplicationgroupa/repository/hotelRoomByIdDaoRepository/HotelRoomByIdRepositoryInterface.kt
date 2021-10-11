@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserById
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserByIdData
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomByIdModel.HotelRoomByIdData
@@ -24,7 +25,7 @@ interface HotelRoomByIdRepositoryInterface {
     suspend fun addUserData(userByIdData: UserByIdData): Response<UserById>
 
 
-    suspend fun getUserLogin(EmailAddress: String, Password: String): Response<UserById>
+    suspend fun getUserLogin(loginUserModel: LoginUserModel): Response<UserById>
 
 
 

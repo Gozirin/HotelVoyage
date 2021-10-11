@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.repository.hotelRoomByIdDaoRepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelRoomByIdDao
+import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserById
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserByIdData
 import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomByIdModel.HotelRoomByIdData
@@ -24,8 +25,8 @@ class HotelRoomDaoByIdRepository(val hbAuthenticationModule: HBAuthenticationMod
       return hbAuthenticationModule.addUserData(userByIdData)
     }
 
-    override suspend fun getUserLogin(EmailAddress: String, Password: String): Response<UserById> {
-      return hbAuthenticationModule.getUserLogin(EmailAddress,Password)
+    override suspend fun getUserLogin(loginUserModel: LoginUserModel): Response<UserById> {
+      return hbAuthenticationModule.getUserLogin(loginUserModel)
     }
 
     override suspend fun updateUserPassword(

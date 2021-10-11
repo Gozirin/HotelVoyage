@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
+
 @ViewModelScoped
 class HotelAmenitiesViewModel
     @Inject constructor(var repository: AmenitiesDaoRepository): ViewModel() {
