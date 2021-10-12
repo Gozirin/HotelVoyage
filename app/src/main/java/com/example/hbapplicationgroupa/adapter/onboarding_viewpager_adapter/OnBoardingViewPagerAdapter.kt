@@ -3,7 +3,7 @@ package com.example.hbapplicationgroupa.adapter.onboarding_viewpager_adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.models.dummy_model.OnBoardingModel
+import com.example.hbapplicationgroupa.model.adaptermodels.OnBoardingModel
 import com.example.hbapplicationgroupa.databinding.OnboardingViewPagerBinding
 
 class OnBoardingViewPagerAdapter() : RecyclerView.Adapter<OnBoardingViewPagerAdapter.OnBoardingViewHolder>() {
