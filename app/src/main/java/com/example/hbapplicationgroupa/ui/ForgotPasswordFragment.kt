@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentForgotPasswordBinding
+import kotlinx.coroutines.coroutineScope
 
 class ForgotPasswordFragment : Fragment() {
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
@@ -21,12 +24,21 @@ class ForgotPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
+
         binding.btnForgotPassword.setOnClickListener {
+
+
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_resetPasswordFragment)
         }
 
         binding.tvForgotPasswordLoginText.setOnClickListener {
             findNavController().navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
         }
+    }
+
+  suspend fun allartDialog(){
+
     }
 }

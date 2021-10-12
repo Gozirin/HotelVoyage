@@ -41,7 +41,7 @@ interface AuthModuleApiInterface {
         updatePasswordModel: UpdatePasswordModel
     ): Response<UpdatePasswordResponseModel>
 
-    @POST("api/v1/Authentication/forgot-password")
+    @POST("api/Auth/forgot-password")
     suspend fun forgotPassword(
         EmailAddress: String
     ): Response<ForgotPasswordResponseModel>
@@ -55,4 +55,10 @@ interface AuthModuleApiInterface {
     suspend fun confirmEmail(
         confirmEmailModel: ConfirmEmailModel
     ): Response<ConfirmEmailResponseModel>
+
+//    @POST("api/Auth/forgot-password")
+//    suspend fun frogetPassword(email:String):Response<ForgotPasswordResponseModel>{
+//
+//
+//    }
 }
