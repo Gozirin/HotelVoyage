@@ -7,12 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.models.dummy_model.Hotel
+import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter.ExploreHomeAfterSearchRecyclerViewAdapter1
 import com.example.hbapplicationgroupa.adapter.exploreHomeAfterSearchAdapter.ExploreHomeAfterSearchRecyclerViewAdapter2
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeAfterSearchBinding
-import com.example.hbapplicationgroupa.models.dummy_model.TopHotel
+import com.example.hbapplicationgroupa.model.adaptermodels.TopHotel
 
 class ExploreHomeAfterSearchFragment : Fragment(),
     ExploreHomeAfterSearchRecyclerViewAdapter1.ExploreHomeAfterSearchItemViewClickListener1,

@@ -13,7 +13,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
-import com.example.hbapplicationgroupa.models.dummy_model.Hotel
+import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
 
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 

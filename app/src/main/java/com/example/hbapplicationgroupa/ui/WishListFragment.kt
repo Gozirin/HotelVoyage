@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
-import com.example.hbapplicationgroupa.models.dummy_model.WishListData
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 
 class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
     private var _binding: FragmentWishListBinding? = null
