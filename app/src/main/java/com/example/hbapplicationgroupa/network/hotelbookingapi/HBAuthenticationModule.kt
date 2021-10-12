@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
+import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserById
 import com.example.hbapplicationgroupa.models.adminModule.userByIdModel.UserByIdData
 import com.example.hbapplicationgroupa.models.adminModule.usersByPageNumberModel.UsersByPageNumber
@@ -22,7 +23,7 @@ interface HBAuthenticationModuleApi {
 
 
     @POST("api/Auth/login")
-    suspend fun getUserLogin(@Body params: LoginUserModel): Response<UserById>
+    suspend fun getUserLogin(@Body params: LoginUserModel): Response<LoginUserResponseModel>
 
 
     @PATCH("update-password")
