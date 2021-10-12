@@ -1,7 +1,7 @@
 package com.example.hbapplicationgroupa.viewmodelsss
 
 import androidx.lifecycle.ViewModel
-import com.example.hbapplicationgroupa.repos.usermodulerepository.UserRepository
+import com.example.hbapplicationgroupa.repository.usermodulerepository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
