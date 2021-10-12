@@ -13,6 +13,7 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistb
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.UpdateUserPhotoByUserIdResponseItem
 
+//TODO: Add past bookings (entity)
 @Database(entities = [
     WishlistByPageNumberResponseItems::class,
     GetUserByIdResponseItem::class,

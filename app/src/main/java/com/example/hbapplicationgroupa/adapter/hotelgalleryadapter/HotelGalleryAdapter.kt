@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.models.dummy_model.HotelGalleryModel
+import com.example.hbapplicationgroupa.model.adaptermodels.HotelGalleryModel
 
 /**
  * This is the Adapter for hotel_desc_viewPager

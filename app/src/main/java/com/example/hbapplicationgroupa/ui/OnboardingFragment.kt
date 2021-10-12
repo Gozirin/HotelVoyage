@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.hbapplicationgroupa.models.dummy_model.OnBoardingModel
+import com.example.hbapplicationgroupa.model.adaptermodels.OnBoardingModel
 import com.example.hbapplicationgroupa.adapter.onboarding_viewpager_adapter.OnBoardingViewPagerAdapter
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentOnboardingBinding
