@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
+import com.example.hbapplicationgroupa.utils.LoginValidations
+import com.example.hbapplicationgroupa.utils.LoginValidations.enable
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -30,7 +32,15 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
-        binding.btnLoginScreen.setOnClickListener {
+        val email = binding.tvEmailTeLoginScreen
+        val password = binding.tvEditPasswordLoginScreen
+        val loginBtn = binding.btnLoginScreen
+
+        loginBtn.enable(false)
+
+        LoginValidations.validateLoginFields(email, password, loginBtn)
+
+        loginBtn.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
         }
 
