@@ -10,9 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
-import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
-import com.example.hbapplicationgroupa.models.dummy_model.TopDealModel
+import com.example.hbapplicationgroupa.model.adaptermodels.TopDealModel
 
 class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealBookBtnClickListener {
 

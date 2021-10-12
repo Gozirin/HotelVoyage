@@ -8,7 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopDealRecyclerviewViewItemBinding
-import com.example.hbapplicationgroupa.models.dummy_model.TopDealModel
+import com.example.hbapplicationgroupa.model.adaptermodels.TopDealModel
 
 class TopDealAdapter(
     private var topDealList: List<TopDealModel>,

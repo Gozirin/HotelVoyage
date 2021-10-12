@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.networksss
+package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
@@ -9,18 +9,8 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.Ge
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-import com.example.hbapplicationgroupa.models.hotelModule.allHotelsModel.AllHotels
-import com.example.hbapplicationgroupa.models.hotelModule.hotelModel.Hotel
-import com.example.hbapplicationgroupa.models.hotelModule.hotelRatingsModel.HotelRatings
-import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomByIdModel.HotelRoomById
-import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsByPriceModel.HotelRoomsByPrice
-import com.example.hbapplicationgroupa.models.hotelModule.hotelRoomsVacancyModel.HotelRoomsVacancy
-import com.example.hbapplicationgroupa.models.hotelModule.hotelStatisticsModel.HotelStatistics
-import com.example.hbapplicationgroupa.models.hotelModule.topDealsModel.TopDeals
-import com.example.hbapplicationgroupa.models.hotelModule.topHotelsModel.TopHotels
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 

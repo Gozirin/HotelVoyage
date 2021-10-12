@@ -1,8 +1,7 @@
-package com.example.hbapplicationgroupa.dependency_module
+package com.example.hbapplicationgroupa.dependencyinjection
 
 import android.app.Application
 import com.example.hbapplicationgroupa.database.HotelDatabase
-import com.example.hbapplicationgroupa.database.dao.BookingByUserIdDao
 import com.example.hbapplicationgroupa.database.dao.UserByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserPhotoByIdDao
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao

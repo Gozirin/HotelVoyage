@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repos.hotelmodulerepository
+package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel

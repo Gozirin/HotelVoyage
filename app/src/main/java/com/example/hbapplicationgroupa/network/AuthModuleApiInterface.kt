@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.networksss
+package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel

@@ -1,14 +1,9 @@
-package com.example.hbapplicationgroupa.dependency_module
+package com.example.hbapplicationgroupa.dependencyinjection
 
-import com.example.hbapplicationgroupa.network.HBAuthenticationModuleApi
-import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAdminModuleApi
-import com.example.hbapplicationgroupa.network.hotelbookingapi.HBAmenitiesModuleApi
-import com.example.hbapplicationgroupa.network.hotelbookingapi.HBCustomerModuleApi
-import com.example.hbapplicationgroupa.network.hotelbookingapi.HBHotelModuleApi
-import com.example.hbapplicationgroupa.networksss.AuthModuleApiInterface
-import com.example.hbapplicationgroupa.networksss.CustomerModuleApiInterface
-import com.example.hbapplicationgroupa.networksss.HotelModuleApiInterface
-import com.example.hbapplicationgroupa.networksss.UserModuleApiInterface
+import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
+import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
+import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
+import com.example.hbapplicationgroupa.network.UserModuleApiInterface
 import com.example.hbapplicationgroupa.utils.BASE_URL
 import dagger.Module
 import dagger.Provides

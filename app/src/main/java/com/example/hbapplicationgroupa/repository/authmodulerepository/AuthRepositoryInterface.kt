@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repos.authmodulerepository
+package com.example.hbapplicationgroupa.repository.authmodulerepository
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel

@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repos.authmodulerepository
+package com.example.hbapplicationgroupa.repository.authmodulerepository
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
@@ -11,7 +11,7 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
-import com.example.hbapplicationgroupa.networksss.AuthModuleApiInterface
+import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
 

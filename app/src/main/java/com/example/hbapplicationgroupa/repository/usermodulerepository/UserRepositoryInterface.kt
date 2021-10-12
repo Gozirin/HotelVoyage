@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.repos.usermodulerepository
+package com.example.hbapplicationgroupa.repository.usermodulerepository
 
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.UpdateUserPhotoByUserIdResponseModel
