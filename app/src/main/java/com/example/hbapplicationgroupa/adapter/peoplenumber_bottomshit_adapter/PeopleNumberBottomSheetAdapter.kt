@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.models.dummy_model.PeopleNumberBottomSheetData
+import com.example.hbapplicationgroupa.model.adaptermodels.PeopleNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.PeopleNumberBottomSheetViewHolderBinding
 
 class PeopleNumberBottomSheetAdapter : RecyclerView.Adapter<PeopleNumberBottomSheetAdapter.PeopleNumberBottomSheetViewHolder>() {

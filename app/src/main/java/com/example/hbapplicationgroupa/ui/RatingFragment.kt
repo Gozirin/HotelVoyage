@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.ratingreviewadapter.RatingReviewRecyclerViewAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentRatingBinding
-import com.example.hbapplicationgroupa.models.dummy_model.RatingReviewModel
+import com.example.hbapplicationgroupa.model.adaptermodels.RatingReviewModel
 
 /**
  * This Fragment is the Rating page where users can rate hotels
