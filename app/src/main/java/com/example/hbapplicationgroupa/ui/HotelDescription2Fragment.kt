@@ -15,9 +15,9 @@ import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoom
 import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
-import com.example.hbapplicationgroupa.models.dummy_model.HotelGalleryModel
-import com.example.hbapplicationgroupa.models.dummy_model.HotelRoomServiceModel
-import com.example.hbapplicationgroupa.models.dummy_model.StackedReviewModel
+import com.example.hbapplicationgroupa.model.adaptermodels.HotelGalleryModel
+import com.example.hbapplicationgroupa.model.adaptermodels.HotelRoomServiceModel
+import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
 
 
 /**
@@ -77,7 +77,6 @@ class HotelDescription2Fragment : Fragment() {
         //Click listener on back btn
         binding.hotelDescBackIv.setOnClickListener {
             findNavController().popBackStack()
-//            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_topHotelsFragment)
         }
 
         //Navigate to ratings page
@@ -100,6 +99,11 @@ class HotelDescription2Fragment : Fragment() {
         //Click Listener for BookMark Button
         binding.hotelDescBookmarkBtn.setOnClickListener {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
+        }
+
+        //Navigate to ratings page
+        binding.hotelDescReviewTv.setOnClickListener {
+            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
         }
     }
 

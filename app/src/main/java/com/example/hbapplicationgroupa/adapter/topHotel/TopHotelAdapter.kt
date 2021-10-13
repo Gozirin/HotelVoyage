@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.models.dummy_model.Hotel
+import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopHotelRecyclerviewViewItemBinding
 
@@ -51,11 +51,11 @@ class TopHotelAdapter(private var adapterList : List<Hotel>,
         holder.ratingOfHotel?.text = adapterList[position].rating
         holder.imageOfHotel?.setImageResource(adapterList[position].image)
 
-        holder.topHotelView?.setOnClickListener {
+        holder.topHotelView.setOnClickListener {
             topHotelsItemClickListener.topHotelsItemClicked(position)
         }
 
-        holder.hotelBookBtn?.setOnClickListener {
+        holder.hotelBookBtn.setOnClickListener {
             topHotelsBookBtnClickListener.topHotelsBookBtnClicked(position)
         }
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.ExploreHomeAfterSearchRecyclerviewItem2Binding
-import com.example.hbapplicationgroupa.models.dummy_model.TopHotel
+import com.example.hbapplicationgroupa.model.adaptermodels.TopHotel
 
 class ExploreHomeAfterSearchRecyclerViewAdapter2(
     private var listOfTopDealHotels : List<TopHotel>,
