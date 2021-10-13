@@ -12,6 +12,8 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
 import retrofit2.Response
 import javax.inject.Inject
 
