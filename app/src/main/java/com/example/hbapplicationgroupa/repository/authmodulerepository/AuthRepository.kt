@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupa.repository.authmodulerepository
 
 import android.util.Log
-import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
@@ -20,8 +19,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
-    private val authModuleApiInterface: AuthModuleApiInterface,
-    private val authTokenDataStore: AuthTokenDataStore
+    private val authModuleApiInterface: AuthModuleApiInterface
 ): AuthRepositoryInterface {
     override suspend fun addUser(addUserModel: AddUserModel): Response<AddUserResponseModel> {
         return authModuleApiInterface.addUser(addUserModel)
@@ -45,21 +43,5 @@ class AuthRepository @Inject constructor(
 
     override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponseModel> {
         return authModuleApiInterface.confirmEmail(confirmEmailModel)
-    }
-
-    override suspend fun saveAuthToken(token: String) {
-        authTokenDataStore.saveAuthToken(token)
-    }
-
-    override suspend fun getAuthToken(): Flow<String?> {
-        return authTokenDataStore.authToken
-    }
-
-    override suspend fun saveAuthId(id: String) {
-       authTokenDataStore.saveAuthId(id)
-    }
-
-    override suspend fun getAuthId(): Flow<String?> {
-        return authTokenDataStore.id
     }
 }

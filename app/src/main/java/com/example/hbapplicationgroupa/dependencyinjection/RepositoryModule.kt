@@ -1,6 +1,5 @@
 package com.example.hbapplicationgroupa.dependencyinjection
 
-import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -22,8 +21,8 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideAuthRepository(authModuleApiInterface: AuthModuleApiInterface, authTokenDataStore: AuthTokenDataStore): AuthRepository{
-        return AuthRepository(authModuleApiInterface, authTokenDataStore)
+    fun provideAuthRepository(authModuleApiInterface: AuthModuleApiInterface): AuthRepository{
+        return AuthRepository(authModuleApiInterface)
     }
 
     @Singleton

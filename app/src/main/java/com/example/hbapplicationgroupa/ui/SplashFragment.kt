@@ -17,7 +17,6 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.database.AuthPreference
-import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.databinding.FragmentSplashScreenBinding
 import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint

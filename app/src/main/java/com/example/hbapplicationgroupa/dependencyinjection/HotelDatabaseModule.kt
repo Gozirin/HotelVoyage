@@ -2,7 +2,6 @@ package com.example.hbapplicationgroupa.dependencyinjection
 
 import android.app.Application
 import android.content.Context
-import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.database.HotelDatabase
 import com.example.hbapplicationgroupa.database.dao.UserByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserPhotoByIdDao
@@ -47,7 +46,4 @@ class HotelDatabaseModule {
         return hotelDatabase.getUserPhotoByIdDao()
     }
 
-    @Singleton
-    @Provides
-    fun provideAuthTokenData(@ApplicationContext context: Context) : AuthTokenDataStore = AuthTokenDataStore(context)
 }
