@@ -43,7 +43,7 @@ class ResetPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        //method to display hint a user on the password to input
         binding.tvEmailTextResetPassword.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus){
                 binding.tvCheckEmptyNewPasswordResetPassword.text = "password should contain at least one uppercase letter digit special character"
