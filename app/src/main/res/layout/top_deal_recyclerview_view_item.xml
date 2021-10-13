@@ -30,8 +30,6 @@
             android:layout_height="33dp"
             android:layout_marginStart="8dp"
             android:background="@color/white"
-            android:clickable="true"
-            android:focusable="true"
             android:src="@drawable/ic_outline_bookmark_border_24"
             android:tint="#FCEA0707"
             app:layout_constraintBottom_toBottomOf="parent"

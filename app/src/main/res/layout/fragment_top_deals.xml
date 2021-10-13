@@ -139,8 +139,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topDeallayout_text"
-        tools:listitem="@layout/top_deal_recyclerview_view_item"/>
+        app:layout_constraintTop_toBottomOf="@id/topDeallayout_text"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,10 +12,7 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Set up interface for network calls.
@@ -25,7 +22,7 @@ import retrofit2.http.POST
  * @PATCH modifies while @PUT replaces.
  */
 interface AuthModuleApiInterface {
-    @POST("api/v1/Authentication/add-user")
+    @POST("api/Authentication/register")
     suspend fun addUser(
         @Body
         addUserModel: AddUserModel

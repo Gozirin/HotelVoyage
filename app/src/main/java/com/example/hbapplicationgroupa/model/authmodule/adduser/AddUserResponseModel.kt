@@ -1,9 +1,8 @@
 package com.example.hbapplicationgroupa.model.authmodule.adduser
 
 data class AddUserResponseModel(
-    val statusCode: String,
-    val success: Boolean,
-    val Data: UserIdModel,
-    val Message: String,
-    val errors: String?
+    val data: String,
+    val succeeded: Boolean,
+    val message: String,
+    val statusCode: Int,
 )
