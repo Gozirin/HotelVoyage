@@ -129,6 +129,26 @@
         app:layout_constraintTop_toBottomOf="@id/tv_password" />
 
     <TextView
+        android:id="@+id/loginErrorMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_red"
+        app:layout_constraintTop_toBottomOf="@id/tv_forgotPassword_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_account"/>
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_password"
+        app:layout_constraintBottom_toTopOf="@id/tv_account"
+        android:visibility="gone"/>
+
+    <TextView
         android:id="@+id/tv_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
