@@ -11,6 +11,7 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
+import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface AuthRepositoryInterface {
@@ -20,4 +21,8 @@ interface AuthRepositoryInterface {
     suspend fun forgotPassword(EmailAddress: String): Response<ForgotPasswordResponseModel>
     suspend fun resetPassword(resetPasswordModel: ResetPasswordModel): Response<ResetPasswordResponseModel>
     suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponseModel>
+    suspend fun saveAuthToken(token:String)
+    suspend fun getAuthToken() : Flow<String?>
+    suspend fun saveAuthId(id: String)
+    suspend fun getAuthId() : Flow<String?>
 }

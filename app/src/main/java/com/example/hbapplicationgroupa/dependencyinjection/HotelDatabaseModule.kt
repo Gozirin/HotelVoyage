@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupa.dependencyinjection
 
 import android.app.Application
+import android.content.Context
+import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.database.HotelDatabase
 import com.example.hbapplicationgroupa.database.dao.UserByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserPhotoByIdDao
@@ -8,6 +10,7 @@ import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -43,4 +46,8 @@ class HotelDatabaseModule {
     fun provideUserPhotoByIdDao(hotelDatabase: HotelDatabase): UserPhotoByIdDao {
         return hotelDatabase.getUserPhotoByIdDao()
     }
+
+    @Singleton
+    @Provides
+    fun provideAuthTokenData(@ApplicationContext context: Context) : AuthTokenDataStore = AuthTokenDataStore(context)
 }

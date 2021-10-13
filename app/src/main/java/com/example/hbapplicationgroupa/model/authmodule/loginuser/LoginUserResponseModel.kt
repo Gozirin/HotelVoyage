@@ -4,5 +4,5 @@ data class LoginUserResponseModel(
     val data: LoginUserResponse,
     val succeeded: Boolean,
     val message: String,
-    val statusCode: String
+    val statusCode: Int
 )

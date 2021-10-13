@@ -18,4 +18,5 @@ object LoginValidations {
         isEnabled = enabled
         alpha = if (enabled) 1f else 0.5f
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.viewmodelsss
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,8 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
@@ -17,34 +20,30 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     //Login authentication error message
     var loginErrorMsg: String = ""
 
-    private var response: Response<LoginUserResponseModel>? = null
-
 
     //Login authentication LiveData
     private val _getLoginAuthLiveData: MutableLiveData<Response<LoginUserResponseModel>> = MutableLiveData()
     val getLoginAuthLiveData: LiveData<Response<LoginUserResponseModel>> = _getLoginAuthLiveData
 
 
+    //Method to make login network call
     fun login(email: String, password: String) {
         val loginUserModel = LoginUserModel(email, password)
         viewModelScope.launch {
             try{
-                response = authRepository.loginUser(loginUserModel)
-            }catch (e: Exception){
-                loginErrorMsg = "No internet connection"
-            }
-
-            if (response != null && response?.isSuccessful!!){
-                try {
+                val response = authRepository.loginUser(loginUserModel)
+                if (response.isSuccessful){
                     _getLoginAuthLiveData.value = response
-                }catch (e: Exception){
-                    loginErrorMsg = e.message.toString()
+                    loginErrorMsg = response.body()!!.message
+                    Log.d("AuthViewModel 2: ", loginErrorMsg)
+                }else{
+                    loginErrorMsg = response.body()!!.message
+                    Log.d("AuthViewModel 3: ", loginErrorMsg)
                 }
-            }else{
-                loginErrorMsg = response?.errorBody().toString()
+            }catch (e: Exception){
+                loginErrorMsg = e.message.toString()
+                Log.d("AuthViewModel 1: ", loginErrorMsg)
             }
-
-
         }
     }
 

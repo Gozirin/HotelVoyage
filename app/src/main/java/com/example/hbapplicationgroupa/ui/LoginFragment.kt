@@ -1,6 +1,9 @@
 package com.example.hbapplicationgroupa.ui
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +15,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
-import com.example.hbapplicationgroupa.utils.LoginValidations
+import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.utils.LoginValidations.enable
 import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,11 +28,12 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var errorMsg: TextView
-
     private val viewModel: AuthViewModel by viewModels()
+    lateinit var authPreference: AuthPreference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        authPreference = AuthPreference(requireActivity())
         return binding.root
     }
 
@@ -54,22 +59,41 @@ class LoginFragment : Fragment() {
         LoginValidations.validateLoginFields(email, password, loginBtn)
 
         loginBtn.setOnClickListener {
-            observeLoginAuthLiveData(email.text.toString().trim(), password.text.toString().trim())
+            login(email.text.toString().trim(), password.text.toString().trim())
         }
+
+        observeLoginAuthLiveData()
 
         onBackPressed()
     }
 
-    private fun observeLoginAuthLiveData(email: String, password: String){
+    //Method to make Login Api Call
+    private fun login(email: String, password: String){
+        viewModel.login(email, password)
+        binding.loginProgressBar.visibility = View.VISIBLE
+    }
+
+    //Method to observe Login Live Data
+    private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
-            if (it.isSuccessful && it != null){
-                Toast.makeText(requireContext(), it.message(), Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
-            }else{
-                errorMsg.text = viewModel.loginErrorMsg
+            when(it.body()!!.succeeded){
+                true -> {
+                    binding.loginProgressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
+                    //Saving auth Token and Id to Shared Preference
+                    if (it.body() != null){
+                        authPreference.setToken(it.body()!!.data.token)
+                        authPreference.setId(it.body()!!.data.id)
+                    }
+                }
+                false ->{
+                    binding.loginProgressBar.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_LONG).show()
+                    binding.loginErrorMsg.text = "error"
+                }
             }
         })
-        viewModel.login(email, password)
     }
 
     //Method to handle back press
@@ -77,7 +101,7 @@ class LoginFragment : Fragment() {
         //Overriding onBack press to navigate to home Fragment onBack Pressed
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)

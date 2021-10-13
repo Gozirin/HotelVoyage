@@ -41,7 +41,7 @@ class RegisterFragment : Fragment() {
         //Overriding onBack press to finish activity and exit app
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                requireActivity().finish()
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)

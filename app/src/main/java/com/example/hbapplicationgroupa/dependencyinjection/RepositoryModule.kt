@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.dependencyinjection
 
+import com.example.hbapplicationgroupa.database.AuthTokenDataStore
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -18,10 +19,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class RepositoryModule {
+
     @Singleton
     @Provides
-    fun provideAuthRepository(authModuleApiInterface: AuthModuleApiInterface): AuthRepository{
-        return AuthRepository(authModuleApiInterface)
+    fun provideAuthRepository(authModuleApiInterface: AuthModuleApiInterface, authTokenDataStore: AuthTokenDataStore): AuthRepository{
+        return AuthRepository(authModuleApiInterface, authTokenDataStore)
     }
 
     @Singleton
