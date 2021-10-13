@@ -28,9 +28,9 @@ interface AuthModuleApiInterface {
         addUserModel: AddUserModel
     ): Response<AddUserResponseModel>
 
-    @GET("api/v1/Authentication/login")
+    @POST("api/Authentication/login")
     suspend fun loginUser(
-        loginUserModel: LoginUserModel
+        @Body loginUserModel: LoginUserModel
     ): Response<LoginUserResponseModel>
 
     @PATCH("api/v1/Authentication/update-password")

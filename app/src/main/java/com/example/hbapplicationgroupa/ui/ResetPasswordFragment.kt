@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -91,6 +92,18 @@ class ResetPasswordFragment : Fragment() {
             }
 
         }
+
+        onBackPressed()
+    }
+
+    fun onBackPressed(){
+        //Overriding onBack press to handle back press
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
 
     }
 
