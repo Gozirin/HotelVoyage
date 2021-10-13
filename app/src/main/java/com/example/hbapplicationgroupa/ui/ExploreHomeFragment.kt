@@ -56,7 +56,6 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         getTopDeals()
 
         requireActivity().onBackPressedDispatcher.addCallback(callback)
-        findNavController().popBackStack(R.id.action_exploreHomeFragment_to_splashScreenFragment, true)
 
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
