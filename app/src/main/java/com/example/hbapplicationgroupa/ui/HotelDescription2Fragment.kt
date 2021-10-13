@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
@@ -15,9 +16,10 @@ import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoom
 import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
-import com.example.hbapplicationgroupa.model.adaptermodels.HotelGalleryModel
-import com.example.hbapplicationgroupa.model.adaptermodels.HotelRoomServiceModel
 import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -25,19 +27,22 @@ import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
  * All id from the xml layout starts with a suffix of "hotel_desc"
  * There are two RecyclerViews attached to this fragment: HotelRoomServiceRecyclerView & HotelOverlayReviewRecyclerView
  */
+@AndroidEntryPoint
 class HotelDescription2Fragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentHotelDescription2Binding? = null
     private val binding get() = _binding!!
     //late-initializing variables
     private lateinit var hotelRoomServiceRecyclerViewAdapter: HotelRoomServiceRecyclerViewAdapter
-    lateinit var hotelRoomList: ArrayList<HotelRoomServiceModel>
+    lateinit var hotelRoomList: ArrayList<GetHotelByIdResponseItemRoomTypes>
     lateinit var stackedReviewAdapter: StackedReviewAdapter
     lateinit var stackedImageList: ArrayList<StackedReviewModel>
     lateinit var stackedReviewLayoutManager: LinearLayoutManager
     lateinit var stackedReviewDecorator: StackedReviewItemDecorator
     lateinit var hotelGalleryAdapter: HotelGalleryAdapter
-    lateinit var galleryList: ArrayList<HotelGalleryModel>
+//    lateinit var galleryList: ArrayList<HotelGalleryModel>
+
+    private val hotelViewModel: HotelViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHotelDescription2Binding.inflate(inflater, container, false)
@@ -47,24 +52,52 @@ class HotelDescription2Fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Setting fake list to HotelRoomServiceRecyclerView Adapter
-        hotelRoomList = HotelRoomServiceModel.roomDataList
-        hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter(hotelRoomList)
+//        hotelRoomList = HotelRoomServiceModel.roomDataList
+        hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter()
 
         //Setting fake list to StackedReview Adapter
         stackedReviewAdapter = StackedReviewAdapter()
-        stackedImageList = StackedReviewModel.imgList
-        stackedReviewAdapter.stackedImageList = stackedImageList
+//        stackedImageList = StackedReviewModel.imgList
+//        stackedReviewAdapter.stackedImageList = stackedImageList
 
         //Setting fake list to HotelGallery Adapter
         hotelGalleryAdapter = HotelGalleryAdapter()
-        galleryList = HotelGalleryModel.galleryList
-        hotelGalleryAdapter.galleryList = galleryList
+//        galleryList = HotelGalleryModel.galleryList
+//        hotelGalleryAdapter.galleryList = galleryList
 
         viewClickListeners()
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
         initHotelGalleryViewPager()
+        populateUiWithApiResponse()
         onBackPressed()
+    }
+
+    private fun populateUiWithApiResponse(){
+        hotelViewModel.getHotelById("0dfb4f63-3caf-417e-b7d3-ea63008e8591")
+        hotelViewModel.getHotelByIdLivedata.observe(viewLifecycleOwner, {
+
+            val response = it.body()?.data
+            val recyclerviewRoomTypes = it.body()?.data?.roomTypes
+            if (recyclerviewRoomTypes != null) {
+                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(recyclerviewRoomTypes)
+            }
+
+            if (response != null) {
+                hotelGalleryAdapter.addImageToGallery(response.gallery)
+            }
+
+            if (response != null) {
+                stackedReviewAdapter.addReviewerImages(response.reviews)
+                binding.hotelDescHotelNameTv.text = response.name
+                binding.hotelDescLocationTv.text = response.city
+                binding.hotelDescLocationTv3.text = response.state
+                binding.hotelDescExpandableTv.text = response.description
+                binding.hotelDescEmailTv.text = response.email
+                binding.hotelDescPhoneTv.text = response.phone
+                binding.hotelDescRatingBar.rating = response.rating
+            }
+        })
     }
 
     //Method Triggering onClickEvents
