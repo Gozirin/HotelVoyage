@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.repository.authmodulerepository
 
+import android.util.Log
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
@@ -14,10 +15,14 @@ import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePas
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.HiltAndroidApp
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import retrofit2.Response
 import javax.inject.Inject
 
-class AuthRepository @Inject constructor(private val authModuleApiInterface: AuthModuleApiInterface): AuthRepositoryInterface {
+class AuthRepository @Inject constructor(
+    private val authModuleApiInterface: AuthModuleApiInterface
+): AuthRepositoryInterface {
     override suspend fun addUser(addUserModel: AddUserModel): Response<AddUserResponseModel> {
         return authModuleApiInterface.addUser(addUserModel)
     }

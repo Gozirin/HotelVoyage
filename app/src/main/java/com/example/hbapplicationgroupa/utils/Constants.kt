@@ -1,3 +1,7 @@
 package com.example.hbapplicationgroupa.utils
 
-const val BASE_URL = "https://hoteldotnet.herokuapp.com"
+import android.app.Activity
+import android.content.Context
+import android.content.SharedPreferences
+
+const val BASE_URL = "https://hoteldotnet.herokuapp.com/"

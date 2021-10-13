@@ -14,7 +14,9 @@ import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTop
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 
     private lateinit var adapter1: ExploreHomeTopHotelsAdapter
@@ -43,7 +45,6 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
-        findNavController().popBackStack(R.id.action_exploreHomeFragment_to_splashScreenFragment, true)
 
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
