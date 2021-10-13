@@ -18,7 +18,6 @@ class MainActivity:AppCompatActivity() {
 
     binding = ActivityMainBinding.inflate(layoutInflater)
        setContentView(binding.root)
-
     /** This is the setup for bottom navigation bar that is used to navigate to explore fragment,
         Wishlist fragment and Profile fragment
     */
