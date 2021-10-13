@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +14,17 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 
-    private lateinit var adapter1: ExploreHomeTopHotelsAdapter
-    private lateinit var adapter2: ExploreHomeTopDealsAdapter
-    private lateinit var recyclerView1: RecyclerView
-    private lateinit var recyclerView2: RecyclerView
+    private lateinit var topHotelsAdapter: ExploreHomeTopHotelsAdapter
+    private lateinit var topDealsAdapter: ExploreHomeTopDealsAdapter
+    private lateinit var topHotelsRecyclerView: RecyclerView
+    private lateinit var topDealsRecyclerView: RecyclerView
+    private val hotelViewModel: HotelViewModel by viewModels()
 
 
     //Set up view binding here
@@ -42,6 +46,15 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                 requireActivity().finishAffinity()
             }
         }
+
+        topHotelsAdapter = ExploreHomeTopHotelsAdapter( this)
+        topDealsAdapter = ExploreHomeTopDealsAdapter( this)
+
+        setUpTopHotelsRecyclerView()
+        setUpTopDealsRecyclerView()
+        getTopHotels()
+        getTopDeals()
+
         requireActivity().onBackPressedDispatcher.addCallback(callback)
         findNavController().popBackStack(R.id.action_exploreHomeFragment_to_splashScreenFragment, true)
 
@@ -61,70 +74,6 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         binding.exploreHomeFilterImgBtn.setOnClickListener {
             findNavController().navigate(R.id.action_exploreHomeFragment_to_exploreHomeAfterSearchFragment)
         }
-
-
-        //creating dummy Hotel Data
-        val atlantisParadise = Hotel(
-            1, "Atlantis Paradise", 6500,
-            "9 Star Hotel", "99%", R.drawable.hotel_atlantis_paradise_bahamas
-        )
-        val burbArab = Hotel(
-            2, "Burb Arab", 8500,
-            "7 Star Hotel", "100%", R.drawable.hotel_burg_arab_dubai
-        )
-        val emiratePalace = Hotel(
-            3, "Emirate Palace", 8900,
-            "5 Star Hotel", "100%", R.drawable.hotel_emirates_palace_abu_dhabi
-        )
-        val meridianPalace = Hotel(
-            4, "Meridian Palace", 5500,
-            "9 Star Hotel", "98%", R.drawable.hotel_merdan_palace_turkey
-        )
-        val thePalms = Hotel(
-            5, "The Palms", 6500,
-            "6 Star Hotel", "99%", R.drawable.hotel_the_palms_las_vegas
-        )
-        val thePlaza = Hotel(
-            6, "The Plaza", 7800,
-            "9 Star Hotel", "100%", R.drawable.hotel_the_plaza_newyork
-        )
-        val westinExcelsior = Hotel(
-            7, "Westin Excelsior", 9500,
-            "12 Star Hotel", "100%", R.drawable.hotel_westin_excelsior_rome
-        )
-
-        val listOfHotels = listOf(
-            atlantisParadise, burbArab, emiratePalace,
-            meridianPalace, thePalms, thePlaza, westinExcelsior
-        )
-
-        //instantiate recyclerview to populate it
-        adapter1 = ExploreHomeTopHotelsAdapter(listOfHotels, this)
-        recyclerView1 = view.findViewById(R.id.exploreHomeFragmentrecyclerView1)
-
-        //populate data into recyclerview
-        recyclerView1.adapter = adapter1
-        recyclerView1.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView1.setHasFixedSize(false)
-
-
-        //2nd RecyclerView
-        // NOTE: It is using the same data as RecyclerView
-        val listOfTopDealHotels = listOf(
-            atlantisParadise, burbArab, emiratePalace,
-            meridianPalace, thePalms, thePlaza, westinExcelsior
-        )
-
-        //instantiate recyclerview to populate it
-        adapter2 = ExploreHomeTopDealsAdapter(listOfTopDealHotels, this)
-        recyclerView2 = view.findViewById(R.id.exploreHomeFragmentRecyclerView2)
-
-        //populate data into recyclerview
-        recyclerView2.adapter = adapter2
-        recyclerView2.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        recyclerView2.setHasFixedSize(false)
-
     }
 
 
@@ -137,4 +86,44 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         //Click Listener for Top Deal Click Listeners
         findNavController().navigate(R.id.action_exploreHomeFragment_to_hotelDescription2Fragment)
     }
+
+    //set up top hotels recycler view
+    private fun setUpTopHotelsRecyclerView() {
+        topHotelsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentrecyclerView1)
+        topHotelsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        topHotelsRecyclerView.setHasFixedSize(false)
+    }
+
+    //set up top deals recycler view
+    private fun setUpTopDealsRecyclerView() {
+        topDealsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentRecyclerView2)
+        topDealsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        topDealsRecyclerView.setHasFixedSize(false)
+    }
+
+    //fetch a selected number of top hotels
+    private fun getTopHotels(): HotelViewModel {
+        hotelViewModel.getTopHotels()
+        hotelViewModel.topHotels.observe( viewLifecycleOwner, {
+            if (it != null) {
+                topHotelsAdapter.setListOfTopHotels(it)
+                topHotelsRecyclerView.adapter = topHotelsAdapter
+            }
+        })
+       return hotelViewModel
+    }
+
+    //fetch a selected number of top deals
+    private fun getTopDeals(): HotelViewModel {
+        hotelViewModel.getTopDeals()
+        hotelViewModel.topDeals.observe(viewLifecycleOwner, {
+            if (it != null) {
+                topDealsAdapter.setListOfTopDeals(it)
+                topDealsRecyclerView.adapter = topDealsAdapter
+            }
+        })
+        return  hotelViewModel
+    }
+
 }
