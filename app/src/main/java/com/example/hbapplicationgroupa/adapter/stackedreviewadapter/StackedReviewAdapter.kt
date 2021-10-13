@@ -1,24 +1,39 @@
 package com.example.hbapplicationgroupa.adapter.stackedreviewadapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemReviews
 import com.mikhaellopez.circularimageview.CircularImageView
 
 /**
  * This is the adapter for the id: hotelDescOverlapRv RecyclerView in HotelDescription Fragment
  */
 class StackedReviewAdapter : RecyclerView.Adapter<StackedReviewAdapter.StackedReviewViewHolder>(){
-    var stackedImageList : ArrayList<StackedReviewModel> = arrayListOf()
+    var stackedImageList : ArrayList<GetHotelByIdResponseItemReviews> = arrayListOf()
+
     class StackedReviewViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val img : CircularImageView = view.findViewById(R.id.stackedReviewIv)
 
-        fun bindData(image: StackedReviewModel){
-            img.setImageResource(image.img)
+        fun bindData(image: GetHotelByIdResponseItemReviews){
+            Glide.with(itemView)
+                .load(image.customerImage)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(img)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addReviewerImages(images: ArrayList<GetHotelByIdResponseItemReviews>){
+        stackedImageList.clear()
+        stackedImageList.addAll(images)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StackedReviewViewHolder {
