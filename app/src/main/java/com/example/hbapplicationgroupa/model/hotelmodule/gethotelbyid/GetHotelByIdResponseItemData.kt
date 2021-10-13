@@ -5,10 +5,13 @@ data class GetHotelByIdResponseItemData(
     val name: String,
     val description: String,
     val email: String,
+    val phone: String,
     val address: String,
     val city: String,
-    val rating: String,
+    val state: String,
+    val rating: Float,
+    val featuredImage: String,
     val gallery: ArrayList<String>,
-    val reviews: ArrayList<GetHotelByIdResponseItemReviews>,
-    val roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
+    val roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>,
+    val reviews: ArrayList<GetHotelByIdResponseItemReviews>
 )
