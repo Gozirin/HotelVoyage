@@ -8,20 +8,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import androidx.lifecycle.viewModelScope
-import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
+import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
+ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+    var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
     //Login authentication error message
     var loginErrorMsg: String = ""
 
@@ -70,4 +70,11 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     }
 
+    // this is use to make the API call and send the email to the saver
+    fun sendForgortPasswordEmail( userEmail : String){
+        viewModelScope.launch(Dispatchers.IO) {
+            val response : Response<ForgotPasswordResponseModel> = authRepository.forgotPassword( userEmail)
+            forgotPasswordEmail.postValue(response.body())
+        }
+    }
 }
