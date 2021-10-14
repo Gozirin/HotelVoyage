@@ -62,6 +62,10 @@ dependencies {
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+
     //Fragment testing dependency
     def fragment_version = "1.4.0-alpha09"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
