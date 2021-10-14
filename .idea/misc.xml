@@ -44,6 +44,8 @@
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.11522633744855967" />
         <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.11522633744855967" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_hotel_description2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.14114583333333333" />
@@ -58,6 +60,8 @@
         <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.1673611111111111" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_reset_password.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/fragment_top_hotels.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_wish_list.xml" value="0.25" />
