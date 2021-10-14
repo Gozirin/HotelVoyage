@@ -64,7 +64,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    kapt 'com.github.bumptech.glide:compiler:4.12.0'
+    annotationProcessor ('com.github.bumptech.glide:compiler:4.12.0')
 
     //Fragment testing dependency
     def fragment_version = "1.4.0-alpha09"
@@ -157,10 +157,7 @@ dependencies {
     //Espresso idling dependency
     implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
 
-    //Data store
-    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha08"
-
-    kapt "com.google.dagger:dagger-android-processor:2.11"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
 
 
 //    // LiveData
