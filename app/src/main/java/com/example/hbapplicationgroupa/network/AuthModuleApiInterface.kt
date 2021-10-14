@@ -12,10 +12,7 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * Set up interface for network calls.
@@ -41,9 +38,9 @@ interface AuthModuleApiInterface {
         updatePasswordModel: UpdatePasswordModel
     ): Response<UpdatePasswordResponseModel>
 
-    @POST("api/v1/Authentication/forgot-password")
+    @POST("api/Authentication/forgot-password")
     suspend fun forgotPassword(
-        EmailAddress: String
+        @Query ("email") query: String
     ): Response<ForgotPasswordResponseModel>
 
     @POST("api/v1/Authentication/forgot-password")
@@ -55,4 +52,6 @@ interface AuthModuleApiInterface {
     suspend fun confirmEmail(
         confirmEmailModel: ConfirmEmailModel
     ): Response<ConfirmEmailResponseModel>
+
+
 }

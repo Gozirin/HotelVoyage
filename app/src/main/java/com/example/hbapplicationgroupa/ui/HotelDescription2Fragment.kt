@@ -18,7 +18,7 @@ import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedRevi
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
 import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
-import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
