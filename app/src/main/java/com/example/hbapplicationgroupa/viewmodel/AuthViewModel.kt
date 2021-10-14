@@ -1,15 +1,19 @@
-package com.example.hbapplicationgroupa.viewmodelsss
+package com.example.hbapplicationgroupa.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+<<<<<<< HEAD:app/src/main/java/com/example/hbapplicationgroupa/viewmodelsss/AuthViewModel.kt
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import androidx.lifecycle.viewModelScope
+=======
+import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
+import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
+>>>>>>> dbe652cb8d6bc6835116cc38b3d15ce220b159ab:app/src/main/java/com/example/hbapplicationgroupa/viewmodel/AuthViewModel.kt
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
- import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,33 +26,32 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
-    //Login authentication error message
-    var loginErrorMsg: String = ""
-
 
     //Login authentication LiveData
-    private val _getLoginAuthLiveData: MutableLiveData<Response<LoginUserResponseModel>> = MutableLiveData()
-    val getLoginAuthLiveData: LiveData<Response<LoginUserResponseModel>> = _getLoginAuthLiveData
-
+    private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
+    val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
 
     //Method to make login network call
-    fun login(email: String, password: String) {
+     fun login(email: String, password: String){
         val loginUserModel = LoginUserModel(email, password)
+
         viewModelScope.launch {
-            try{
-                val response = authRepository.loginUser(loginUserModel)
+            try {
+               val response = authRepository.loginUser(loginUserModel)
                 if (response.isSuccessful){
-                    _getLoginAuthLiveData.value = response
-                    loginErrorMsg = response.body()!!.message
-                    Log.d("AuthViewModel 2: ", loginErrorMsg)
-                }else{
-                    loginErrorMsg = response.body()!!.message
-                    Log.d("AuthViewModel 3: ", loginErrorMsg)
+                    try {
+                        _getLoginAuthLiveData.value = response.body()
+                    }catch (e: Exception){
+                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                    }
+                } else {
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Email is not registered/Account might not be Activated",403))
                 }
             }catch (e: Exception){
-                loginErrorMsg = e.message.toString()
-                Log.d("AuthViewModel 1: ", loginErrorMsg)
+                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                e.printStackTrace()
             }
+
         }
     }
 
