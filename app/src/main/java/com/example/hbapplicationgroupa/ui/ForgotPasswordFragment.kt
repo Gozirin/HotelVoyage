@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
  import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentForgotPasswordBinding
 import com.example.hbapplicationgroupa.utils.ValidateEmail
-import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
+import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
