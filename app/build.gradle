@@ -160,7 +160,7 @@ dependencies {
     //Data store
     implementation "androidx.datastore:datastore-preferences:1.0.0-alpha08"
 
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
+    kapt "com.google.dagger:dagger-android-processor:2.11"
 
 
 //    // LiveData

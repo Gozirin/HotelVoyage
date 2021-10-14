@@ -14,7 +14,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
-import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

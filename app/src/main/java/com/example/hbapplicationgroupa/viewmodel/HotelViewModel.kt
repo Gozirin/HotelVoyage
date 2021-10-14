@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HotelViewModel @Inject constructor(private val hotelRepositoryInterface: HotelRepositoryInterface): ViewModel() {
+class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepository): ViewModel() {
 
     //store response to mutable variable type and set stored response to an immutable data type that will be made public
     private var _topHotels: MutableLiveData<ArrayList<GetTopHotelsResponseItem>> = MutableLiveData()
@@ -29,7 +29,7 @@ class HotelViewModel @Inject constructor(private val hotelRepositoryInterface: H
 
     fun getTopHotels() {
         viewModelScope.launch {
-            val response = hotelRepositoryInterface.getTopHotels()
+            val response = hotelRepository.getTopHotels()
             if (response.isSuccessful) {
                 _topHotels.postValue(response.body()?.data)
             }
@@ -38,7 +38,7 @@ class HotelViewModel @Inject constructor(private val hotelRepositoryInterface: H
 
     fun getTopDeals() {
         viewModelScope.launch {
-            val response = hotelRepositoryInterface.getTopDeals()
+            val response = hotelRepository.getTopDeals()
             if (response.isSuccessful) {
                 _topDeals.postValue(response.body()?.data)
             }
