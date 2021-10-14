@@ -87,7 +87,7 @@
     <string name="rating_back_btn_toast">This should go back to the previous Fragment</string>
     <string name="login">Login</string>
     <string name="registration_registerTextview">Register</string>
-    <string name="registration_hintName">Name</string>
+    <string name="registration_hintName">LastName</string>
     <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
@@ -122,4 +122,12 @@
     <string name="bookings_history">Bookings History</string>
     <string name="my_account">My Account</string>
     <string name="profile">Profile</string>
+    <string name="password_should_contain_atleast_one_uppercase_letter_digit_special_character">password should contain atleast one uppercase letter,digit,special character</string>
+    <string name="new_password">New Password</string>
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

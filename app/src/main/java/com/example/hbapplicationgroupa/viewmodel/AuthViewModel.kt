@@ -1,9 +1,13 @@
 package com.example.hbapplicationgroupa.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
@@ -14,6 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -46,6 +51,24 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
             }
 
         }
+    }
+
+
+    //ResetPassword authentication LiveData
+    val resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
+
+    //Function to make ResetPassword network call
+    fun resetUserPassword(token: String,email: String, newPassword: String, confirmPassword: String){
+        val resetPasswordModel = ResetPasswordModel(token,email, newPassword, confirmPassword)
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+                val response = authRepository.resetPassword(resetPasswordModel)
+                resetPasswordLiveData.postValue(response)
+            }catch (e: Exception){
+                Log.d("MQ", "resetPassword: ${e.message}")
+            }
+        }
+
     }
 
     // this is use to make the API call and send the email to the saver
