@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
 
@@ -29,6 +30,8 @@ class ResetPasswordFragment : Fragment() {
         binding.btnResetPassword.setOnClickListener {
             findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
         }
+        binding
+
 
         onBackPressed()
     }

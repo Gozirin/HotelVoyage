@@ -19,7 +19,7 @@ import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.utils.LoginValidations.enable
-import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
+import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -39,6 +39,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         errorMsg = binding.loginErrorMsg
 
@@ -76,21 +77,24 @@ class LoginFragment : Fragment() {
     //Method to observe Login Live Data
     private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
-            when(it.body()!!.succeeded){
-                true -> {
+            Log.d("AuthView", "Enter here")
+            when (it?.statusCode) {
+                200 -> {
+                    Log.d("Login-succeed", it.message)
                     binding.loginProgressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
                     //Saving auth Token and Id to Shared Preference
-                    if (it.body() != null){
-                        authPreference.setToken(it.body()!!.data.token)
-                        authPreference.setId(it.body()!!.data.id)
-                    }
+                    authPreference.setToken(it.data.token)
+                    authPreference.setId(it.data.id)
                 }
-                false ->{
+                403 -> {
                     binding.loginProgressBar.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.body()!!.message, Toast.LENGTH_LONG).show()
-                    binding.loginErrorMsg.text = "error"
+                    errorMsg.text = it.message
+                }
+                else -> {
+                    binding.loginProgressBar.visibility = View.GONE
+                    errorMsg.text = it?.message
                 }
             }
         })
