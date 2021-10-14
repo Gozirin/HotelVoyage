@@ -20,12 +20,14 @@ import androidx.room.RoomOpenHelper
 import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
-import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
+import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
 import com.google.android.material.textfield.TextInputEditText
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.ObjectInputValidation
 import java.util.regex.Pattern
 import javax.xml.validation.ValidatorHandler
 
+@AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
@@ -45,6 +47,12 @@ class ResetPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val token = arguments?.getString("token")
+        val email = arguments?.getString("email")
+        val newPassword = binding.tvEmailTextResetPassword.text.toString()
+        val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
+
         //method to display hint a user on the password to input
         binding.tvEmailTextResetPassword.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus){
@@ -62,16 +70,13 @@ class ResetPasswordFragment : Fragment() {
 
         // button to navigate to login fragment after password reset
         binding.btnResetPassword.setOnClickListener {
-            val newPassword = binding.tvEmailTextResetPassword.text.toString()
-            val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
 
-
-            if (validateNotEmptyNewPasswordField(newPassword) &&
-                validateNotEmptyConfirmPasswordField(confirmPassword) &&
+          if (validateNotEmptyNewPasswordField(newPassword) && validateNotEmptyConfirmPasswordField(confirmPassword) &&
                 validateNewPassword(newPassword) &&
                 validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)){
-                findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+               makeApiCall(token!!,email!!, newPassword,confirmPassword)
             }else{
+
                 if (!validateNotEmptyNewPasswordField(newPassword)){
                     binding.tvCheckEmptyNewPasswordResetPassword.text = "please enter your new password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
@@ -97,7 +102,7 @@ class ResetPasswordFragment : Fragment() {
         binding
 
 
-        onBackPressed()
+      onBackPressed()
     }
 
     fun onBackPressed(){
@@ -113,15 +118,15 @@ class ResetPasswordFragment : Fragment() {
 
 
     // making Api call to reset user's password
-    fun makeApiCall(email: String, token: String, newPassword: String, confirmPassword: String){
+    fun makeApiCall( token: String,  email: String, newPassword: String, confirmPassword: String){
         viewModel.resetPasswordLiveData.observe(requireActivity(),{
             if (it == null){
-
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
-
+                findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
             }
         })
-        viewModel.resetUserPassword(email,token, newPassword, confirmPassword)
+        viewModel.resetUserPassword(token,email, newPassword, confirmPassword)
     }
 
 

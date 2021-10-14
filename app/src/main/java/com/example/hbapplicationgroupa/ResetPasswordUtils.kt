@@ -37,8 +37,10 @@ import androidx.core.widget.addTextChangedListener
 
 // function for regex validation
   fun validateNewPassword(newPassword: String): Boolean{
-     val checkedNewPassword = Regex("[A-Za-z][A-Za-z0-9@\$!%,.*?&]{8,}$")
-     result = newPassword.equals(checkedNewPassword)
+//     val checkedNewPassword = Regex("^(?=.*[A-Z].*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}\$")
+
+    val checkedNewPassword = Regex("^[0-9]*\$")
+    result = newPassword.equals(checkedNewPassword)
      return result
   }
 

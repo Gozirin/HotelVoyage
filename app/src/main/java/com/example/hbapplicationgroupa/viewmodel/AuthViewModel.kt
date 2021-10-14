@@ -5,14 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-<<<<<<< HEAD:app/src/main/java/com/example/hbapplicationgroupa/viewmodelsss/AuthViewModel.kt
+
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import androidx.lifecycle.viewModelScope
-=======
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
->>>>>>> dbe652cb8d6bc6835116cc38b3d15ce220b159ab:app/src/main/java/com/example/hbapplicationgroupa/viewmodel/AuthViewModel.kt
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
@@ -60,8 +58,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     val resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
 
     //Function to make ResetPassword network call
-    fun resetUserPassword(email: String, token: String, newPassword: String, confirmPassword: String){
-        val resetPasswordModel = ResetPasswordModel(email, token, newPassword, confirmPassword)
+    fun resetUserPassword(token: String,email: String, newPassword: String, confirmPassword: String){
+        val resetPasswordModel = ResetPasswordModel(token,email, newPassword, confirmPassword)
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val response = authRepository.resetPassword(resetPasswordModel)
