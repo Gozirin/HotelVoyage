@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.viewmodelsss
+package com.example.hbapplicationgroupa.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepository
