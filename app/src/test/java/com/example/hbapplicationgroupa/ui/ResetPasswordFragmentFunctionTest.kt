@@ -45,7 +45,7 @@ class ResetPasswordFragmentFunctionTest{
     @Test
     fun emptyNewPasswordFieldValidation(){
         val result = validateNotEmptyNewPasswordField(emptyNewPassword)
-        assertEquals(true,result)
+        assertEquals(false,result)
     }
 
     // function to test non-empty confirm password field
@@ -66,7 +66,7 @@ class ResetPasswordFragmentFunctionTest{
     @Test
     fun emptyConfirmPasswordFieldValidations(){
         val result = validateNotEmptyNewPasswordField(emptyConfirmPassword)
-        assertEquals(true, result)
+        assertEquals(false, result)
     }
 
     // function to check if the two fields are equal
@@ -87,14 +87,14 @@ class ResetPasswordFragmentFunctionTest{
     @Test
     fun validateNotEqualNewPasswordAndConfirmPasswords(){
         val result = validateNewPasswordAndConfirmPassword(newPassword,cPassword)
-        assertEquals(true, result)
+        assertEquals(false, result)
     }
 
     // function to check if the two fields are  not equal
     @Test
     fun validateNotEqualNewPasswordAndConfirmPassword(){
         val result = validateNewPasswordAndConfirmPassword(newPassword,cPassword)
-        assertEquals(true, result)
+        assertEquals(false, result)
     }
 
 
