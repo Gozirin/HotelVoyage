@@ -54,7 +54,7 @@ class ResetPasswordFragment : Fragment() {
         val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
 
         //method to display hint a user on the password to input
-        binding.tvEmailTextResetPassword.setOnFocusChangeListener { view, hasFocus ->
+        binding.tvEmailTextResetPassword.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus){
                 binding.tvCheckEmptyNewPasswordResetPassword.text = "password should contain at least one uppercase letter digit special character"
                 binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
@@ -66,8 +66,6 @@ class ResetPasswordFragment : Fragment() {
         binding.tvResetPasswordLoginText.setOnClickListener {
             findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
         }
-
-
         // button to navigate to login fragment after password reset
         binding.btnResetPassword.setOnClickListener {
 
