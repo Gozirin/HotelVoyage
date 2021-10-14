@@ -28,9 +28,8 @@
                 android:background="@drawable/hotel_image"
                 android:scaleType="fitCenter" />
 
-
             <TextView
-                android:id="@+id/nameOfHotel"
+                android:id="@+id/tv_nameOfHotel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -42,9 +41,8 @@
                 android:textSize="24dp"
                 android:textStyle="bold" />
 
-
             <TextView
-                android:id="@+id/hotelRating"
+                android:id="@+id/tv_hotelRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -55,9 +53,8 @@
                 android:textColor="@color/white"
                 android:textSize="10dp" />
 
-
             <TextView
-                android:id="@+id/hotelprice"
+                android:id="@+id/tv_hotelprice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -86,18 +83,15 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="3dp"
                 android:layout_marginBottom="9dp"
-                android:layout_toEndOf="@+id/hotelRating"
+                android:layout_toEndOf="@+id/tv_hotelRating"
                 android:src="@drawable/tumb_up" />
 
         </RelativeLayout>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_gravity="bottom"
-
-            >
+            android:layout_gravity="bottom">
 
             <ImageView
                 android:id="@+id/bookmarkIcon"
@@ -109,7 +103,7 @@
                 android:src="@drawable/ic_defalt_bookmark" />
 
             <TextView
-                android:id="@+id/txtSave"
+                android:id="@+id/tv_Save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
@@ -137,15 +131,5 @@
                 app:strokeWidth="2sp" />
 
         </RelativeLayout>
-
-
-
-
-
-
     </com.google.android.material.card.MaterialCardView>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
