@@ -90,7 +90,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     private fun setUpTopHotelsRecyclerView() {
         topHotelsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentrecyclerView1)
         topHotelsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        topHotelsRecyclerView.setHasFixedSize(false)
+        topHotelsRecyclerView.setHasFixedSize(true)
     }
 
     //set up top deals recycler view
@@ -98,7 +98,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         topDealsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentRecyclerView2)
         topDealsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        topDealsRecyclerView.setHasFixedSize(false)
+        topDealsRecyclerView.setHasFixedSize(true)
     }
 
     //fetch a selected number of top hotels

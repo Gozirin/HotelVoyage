@@ -11,7 +11,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem1Binding
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
-import com.squareup.picasso.Picasso
 
 class ExploreHomeTopHotelsAdapter(
     private val topHotelClickListener: TopHotelClickListener
