@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupa.viewmodel
 
-import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
