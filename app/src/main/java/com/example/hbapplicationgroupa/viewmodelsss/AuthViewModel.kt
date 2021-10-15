@@ -60,7 +60,6 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch{
             val response = authRepository.addUser(userInfo)
             _addUserResponse.value = response
-
         }
     }
 }
