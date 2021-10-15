@@ -28,7 +28,7 @@ class HotelViewModel @Inject constructor(
         fetchTopDeals()
     }
 
-    //set response from network call to variable
+
 
     private fun fetchTopHotels() {
         viewModelScope.launch {
