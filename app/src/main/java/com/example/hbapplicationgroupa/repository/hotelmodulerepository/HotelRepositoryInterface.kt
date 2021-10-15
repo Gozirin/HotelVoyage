@@ -14,39 +14,37 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HotelRepositoryInterface {
-    suspend fun getHotelById(
-        @Path("hotelId") hotelId: String
-    ): Response<GetHotelByIdResponseModel>
+    suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel>
 
     suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
 
     suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
     suspend fun getAllHotels(
-        @Query("Page") Page: Int,
-        @Query("pageSize") pageSize: Int,
-        @Query("IsBooked") IsBooked: Boolean,
-        @Query("Price") Price: Double,
-        @Path("id") id: String
+        Page: Int,
+        pageSize: Int,
+        IsBooked: Boolean,
+        Price: Double,
+        id: String
     ): Response<GetAllHotelsResponseModel>
 
     suspend fun getHotelRoomsByPrice(
-        @Path("id") id: String,
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("IsBooked") isBooked: Boolean,
-        @Query("price") price: Double
+        id: String,
+        pageSize: Int,
+        pageNumber: Int,
+        isBooked: Boolean,
+        price: Double
     ): Response<GetHotelRoomsByPriceResponseModel>
 
     suspend fun getHotelRoomsByAvailability(
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("IsBooked") isBooked: Boolean,
+        pageSize: Int,
+        pageNumber: Int,
+        isBooked: Boolean,
     ): Response<GetHotelRoomsByVacancyResponseModel>
 
-    suspend fun getHotelRoomById(@Path("roomId") roomId: String): Response<GetHotelRoomByIdResponseModel>
+    suspend fun getHotelRoomById(roomId: String): Response<GetHotelRoomByIdResponseModel>
 
-    suspend fun getHotelRatings(@Path("hotelId") hotelId: String): Response<GetHotelRatingsResponseModel>
+    suspend fun getHotelRatings(hotelId: String): Response<GetHotelRatingsResponseModel>
 
-    suspend fun getHotelAmenities(@Path("hotelId") hotelId: String): Response<GetHotelAmenitiesResponseModel>
+    suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel>
 }
