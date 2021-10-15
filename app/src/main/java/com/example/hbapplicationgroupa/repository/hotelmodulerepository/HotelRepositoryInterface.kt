@@ -22,6 +22,8 @@ interface HotelRepositoryInterface {
 
     suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
+    suspend fun getTopDealss(pageSize: Int, pageNumber: Int):Response<GetTopDealsResponseModel>
+
     suspend fun getAllHotels(
         @Query("Page") Page: Int,
         @Query("pageSize") pageSize: Int,

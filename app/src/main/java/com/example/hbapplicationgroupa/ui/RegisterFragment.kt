@@ -1,26 +1,21 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.OnBackPressedCallback
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.aminography.primedatepicker.utils.visible
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.Validations.RegistrationPageValidation
 import com.example.hbapplicationgroupa.connectivity.ConnectivityLiveData
 import com.example.hbapplicationgroupa.databinding.FragmentRegisterBinding
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
-import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
+import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +24,7 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var connectivityLiveData: ConnectivityLiveData
     private val viewModel: AuthViewModel by viewModels()
+    private lateinit var userInfo: AddUserModel
 
     val function = RegistrationPageValidation
 
@@ -68,68 +64,88 @@ class RegisterFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
 
-            binding.btnRegister.visibility = View.GONE
+            binding.btnRegister.setEnabled(false)
             binding.fragmentRegisterProgressBarPb.visibility = View.VISIBLE
-            //remove later
-            val firstName = binding.tvRegisterUserName.text.toString()
-            val lastName = binding.tvRegisterUserName.text.toString()
+            val firstName = binding.fragmentRegisterFirstNameEtv.text.toString()
+            val lastName = binding.fragmentRegisterLastNameEtv.text.toString()
             val email = binding.tvEmailText.text.toString()
             val password = binding.tvConfirmPasswordResetPassword.text.toString()
-            val userName = binding.tvRegisterUserName.text.toString()
-            val phoneNumber = "08132247420"
-            val age = 50
-            val gender = "male"
-            val userInfo = AddUserModel(firstName,lastName,email,userName, password, phoneNumber, gender, age)
+            val phoneNumber = binding.fragmentRegisterPhoneNumberEtv.text.toString()
+            val age = if (binding.fragmentRegisterAgeEtv.text?.isEmpty() == true){
+                null
+            }else{
+                binding.fragmentRegisterAgeEtv.text.toString().toInt()
+            }
+
+            val userName = firstName
+            val gender = binding.getSpinner.selectedItem.toString()
+            userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, age)
+
 
             if(!function.validateFirstNameInput(firstName)){
-                binding.tvRegisterUserName.error = "invalid input"
+                binding.fragmentRegisterFirstNameEtv.error = "invalid input"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                binding.btnRegister.visibility = View.VISIBLE
-
+            }
+            if(!function.validateLastNameInput(lastName)){
+                binding.fragmentRegisterLastNameEtv.error = "invalid input"
+                binding.btnRegister.setEnabled(true)
+                binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateEmailInput(email)){
                 binding.tvEmailText.error = "invalid input"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                binding.btnRegister.visibility = View.VISIBLE
+            }
+            if(!function.validateAgeInput(age)){
+                binding.fragmentRegisterAgeEtv.error = "You must be above 18"
+                binding.btnRegister.setEnabled(true)
+                binding.fragmentRegisterProgressBarPb.visibility = View.GONE
+            }
+            if(!function.validatePhoneInput(phoneNumber)){
+                binding.fragmentRegisterPhoneNumberEtv.error = "invalid input"
+                binding.btnRegister.setEnabled(true)
+                binding.fragmentRegisterProgressBarPb.visibility = View.GONE
+            }
+            if(!function.validateSexInput(gender)){
+                binding.fragmentRegisterGenderErrorTv.visibility = view.visibility
+                binding.btnRegister.setEnabled(true)
+                binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validatePasswordInput(password)){
                 binding.tvConfirmPasswordResetPassword.error = "Password too weak"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                binding.btnRegister.visibility = View.VISIBLE
             }
             if (!binding.RegisterTickButton.isChecked){
                 binding.RegisterTickButton.error = "Accept Terms and Conditions"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                binding.btnRegister.visibility = View.VISIBLE
             }
-            else if(function.validateFirstNameInput(firstName) && function.validateEmailInput(email) && function.validatePasswordInput(password)){
+            else if(function.validateFirstNameInput(firstName)
+                && function.validateLastNameInput(lastName)
+                && function.validateEmailInput(email)
+                && function.validatePasswordInput(password)
+                && function.validateAgeInput(age)
+                && function.validatePhoneInput(phoneNumber)
+                && function.validateSexInput(gender)){
                 viewModel.addUser(userInfo)
                 viewModel.addUserResponse.observe(viewLifecycleOwner,{
                     if(it.body()?.succeeded == true){
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                        binding.btnRegister.setEnabled(false)
-                        binding.btnRegister.visibility = View.VISIBLE
-
-//                        Toast.makeText(requireContext(), "${it.body()?.message}", Toast.LENGTH_SHORT).show()
-//                        Log.d("TAG", "${it.body()?.message}")
+                        binding.fragmentRegisterGenderErrorTv.visibility = View.GONE
 
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                        binding.tvRegisterUserName.text?.clear()
+                        binding.fragmentRegisterPhoneNumberEtv.text?.clear()
                         binding.tvEmailText.text?.clear()
                         binding.tvConfirmPasswordResetPassword.text?.clear()
+                        binding.fragmentRegisterAgeEtv.text?.clear()
                         binding.RegisterTickButton.isChecked = false
                     }else{
                         binding.btnRegister.setEnabled(true)
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-                        binding.btnRegister.visibility = View.VISIBLE
-//                        Toast.makeText(requireContext(), "${it.body()?.message}", Toast.LENGTH_SHORT).show()
-//                        Log.d("TAG", "${it.body()?.message}")
+                        binding.fragmentRegisterGenderErrorTv.visibility = View.GONE
                     }
                 })
 

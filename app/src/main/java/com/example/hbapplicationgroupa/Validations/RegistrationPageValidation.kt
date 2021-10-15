@@ -1,5 +1,7 @@
 package com.example.hbapplicationgroupa.Validations
 
+import android.text.Editable
+import java.lang.NumberFormatException
 import java.util.regex.Pattern
 
 
@@ -34,7 +36,7 @@ object RegistrationPageValidation {
         return true
     }
     fun validateLastNameInput(lastName:String):Boolean{
-        if (lastName.length < 2 || !lastName.matches(NAMING_PATTERN)) {
+        if (lastName.length < 2 || !lastName.contains(NAMING_PATTERN)) {
             return false
         }
         return true
@@ -58,16 +60,19 @@ object RegistrationPageValidation {
         return true
     }
     fun validateSexInput(sex:String):Boolean{
-        if(sex.isEmpty()){
+        if(sex.isEmpty() || sex == "Gender"){
             return false
         }
+
         return true
     }
-    fun validateAgeInput(age:String):Boolean{
-        if(age < "19" || age.isEmpty()){
-            return false
+    fun validateAgeInput(age:Int?):Boolean{
+        if (age != null && age > 18){
+
+            return true
         }
-        return true
+        return false
     }
+
 
 }

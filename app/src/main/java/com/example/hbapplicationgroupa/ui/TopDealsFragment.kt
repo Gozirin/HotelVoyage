@@ -20,7 +20,7 @@ import com.example.hbapplicationgroupa.model.adaptermodels.TopDealModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
 import com.example.hbapplicationgroupa.utils.Resource
-import com.example.hbapplicationgroupa.viewmodelsss.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Observer
 
@@ -133,7 +133,7 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
             if(shouldPaginate) {
-                viewModel.getTopDeals(10)
+                viewModel.getTopDealss(10)
                 isScrolling = false
             } else {
                 binding.topDealRecyclerview.setPadding(0, 0, 0, 0)

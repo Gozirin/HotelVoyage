@@ -8,6 +8,5 @@ data class AddUserModel(
     val password: String,
     val phoneNumber: String,
     val gender: String,
-    val age: Int
-
+    val age: Int?
 )

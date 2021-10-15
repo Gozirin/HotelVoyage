@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.adapter.topdeal
 
+import android.annotation.SuppressLint
 import android.media.AudioRecord.MetricsConstants.SOURCE
 import android.view.LayoutInflater
 import android.view.View
@@ -50,14 +51,14 @@ class TopDealAdapter(
 
     override fun onBindViewHolder(holder: TopDealViewHolder, position: Int) {
         holder.nameOfDeal?.text = topDealList[position].name
-        holder.priceOfDeal?.text = topDealList[position].price.toString()
+        holder.priceOfDeal?.text = "$${topDealList[position].price}"
         holder.classOfDeal?.text = topDealList[position].description
-        holder.ratingOfDeal?.text = topDealList[position].discount.toString()
+        holder.ratingOfDeal?.text = "${topDealList[position].discount}% OFF"
         holder.imageOfDeal?.let {
             Glide.with(it.context)
                 .load(topDealList[position].thumbnail)
 //                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-    //            .placeholder(demoImage)
+                .placeholder(R.mipmap.ic_launcher)
                 .into(holder.imageOfDeal)
         };
 
