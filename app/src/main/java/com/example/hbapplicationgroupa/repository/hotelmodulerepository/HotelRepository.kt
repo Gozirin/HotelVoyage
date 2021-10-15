@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
+import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
@@ -13,7 +14,10 @@ import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelRepository @Inject constructor(private val hotelModuleApiInterface: HotelModuleApiInterface): HotelRepositoryInterface {
+class HotelRepository @Inject constructor(
+    private val hotelModuleApiInterface: HotelModuleApiInterface,
+    private val hotelByIdDao: HotelByIdDao
+    ): HotelRepositoryInterface {
     override suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel> {
         return hotelModuleApiInterface.getHotelById(hotelId)
     }
