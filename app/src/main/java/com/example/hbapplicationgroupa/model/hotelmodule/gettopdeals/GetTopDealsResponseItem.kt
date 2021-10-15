@@ -1,7 +1,11 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals
 
 data class GetTopDealsResponseItem(
-    val thumbnail: String,
+    val hotelId: String,
     val name: String,
-    val price: Float
+    val description: String,
+    val price: Double,
+    val discount: Double,
+    val thumbnail: String,
+    val hotelName: String
 )
