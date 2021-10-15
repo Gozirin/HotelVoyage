@@ -25,6 +25,9 @@ class HotelRepository @Inject constructor(private val hotelModuleApiInterface: H
     override suspend fun getTopDeals(): Response<GetTopDealsResponseModel> {
         return hotelModuleApiInterface.getTopDeals()
     }
+    override suspend fun getTopDealss(pageSize: Int, pageNumber: Int): Response<GetTopDealsResponseModel> {
+        return hotelModuleApiInterface.getTopDealss(pageSize, pageNumber)
+    }
 
     override suspend fun getAllHotels(
         Page: Int,

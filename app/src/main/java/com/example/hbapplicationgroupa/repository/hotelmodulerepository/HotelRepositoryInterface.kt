@@ -20,6 +20,8 @@ interface HotelRepositoryInterface {
 
     suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
+    suspend fun getTopDealss(pageSize: Int, pageNumber: Int):Response<GetTopDealsResponseModel>
+
     suspend fun getAllHotels(
         Page: Int,
         pageSize: Int,

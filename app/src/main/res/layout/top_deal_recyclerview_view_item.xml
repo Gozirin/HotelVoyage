@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -30,8 +31,6 @@
             android:layout_height="33dp"
             android:layout_marginStart="8dp"
             android:background="@color/white"
-            android:clickable="true"
-            android:focusable="true"
             android:src="@drawable/ic_outline_bookmark_border_24"
             android:tint="#FCEA0707"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -95,24 +94,14 @@
             android:id="@+id/topDeal_recyclerview_hotel_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@id/topDeal_recyclerview_hotel_price"
             android:padding="1dp"
             android:text="@string/_99"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/topDeal_recyclerview_hotel_status"
-            app:layout_constraintStart_toEndOf="@+id/topDeal_recyclerview_hotel_status"/>
-
-        <ImageView
-            android:id="@+id/topDealimageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_thumb_up"
-            app:layout_constraintBottom_toBottomOf="@id/topDeal_recyclerview_hotel_rating"
-            app:layout_constraintStart_toEndOf="@id/topDeal_recyclerview_hotel_rating"
-            android:layout_marginStart="5dp"
-            android:contentDescription="@string/ignore"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
         <ImageButton
@@ -120,12 +109,10 @@
             android:layout_width="35dp"
             android:layout_height="28dp"
             android:background="@color/cardview_shadow_start_color"
-            app:layout_constraintBottom_toBottomOf="@+id/topDeal_recyclerview_imageview"
-            app:layout_constraintStart_toEndOf="@+id/topDeal_recyclerview_hotel_rating"
-            app:layout_constraintTop_toTopOf="@+id/topDeal_recyclerview_hotel_rating"
-            app:layout_constraintVertical_bias="0.0"
             android:src="@drawable/ic_thumb_up"
-            />
+            app:layout_constraintBottom_toBottomOf="@+id/topDeal_recyclerview_hotel_name"
+            app:layout_constraintStart_toEndOf="@+id/topDeal_recyclerview_hotel_name"
+            app:layout_constraintTop_toTopOf="@+id/topDeal_recyclerview_hotel_name" />
 
         <TextView
             android:id="@+id/topDeal_recyclerview_hotel_price"
