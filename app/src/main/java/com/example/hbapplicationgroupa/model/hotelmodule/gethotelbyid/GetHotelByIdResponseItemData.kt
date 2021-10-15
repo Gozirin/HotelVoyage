@@ -1,6 +1,12 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "getHotelById")
 data class GetHotelByIdResponseItemData(
+    @PrimaryKey(autoGenerate = true)
+    val tableNumber: Int,
     val id: String,
     val name: String,
     val description: String,
