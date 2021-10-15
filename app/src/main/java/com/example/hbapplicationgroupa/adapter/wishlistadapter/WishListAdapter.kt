@@ -22,10 +22,10 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
     class WishListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-        var hotelPrice: TextView = itemView.findViewById(R.id.hotelprice)
-        var hotelName: TextView = itemView.findViewById(R.id.nameOfHotel)
-        var hotelRating: TextView = itemView.findViewById(R.id.hotelRating)
-        val saveButton: TextView = itemView.findViewById(R.id.txtSave)
+        var hotelPrice: TextView = itemView.findViewById(R.id.tv_hotelprice)
+        var hotelName: TextView = itemView.findViewById(R.id.tv_nameOfHotel)
+        var hotelRating: TextView = itemView.findViewById(R.id.tv_hotelRating)
+        val saveButton: TextView = itemView.findViewById(R.id.tv_Save)
         val bookmarkIcon: ImageView = itemView.findViewById(R.id.bookmarkIcon)
         val bookingBtn: Button = itemView.findViewById(R.id.bookingBtn)
         val savedImage: ImageView = itemView.findViewById(R.id.hotelImageView)

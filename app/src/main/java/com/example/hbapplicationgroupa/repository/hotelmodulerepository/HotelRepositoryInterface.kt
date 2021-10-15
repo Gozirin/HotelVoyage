@@ -18,15 +18,9 @@ interface HotelRepositoryInterface {
         @Path("hotelId") hotelId: String
     ): Response<GetHotelByIdResponseModel>
 
-    suspend fun getTopHotels(
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int,
-    ): Response<GetTopHotelsResponseModel>
+    suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
 
-    suspend fun getTopDeals(
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int
-    ):Response<GetTopDealsResponseModel>
+    suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
     suspend fun getAllHotels(
         @Query("Page") Page: Int,
