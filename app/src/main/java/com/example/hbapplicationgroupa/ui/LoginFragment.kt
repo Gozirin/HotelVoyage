@@ -98,7 +98,7 @@ class LoginFragment : Fragment() {
         })
     }
 
-    //Method to handle back press
+    //Method to handle back press on this Fragment
     private fun onBackPressed(){
         //Overriding onBack press to navigate to home Fragment onBack Pressed
         val callback = object : OnBackPressedCallback(true){
