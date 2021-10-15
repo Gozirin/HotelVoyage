@@ -1,34 +1,106 @@
 package com.example.hbapplicationgroupa.viewmodel
 
 
-import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Before
-import org.junit.Rule
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
 
 
 @ExperimentalCoroutinesApi
-
+@RunWith(MockitoJUnitRunner::class)
 class HotelViewModelTest {
 
 //    @get: Rule
-//
-//    var instantTaskExecutorRule = InstantTaskExecutorRule()
+//    var testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 //
 //    @get: Rule
+//    var testCoroutineRule = TestCoroutineRule()
 //
-//    var mainCoroutineRule = MainCoroutineRule()
+//    @Mock
+//    private lateinit var hotelRepositoryInterface: HotelRepositoryInterface
 //
-//    private lateinit var hotelViewModel: HotelViewModel
+//    @Mock
+//    private lateinit var hotelDatabaseRepositoryInterface: HotelDatabaseRepositoryInterface
+//
+//    @Mock
+//    private lateinit var topHotelsObserver: Observer<Resource<List<GetTopHotelsResponseItem>>>
+//
+//    @Mock
+//    private lateinit var topDealsObserver: Observer<Resource<List<GetTopDealsResponseItem>>>
+//
 //
 //    @Before
 //
 //    fun setUp() {
-//        hotelViewModel = HotelViewModel(FakeHotelRepository)
+//
 //    }
 //
-//    fun `get request when no network should return error`() {
-//        val value = hotelViewModel.getTopHotels()
-//        assertThat(value).isAnyOf(ResultStatus.NetworkError)
+//
+//    @Test
+//    fun `get top hotels request when no network should return error`() {
+//        testCoroutineRule.runBlockingTest {
+//            val errorMsg = "Network Error"
+//            doThrow(RuntimeException(errorMsg))
+//                .`when`(hotelRepositoryInterface)
+//                .getTopHotels()
+//            val viewModel = HotelViewModel(hotelRepositoryInterface, hotelDatabaseRepositoryInterface)
+//            viewModel.getTopHotels().observeForever(topHotelsObserver)
+//            verify(hotelRepositoryInterface).getTopHotels()
+//            verify(topHotelsObserver).onChanged(Resource.error(RuntimeException(errorMsg).toString(), null))
+//            viewModel.getTopHotels().removeObserver(topHotelsObserver)
+//        }
+//    }
+//
+//
+//    @Test
+//    fun `get top hotels request when network is available should return success`() {
+//        testCoroutineRule.runBlockingTest {
+//            doReturn(emptyList<GetTopHotelsResponseItem>())
+//                .`when`(hotelRepositoryInterface)
+//                .getTopHotels()
+//            val viewModel = HotelViewModel(hotelRepositoryInterface, hotelDatabaseRepositoryInterface)
+//            viewModel.getTopHotels().observeForever(topHotelsObserver)
+//            verify(hotelRepositoryInterface).getTopHotels()
+//            verify(topHotelsObserver).onChanged(Resource.success(emptyList()))
+//            viewModel.getTopHotels().removeObserver(topHotelsObserver)
+//        }
+//    }
+//
+//
+//    @Test
+//    fun `get top deals request when no network should return error`() {
+//        testCoroutineRule.runBlockingTest {
+//            val errorMsg = "Network Error"
+//            doThrow(RuntimeException(errorMsg))
+//                .`when`(hotelRepositoryInterface)
+//                .getTopDeals()
+//            val viewModel = HotelViewModel(hotelRepositoryInterface, hotelDatabaseRepositoryInterface)
+//            viewModel.getTopDeals().observeForever(topDealsObserver)
+//            verify(hotelRepositoryInterface).getTopDeals()
+//            verify(topDealsObserver).onChanged(Resource.error(RuntimeException(errorMsg).toString(), null))
+//            viewModel.getTopDeals().removeObserver(topDealsObserver)
+//        }
+//    }
+//
+//
+//    @Test
+//    fun `get top deals request when network is available should return success`() {
+//        testCoroutineRule.runBlockingTest {
+//            doReturn(emptyList<GetTopDealsResponseItem>())
+//                .`when`(hotelRepositoryInterface)
+//                .getTopDeals()
+//            val viewModel = HotelViewModel(hotelRepositoryInterface, hotelDatabaseRepositoryInterface)
+//            viewModel.getTopDeals().observeForever(topDealsObserver)
+//            verify(hotelRepositoryInterface).getTopDeals()
+//            verify(topDealsObserver).onChanged(Resource.success(emptyList()))
+//            viewModel.getTopDeals().removeObserver(topDealsObserver)
+//        }
+//    }
+//
+//
+//
+//    @After
+//    fun tearDown() {
+//
 //    }
 }

@@ -22,14 +22,14 @@ interface HotelModuleApiInterface {
 
     @GET("api/Hotel/top-hotels")
     suspend fun getTopHotels(
-        @Query("pageSize") pageSize: Int = 9,
-        @Query("pageNumber") pageNumber: Int = 1,
+//        @Query("pageSize") pageSize: Int = 9,
+//        @Query("pageNumber") pageNumber: Int = 1
     ): Response<GetTopHotelsResponseModel>
 
     @GET("api/Hotel/top-deals")
     suspend fun getTopDeals(
-        @Query("pageSize") pageSize: Int = 9 ,
-        @Query("pageNumber") pageNumber: Int = 1
+//        @Query("pageSize") pageSize: Int = 9 ,
+//        @Query("pageNumber") pageNumber: Int = 1
     ):Response<GetTopDealsResponseModel>
 
     @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")

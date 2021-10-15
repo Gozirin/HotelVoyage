@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
+import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
@@ -7,7 +8,9 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHote
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import retrofit2.Response
 import retrofit2.http.Path
@@ -18,9 +21,21 @@ interface HotelRepositoryInterface {
         @Path("hotelId") hotelId: String
     ): Response<GetHotelByIdResponseModel>
 
-    suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
+    suspend fun getTopHotels():Response<GetTopHotelsResponseModel>
 
-    suspend fun getTopDeals():Response<GetTopDealsResponseModel>
+    suspend fun getTopDeals(): Response<GetTopDealsResponseModel>
+
+//    suspend fun getTopHotelsFromAPI()
+//
+//    suspend fun saveTopHotelsToDatabase(topHotelsResponseItem: GetTopHotelsResponseItem)
+//
+//    suspend fun getTopHotelsFromDatabase(): LiveData<List<GetTopHotelsResponseItem>>
+//
+//    suspend fun getTopDealsFromAPI()
+//
+//    suspend fun saveTopDealsToDatabase(topDealsResponseItem: GetTopDealsResponseItem)
+//
+//    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
     suspend fun getAllHotels(
         @Query("Page") Page: Int,
