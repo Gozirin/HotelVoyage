@@ -30,19 +30,23 @@ class HotelRepository @Inject constructor(
     //getHotelDescriptionFromApi() makes a request to fetch an hotel's description.
     //If the request is successful, the fetched hotel description is added to the database.
     override suspend fun getHotelDescriptionFromApi(hotelId: String) {
-        val response = hotelModuleApiInterface.getHotelById(hotelId)
-        val hotelDescription = response.body()?.data
-        val statusCode = response.body()?.statusCode
-        val message = response.body()?.message
+        try {
+            val response = hotelModuleApiInterface.getHotelById(hotelId)
+            val hotelDescription = response.body()?.data
+            val statusCode = response.body()?.statusCode
+            val message = response.body()?.message
 
-        if (response.isSuccessful){
-            if (hotelDescription != null) {
-                saveHotelDescriptionToDb(hotelDescription)
+            if (response.isSuccessful){
+                if (hotelDescription != null) {
+                    saveHotelDescriptionToDb(hotelDescription)
+                }else{
+                    Log.d("GKB", "getHotelByIdFromApi: hotelDescription is null. Status code = $statusCode. Message = $message")
+                }
             }else{
-                Log.d("GKB", "getHotelByIdFromApi: hotelDescription is null. Status code = $statusCode. Message = $message")
+                Log.d("GKB", "getHotelByIdFromApi: Response failed. Status code = $statusCode. Message = $message")
             }
-        }else{
-            Log.d("GKB", "getHotelByIdFromApi: Response failed. Status code = $statusCode. Message = $message")
+        }catch (e: Exception){
+            Log.d("GKB", "getHotelDescriptionFromApi: ${e.message}")
         }
     }
 
