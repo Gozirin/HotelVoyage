@@ -78,6 +78,7 @@ class ResetPasswordFragment : Fragment() {
             else{
 
               if (validateNotEmptyNewPasswordField(newPassword) && !validateNewPassword(newPassword)){
+
                     binding.tvCheckEmptyNewPasswordResetPassword.text = "Please enter valid password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
                 }
