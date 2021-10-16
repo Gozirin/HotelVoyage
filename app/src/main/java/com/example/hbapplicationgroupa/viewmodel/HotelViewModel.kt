@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
@@ -21,14 +21,17 @@ import javax.inject.Inject
 class HotelViewModel @Inject constructor(
     private val hotelRepositoryInterface: HotelRepositoryInterface
     ): ViewModel() {
-    private val _getHotelByIdLivedata: MutableLiveData<Response<GetHotelByIdResponseModel>> = MutableLiveData()
-    val getHotelByIdLivedata: LiveData<Response<GetHotelByIdResponseModel>> get() = _getHotelByIdLivedata
+//    private val _getHotelByIdLivedata: MutableLiveData<List<GetHotelByIdResponseItemData>> = MutableLiveData()
+//    val getHotelByIdLivedata: LiveData<List<GetHotelByIdResponseItemData>> get() = _getHotelByIdLivedata
+
+    fun getHotelFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
+        return hotelRepositoryInterface.getHotelByIdFromDb()
+    }
 
     fun getHotelById(hotelId: String){
-        viewModelScope.launch(Dispatchers.IO){
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = hotelRepositoryInterface.getHotelById(hotelId)
-                _getHotelByIdLivedata.postValue(response)
+                hotelRepositoryInterface.getHotelByIdFromApi(hotelId)
             }catch (e: Exception){
                 Log.d("GKB", "getHotelById: ${e.message}")
             }

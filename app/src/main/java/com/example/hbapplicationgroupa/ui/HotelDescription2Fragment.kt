@@ -75,29 +75,44 @@ class HotelDescription2Fragment : Fragment() {
 
     private fun populateUiWithApiResponse(){
         hotelViewModel.getHotelById("0dfb4f63-3caf-417e-b7d3-ea63008e8591")
-        hotelViewModel.getHotelByIdLivedata.observe(viewLifecycleOwner, {
-
-            val response = it.body()?.data
-            val recyclerviewRoomTypes = it.body()?.data?.roomTypes
-            if (recyclerviewRoomTypes != null) {
-                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(recyclerviewRoomTypes)
-            }
-
-            if (response != null) {
-                hotelGalleryAdapter.addImageToGallery(response.gallery)
-            }
-
-            if (response != null) {
-                stackedReviewAdapter.addReviewerImages(response.reviews)
-                binding.hotelDescHotelNameTv.text = response.name
-                binding.hotelDescLocationTv.text = response.city
-                binding.hotelDescLocationTv3.text = response.state
-                binding.hotelDescExpandableTv.text = response.description
-                binding.hotelDescEmailTv.text = response.email
-                binding.hotelDescPhoneTv.text = response.phone
-                binding.hotelDescRatingBar.rating = response.rating
+        hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
+            it.forEach { mainResponse ->
+                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(mainResponse.roomTypes)
+                hotelGalleryAdapter.addImageToGallery(mainResponse.gallery)
+                stackedReviewAdapter.addReviewerImages(mainResponse.reviews)
+                binding.hotelDescHotelNameTv.text = mainResponse.name
+                binding.hotelDescLocationTv.text = mainResponse.city
+                binding.hotelDescLocationTv3.text = mainResponse.state
+                binding.hotelDescExpandableTv.text = mainResponse.description
+                binding.hotelDescEmailTv.text = mainResponse.email
+                binding.hotelDescPhoneTv.text = mainResponse.phone
+                binding.hotelDescRatingBar.rating = mainResponse.rating
             }
         })
+//        hotelViewModel.getHotelFromDb()
+//        hotelViewModel.getHotelByIdLivedata.observe(viewLifecycleOwner, {
+//
+//            val response = it.body()?.data
+//            val recyclerviewRoomTypes = it.body()?.data?.roomTypes
+//            if (recyclerviewRoomTypes != null) {
+//                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(recyclerviewRoomTypes)
+//            }
+//
+//            if (response != null) {
+//                hotelGalleryAdapter.addImageToGallery(response.gallery)
+//            }
+//
+//            if (response != null) {
+//                stackedReviewAdapter.addReviewerImages(response.reviews)
+//                binding.hotelDescHotelNameTv.text = response.name
+//                binding.hotelDescLocationTv.text = response.city
+//                binding.hotelDescLocationTv3.text = response.state
+//                binding.hotelDescExpandableTv.text = response.description
+//                binding.hotelDescEmailTv.text = response.email
+//                binding.hotelDescPhoneTv.text = response.phone
+//                binding.hotelDescRatingBar.rating = response.rating
+//            }
+//        })
     }
 
     //Method Triggering onClickEvents

@@ -1,9 +1,11 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
@@ -18,8 +20,34 @@ class HotelRepository @Inject constructor(
     private val hotelModuleApiInterface: HotelModuleApiInterface,
     private val hotelByIdDao: HotelByIdDao
     ): HotelRepositoryInterface {
-    override suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel> {
-        return hotelModuleApiInterface.getHotelById(hotelId)
+
+    override suspend fun getHotelByIdFromApi(hotelId: String) {
+        val response = hotelModuleApiInterface.getHotelById(hotelId)
+        val hotelDescription = response.body()?.data
+        val statusCode = response.body()?.statusCode
+        val message = response.body()?.message
+
+        if (response.isSuccessful){
+            if (hotelDescription != null) {
+                saveHotelDescriptionToDb(hotelDescription)
+            }else{
+                Log.d("GKB", "getHotelByIdFromApi: Something went wrong --> hotelDescription is null. Status code = $statusCode. Message = $message")
+            }
+        }else{
+            Log.d("GKB", "getHotelByIdFromApi: Something went wrong --> Response failed. Status code = $statusCode. Message = $message")
+        }
+    }
+
+    override fun getHotelByIdFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
+        return hotelByIdDao.getHotelById()
+    }
+
+    override suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData) {
+        hotelByIdDao.insertHotel(hotel)
+    }
+
+    override suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData) {
+        hotelByIdDao.removeHotel(hotel)
     }
 
     override suspend fun getTopHotels(): Response<GetTopHotelsResponseModel> {

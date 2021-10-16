@@ -1,8 +1,9 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
+import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
@@ -10,11 +11,15 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import retrofit2.Response
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface HotelRepositoryInterface {
-    suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel>
+    suspend fun getHotelByIdFromApi(hotelId: String)
+
+    fun getHotelByIdFromDb(): LiveData<List<GetHotelByIdResponseItemData>>
+
+    suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData)
+
+    suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData)
 
     suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
 
