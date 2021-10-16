@@ -1,25 +1,37 @@
-package com.example.hbapplicationgroupa.viewmodel
+package com.example.hbapplicationgroupa.viewModel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
-import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
 import com.example.hbapplicationgroupa.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepository): ViewModel() {
+class HotelViewModel @Inject constructor(
+    private val hotelRepositoryInterface: HotelRepositoryInterface
+    ): ViewModel() {
+    //----------------Hotel description----------------
+    fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
+    fun getHotelById(hotelId: String) = viewModelScope.launch(Dispatchers.IO) {
+        try {
+            hotelRepositoryInterface.getHotelDescriptionFromApi(hotelId)
+        }catch (e: Exception){
+            Log.d("GKB", "getHotelById: ${e.message}")
+        }
+    }
+
+    //-----------------------------------------------------
     val _topDealsLiveData: MutableLiveData<Resource<GetTopDealsResponseModel>> = MutableLiveData()
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 
@@ -36,7 +48,7 @@ class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepos
 
     fun getTopHotels() {
         viewModelScope.launch {
-            val response = hotelRepository.getTopHotels()
+            val response = hotelRepositoryInterface.getTopHotels()
             if (response.isSuccessful) {
                 _topHotels.postValue(response.body()?.data)
             }
@@ -45,14 +57,12 @@ class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepos
 
     fun getTopDeals() {
         viewModelScope.launch {
-            val response = hotelRepository.getTopDeals()
+            val response = hotelRepositoryInterface.getTopDeals()
             if (response.isSuccessful) {
                 _topDeals.postValue(response.body()?.data)
             }
         }
     }
-
-
 
     //the amount of info coming in at a time
     init {
@@ -61,10 +71,9 @@ class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepos
 
     fun getTopDealss(pageSize: Int) = viewModelScope.launch {
         _topDealsLiveData.postValue(Resource.Loading())
-        val response = hotelRepository.getTopDealss(pageSize, pageNumber)
+        val response = hotelRepositoryInterface.getTopDealss(pageSize, pageNumber)
         _topDealsLiveData.postValue(handleTopDealssResponse(response))
     }
-
 
     private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resource<GetTopDealsResponseModel> {
         if (response.isSuccessful){
@@ -81,8 +90,5 @@ class HotelViewModel @Inject constructor(private val hotelRepository: HotelRepos
             }
         }
         return Resource.Error(response.message())
-
     }
-
-
 }

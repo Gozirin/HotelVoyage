@@ -15,7 +15,7 @@ import com.example.hbapplicationgroupa.Validations.RegistrationPageValidation
 import com.example.hbapplicationgroupa.connectivity.ConnectivityLiveData
 import com.example.hbapplicationgroupa.databinding.FragmentRegisterBinding
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
-import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

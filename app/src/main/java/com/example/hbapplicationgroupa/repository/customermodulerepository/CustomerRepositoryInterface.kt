@@ -12,25 +12,22 @@ interface CustomerRepositoryInterface {
 //    suspend fun addCustomerBookingByHotelId()
 
     suspend fun getCustomerBookingsByUserId(
-        @Path("userId") userId: String,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int
+        userId: String,
+        pageNumber: Int,
+        pageSize: Int
     ): Response<BookingByUserIdResponseModel>
 
-    suspend fun addCustomerrReviewByHotelId(
-        @Path("hotelId")
-        hotelId: String
-    ): Response<ReviewByHotelIdResponseModel>
+    suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel>
 
     suspend fun addCustomerRatingsByHotelId(
-        @Path("rating") rating: Int,
-        @Path("hotelId") hotelId: String
+        rating: Int,
+        hotelId: String
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(
-        @Path("userId") userId: String,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int
+        userId: String,
+        pageNumber: Int,
+        pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
 
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>

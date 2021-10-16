@@ -2,30 +2,18 @@ package com.example.hbapplicationgroupa.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import android.widget.EditText
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.R
-import androidx.room.RoomOpenHelper
 import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
-import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
-import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
-import com.google.android.material.textfield.TextInputEditText
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.ObjectInputValidation
-import java.util.regex.Pattern
-import javax.xml.validation.ValidatorHandler
 
 @AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {

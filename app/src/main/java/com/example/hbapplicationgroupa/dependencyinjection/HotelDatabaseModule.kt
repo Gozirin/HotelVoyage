@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupa.dependencyinjection
 import android.app.Application
 import android.content.Context
 import com.example.hbapplicationgroupa.database.HotelDatabase
+import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserPhotoByIdDao
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
@@ -32,6 +33,12 @@ class HotelDatabaseModule {
     @Provides
     fun provideWishlistByPageNumberDao(hotelDatabase: HotelDatabase): WishlistByPageNumberDao {
         return hotelDatabase.getWishlistByPageNumberDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideHotelByIdDao(hotelDatabase: HotelDatabase): HotelByIdDao {
+        return hotelDatabase.getHotelByIdDao()
     }
 
     @Singleton
