@@ -12,17 +12,20 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDeals
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import retrofit2.Response
 
+/*
+HotelRepositoryInterface holds functions that manipulates data between the local database and the remote database
+ */
+
 interface HotelRepositoryInterface {
-    suspend fun getHotelByIdFromApi(hotelId: String)
-
-    fun getHotelByIdFromDb(): LiveData<List<GetHotelByIdResponseItemData>>
-
+    //-----------------Hotel description-----------------
+    suspend fun getHotelDescriptionFromApi(hotelId: String)
+    fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>>
     suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData)
-
     suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData)
 
-    suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
+    //--------------------------------------------------------------------
 
+    suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
     suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
     suspend fun getTopDealss(pageSize: Int, pageNumber: Int):Response<GetTopDealsResponseModel>

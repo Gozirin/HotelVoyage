@@ -25,9 +25,11 @@ class HotelByIdDaoTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    //Declare the database and dao to be initialized later during the test
     private lateinit var hotelDatabase: HotelDatabase
     private lateinit var hotelByIdDao: HotelByIdDao
 
+    //Create an instance of database each time a test runs and set up the database with the associated dao
     @Before
     fun setUp(){
         hotelDatabase = Room.inMemoryDatabaseBuilder(
@@ -38,6 +40,7 @@ class HotelByIdDaoTest {
         hotelByIdDao = hotelDatabase.getHotelByIdDao()
     }
 
+    //Close the database after each test
     @After
     fun tearDownDb(){
         hotelDatabase.close()
@@ -45,6 +48,7 @@ class HotelByIdDaoTest {
 
     @Test
     fun addHotel() = runBlocking {
+        //Mock data to be put into the database
         val gallery = arrayListOf("link one", "link two")
         val roomTypes1 = GetHotelByIdResponseItemRoomTypes("one", "Single", "A single room", 600.0f, 466.44f, "thumbnails")
         val reviews1 = GetHotelByIdResponseItemReviews("Great hotel", "image uri", "15-10-21")
@@ -55,10 +59,13 @@ class HotelByIdDaoTest {
             "12 Edo street", "Benin", "Edo", 5.0f, "imageLink", gallery, roomTypes, reviews
         )
 
+        //Insert the mocked data into the database
         hotelByIdDao.insertHotel(hotel)
 
+        //Get all data in the database asynchronously
         val allHotels = hotelByIdDao.getHotelById().getOrAwaitValue()
 
+        //Check if the mocked data is present in the database
         assertThat(allHotels).contains(hotel)
     }
 }

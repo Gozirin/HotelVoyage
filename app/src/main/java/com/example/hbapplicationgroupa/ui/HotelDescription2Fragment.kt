@@ -29,19 +29,14 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 @AndroidEntryPoint
 class HotelDescription2Fragment : Fragment() {
-    //Set up view binding here
+    //Initialize variables
     private var _binding: FragmentHotelDescription2Binding? = null
     private val binding get() = _binding!!
-    //late-initializing variables
     private lateinit var hotelRoomServiceRecyclerViewAdapter: HotelRoomServiceRecyclerViewAdapter
-    lateinit var hotelRoomList: ArrayList<GetHotelByIdResponseItemRoomTypes>
     lateinit var stackedReviewAdapter: StackedReviewAdapter
-    lateinit var stackedImageList: ArrayList<StackedReviewModel>
     lateinit var stackedReviewLayoutManager: LinearLayoutManager
     lateinit var stackedReviewDecorator: StackedReviewItemDecorator
     lateinit var hotelGalleryAdapter: HotelGalleryAdapter
-//    lateinit var galleryList: ArrayList<HotelGalleryModel>
-
     private val hotelViewModel: HotelViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -51,68 +46,39 @@ class HotelDescription2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Setting fake list to HotelRoomServiceRecyclerView Adapter
-//        hotelRoomList = HotelRoomServiceModel.roomDataList
         hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter()
 
         //Setting fake list to StackedReview Adapter
         stackedReviewAdapter = StackedReviewAdapter()
-//        stackedImageList = StackedReviewModel.imgList
-//        stackedReviewAdapter.stackedImageList = stackedImageList
 
         //Setting fake list to HotelGallery Adapter
         hotelGalleryAdapter = HotelGalleryAdapter()
-//        galleryList = HotelGalleryModel.galleryList
-//        hotelGalleryAdapter.galleryList = galleryList
 
         viewClickListeners()
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
         initHotelGalleryViewPager()
-        populateUiWithApiResponse()
+        populateUiWithResponseFromDb()
         onBackPressed()
     }
 
-    private fun populateUiWithApiResponse(){
+    //Observe data ain the database and populate the UI with the data
+    private fun populateUiWithResponseFromDb(){
         hotelViewModel.getHotelById("0dfb4f63-3caf-417e-b7d3-ea63008e8591")
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
-            it.forEach { mainResponse ->
-                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(mainResponse.roomTypes)
-                hotelGalleryAdapter.addImageToGallery(mainResponse.gallery)
-                stackedReviewAdapter.addReviewerImages(mainResponse.reviews)
-                binding.hotelDescHotelNameTv.text = mainResponse.name
-                binding.hotelDescLocationTv.text = mainResponse.city
-                binding.hotelDescLocationTv3.text = mainResponse.state
-                binding.hotelDescExpandableTv.text = mainResponse.description
-                binding.hotelDescEmailTv.text = mainResponse.email
-                binding.hotelDescPhoneTv.text = mainResponse.phone
-                binding.hotelDescRatingBar.rating = mainResponse.rating
+            it.forEach { response ->
+                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(response.roomTypes)
+                hotelGalleryAdapter.addImageToGallery(response.gallery)
+                stackedReviewAdapter.addReviewerImages(response.reviews)
+                binding.hotelDescHotelNameTv.text = response.name
+                binding.hotelDescLocationTv.text = response.city
+                binding.hotelDescLocationTv3.text = response.state
+                binding.hotelDescExpandableTv.text = response.description
+                binding.hotelDescEmailTv.text = response.email
+                binding.hotelDescPhoneTv.text = response.phone
+                binding.hotelDescRatingBar.rating = response.rating
             }
         })
-//        hotelViewModel.getHotelFromDb()
-//        hotelViewModel.getHotelByIdLivedata.observe(viewLifecycleOwner, {
-//
-//            val response = it.body()?.data
-//            val recyclerviewRoomTypes = it.body()?.data?.roomTypes
-//            if (recyclerviewRoomTypes != null) {
-//                hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(recyclerviewRoomTypes)
-//            }
-//
-//            if (response != null) {
-//                hotelGalleryAdapter.addImageToGallery(response.gallery)
-//            }
-//
-//            if (response != null) {
-//                stackedReviewAdapter.addReviewerImages(response.reviews)
-//                binding.hotelDescHotelNameTv.text = response.name
-//                binding.hotelDescLocationTv.text = response.city
-//                binding.hotelDescLocationTv3.text = response.state
-//                binding.hotelDescExpandableTv.text = response.description
-//                binding.hotelDescEmailTv.text = response.email
-//                binding.hotelDescPhoneTv.text = response.phone
-//                binding.hotelDescRatingBar.rating = response.rating
-//            }
-//        })
     }
 
     //Method Triggering onClickEvents

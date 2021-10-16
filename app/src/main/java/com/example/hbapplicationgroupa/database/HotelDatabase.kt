@@ -12,6 +12,14 @@ import com.example.hbapplicationgroupa.model.typeconverter.TypeConverter
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.UpdateUserPhotoByUserIdResponseItem
 
+/*
+Tables containing data are stored in the database as entities.
+Data access objects(DAO) are interfaces that contain functions that tell the application how to manipulate data in the database
+If no instance of the database has been created, a new instance is created.
+This new instance runs in a background thread.
+However, if there is an instance of the database, no new instance is created as that same instance is used.
+ */
+
 //TODO: Add past bookings (entity)
 @Database(entities = [
     GetHotelByIdResponseItemData::class,
@@ -44,20 +52,4 @@ abstract class HotelDatabase: RoomDatabase() {
             "hotelDb"
         ).build()
     }
-
-    /*
-    Below is a different way of instantiating our database
-     */
-    //    companion object {
-//        private var dbInstance: HotelDatabase? = null
-//
-//        fun getDbInstance(context: Context): HotelDatabase{
-//            if (dbInstance == null){
-//                dbInstance = Room.databaseBuilder(context.applicationContext, HotelDatabase::class.java, "hotelDb")
-//                    .build()
-//            }
-//
-//            return dbInstance!!
-//        }
-//    }
 }

@@ -19,7 +19,7 @@ class HotelGalleryAdapter : RecyclerView.Adapter<HotelGalleryAdapter.GalleryView
     class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val galleryImage: ImageView = view.findViewById(R.id.hotel_gallery_iv)
 
-        //Method hotel_desc_viewPager data with HotelGalleryModel data
+        //Bind image fetched from the server to views
         fun bindGalleryImage(image: String){
             Glide.with(itemView)
                 .load(image)
@@ -28,6 +28,7 @@ class HotelGalleryAdapter : RecyclerView.Adapter<HotelGalleryAdapter.GalleryView
         }
     }
 
+    //Add images to the adapter's list
     @SuppressLint("NotifyDataSetChanged")
     fun addImageToGallery(image: ArrayList<String>){
         galleryList.clear()

@@ -16,12 +16,20 @@ import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
 
+/*
+HotelRepository is provided with hotelModuleApiInterface to communicate with remote data source
+and DAOs to communicate with the local room database for data manipulation on the UI
+ */
+
 class HotelRepository @Inject constructor(
     private val hotelModuleApiInterface: HotelModuleApiInterface,
     private val hotelByIdDao: HotelByIdDao
     ): HotelRepositoryInterface {
 
-    override suspend fun getHotelByIdFromApi(hotelId: String) {
+    //-----------------Hotel description-----------------
+    //getHotelDescriptionFromApi() makes a request to fetch an hotel's description.
+    //If the request is successful, the fetched hotel description is added to the database.
+    override suspend fun getHotelDescriptionFromApi(hotelId: String) {
         val response = hotelModuleApiInterface.getHotelById(hotelId)
         val hotelDescription = response.body()?.data
         val statusCode = response.body()?.statusCode
@@ -31,14 +39,14 @@ class HotelRepository @Inject constructor(
             if (hotelDescription != null) {
                 saveHotelDescriptionToDb(hotelDescription)
             }else{
-                Log.d("GKB", "getHotelByIdFromApi: Something went wrong --> hotelDescription is null. Status code = $statusCode. Message = $message")
+                Log.d("GKB", "getHotelByIdFromApi: hotelDescription is null. Status code = $statusCode. Message = $message")
             }
         }else{
-            Log.d("GKB", "getHotelByIdFromApi: Something went wrong --> Response failed. Status code = $statusCode. Message = $message")
+            Log.d("GKB", "getHotelByIdFromApi: Response failed. Status code = $statusCode. Message = $message")
         }
     }
 
-    override fun getHotelByIdFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
+    override fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
         return hotelByIdDao.getHotelById()
     }
 
@@ -49,6 +57,8 @@ class HotelRepository @Inject constructor(
     override suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData) {
         hotelByIdDao.removeHotel(hotel)
     }
+
+    //-----------------------------------------------------------
 
     override suspend fun getTopHotels(): Response<GetTopHotelsResponseModel> {
         return hotelModuleApiInterface.getTopHotels()
