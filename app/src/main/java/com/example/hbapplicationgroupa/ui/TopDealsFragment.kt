@@ -64,31 +64,31 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
 ////            Toast.makeText(requireContext(), "${topDealAdapter.topDealList}", Toast.LENGTH_SHORT).show()
 //        } )
 
-
-        viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
-            when (response){
-                is Resource.Success ->{
-                    hideProgressBar()
-                    response.data?.let { newsResponse ->
-                        topDealAdapter.topDealList = newsResponse.data.toList()
-                        topDealAdapter.notifyDataSetChanged()
-                        val totalPages = 6000 / QUERY_PAGE_SIZE + 2
-                        isLastPage = viewModel.pageNumber == totalPages
-                    }
-
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let { message ->
-                        Log.e("TAG", "An error occured: $message")
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-
-        })
+//
+//        viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
+//            when (response){
+//                is Resource.Success ->{
+//                    hideProgressBar()
+//                    response.data?.let { newsResponse ->
+//                        topDealAdapter.topDealList = newsResponse.data.toList()
+//                        topDealAdapter.notifyDataSetChanged()
+//                        val totalPages = 6000 / QUERY_PAGE_SIZE + 2
+//                        isLastPage = viewModel.pageNumber == totalPages
+//                    }
+//
+//                }
+//                is Resource.Error -> {
+//                    hideProgressBar()
+//                    response.message?.let { message ->
+//                        Log.e("TAG", "An error occured: $message")
+//                    }
+//                }
+//                is Resource.Loading -> {
+//                    showProgressBar()
+//                }
+//            }
+//
+//        })
 
         binding.topDealBackBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -132,12 +132,12 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
             val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
-            if(shouldPaginate) {
-                viewModel.getTopDealss(10)
-                isScrolling = false
-            } else {
-                binding.topDealRecyclerview.setPadding(0, 0, 0, 0)
-            }
+//            if(shouldPaginate) {
+//                viewModel.getTopDealss(10)
+//                isScrolling = false
+//            } else {
+//                binding.topDealRecyclerview.setPadding(0, 0, 0, 0)
+//            }
         }
     }
 

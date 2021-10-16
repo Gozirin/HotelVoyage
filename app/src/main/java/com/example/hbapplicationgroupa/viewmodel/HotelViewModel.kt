@@ -50,7 +50,7 @@ class HotelViewModel @Inject constructor(
             try {
                     val response = hotelRepositoryInterface.getTopDeals()
                     if (response.isSuccessful) {
-                        topDeals.postValue(Resource.success(response.body()?.data))
+                        topDeals.postValue(Resource.success(response.body()?.data) as Resource<ArrayList<GetTopDealsResponseItem>>?)
                     }
             } catch (e: Exception) {
                 topHotels.postValue(Resource.error("Network Error", null))
