@@ -6,6 +6,7 @@ import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
 import com.example.hbapplicationgroupa.network.UserModuleApiInterface
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
+import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepository
 import com.example.hbapplicationgroupa.repository.usermodulerepository.UserRepository
@@ -24,6 +25,10 @@ class RepositoryModule {
     fun provideAuthRepository(authModuleApiInterface: AuthModuleApiInterface): AuthRepository{
         return AuthRepository(authModuleApiInterface)
     }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepoInterface(authModuleApiInterface: AuthModuleApiInterface): AuthRepositoryInterface = AuthRepository(authModuleApiInterface)
 
     @Singleton
     @Provides

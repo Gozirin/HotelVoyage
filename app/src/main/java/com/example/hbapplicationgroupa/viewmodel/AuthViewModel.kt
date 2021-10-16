@@ -8,21 +8,20 @@ import androidx.lifecycle.viewModelScope
 
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
-import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
+import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+class AuthViewModel @Inject constructor(private val authRepository: AuthRepositoryInterface): ViewModel() {
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
 
     //Login authentication LiveData
