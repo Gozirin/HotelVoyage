@@ -55,8 +55,6 @@ class RetrofitModule {
     fun provideUserModuleApi(): UserModuleApiInterface {
         return provideRetrofitInstance().create(UserModuleApiInterface::class.java)
     }
-
-
 }
 
 

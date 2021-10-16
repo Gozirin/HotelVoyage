@@ -15,6 +15,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
+import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.utils.Status

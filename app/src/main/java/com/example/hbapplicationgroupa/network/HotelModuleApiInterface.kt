@@ -15,7 +15,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HotelModuleApiInterface {
-    @GET("api/Hotel/{hotelid}")
+    @GET("api/Hotel/{hotelId}")
     suspend fun getHotelById(
         @Path("hotelId") hotelId: String
     ): Response<GetHotelByIdResponseModel>

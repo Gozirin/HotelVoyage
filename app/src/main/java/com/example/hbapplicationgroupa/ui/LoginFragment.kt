@@ -1,7 +1,5 @@
 package com.example.hbapplicationgroupa.ui
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,7 +17,7 @@ import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.utils.LoginValidations.enable
-import com.example.hbapplicationgroupa.viewmodel.AuthViewModel
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

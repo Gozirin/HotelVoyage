@@ -100,11 +100,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="Marathalli, Bangalore"
+                android:text="Marathalli"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_hotelName_tv" />
+
+            <TextView
+                android:id="@+id/hotel_desc_location_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=","
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@+id/hotel_desc_location_tv"
+                app:layout_constraintStart_toEndOf="@+id/hotel_desc_location_tv"/>
+
+            <TextView
+                android:id="@+id/hotel_desc_location_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Bangalore"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/hotel_desc_location_tv2"
+                app:layout_constraintTop_toTopOf="@+id/hotel_desc_location_tv2" />
 
             <TextView
                 android:id="@+id/hotel_desc_showInMap_link_tv"
@@ -115,7 +136,7 @@
                 android:focusable="true"
                 android:text="- Show in Map"
                 app:layout_constraintBottom_toBottomOf="@id/hotel_desc_location_tv"
-                app:layout_constraintStart_toEndOf="@id/hotel_desc_location_tv"
+                app:layout_constraintStart_toEndOf="@id/hotel_desc_location_tv3"
                 app:layout_constraintTop_toTopOf="@id/hotel_desc_location_tv" />
 
             <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -418,7 +439,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:rating="4.5"
+                android:rating="2"
                 android:stepSize="0.5"
                 android:isIndicator="true"
                 android:progressTint="@color/c_red"
