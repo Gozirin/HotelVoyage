@@ -22,7 +22,7 @@ import retrofit2.http.*
  * @PATCH modifies while @PUT replaces.
  */
 interface AuthModuleApiInterface {
-    @POST("api/v1/Authentication/add-user")
+    @POST("api/Authentication/register")
     suspend fun addUser(
         @Body
         addUserModel: AddUserModel

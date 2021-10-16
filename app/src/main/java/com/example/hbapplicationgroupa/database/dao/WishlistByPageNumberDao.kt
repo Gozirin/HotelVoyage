@@ -10,8 +10,8 @@ interface WishlistByPageNumberDao {
     fun getWishlistByPageNumber(): LiveData<List<WishlistByPageNumberResponseItems>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertWishlist(wishlist: WishlistByPageNumberResponseItems)
+    suspend fun insertWishlist(wishlist: WishlistByPageNumberResponseItems)
 
     @Delete
-    fun removeWishlist(wishlist: WishlistByPageNumberResponseItems)
+    suspend fun removeWishlist(wishlist: WishlistByPageNumberResponseItems)
 }

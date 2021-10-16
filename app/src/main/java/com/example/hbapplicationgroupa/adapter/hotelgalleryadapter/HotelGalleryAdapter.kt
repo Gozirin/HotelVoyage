@@ -1,25 +1,39 @@
 package com.example.hbapplicationgroupa.adapter.hotelgalleryadapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.model.adaptermodels.HotelGalleryModel
 
 /**
  * This is the Adapter for hotel_desc_viewPager
  */
 class HotelGalleryAdapter : RecyclerView.Adapter<HotelGalleryAdapter.GalleryViewHolder>() {
-    var galleryList: ArrayList<HotelGalleryModel> = arrayListOf()
+    private var galleryList: ArrayList<String> = arrayListOf()
+
     class GalleryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val galleryImage: ImageView = view.findViewById(R.id.hotel_gallery_iv)
 
-        //Method hotel_desc_viewPager data with HotelGalleryModel data
-        fun bindGalleryImage(image: HotelGalleryModel){
-            galleryImage.setImageResource(image.galleryImage)
+        //Bind image fetched from the server to views
+        fun bindGalleryImage(image: String){
+            Glide.with(itemView)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(galleryImage)
         }
+    }
+
+    //Add images to the adapter's list
+    @SuppressLint("NotifyDataSetChanged")
+    fun addImageToGallery(image: ArrayList<String>){
+        galleryList.clear()
+        galleryList.addAll(image)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryViewHolder {

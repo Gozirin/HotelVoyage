@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.viewmodel
+package com.example.hbapplicationgroupa.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import androidx.lifecycle.viewModelScope
+import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
+import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -23,11 +25,24 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+    private val _addUserResponse: MutableLiveData<Response<AddUserResponseModel>> = MutableLiveData()
+    val addUserResponse: LiveData<Response<AddUserResponseModel>> = _addUserResponse
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
 
     //Login authentication LiveData
     private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
     val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
+
+    fun addUser(userInfo : AddUserModel){
+        viewModelScope.launch{
+            try{
+                val response = authRepository.addUser(userInfo)
+                _addUserResponse.value = response
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 
     //Method to make login network call
      fun login(email: String, password: String){

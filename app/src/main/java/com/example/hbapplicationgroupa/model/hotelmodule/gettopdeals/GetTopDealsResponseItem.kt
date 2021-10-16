@@ -1,11 +1,11 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals
 
 data class GetTopDealsResponseItem(
-    val id: String,
+    val hotelId: String,
     val name: String,
     val description: String,
-    val email: String,
-    val address: String,
-    val city: String,
-    val state: String
+    val price: Double,
+    val discount: Double,
+    val thumbnail: String,
+    val hotelName: String
 )
