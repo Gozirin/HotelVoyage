@@ -293,16 +293,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:padding="1dp"
-            android:background="@drawable/edit_text_layout"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
+            android:padding="15dp"
+            android:paddingEnd="40dp"
+            android:textStyle="bold"
+            android:background="@drawable/reg_field"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
             android:entries="@array/gender"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="602dp">
+            tools:layout_editor_absoluteY="602dp"
+            tools:ignore="RtlSymmetry">
 
         </Spinner>
 
