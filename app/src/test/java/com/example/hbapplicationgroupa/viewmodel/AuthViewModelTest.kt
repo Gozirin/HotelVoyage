@@ -11,6 +11,7 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserRespo
 import com.example.hbapplicationgroupa.repository.FakeAuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.ResponseBody
