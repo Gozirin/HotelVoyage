@@ -6,16 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.databinding.FragmentEmailComfirmationBinding
 
 class EmailConfirmation : Fragment() {
 
-
+    private var _binding: FragmentEmailComfirmationBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_email_comfirmation, container, false)
+        _binding = FragmentEmailComfirmationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }
