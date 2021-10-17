@@ -1,8 +1,11 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
@@ -13,10 +16,53 @@ import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
 
-class HotelRepository @Inject constructor(private val hotelModuleApiInterface: HotelModuleApiInterface): HotelRepositoryInterface {
-    override suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel> {
-        return hotelModuleApiInterface.getHotelById(hotelId)
+/*
+HotelRepository is provided with hotelModuleApiInterface to communicate with remote data source
+and DAOs to communicate with the local room database for data manipulation on the UI
+ */
+
+class HotelRepository @Inject constructor(
+    private val hotelModuleApiInterface: HotelModuleApiInterface,
+    private val hotelByIdDao: HotelByIdDao
+    ): HotelRepositoryInterface {
+
+    //-----------------Hotel description-----------------
+    //getHotelDescriptionFromApi() makes a request to fetch an hotel's description.
+    //If the request is successful, the fetched hotel description is added to the database.
+    override suspend fun getHotelDescriptionFromApi(hotelId: String) {
+        try {
+            val response = hotelModuleApiInterface.getHotelById(hotelId)
+            val hotelDescription = response.body()?.data
+            val statusCode = response.body()?.statusCode
+            val message = response.body()?.message
+
+            if (response.isSuccessful){
+                if (hotelDescription != null) {
+                    saveHotelDescriptionToDb(hotelDescription)
+                }else{
+                    Log.d("GKB", "getHotelByIdFromApi: hotelDescription is null. Status code = $statusCode. Message = $message")
+                }
+            }else{
+                Log.d("GKB", "getHotelByIdFromApi: Response failed. Status code = $statusCode. Message = $message")
+            }
+        }catch (e: Exception){
+            Log.d("GKB", "getHotelDescriptionFromApi: ${e.message}")
+        }
     }
+
+    override fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
+        return hotelByIdDao.getHotelById()
+    }
+
+    override suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData) {
+        hotelByIdDao.insertHotel(hotel)
+    }
+
+    override suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData) {
+        hotelByIdDao.removeHotel(hotel)
+    }
+
+    //-----------------------------------------------------------
 
     override suspend fun getTopHotels(): Response<GetTopHotelsResponseModel> {
         return hotelModuleApiInterface.getTopHotels()

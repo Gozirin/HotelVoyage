@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.viewmodel
+package com.example.hbapplicationgroupa.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.hbapplicationgroupa.repository.usermodulerepository.UserRepository

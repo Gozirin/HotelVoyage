@@ -1,4 +1,4 @@
-package com.example.hbapplicationgroupa.viewmodel
+package com.example.hbapplicationgroupa.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
