@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavHost
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.R
@@ -14,6 +15,7 @@ import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
 class ResetPasswordFragment : Fragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
+    val args:NavHost by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
@@ -23,6 +25,7 @@ class ResetPasswordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var n = a
         binding.tvResetPasswordLoginText.setOnClickListener {
             findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
         }
