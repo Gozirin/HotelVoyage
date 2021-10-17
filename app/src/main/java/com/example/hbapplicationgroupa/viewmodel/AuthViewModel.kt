@@ -16,15 +16,15 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserRespo
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
+import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+class AuthViewModel @Inject constructor(private val authRepository: AuthRepositoryInterface): ViewModel() {
     private val _addUserResponse: MutableLiveData<Response<AddUserResponseModel>> = MutableLiveData()
     val addUserResponse: LiveData<Response<AddUserResponseModel>> = _addUserResponse
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
@@ -51,7 +51,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch {
             try {
                val response = authRepository.loginUser(loginUserModel)
-                if (response.isSuccessful){
+                if (response !=null && response.isSuccessful){
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
