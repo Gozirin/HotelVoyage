@@ -46,7 +46,7 @@ class AuthViewModelTest{
     }
 
     @Test
-    fun `to test valid response from login function, return succeed true`  (){
+    fun `to test valid response from login function, return 200 statusCode`  (){
         authViewModel.login(loginUserModel.email, loginUserModel.password)
 
         val value = authViewModel.getLoginAuthLiveData.getOrAwaitValueTest()

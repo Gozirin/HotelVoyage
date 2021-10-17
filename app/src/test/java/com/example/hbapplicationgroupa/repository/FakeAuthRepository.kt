@@ -20,6 +20,7 @@ import retrofit2.Response
 class FakeAuthRepository(): AuthRepositoryInterface {
 
     private val data = LoginUserResponse("aaaaaaa", "qqqqqqq")
+    private val loginUserModels = LoginUserModel("abirtley4@ucsd.edu", "Password@123")
 
     private var userData: MutableList<LoginUserModel> = mutableListOf()
 
@@ -44,7 +45,8 @@ class FakeAuthRepository(): AuthRepositoryInterface {
     }
 
     override suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel>? {
-        return if (loginUserModel.password.length >= 8){
+        userData.add(loginUserModel)
+        return if (userData.contains(loginUserModel)){
             loginResponse
         }else{
             loginResponseFalse
