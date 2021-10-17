@@ -70,7 +70,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
 
     //ResetPassword authentication LiveData
-    val resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
+    private val _resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
+    val resetPasswordLiveData: LiveData<Response<ResetPasswordResponseModel>> = _resetPasswordLiveData
 
     //Function to make ResetPassword network call
     fun resetUserPassword(token: String,email: String, newPassword: String, confirmPassword: String){
@@ -78,7 +79,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val response = authRepository.resetPassword(resetPasswordModel)
-                resetPasswordLiveData.postValue(response)
+                _resetPasswordLiveData.postValue(response)
+                Log.d("ResetPassword 2:", response.body().toString())
             }catch (e: Exception){
                 Log.d("MQ", "resetPassword: ${e.message}")
             }
