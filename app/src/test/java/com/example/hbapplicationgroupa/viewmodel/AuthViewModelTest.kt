@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.MainCoroutineRule
+import com.example.hbapplicationgroupa.getOrAwaitValueTest
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
@@ -38,16 +39,18 @@ class AuthViewModelTest{
 
     @Before
     fun setup(){
-        loginUserModel = LoginUserModel("abasstoy14@gmail.com", "Ninjas14$")
+        loginUserModel = LoginUserModel("abirtley4@ucsd.edu", "Password@123")
         authRepository = FakeAuthRepository()
         authViewModel = AuthViewModel(FakeAuthRepository())
+        authRepository.addUser(loginUserModel)
     }
 
-//    @Test
-//    fun `to test valid response from login function, return succeed true`  (){
-//        val res = authViewModel.login(loginUserModel.email, loginUserModel.password)
-//
-//        val response = ResponseBody
-//        assertThat(authViewModel.getLoginAuthLiveData.value).isEqualTo(Response.success(LoginUserResponseModel(data, true, "", 200)))
-//    }
+    @Test
+    fun `to test valid response from login function, return succeed true`  (){
+        authViewModel.login(loginUserModel.email, loginUserModel.password)
+
+        val value = authViewModel.getLoginAuthLiveData.getOrAwaitValueTest()
+
+        assertThat(value?.statusCode).isEqualTo(200)
+    }
 }

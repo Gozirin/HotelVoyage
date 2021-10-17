@@ -14,17 +14,20 @@ import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePas
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 class FakeAuthRepository(): AuthRepositoryInterface {
 
     private val data = LoginUserResponse("aaaaaaa", "qqqqqqq")
 
+    private var userData: MutableList<LoginUserModel> = mutableListOf()
+
     val loginUserResponseModel = LoginUserResponseModel(data, true, "Login successfully", 200)
     private val loginUserResponseModelFalse = LoginUserResponseModel(null, false, "Bad Request", 400)
 
-    val loginResponse : Response<LoginUserResponseModel> = Response.success(loginUserResponseModel)
-    private val loginResponseFalse : Response<LoginUserResponseModel> = Response.success(loginUserResponseModelFalse)
+    val loginResponse : Response<LoginUserResponseModel>? = Response.success(loginUserResponseModel)
+    private val loginResponseFalse : Response<LoginUserResponseModel>? = null
 
     private var shouldReturnNetworkError = false
 
@@ -32,12 +35,16 @@ class FakeAuthRepository(): AuthRepositoryInterface {
         shouldReturnNetworkError = value
     }
 
+    fun addUser(loginUserModel: LoginUserModel){
+        userData.add(loginUserModel)
+    }
+
     override suspend fun addUser(addUserModel: AddUserModel): Response<AddUserResponseModel> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel> {
-        return if (shouldReturnNetworkError){
+    override suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel>? {
+        return if (loginUserModel.password.length >= 8){
             loginResponse
         }else{
             loginResponseFalse

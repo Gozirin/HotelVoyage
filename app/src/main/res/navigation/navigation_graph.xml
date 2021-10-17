@@ -486,4 +486,15 @@
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
+    <fragment
+        android:id="@+id/emailConfirmation"
+        android:name="com.example.hbapplicationgroupa.ui.EmailConfirmation"
+        android:label="fragment_email_comfirmation"
+        tools:layout="@layout/fragment_email_comfirmation" >
+        <action
+            android:id="@+id/action_emailConfirmation_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
 </navigation>
