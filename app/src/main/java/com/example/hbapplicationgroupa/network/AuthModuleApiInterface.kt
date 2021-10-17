@@ -22,7 +22,7 @@ import retrofit2.http.*
  * @PATCH modifies while @PUT replaces.
  */
 interface AuthModuleApiInterface {
-    @POST("api/v1/Authentication/add-user")
+    @POST("api/Authentication/register")
     suspend fun addUser(
         @Body
         addUserModel: AddUserModel
@@ -43,7 +43,7 @@ interface AuthModuleApiInterface {
         @Query ("email") query: String
     ): Response<ForgotPasswordResponseModel>
 
-    @POST("api/v1/Authentication/forgot-password")
+    @PATCH("api/v1/Authentication/reset-password")
     suspend fun resetPassword(
         resetPasswordModel: ResetPasswordModel
     ): Response<ResetPasswordResponseModel>

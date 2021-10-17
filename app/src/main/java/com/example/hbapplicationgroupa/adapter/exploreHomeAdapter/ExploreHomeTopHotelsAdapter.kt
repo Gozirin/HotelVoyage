@@ -3,20 +3,27 @@ package com.example.hbapplicationgroupa.adapter.exploreHomeAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem1Binding
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 
 class ExploreHomeTopHotelsAdapter(
-    var listOfTopHotels : List<Hotel>, private val topHotelClickListener: TopHotelClickListener
-    ) : RecyclerView.Adapter<ExploreHomeTopHotelsAdapter.Recycler1ViewHolder>() {
+    private val topHotelClickListener: TopHotelClickListener
+) : RecyclerView.Adapter<ExploreHomeTopHotelsAdapter.Recycler1ViewHolder>() {
     val binding: ExploreHomeRecyclerviewItem1Binding? = null
 
+    private var listOfTopHotels: MutableList<GetTopHotelsResponseItem> = mutableListOf()
+
     inner class Recycler1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val hotelName = binding?.exploreHomeFragmentRecyclerViewTextviewName1
-        val hotelPrice = binding?.exploreHomeFragmentRecyclerViewTextviewPrice1
-        val hotelImage = binding?.exploreHomeFragmentRecyclerViewImageview1
+        val hotelName: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewName1)
+        val hotelPrice: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewPrice1)
+        val hotelImage: ImageView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewImageview1)
+
     }
 
     interface TopHotelClickListener {
@@ -30,9 +37,12 @@ class ExploreHomeTopHotelsAdapter(
     }
 
     override fun onBindViewHolder(holder: Recycler1ViewHolder, position: Int) {
-        holder.hotelImage?.setImageResource(listOfTopHotels[position].image)
+        Glide.with(holder.itemView)
+            .load(listOfTopHotels[position].thumbnails)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.hotelImage)
         holder.hotelName?.text = listOfTopHotels[position].name
-        holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
+        //  holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
         holder.itemView.setOnClickListener {
             topHotelClickListener.onTopHotelClicked(position)
         }
@@ -40,5 +50,9 @@ class ExploreHomeTopHotelsAdapter(
 
     override fun getItemCount(): Int {
         return listOfTopHotels.size
+    }
+
+    fun setListOfTopHotels(topHotels: List<GetTopHotelsResponseItem>) {
+        listOfTopHotels.addAll(topHotels)
     }
 }

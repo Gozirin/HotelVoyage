@@ -3,21 +3,25 @@ package com.example.hbapplicationgroupa.adapter.exploreHomeAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.databinding.ExploreHomeRecyclerviewItem2Binding
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 
 class ExploreHomeTopDealsAdapter(
-    private var listOfTopDealHotels : List<Hotel>,
     private val topDealsClickListener: TopDealsClickListener
 ): RecyclerView.Adapter<ExploreHomeTopDealsAdapter.MyViewHolder>() {
-    val binding : ExploreHomeRecyclerviewItem2Binding? = null
+
+
+    private var listOfTopDealHotels : MutableList<GetTopDealsResponseItem> = mutableListOf()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val hotelName2 = binding?.exploreHomeFragmentRecyclerViewTextviewName2
-        val hotelPrice2 = binding?.exploreHomeFragmentRecyclerViewTextviewPrice2
-        val hotelImage2 = binding?.exploreHomeFragmentRecyclerViewImageview2
+        val hotelName2: TextView= itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewName2)
+        val hotelPrice2: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewPrice2)
+        val hotelImage2: ImageView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewImageview2)
     }
 
     interface TopDealsClickListener {
@@ -33,13 +37,13 @@ class ExploreHomeTopDealsAdapter(
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: MyViewHolder,
-        position: Int
-    ) {
-        holder.hotelImage2?.setImageResource(listOfTopDealHotels[position].image)
-        holder.hotelName2?.text = listOfTopDealHotels[position].name
-        holder.hotelPrice2?.text = listOfTopDealHotels[position].price.toString()
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Glide.with(holder.itemView)
+            .load(listOfTopDealHotels[position].thumbnail)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.hotelImage2)
+        holder.hotelName2.text = listOfTopDealHotels[position].name
+        holder.hotelPrice2.text = listOfTopDealHotels[position].price.toString()
         holder.itemView.setOnClickListener {
             topDealsClickListener.topDealsClicked(position)
         }
@@ -49,5 +53,7 @@ class ExploreHomeTopDealsAdapter(
         return listOfTopDealHotels.size
     }
 
-
+    fun setListOfTopDeals(topDeals: List<GetTopDealsResponseItem>) {
+        listOfTopDealHotels.addAll(topDeals)
+    }
 }

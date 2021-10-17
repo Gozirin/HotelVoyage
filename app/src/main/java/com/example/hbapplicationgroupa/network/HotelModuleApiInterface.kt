@@ -15,19 +15,25 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface HotelModuleApiInterface {
-    @GET("api/Hotel/{hotelid}")
+    @GET("api/Hotel/{hotelId}")
     suspend fun getHotelById(
         @Path("hotelId") hotelId: String
     ): Response<GetHotelByIdResponseModel>
 
     @GET("api/Hotel/top-hotels")
     suspend fun getTopHotels(
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int,
+        @Query("pageSize") pageSize: Int = 9,
+        @Query("pageNumber") pageNumber: Int = 1,
     ): Response<GetTopHotelsResponseModel>
 
     @GET("api/Hotel/top-deals")
     suspend fun getTopDeals(
+        @Query("pageSize") pageSize: Int = 9 ,
+        @Query("pageNumber") pageNumber: Int = 1
+    ):Response<GetTopDealsResponseModel>
+
+    @GET("api/Hotel/top-deals")
+    suspend fun getTopDealss(
         @Query("pageSize") pageSize: Int,
         @Query("pageNumber") pageNumber: Int
     ):Response<GetTopDealsResponseModel>

@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
  import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentForgotPasswordBinding
 import com.example.hbapplicationgroupa.utils.ValidateEmail
-import com.example.hbapplicationgroupa.viewmodelsss.AuthViewModel
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +21,7 @@ class ForgotPasswordFragment : Fragment () {
     private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
 
-    val viewModel:AuthViewModel by viewModels()
+    val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)

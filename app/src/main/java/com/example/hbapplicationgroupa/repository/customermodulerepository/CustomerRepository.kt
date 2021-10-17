@@ -22,7 +22,7 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.getCustomerBookingsByUserId(userId, pageNumber, pageSize)
     }
 
-    override suspend fun addCustomerrReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel> {
+    override suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel> {
         return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelId)
     }
 
