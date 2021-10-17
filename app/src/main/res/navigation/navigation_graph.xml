@@ -309,6 +309,9 @@
             app:destination="@id/onboarding01Fragment2"
             app:popUpTo="@id/onboarding01Fragment2"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_registerFragment_to_pendingConfirmation"
+            app:destination="@id/pendingConfirmation" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -497,4 +500,9 @@
             app:enterAnim="@anim/slide_in_left"
             app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
+    <fragment
+        android:id="@+id/pendingConfirmation"
+        android:name="com.example.hbapplicationgroupa.ui.PendingConfirmation"
+        android:label="fragment_pending_confirmation"
+        tools:layout="@layout/fragment_pending_confirmation" />
 </navigation>
