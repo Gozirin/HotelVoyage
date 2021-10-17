@@ -2,13 +2,16 @@ package com.example.hbapplicationgroupa.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
@@ -19,23 +22,27 @@ import dagger.hilt.android.AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AuthViewModel
+    private val viewModel: AuthViewModel by viewModels()
+    private val args: ResetPasswordFragmentArgs by navArgs()
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
         _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
    // @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
+       arguments?.let {  }
+       val token = args.token
+       val email = args.email
 
 
         //method to display hint a user on the password to input
@@ -67,15 +74,19 @@ class ResetPasswordFragment : Fragment() {
         binding.btnResetPassword.setOnClickListener {
             val newPassword = binding.tvEmailTextResetPassword.text.toString()
             val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
-            val token = arguments?.getString("token")
-            val email = arguments?.getString("email")
 
             if (validateNotEmptyNewPasswordField(newPassword) && validateNewPassword(newPassword)
               && validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)){
+                  if (token != null && email != null){
+                      resetPassword(token,email, newPassword,confirmPassword)
+                  }else{
+                      Toast.makeText(requireContext(), "Token and email are null", Toast.LENGTH_SHORT).show()
+                  }
 
-                  makeApiCall(token!!,email!!, newPassword,confirmPassword)
             }
             else{
+
+                Toast.makeText(requireContext(), "validation error", Toast.LENGTH_LONG).show()
 
               if (validateNotEmptyNewPasswordField(newPassword) && !validateNewPassword(newPassword)){
 
@@ -99,7 +110,7 @@ class ResetPasswordFragment : Fragment() {
             }
 
         }
-          binding
+       observeResetPasswordLiveData()
 
 
       onBackPressed()
@@ -116,17 +127,20 @@ class ResetPasswordFragment : Fragment() {
 
     }
 
+    fun resetPassword(token: String,  email: String, newPassword: String, confirmPassword: String){
+        viewModel.resetUserPassword(token,email, newPassword, confirmPassword)
+    }
 
 //    // making Api call to reset user's password
-    fun makeApiCall( token: String,  email: String, newPassword: String, confirmPassword: String){
+    fun observeResetPasswordLiveData(){
         viewModel.resetPasswordLiveData.observe(requireActivity(),{
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
+                Log.d("ResetPassword 1:", it.body().toString())
                 findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
             }
         })
-        viewModel.resetUserPassword(token,email, newPassword, confirmPassword)
     }
 
 
