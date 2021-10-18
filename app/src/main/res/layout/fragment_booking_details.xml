@@ -118,6 +118,7 @@
             android:id="@+id/check_in_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:longClickable="false"
             android:focusable="false"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -140,6 +141,7 @@
             android:id="@+id/check_out_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:longClickable="false"
             android:focusable="false"
             android:inputType="date" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -162,6 +164,7 @@
             android:id="@+id/people_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:longClickable="false"
             android:focusable="false"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -184,6 +187,7 @@
             android:id="@+id/rooms_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:longClickable="false"
             android:focusable="false"
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
