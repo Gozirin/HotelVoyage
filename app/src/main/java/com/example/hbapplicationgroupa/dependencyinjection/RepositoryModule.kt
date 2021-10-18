@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
 import com.example.hbapplicationgroupa.network.UserModuleApiInterface
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
+import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
@@ -31,6 +32,11 @@ class RepositoryModule {
 
     @Singleton
     @Provides
+    fun provideAuthRepoInterface(authModuleApiInterface: AuthModuleApiInterface): AuthRepositoryInterface =
+        AuthRepository(authModuleApiInterface)
+
+    @Singleton
+    @Provides
     fun provideCustomerRepository(
         customerModuleApiInterface: CustomerModuleApiInterface,
         wishlistByPageNumberDao: WishlistByPageNumberDao
@@ -44,20 +50,24 @@ class RepositoryModule {
 //        return HotelRepository(hotelModuleApiInterface)
 //    }
 
-    @Singleton
-    @Provides
-    fun provideHotelRepository(hotelModuleApiInterface: HotelModuleApiInterface): HotelRepositoryInterface {
-        return HotelRepository(hotelModuleApiInterface)
-    fun provideHotelRepositoryInterface(
-        hotelModuleApiInterface: HotelModuleApiInterface,
-        hotelByIdDao: HotelByIdDao
-    ): HotelRepositoryInterface{
-        return HotelRepository(hotelModuleApiInterface, hotelByIdDao)
-    }
+//    @Singleton
+//    @Provides
+//    fun provideHotelRepository(hotelModuleApiInterface: HotelModuleApiInterface, hotelByIdDao: HotelByIdDao): HotelRepositoryInterface {
+//        return HotelRepository(hotelModuleApiInterface, hotelByIdDao)
+//    }
 
     @Singleton
     @Provides
-    fun provideUserRepository(userModuleApiInterface: UserModuleApiInterface): UserRepository {
-        return UserRepository(userModuleApiInterface)
+        fun provideHotelRepositoryInterface(
+            hotelModuleApiInterface: HotelModuleApiInterface,
+            hotelByIdDao: HotelByIdDao
+        ): HotelRepositoryInterface {
+            return HotelRepository(hotelModuleApiInterface, hotelByIdDao)
+        }
+
+        @Singleton
+        @Provides
+        fun provideUserRepository(userModuleApiInterface: UserModuleApiInterface): UserRepository {
+            return UserRepository(userModuleApiInterface)
+        }
     }
-}

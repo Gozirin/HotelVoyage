@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.Ge
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+import com.example.hbapplicationgroupa.utils.Resource
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

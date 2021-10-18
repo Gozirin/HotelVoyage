@@ -52,15 +52,15 @@ class TopDealAdapter(
     override fun onBindViewHolder(holder: TopDealViewHolder, position: Int) {
         holder.nameOfDeal?.text = topDealList[position].name
         holder.priceOfDeal?.text = "$${topDealList[position].price}"
-//        holder.classOfDeal?.text = topDealList[position].description
-//        holder.ratingOfDeal?.text = "${topDealList[position].discount}% OFF"
-//        holder.imageOfDeal?.let {
-//            Glide.with(it.context)
-//                .load(topDealList[position].thumbnail)
-////                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-//                .placeholder(R.mipmap.ic_launcher)
-//                .into(holder.imageOfDeal)
-//        };
+        holder.classOfDeal?.text = topDealList[position].description
+        holder.ratingOfDeal?.text = "${topDealList[position].discount}% OFF"
+        holder.imageOfDeal?.let {
+            Glide.with(it.context)
+                .load(topDealList[position].thumbnail)
+//                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.imageOfDeal)
+        };
 
         holder.topDealView.setOnClickListener {
             topDealItemClickListener.topHotelsItemClicked(position)

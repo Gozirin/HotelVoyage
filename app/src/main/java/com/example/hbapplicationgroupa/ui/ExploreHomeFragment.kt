@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.utils.Status
-import com.example.hbapplicationgroupa.viewmodel.HotelViewModel
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -110,21 +111,24 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top hotels
     private fun getTopHotels(): HotelViewModel {
+        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
         hotelViewModel.getTopHotels().observe( viewLifecycleOwner, {
-            when (it.status) {
-                Status.SUCCESS -> {
+            when (it.statusCode) {
+                200 -> {
                     binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-                    it.data?.let { topHotels -> renderTopHotelsList(topHotels) }
+                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
                     binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
+                    Log.d("ExploreHome 2: ", it.toString())
                 }
-                Status.LOADING -> {
-                    binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
-                    binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
-                }
-                Status.ERROR -> {
+//                40 -> {
+//                    binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+//                }
+                400 -> {
                     //handle error
                     binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
                 }
             }
         })
@@ -139,18 +143,21 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top deals
     private fun getTopDeals(): HotelViewModel {
+        binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
         hotelViewModel.getTopDeals().observe(viewLifecycleOwner, {
-            when (it.status) {
-                Status.SUCCESS -> {
+            when (it.statusCode) {
+                200 -> {
                     binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
                     it.data?.let { topDeals -> renderTopDealsList(topDeals) }
                     binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
+                    Log.d("ExploreHome 1: ", it.toString())
                 }
-                Status.LOADING -> {
-                    binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
-                    binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
-                }
-                Status.ERROR -> {
+//                Status.LOADING -> {
+//                    binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+//                    binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+//                }
+                400 -> {
                     binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }

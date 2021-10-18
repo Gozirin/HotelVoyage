@@ -16,6 +16,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
+import com.example.hbapplicationgroupa.utils.Resources
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +49,7 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
 
         viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
             when (response){
-                is Resource.Success ->{
+                is Resources.Success ->{
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         topDealAdapter.topDealList = newsResponse.data.toList()
@@ -58,13 +59,13 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
                     }
 
                 }
-                is Resource.Error -> {
+                is Resources.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.e("TAG", "An error occured: $message")
                     }
                 }
-                is Resource.Loading -> {
+                is Resources.Loading -> {
                     showProgressBar()
                 }
             }
