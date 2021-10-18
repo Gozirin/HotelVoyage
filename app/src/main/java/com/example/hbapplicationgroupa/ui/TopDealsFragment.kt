@@ -16,7 +16,6 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
-import com.example.hbapplicationgroupa.utils.Resource
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
