@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.View
@@ -108,6 +109,8 @@ class BookingDetailsFragment : Fragment() {
         val today = CivilCalendar(TimeZone.getDefault(), Locale.getDefault())
         val datePicker = PrimeDatePicker.bottomSheetWith(today)
             .pickRangeDays { startDay, endDay ->
+                binding.checkInEditText.setText("${startDay.date} ${startDay.monthName}, ${startDay.year}")
+                binding.checkOutEditText.setText("${endDay.date} ${endDay.monthName}, ${endDay.year}")
 
             }.applyTheme(themeFactory).build()
 
