@@ -333,10 +333,6 @@
             app:destination="@id/exploreHomeFragment"
             app:popUpTo="@id/exploreHomeFragment"
             app:popUpToInclusive="true" />
-        <deepLink
-            android:id="@+id/deepLink2"
-            app:action="ACTION_VIEW"
-            app:uri="http://www.example.com/confirm-email/{token}/{email}" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -497,12 +493,16 @@
         android:id="@+id/emailConfirmation"
         android:name="com.example.hbapplicationgroupa.ui.EmailConfirmation"
         android:label="fragment_email_comfirmation"
-        tools:layout="@layout/fragment_email_comfirmation" >
+        tools:layout="@layout/fragment_email_comfirmation">
         <action
             android:id="@+id/action_emailConfirmation_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_left"
             app:popEnterAnim="@anim/slide_in_left" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:action="ACTION_VIEW"
+            app:uri="http://www.example.com/confirm-email/{token}/{email}" />
     </fragment>
     <fragment
         android:id="@+id/pendingConfirmation"
