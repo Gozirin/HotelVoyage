@@ -40,9 +40,6 @@ class ResetPasswordFragment : Fragment() {
 
         val token = arguments?.getString("token")
         val email = arguments?.getString("email")
-        Toast.makeText(requireContext(), "token=${token.toString()} email=${email.toString()}", Toast.LENGTH_SHORT).show()
-
-
         val newPassword = binding.tvEmailTextResetPassword.text.toString()
         val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
 
