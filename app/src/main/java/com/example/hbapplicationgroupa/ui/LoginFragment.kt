@@ -37,8 +37,6 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         errorMsg = binding.loginErrorMsg
 
         binding.tvForgotPasswordText.setOnClickListener {
@@ -83,7 +81,7 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
                     //Saving auth Token and Id to Shared Preference
-                    authPreference.setToken(it.data.token)
+                    authPreference.setToken(it.data!!.token)
                     authPreference.setId(it.data.id)
                 }
                 403 -> {
