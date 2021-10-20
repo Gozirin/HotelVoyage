@@ -8,8 +8,11 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHote
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+import com.example.hbapplicationgroupa.utils.Resource
 import retrofit2.Response
 
 /*
@@ -27,9 +30,25 @@ interface HotelRepositoryInterface {
     //--------------------------------------------------------------------
 
     suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
-    suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
-    suspend fun getTopDealss(pageSize: Int, pageNumber: Int):Response<GetTopDealsResponseModel>
+    suspend fun getTopDeals(): Response<GetTopDealsResponseModel>
+
+
+    suspend fun getTopDealss(pageSize: Int, pageNumber: Int): Response<GetTopDealsResponseModel>
+//    suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
+//    suspend fun getTopDeals():Response<GetTopDealsResponseModel>
+
+//    suspend fun getTopHotelsFromAPI()
+//
+//    suspend fun saveTopHotelsToDatabase(topHotelsResponseItem: GetTopHotelsResponseItem)
+//
+//    suspend fun getTopHotelsFromDatabase(): LiveData<List<GetTopHotelsResponseItem>>
+//
+//    suspend fun getTopDealsFromAPI()
+//
+//    suspend fun saveTopDealsToDatabase(topDealsResponseItem: GetTopDealsResponseItem)
+//
+//    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
     suspend fun getAllHotels(
         Page: Int,

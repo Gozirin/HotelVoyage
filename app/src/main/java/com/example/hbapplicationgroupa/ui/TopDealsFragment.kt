@@ -16,7 +16,7 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
-import com.example.hbapplicationgroupa.utils.Resource
+import com.example.hbapplicationgroupa.utils.Resources
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,23 +47,9 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
 
         setupRecyclerView()
 
-//        binding.topDealRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-//        viewModel.getTopDeals(10, 1)
-//        viewModel.topDealsLiveData.observe(viewLifecycleOwner,  { response->
-//            if (response.body()!!.succeeded){
-//                topDealAdapter.topDealList = response.body()?.data!!
-//            }else{
-//                Toast.makeText(requireContext(), "${response.errorBody()}", Toast.LENGTH_SHORT).show()
-//            }
-////            topDealAdapter.topDealList = it.data
-//            topDealAdapter.notifyDataSetChanged()
-////            Toast.makeText(requireContext(), "${topDealAdapter.topDealList}", Toast.LENGTH_SHORT).show()
-//        } )
-
-
         viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
             when (response){
-                is Resource.Success ->{
+                is Resources.Success ->{
                     hideProgressBar()
                     response.data?.let { newsResponse ->
                         topDealAdapter.topDealList = newsResponse.data.toList()
@@ -73,13 +59,13 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
                     }
 
                 }
-                is Resource.Error -> {
+                is Resources.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.e("TAG", "An error occured: $message")
                     }
                 }
-                is Resource.Loading -> {
+                is Resources.Loading -> {
                     showProgressBar()
                 }
             }
