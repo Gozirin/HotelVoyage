@@ -8,8 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
 import com.example.hbapplicationgroupa.utils.Resource
+import com.example.hbapplicationgroupa.utils.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,72 +25,123 @@ class HotelViewModel @Inject constructor(
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
+    //set response from network call to a variable
+    private val topHotels = MutableLiveData<Resource<ArrayList<GetTopHotelsResponseItem>>>()
     fun getHotelById(hotelId: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
             hotelRepositoryInterface.getHotelDescriptionFromApi(hotelId)
-        }catch (e: Exception){
+        } catch (e: Exception) {
             Log.d("GKB", "getHotelById: ${e.message}")
         }
     }
 
     //-----------------------------------------------------
-    val _topDealsLiveData: MutableLiveData<Resource<GetTopDealsResponseModel>> = MutableLiveData()
+    val _topDealsLiveData: MutableLiveData<Resources<GetTopDealsResponseModel>> = MutableLiveData()
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 
     var pageNumber = 1
 
-    //store response to mutable variable type and set stored response to an immutable data type that will be made public
-    private var _topHotels: MutableLiveData<MutableList<GetTopHotelsResponseItem>> = MutableLiveData()
-    val topHotels: LiveData<MutableList<GetTopHotelsResponseItem>> = _topHotels
+    private var _exploreHomeTopHotels: MutableLiveData<GetTopHotelsResponseModel> = MutableLiveData()
+      val  exploreHomeTopHotels: LiveData<GetTopHotelsResponseModel>
+      get() = _exploreHomeTopHotels
 
-    private var _topDeals: MutableLiveData<MutableList<GetTopDealsResponseItem>> = MutableLiveData()
-    val topDeals: LiveData<MutableList<GetTopDealsResponseItem>> = _topDeals
+    private var _exploreHomeTopDeals: MutableLiveData<GetTopDealsResponseModel> = MutableLiveData()
+    val exploreHomeTopDeals: LiveData<GetTopDealsResponseModel>
+    get() = _exploreHomeTopDeals
 
-    //set response from network call to variable
 
-    fun getTopHotels() {
+//    init {
+//        fetchTopHotels()
+//        fetchTopDeals()
+//    }
+
+
+    fun fetchTopHotels() {
         viewModelScope.launch {
-            val response = hotelRepositoryInterface.getTopHotels()
-            if (response.isSuccessful) {
-                _topHotels.postValue(response.body()?.data)
+//            topHotels.postValue(Resource.loading(null))
+            try {
+                val response = hotelRepositoryInterface.getTopHotels()
+                _exploreHomeTopHotels.postValue(response.body())
+                Log.d("ExploreHomeVM 6: ", exploreHomeTopHotels.toString())
+                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
+            } catch (e: Exception) {
+//                topHotels.postValue(Resource.error("Network error", null))
+//                Log.d("ExploreHomeVM 7: ", exploreHomeTopDeals.value?.data.toString())
+//                val response = hotelRepositoryInterface.getTopHotels()
+//                if (response.isSuccessful) {
+//                    exploreHomeTopHotels.postValue(response.body()?.data)
+//                }
             }
         }
     }
 
-    fun getTopDeals() {
-        viewModelScope.launch {
-            val response = hotelRepositoryInterface.getTopDeals()
-            if (response.isSuccessful) {
-                _topDeals.postValue(response.body()?.data)
+         fun fetchTopDeals() {
+            viewModelScope.launch {
+//            topHotels.postValue(Resource.loading(null))
+            try {
+                val response = hotelRepositoryInterface.getTopDeals()
+                if (response.isSuccessful){
+                    _exploreHomeTopDeals.value = (response.body())
+                    Log.d("ExploreHomeVM 5: ", "${response.body()}")
+                }else{
+                    Log.d("ExploreHomeVM 5: ", "error")
+                }
+                Log.d("ExploreHomeVM 4: ", "${response.body()}")
+                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
+            } catch (e: Exception) {
+//                topHotels.postValue(Resource.error("Network error", null))
+                Log.d("ExploreHomeVM 8: ", exploreHomeTopDeals.value?.data.toString())
+//                val response = hotelRepositoryInterface.getTopHotels()
+//                if (response.isSuccessful) {
+//                    exploreHomeTopDeals.postValue(response.body()?.data)
+//                }
             }
         }
-    }
+        }
 
-    //the amount of info coming in at a time
-    init {
-        getTopDealss(10)
-    }
+
+        //the amount of info coming in at a time
+//        init {
+//            getTopDealss(10)
+//        }
+//           topDeals.postValue(Resource.loading(null))
+////            try {
+////                val response = hotelRepositoryInterface.getTopDeals()
+////                if (response.isSuccessful) {
+////                    topDeals.postValue(Resource.success(response.body()?.data) as Resource<ArrayList<GetTopDealsResponseItem>>?)
+////                }
+////            } catch (e: Exception) {
+////                topHotels.postValue(Resource.error("Network Error", null))
+////            }
 
     fun getTopDealss(pageSize: Int) = viewModelScope.launch {
-        _topDealsLiveData.postValue(Resource.Loading())
+        _topDealsLiveData.postValue(Resources.Loading())
         val response = hotelRepositoryInterface.getTopDealss(pageSize, pageNumber)
         _topDealsLiveData.postValue(handleTopDealssResponse(response))
     }
 
-    private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resource<GetTopDealsResponseModel> {
-        if (response.isSuccessful){
-            response.body()?.let { resultresponse->
+
+    private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resources<GetTopDealsResponseModel> {
+        if (response.isSuccessful) {
+            response.body()?.let { resultresponse ->
                 pageNumber++
-                if (_topDealsLiveDataResponse == null){
+                if (_topDealsLiveDataResponse == null) {
                     _topDealsLiveDataResponse = resultresponse
-                }else{
+                } else {
                     val oldDeals = _topDealsLiveDataResponse?.data
                     val newDeals = resultresponse.data
                     oldDeals?.addAll(newDeals)
                 }
-                return Resource.Success(_topDealsLiveDataResponse ?: resultresponse)
+                return Resources.Success(_topDealsLiveDataResponse ?: resultresponse)
             }
         }
-        return Resource.Error(response.message())
+        return Resources.Error(response.message())
     }
-}
+//    fun getTopDeals(): LiveData<GetTopDealsResponseModel> = exploreHomeTopDeals
+//    fun getTopHotels(): LiveData<GetTopHotelsResponseModel> {
+////        Log.d("ExploreHomeVM 3: ", exploreHomeTopDeals.value?.data.toString())
+//        return exploreHomeTopHotels
+    }
+
+
+

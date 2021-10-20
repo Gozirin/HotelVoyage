@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavHost
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.databinding.FragmentResetPasswordBinding
@@ -29,12 +31,12 @@ class ResetPasswordFragment : Fragment() {
     ): View {
         _binding = FragmentResetPasswordBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         val token = arguments?.getString("token")
         val email = arguments?.getString("email")

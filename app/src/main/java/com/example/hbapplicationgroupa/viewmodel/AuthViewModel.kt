@@ -44,7 +44,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         }
     }
 
-    //Method to make login network call
+    //set function to make login network call
      fun login(email: String, password: String){
         val loginUserModel = LoginUserModel(email, password)
 
@@ -55,13 +55,13 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
-                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, try again",400))
                     }
                 } else {
-                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Email is not registered/Account might not be Activated",403))
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Invalid email or password",403))
                 }
             }catch (e: Exception){
-                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Network error",400))
                 e.printStackTrace()
             }
 
@@ -70,7 +70,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
 
     //ResetPassword authentication LiveData
-    val resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
+    private val _resetPasswordLiveData: MutableLiveData<Response<ResetPasswordResponseModel>> = MutableLiveData()
+    val resetPasswordLiveData: LiveData<Response<ResetPasswordResponseModel>> = _resetPasswordLiveData
 
     //Function to make ResetPassword network call
     fun resetUserPassword(token: String,email: String, newPassword: String, confirmPassword: String){
@@ -78,7 +79,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch (Dispatchers.IO){
             try {
                 val response = authRepository.resetPassword(resetPasswordModel)
-                resetPasswordLiveData.postValue(response)
+                _resetPasswordLiveData.postValue(response)
+                Log.d("ResetPassword 2:", response.body().toString())
             }catch (e: Exception){
                 Log.d("MQ", "resetPassword: ${e.message}")
             }

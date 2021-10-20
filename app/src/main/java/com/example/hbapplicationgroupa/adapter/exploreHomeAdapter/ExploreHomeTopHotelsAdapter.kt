@@ -38,11 +38,11 @@ class ExploreHomeTopHotelsAdapter(
 
     override fun onBindViewHolder(holder: Recycler1ViewHolder, position: Int) {
         Glide.with(holder.itemView)
-            .load(listOfTopHotels[position].thumbnails)
+            .load(listOfTopHotels[position].thumbnail)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.hotelImage)
         holder.hotelName?.text = listOfTopHotels[position].name
-        //  holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
+          holder.hotelPrice?.text = listOfTopHotels[position].price
         holder.itemView.setOnClickListener {
             topHotelClickListener.onTopHotelClicked(position)
         }

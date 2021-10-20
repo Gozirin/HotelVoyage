@@ -7,6 +7,7 @@ import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserByIdDao
 import com.example.hbapplicationgroupa.database.dao.UserPhotoByIdDao
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.database.dao.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +28,18 @@ class HotelDatabaseModule {
 //    @Provides
 //    fun provideBookingByUserIdDao(hotelDatabase: HotelDatabase): BookingByUserIdDao {
 //        return hotelDatabase.getBookingByUserIdDao()
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun provideTopHotelsDao(hotelDatabase: HotelDatabase): TopHotelsDao {
+//        return hotelDatabase.getTopHotelsDao()
+//    }
+//
+//    @Singleton
+//    @Provides
+//    fun provideTopDealsDao(hotelDatabase: HotelDatabase): TopDealsDao {
+//        return hotelDatabase.getTopDealsDao()
 //    }
 
     @Singleton

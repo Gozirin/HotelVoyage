@@ -43,9 +43,9 @@ interface AuthModuleApiInterface {
         @Query ("email") query: String
     ): Response<ForgotPasswordResponseModel>
 
-    @PATCH("api/v1/Authentication/reset-password")
+    @PATCH("api/Authentication/reset-password")
     suspend fun resetPassword(
-        resetPasswordModel: ResetPasswordModel
+        @Body resetPasswordModel: ResetPasswordModel
     ): Response<ResetPasswordResponseModel>
 
     @POST("api/v1/Authentication/confirm")
