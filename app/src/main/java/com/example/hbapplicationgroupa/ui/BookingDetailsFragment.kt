@@ -15,6 +15,7 @@ import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
+import com.example.hbapplicationgroupa.utils.*
 import java.util.*
 
 class BookingDetailsFragment : Fragment() {
@@ -47,7 +48,38 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.bookNowButton.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+            if (!fullNameIsNotEmpty(binding.nameTextInputEditText.text.toString())){
+                binding.nameTextInputLayout.error = "Kindly enter your full name"
+                return@setOnClickListener
+            }else if (!fullNameMatchesPattern(binding.nameTextInputEditText.text.toString())){
+                binding.nameTextInputLayout.error = "Kindly enter a valid full name eg. John Doe"
+                return@setOnClickListener
+            }else if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
+                binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
+                return@setOnClickListener
+            }else if (!phoneNumberEqualsLength(binding.phoneTextInputEditText.text.toString())){
+                binding.contactNumberTextInputLayout.error = "Phone number must be 11 digits long"
+                return@setOnClickListener
+            }else if (!isAValidNigerianNumber(binding.phoneTextInputEditText.text.toString())){
+                binding.contactNumberTextInputLayout.error = "Kindly enter a valid Nigerian phone number"
+                return@setOnClickListener
+            }else if (!checkInIsNotEmpty(binding.checkInEditText.text.toString())){
+                binding.checkInTextInputLayout.error = "Kindly select your preferred check in date"
+                return@setOnClickListener
+            }else if (!checkOutIsNotEmpty(binding.nameTextInputEditText.text.toString())){
+                binding.checkOutTextInputLayout.error = "Kindly select your preferred check out date"
+                return@setOnClickListener
+            }
+//            else if (!numberOfPeopleIsNotEmpty(binding.peopleEditText.text.toString())){
+//                binding.peopleTextInputLayout.error = "Kindly enter the total number of people to be lodged"
+//                return@setOnClickListener
+//            }else if (!roomTypeIsNotEmpty(binding.roomsEditText.text.toString())){
+//                binding.roomsTextInputLayout.error = "Kindly select your preferred rooms"
+//                return@setOnClickListener
+//            }
+            else{
+                findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+            }
         }
 
         binding.bookingDetailsBackBtn.setOnClickListener {
@@ -132,5 +164,4 @@ class BookingDetailsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
