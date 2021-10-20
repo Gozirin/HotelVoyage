@@ -1,9 +1,11 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,6 +17,10 @@ import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTop
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
+import com.example.hbapplicationgroupa.utils.Status
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -88,7 +94,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //set up top hotels recycler view
     private fun setUpTopHotelsRecyclerView() {
-        topHotelsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentrecyclerView1)
+        topHotelsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentRecyclerView1)
+        topHotelsRecyclerView.adapter = topHotelsAdapter
         topHotelsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         topHotelsRecyclerView.setHasFixedSize(true)
     }
@@ -96,6 +103,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     //set up top deals recycler view
     private fun setUpTopDealsRecyclerView() {
         topDealsRecyclerView = requireView().findViewById(R.id.exploreHomeFragmentRecyclerView2)
+        topDealsRecyclerView.adapter = topDealsAdapter
         topDealsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         topDealsRecyclerView.setHasFixedSize(true)
@@ -103,26 +111,67 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top hotels
     private fun getTopHotels(): HotelViewModel {
-        hotelViewModel.getTopHotels()
-        hotelViewModel.topHotels.observe( viewLifecycleOwner, {
-            if (it != null) {
-                topHotelsAdapter.setListOfTopHotels(it)
-                topHotelsRecyclerView.adapter = topHotelsAdapter
+        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+        hotelViewModel.fetchTopHotels()
+        hotelViewModel.exploreHomeTopHotels.observe( viewLifecycleOwner, {
+            when (it.statusCode) {
+                200 -> {
+                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
+                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
+                    Log.d("ExploreHome 2: ", it.toString())
+                }
+//                40 -> {
+//                    binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+//                }
+                400 -> {
+                    //handle error
+                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
+                }
             }
         })
        return hotelViewModel
     }
 
+    //set fetched data to top hotels adapter
+    private fun renderTopHotelsList(topHotels: List<GetTopHotelsResponseItem>) {
+        topHotelsAdapter.setListOfTopHotels(topHotels)
+        topHotelsAdapter.notifyDataSetChanged()
+    }
+
     //fetch a selected number of top deals
     private fun getTopDeals(): HotelViewModel {
-        hotelViewModel.getTopDeals()
-        hotelViewModel.topDeals.observe(viewLifecycleOwner, {
-            if (it != null) {
-                topDealsAdapter.setListOfTopDeals(it)
-                topDealsRecyclerView.adapter = topDealsAdapter
+        binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+        hotelViewModel.fetchTopDeals()
+        hotelViewModel.exploreHomeTopDeals.observe(viewLifecycleOwner, {
+            when (it.statusCode) {
+                200 -> {
+                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
+                    it.data?.let { topDeals -> renderTopDealsList(topDeals) }
+                    binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
+                    Log.d("ExploreHome 1: ", it.toString())
+                }
+//                Status.LOADING -> {
+//                    binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+//                    binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+//                }
+                400 -> {
+                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                }
             }
         })
         return  hotelViewModel
+    }
+
+    //set fetched data to top deals adapter
+    private fun renderTopDealsList(topDeals: List<GetTopDealsResponseItem>) {
+        topDealsAdapter.setListOfTopDeals(topDeals)
+
     }
 
 }
