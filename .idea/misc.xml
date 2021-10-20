@@ -38,9 +38,11 @@
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/explore_home_after_search_viewpager.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/explore_home_recyclerview_item_1.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/explore_home_recyclerview_item_2.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.11522633744855967" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.33" />
