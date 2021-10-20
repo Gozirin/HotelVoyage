@@ -42,7 +42,7 @@ class ExploreHomeTopHotelsAdapter(
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.hotelImage)
         holder.hotelName?.text = listOfTopHotels[position].name
-        //  holder.hotelPrice?.text = listOfTopHotels[position].price.toString()
+          holder.hotelPrice?.text = listOfTopHotels[position].price
         holder.itemView.setOnClickListener {
             topHotelClickListener.onTopHotelClicked(position)
         }

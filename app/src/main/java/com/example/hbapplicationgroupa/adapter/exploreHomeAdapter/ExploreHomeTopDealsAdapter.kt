@@ -38,10 +38,10 @@ class ExploreHomeTopDealsAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        Glide.with(holder.itemView)
-//            .load(listOfTopDealHotels[position].thumbnail)
-//            .diskCacheStrategy(DiskCacheStrategy.ALL)
-//            .into(holder.hotelImage2)
+        Glide.with(holder.itemView)
+            .load(listOfTopDealHotels[position].thumbnail)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.hotelImage2)
         holder.hotelName2.text = listOfTopDealHotels[position].name
         holder.hotelPrice2.text = listOfTopDealHotels[position].price.toString()
         holder.itemView.setOnClickListener {
