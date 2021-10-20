@@ -15,22 +15,27 @@ class AuthPreference(activity: Activity) {
 
     val myPreference: SharedPreferences = activity.getSharedPreferences(MY_PREF, Context.MODE_PRIVATE)
 
+    // save token.called on successful login
     fun setToken(token: String){
         myPreference.edit().putString(TOKEN_KEY, token).apply()
     }
 
+    //save ID. called on successful login
     fun setId(id: String){
         myPreference.edit().putString(ID_KEY, id).apply()
     }
 
+    //retrieve token. called on login attempt.
     fun getToken(key: String) : String? {
         return myPreference.getString(key, null)
     }
 
+    //retrieve ID. called on login attempt
     fun getId(key: String): String? {
         return myPreference.getString(key, null)
     }
 
+    //delete token. called when user logs out.
     fun clear(key: String){
         myPreference.edit().remove(key).apply()
     }

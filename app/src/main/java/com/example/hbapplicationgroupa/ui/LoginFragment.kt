@@ -64,13 +64,13 @@ class LoginFragment : Fragment() {
         onBackPressed()
     }
 
-    //Method to make Login Api Call
+    //create function to make Login Api Call
     private fun login(email: String, password: String){
         viewModel.login(email, password)
         binding.loginProgressBar.visibility = View.VISIBLE
     }
 
-    //Method to observe Login Live Data
+    //set function to observe Login Live Data
     private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
             Log.d("AuthView", "Enter here")
