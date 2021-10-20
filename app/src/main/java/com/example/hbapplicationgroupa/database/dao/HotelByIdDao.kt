@@ -20,4 +20,7 @@ interface HotelByIdDao {
     //Delete hotel descriptions in database
     @Delete
     suspend fun removeHotel(hotel: GetHotelByIdResponseItemData)
+
+//    @Query("SELECT roomTypes FROM getHotelById WHERE id LIKE :hotelId")
+//    fun getHotelRoomTypes(hotelId: String): LiveData<List<GetHotelByIdResponseItemData>>
 }

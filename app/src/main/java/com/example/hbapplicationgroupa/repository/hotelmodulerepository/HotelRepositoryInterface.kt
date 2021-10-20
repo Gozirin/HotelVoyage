@@ -20,6 +20,7 @@ interface HotelRepositoryInterface {
     //-----------------Hotel description-----------------
     suspend fun getHotelDescriptionFromApi(hotelId: String)
     fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>>
+//    fun getRoomTypesFromDb(hotelId: String): LiveData<List<GetHotelByIdResponseItemData>>
     suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData)
     suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData)
 

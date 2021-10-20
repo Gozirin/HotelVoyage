@@ -23,6 +23,8 @@ class HotelViewModel @Inject constructor(
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
+//    fun getRoomTypeFromDb(hotelId: String) = hotelRepositoryInterface.getRoomTypesFromDb(hotelId)
+
     fun getHotelById(hotelId: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
             hotelRepositoryInterface.getHotelDescriptionFromApi(hotelId)
