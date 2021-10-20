@@ -18,7 +18,7 @@ import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
 import com.example.hbapplicationgroupa.utils.*
 import java.util.*
 
-class BookingDetailsFragment : Fragment() {
+class BookingDetailsFragment : Fragment(), PeopleBottomSheetOnClickInterface {
     //Set up view binding here
     private var _binding: FragmentBookingDetailsBinding? = null
     private val binding get() = _binding!!
@@ -40,7 +40,10 @@ class BookingDetailsFragment : Fragment() {
         }
 
         binding.peopleEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment)
+            NumberOfPeopleBottomSheetDialogFragment(this).show(
+                requireActivity().supportFragmentManager, "peopleBottomSheet"
+            )
+//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment)
         }
 
         binding.roomsEditText.setOnClickListener {
@@ -163,5 +166,9 @@ class BookingDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun passData(data: String) {
+        binding.peopleEditText.setText(data)
     }
 }

@@ -12,15 +12,15 @@ import com.example.hbapplicationgroupa.*
 import com.example.hbapplicationgroupa.adapter.peoplenumber_bottomshit_adapter.PeopleNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfPeopleBottomSheetDialogBinding
 import com.example.hbapplicationgroupa.model.adaptermodels.PeopleNumberBottomSheetData
+import com.example.hbapplicationgroupa.utils.PeopleBottomSheetOnClickInterface
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlin.properties.Delegates
 
-class NumberOfPeopleBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class NumberOfPeopleBottomSheetDialogFragment(
+    private val onClickInterface: PeopleBottomSheetOnClickInterface
+    ) : BottomSheetDialogFragment() {
     private var _binding: FragmentNumberOfPeopleBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
-//    private lateinit var adapter: PeopleNumberBottomSheetAdapter
-//    private lateinit var listOfPeople: MutableList<PeopleNumberBottomSheetData>
-//    private var count by Delegates.notNull<Int>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentNumberOfPeopleBottomSheetDialogBinding.inflate(inflater, container, false)
@@ -29,6 +29,10 @@ class NumberOfPeopleBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.cancelButton.setOnClickListener {
+            dismiss()
+        }
 
         var adultCount = 0
         binding.adultAddButton.setOnClickListener {
@@ -130,30 +134,8 @@ class NumberOfPeopleBottomSheetDialogFragment : BottomSheetDialogFragment() {
             }
 
             val peopleDataToString = peopleData.joinToString(", ")
+            onClickInterface.passData(peopleDataToString)
+            dismiss()
         }
-
-//        count = 0
-//
-//        listOfPeople = mutableListOf(
-//            PeopleNumberBottomSheetData("Adults", "16+ years", "1"),
-//            PeopleNumberBottomSheetData("Teens", "12-15 years", "0"),
-//            PeopleNumberBottomSheetData("Children", "2-11 years", "0"),
-//            PeopleNumberBottomSheetData("Infants", "under 2 years", "0")
-//        )
-//
-//        adapter = PeopleNumberBottomSheetAdapter(this)
-//        binding.peopleNumberBottomSheetRecyclerView.adapter = adapter
-//        binding.peopleNumberBottomSheetRecyclerView.setHasFixedSize(true)
-//
-//        adapter.differ.submitList(listOfPeople)
-//
-//        binding.cancelButton.setOnClickListener {
-//            findNavController().navigate(R.id.action_numberOfPeopleBottomSheetDialogFragment_to_bookingDetailsFragment)
-//        }
     }
-
-//    override fun addCount(position: Int, view: TextView) {
-//        count++
-//        view.text = count.toString()
-//    }
 }
