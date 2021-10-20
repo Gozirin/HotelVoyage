@@ -46,7 +46,7 @@
     <ScrollView
         android:id="@+id/fragment_register_scroll_sv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
@@ -54,7 +54,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_image_register"
@@ -176,7 +176,10 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
+<!--                register_phoneNumber-->
+
             </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tv_password"
@@ -214,9 +217,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/edit_text_layout"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="14dp"
+                android:background="@drawable/reg_field"
                 android:entries="@array/gender"
                 android:padding="1dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -224,6 +227,8 @@
                 app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="602dp" />
+
+<!--            Spinner-->
 
             <TextView
                 android:id="@+id/fragment_register_genderError_tv"
@@ -245,7 +250,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
-                android:hint="age"
+                android:hint="Age"
                 android:textColorHint="@color/black"
                 app:helperTextTextColor="#ED4639"
                 app:hintTextColor="@color/black"
@@ -345,8 +350,8 @@
                 android:id="@+id/btn_register"
                 android:layout_width="294dp"
                 android:layout_height="52dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/registration_custom_button"
                 android:gravity="center"
                 android:text="Register"
@@ -359,6 +364,82 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/edt_register_PhoneNumber"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:focusedByDefault="false"-->
+<!--            android:hint="Phone Number"-->
+<!--            android:textColorHint="@color/black"-->
+<!--            app:helperTextTextColor="#ED4639"-->
+<!--            app:hintTextColor="@color/black"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/tv_register_name"-->
+<!--            app:startIconDrawable="@drawable/phone_image"-->
+<!--            app:startIconTint="#ED4639">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/firstNam"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="18sp" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+
+<!--        <Spinner-->
+<!--            android:id="@+id/getSpinner"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:padding="15dp"-->
+<!--            android:paddingEnd="40dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:background="@drawable/reg_field"-->
+<!--            android:layout_marginTop="12dp"-->
+<!--            android:layout_marginEnd="12dp"-->
+<!--            android:entries="@array/gender"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"-->
+<!--            tools:layout_editor_absoluteX="0dp"-->
+<!--            tools:layout_editor_absoluteY="602dp"-->
+<!--            tools:ignore="RtlSymmetry">-->
+
+<!--        </Spinner>-->
+
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btn_register"-->
+<!--        android:layout_width="294dp"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--         android:layout_marginBottom="10dp"-->
+<!--        android:background="@drawable/registration_custom_button"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Register"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tvRegistrationAlreadyMember"-->
+<!--        app:layout_constraintVertical_bias="0.172" />-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </ScrollView>
 
