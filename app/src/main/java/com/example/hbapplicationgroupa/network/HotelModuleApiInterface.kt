@@ -1,6 +1,6 @@
 package com.example.hbapplicationgroupa.network
 
-import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
@@ -39,13 +39,10 @@ interface HotelModuleApiInterface {
         @Query("pageNumber") pageNumber: Int
     ):Response<GetTopDealsResponseModel>
 
-    @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")
+    @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}")
     suspend fun getAllHotels(
-        @Query("Page") Page: Int,
-        @Query("pageSize") pageSize: Int,
-        @Query("IsBooked") IsBooked: Boolean,
-        @Query("Price") Price: Double,
-        @Path("id") id: String
+//        @Query("PageNumber") pageNumber: Int,
+//        @Query("pageSize") pageSize: Int
     ): Response<GetAllHotelsResponseModel>
 
     @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")

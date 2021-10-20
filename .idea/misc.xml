@@ -39,6 +39,12 @@
         <entry key="app/src/main/res/layout/explore_home_after_search_viewpager.xml" value="0.22" />
         <entry key="app/src/main/res/layout/explore_home_recyclerview_item_1.xml" value="0.29444444444444445" />
         <entry key="app/src/main/res/layout/explore_home_recyclerview_item_2.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_all_hotel.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_all_hotels_fragment.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/fragment_all_hotels_fragments.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/fragment_all_hotels_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_all_top_hotels.xml" value="0.26197916666666665" />
+        <entry key="app/src/main/res/layout/fragment_all_top_hotels2.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/fragment_email_comfirmation.xml" value="0.25" />
