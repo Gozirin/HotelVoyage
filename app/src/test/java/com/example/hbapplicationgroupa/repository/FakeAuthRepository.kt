@@ -22,7 +22,9 @@ class FakeAuthRepository(): AuthRepositoryInterface {
     private val data = LoginUserResponse("aaaaaaa", "qqqqqqq")
     private val loginUserModels = LoginUserModel("abirtley4@ucsd.edu", "Password@123")
 
-    private var userData: MutableList<LoginUserModel> = mutableListOf()
+    private var userData: MutableList<LoginUserModel> = mutableListOf(
+        loginUserModels
+    )
 
     val loginUserResponseModel = LoginUserResponseModel(data, true, "Login successfully", 200)
     private val loginUserResponseModelFalse = LoginUserResponseModel(null, false, "Bad Request", 400)
@@ -45,7 +47,7 @@ class FakeAuthRepository(): AuthRepositoryInterface {
     }
 
     override suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel>? {
-        userData.add(loginUserModel)
+//        userData.add(loginUserModel)
         return if (userData.contains(loginUserModel)){
             loginResponse
         }else{
