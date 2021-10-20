@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HBApplicationGroupA"
-        android:fullBackupContent="true">
+        >
         <activity
             android:exported="true"
             android:name=".MainActivity">
