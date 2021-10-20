@@ -6,7 +6,6 @@
         android:layout_height="match_parent"
         tools:context=".ui.ExploreHomeFragment">
 
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/explore_home_appToolBar"
         android:layout_width="match_parent"
@@ -30,6 +29,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.45"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,11 +62,10 @@
 
     <ScrollView
         android:id="@+id/exploreHomeAfterSearchScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginVertical="60dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explore_home_appToolBar">
 
@@ -79,8 +78,9 @@
                 android:id="@+id/exploreHome_cardview_displayCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:cardBackgroundColor="#FCEA0707"
                 app:cardCornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +93,10 @@
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:id="@+id/explore_home_imageFilterView"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginStart="4dp"
+                        android:layout_width="40dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/ic_filter"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/explore_home_explore_text_1"
@@ -105,13 +106,12 @@
                         android:id="@+id/explore_home_explore_text_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
                         android:text="@string/we_have_deals_for"
-                        android:textAlignment="textStart"
                         android:textColor="@color/white"
-                        android:textSize="25sp"
-                        app:flow_verticalAlign="center"
+                        android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.625"
                         app:layout_constraintStart_toEndOf="@+id/explore_home_imageFilterView"
@@ -119,16 +119,14 @@
 
                     <TextView
                         android:id="@+id/explore_home_explore_text_2"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:text="@string/your_favourite_and_relaxing"
-                        android:textAlignment="textStart"
                         android:textColor="@color/white"
-                        android:textSize="23sp"
-                        app:flow_verticalAlign="center"
-                        app:layout_constraintStart_toEndOf="@+id/explore_home_imageFilterView"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="@+id/explore_home_explore_text_1"
+                        app:layout_constraintStart_toStartOf="@+id/explore_home_explore_text_1"
                         app:layout_constraintTop_toBottomOf="@+id/explore_home_explore_text_1" />
 
                     <TextView
@@ -136,19 +134,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:padding="5dp"
                         android:text="@string/stay"
-                        android:textAlignment="textStart"
-                        android:textColor="#FCE4EC"
-                        android:textSize="25sp"
-                        app:flow_verticalAlign="center"
-                        app:layout_constraintEnd_toEndOf="@+id/explore_home_view_and_arrow_btn"
-                        app:layout_constraintHorizontal_bias="0.032"
-                        app:layout_constraintStart_toEndOf="@+id/explore_home_imageFilterView"
-                        app:layout_constraintTop_toBottomOf="@+id/explore_home_explore_text_2"
-                        tools:ignore="TextContrastCheck" />
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="@+id/explore_home_explore_text_2"
+                        app:layout_constraintTop_toBottomOf="@+id/explore_home_explore_text_2" />
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
+                    <View
                         android:id="@+id/explore_home_view_and_arrow_btn"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
@@ -157,36 +149,41 @@
                         android:focusable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/explore_home_explore_text_2"
-                        app:layout_constraintVertical_bias="0.937">
+                        app:layout_constraintTop_toBottomOf="@+id/explore_home_explore_text_2" />
 
-                        <TextView
-                            android:id="@+id/explore_home_cardview_view_textview"
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:alpha="1"
-                            android:padding="8dp"
-                            android:paddingStart="20dp"
-                            android:paddingEnd="1dp"
-                            android:text="@string/view"
-                            android:textColor="@color/white"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
+                    <TextView
+                        android:id="@+id/explore_home_cardview_view_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="@string/view"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/explore_home_view_and_arrow_btn"
+                        app:layout_constraintEnd_toStartOf="@+id/explore_home_button_first"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toEndOf="@+id/explore_home_explore_text_3"
+                        app:layout_constraintStart_toStartOf="@+id/explore_home_view_and_arrow_btn"
+                        app:layout_constraintTop_toTopOf="@+id/explore_home_view_and_arrow_btn" />
 
-                        <ImageButton
-                            android:id="@+id/explore_home_button_first"
-                            android:layout_width="50dp"
-                            android:layout_height="match_parent"
-                            android:background="#EC726B"
-                            android:contentDescription="@string/imageButton"
-                            android:src="@drawable/ic_forward_button"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:tint="@color/white"
-                            tools:ignore="ImageContrastCheck" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <ImageButton
+                        android:id="@+id/explore_home_button_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:background="#EC726B"
+                        android:contentDescription="@string/imageButton"
+                        android:src="@drawable/ic_forward_button"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/explore_home_cardview_view_textview"
+                        app:layout_constraintTop_toTopOf="@+id/explore_home_view_and_arrow_btn"
+                        app:layout_constraintVertical_bias="0.56"
+                        app:tint="@color/white" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -194,14 +191,12 @@
                 android:id="@+id/exploreHomeFragment_top_Hotel_topHotel_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/top_hotels"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/exploreHome_cardview_displayCard"
                 app:layout_constraintTop_toBottomOf="@+id/exploreHome_cardview_displayCard" />
-
 
             <TextView
                 android:id="@+id/exploreHomeFragment_topHotel_viewAll_tv"
@@ -220,7 +215,12 @@
                 android:id="@+id/exploreHomeFragmentrecyclerView1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="24dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -231,12 +231,11 @@
                 android:id="@+id/topDeals_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/top_deals"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/exploreHomeFragment_top_Hotel_topHotel_tv"
                 app:layout_constraintTop_toBottomOf="@+id/exploreHomeFragmentrecyclerView1" />
 
             <TextView
@@ -256,14 +255,19 @@
                 android:id="@+id/exploreHomeFragmentRecyclerView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="20dp"
+                android:layout_marginBottom="48dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/topDeals_title"
                 tools:listitem="@layout/explore_home_recyclerview_item_2" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
