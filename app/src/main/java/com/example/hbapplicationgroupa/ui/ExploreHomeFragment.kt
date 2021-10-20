@@ -113,7 +113,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     private fun getTopHotels(): HotelViewModel {
         binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
         binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
-        hotelViewModel.getTopHotels().observe( viewLifecycleOwner, {
+        hotelViewModel.fetchTopHotels()
+        hotelViewModel.exploreHomeTopHotels.observe( viewLifecycleOwner, {
             when (it.statusCode) {
                 200 -> {
                     binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
@@ -145,7 +146,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     private fun getTopDeals(): HotelViewModel {
         binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
         binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
-        hotelViewModel.getTopDeals().observe(viewLifecycleOwner, {
+        hotelViewModel.fetchTopDeals()
+        hotelViewModel.exploreHomeTopDeals.observe(viewLifecycleOwner, {
             when (it.statusCode) {
                 200 -> {
                     binding.exploreHomeFragmentProgressBar2.visibility = View.GONE

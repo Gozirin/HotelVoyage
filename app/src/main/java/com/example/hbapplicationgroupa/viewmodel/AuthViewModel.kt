@@ -44,7 +44,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         }
     }
 
-    //Method to make login network call
+    //set function to make login network call
      fun login(email: String, password: String){
         val loginUserModel = LoginUserModel(email, password)
 
@@ -55,13 +55,13 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
-                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, try again",400))
                     }
                 } else {
-                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Email is not registered/Account might not be Activated",403))
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Invalid email or password",403))
                 }
             }catch (e: Exception){
-                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Network error",400))
                 e.printStackTrace()
             }
 
