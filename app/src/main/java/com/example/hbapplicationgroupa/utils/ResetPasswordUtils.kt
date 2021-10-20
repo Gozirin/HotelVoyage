@@ -5,17 +5,17 @@ import androidx.core.widget.addTextChangedListener
 
 //
   var errorMessage = ""
-  var result = false
+  var result = true
 
 
 // function to check Non-empty new password field
     fun validateNotEmptyNewPasswordField(newPassword: String): Boolean{
-        result = newPassword.isNotEmpty()
-        return result
+
+    return newPassword.isNotEmpty()
     }
 
 
-// function to check Non-empty confirm password field
+ //function to check Non-empty confirm password field
  fun validateNotEmptyConfirmPasswordField(confirmPassword: String): Boolean{
     result = confirmPassword.isNotEmpty()
     return result
@@ -37,14 +37,14 @@ import androidx.core.widget.addTextChangedListener
 
 // function for regex validation
   fun validateNewPassword(newPassword: String): Boolean{
-//     val checkedNewPassword = Regex("^(?=.*[A-Z].*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}\$")
+   //  val checkedNewPassword = Regex("^(?=.*[A-Z].*[A-Z])(?=.*[!@#\$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}\$")
 
-    val checkedNewPassword = Regex("^[0-9]*\$")
-    result = newPassword.equals(checkedNewPassword)
-     return result
+    val checkedNewPassword = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\\^&\\*]).{8,}\$")
+    result = newPassword.matches(checkedNewPassword)
+       return result
   }
 
-// function to check if the two fields are  equal
+ //function to check if the two fields are  equal
   fun validateNewPasswordAndConfirmPassword(newPassword: String,confirmPassword: String): Boolean{
     result = newPassword == confirmPassword
     return result
