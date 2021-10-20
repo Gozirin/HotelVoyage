@@ -24,8 +24,6 @@
         <entry key="app/src/main/res/drawable/ic_wifi.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/indicator_circle.xml" value="0.27395833333333336" />
         <entry key="app/src/main/res/drawable/outline_button_radius.xml" value="0.18385416666666668" />
-        <entry key="app/src/main/res/drawable/reg_email_icon.xml" value="0.17881944444444445" />
-        <entry key="app/src/main/res/drawable/reg_field.xml" value="0.17881944444444445" />
         <entry key="app/src/main/res/drawable/registration_custom_button.xml" value="0.178125" />
         <entry key="app/src/main/res/drawable/rounded_image_view.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/drawable/top_left_radius_btn.xml" value="0.3260416666666667" />
@@ -39,6 +37,8 @@
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview1_item.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/explore_home_after_search_recyclerview_item_2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/explore_home_after_search_viewpager.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/explore_home_recyclerview_item_1.xml" value="0.29444444444444445" />
+        <entry key="app/src/main/res/layout/explore_home_recyclerview_item_2.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_booking_confirmation.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/fragment_booking_details.xml" value="0.2791666666666667" />
         <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
