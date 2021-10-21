@@ -1,5 +1,7 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals
 
+import androidx.room.PrimaryKey
+
 data class GetTopDealsResponseItem(
     val hotelId: String,
     val name: String,

@@ -35,7 +35,7 @@ abstract class HotelDatabase: RoomDatabase() {
     abstract fun getWishlistByPageNumberDao(): WishlistByPageNumberDao
     abstract fun getUserByIdDao(): UserByIdDao
     abstract fun getUserPhotoByIdDao(): UserPhotoByIdDao
-    abstract fun getAllHotels():AllHotelsDao
+//    abstract fun getAllHotels():AllHotelsDao
 
     //Creating a single instance of the database
     companion object{
