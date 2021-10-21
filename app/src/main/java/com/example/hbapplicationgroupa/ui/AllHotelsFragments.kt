@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,8 +38,13 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onBackPressed()
+        //Handling on back icon to go back to explore page
+        binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
+
+        //setting recyclerview
         setupRecyclerView()
+
+        //showing progress bar while api data is loading or no internet
         showProgressBar()
 
 
@@ -58,6 +62,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         })
     }
 
+
     override fun allHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
     }
@@ -72,18 +77,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     private fun showProgressBar() {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), " Please, switch on your Internet", Toast.LENGTH_LONG).show()
-    }
-
-    //Method to handle back press
-    private fun onBackPressed(){
-        //Overriding onBack press to navigate to home Fragment onBack Pressed
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+        Toast.makeText(requireContext(), " Please, make sure your Internet is active", Toast.LENGTH_LONG).show()
     }
 
     //set up recycler view
