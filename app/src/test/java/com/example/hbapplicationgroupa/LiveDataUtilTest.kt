@@ -27,9 +27,9 @@ fun <T> LiveData<T>.getOrAwaitValueTest(
     try {
         afterObserve.invoke()
 
-//        if (!latch.await(time, timeUnit)){
-//            throw TimeoutException("LiveData was never set")
-//        }
+        if (!latch.await(time, timeUnit)){
+            throw TimeoutException("LiveData was never set")
+        }
     }finally {
         this.removeObserver(observer)
     }
