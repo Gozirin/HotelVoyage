@@ -1,20 +1,12 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.example.hbapplicationgroupa.*
-import com.example.hbapplicationgroupa.adapter.peoplenumber_bottomshit_adapter.PeopleNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfPeopleBottomSheetDialogBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.PeopleNumberBottomSheetData
 import com.example.hbapplicationgroupa.utils.PeopleBottomSheetOnClickInterface
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlin.properties.Delegates
 
 class NumberOfPeopleBottomSheetDialogFragment(
     private val onClickInterface: PeopleBottomSheetOnClickInterface
@@ -134,7 +126,7 @@ class NumberOfPeopleBottomSheetDialogFragment(
             }
 
             val peopleDataToString = peopleData.joinToString(", ")
-            onClickInterface.passData(peopleDataToString)
+            onClickInterface.passDataFromPeopleBottomSheetToBookingDetailsScreen(peopleDataToString)
             dismiss()
         }
     }
