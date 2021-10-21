@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
@@ -50,7 +51,9 @@ class FakeHotelRepository: HotelRepositoryInterface {
     }
 
     override suspend fun getTopHotels(): Response<GetTopHotelsResponseModel> {
+        Log.d("FAKEHOTEL", "it calls fake hotels $topHotelsResponseFalse  and $topHotelsResponseTrue")
        return if (!isNetworkAvailable){
+
             topHotelsResponseFalse!!
         }else{
             topHotelsResponseTrue!!

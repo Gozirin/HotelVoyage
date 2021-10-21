@@ -62,9 +62,12 @@ class HotelViewModel @Inject constructor(
             try {
                 val response = hotelRepositoryInterface.getTopHotels()
                 _exploreHomeTopHotels.postValue(response.body())
-                Log.d("ExploreHomeVM 6: ", exploreHomeTopHotels.toString())
-                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
+//                Log.d("ExploreHomeVM 6: ", exploreHomeTopHotels.toString())
+//                Log.d("ExploreHomeVM 5: ", "The hell $response")
+                println("The response $response")
             } catch (e: Exception) {
+
+                println("the exception is $e")
 //                topHotels.postValue(Resource.error("Network error", null))
 //                Log.d("ExploreHomeVM 7: ", exploreHomeTopDeals.value?.data.toString())
 //                val response = hotelRepositoryInterface.getTopHotels()

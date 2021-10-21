@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException
 
 
 fun <T> LiveData<T>.getOrAwaitValueTest(
-    time: Long = 2,
+    time: Long = 10,
     timeUnit: TimeUnit = TimeUnit.SECONDS,
     afterObserve: () ->Unit = {}
 ) : T {
@@ -27,9 +27,9 @@ fun <T> LiveData<T>.getOrAwaitValueTest(
     try {
         afterObserve.invoke()
 
-        if (!latch.await(time, timeUnit)){
-            throw TimeoutException("LiveData was never set")
-        }
+//        if (!latch.await(time, timeUnit)){
+//            throw TimeoutException("LiveData was never set")
+//        }
     }finally {
         this.removeObserver(observer)
     }
