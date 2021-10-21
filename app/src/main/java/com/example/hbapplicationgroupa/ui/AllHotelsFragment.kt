@@ -45,17 +45,17 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
 
         //Observing viewModel
-//        viewModel.fetchAllHotels()
-//        viewModel.allHotelsLiveData.observe(viewLifecycleOwner, { response ->
-//            response.pageItems.let {
-//                Log.d("ObservingVM", response.pageItems.toString())
-//                if (it != null) {
-//                    allHotelsAdapter.listOfAllHotels.addAll(it)
-//                    hideProgressBar()
-//                    allHotelsAdapter.notifyDataSetChanged()
-//                }
-//            }
-//        })
+        viewModel.fetchAllHotels()
+        viewModel.allHotelsLiveData.observe(viewLifecycleOwner, { response ->
+            response.pageItems.let {
+                Log.d("ObservingVM", response.pageItems.toString())
+                if (it != null) {
+                    allHotelsAdapter.listOfAllHotels.addAll(it)
+                    hideProgressBar()
+                    allHotelsAdapter.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
     override fun allHotelsItemClicked(position: Int) {
