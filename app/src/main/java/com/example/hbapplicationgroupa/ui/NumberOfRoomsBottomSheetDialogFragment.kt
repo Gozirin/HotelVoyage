@@ -15,7 +15,7 @@ import com.example.hbapplicationgroupa.utils.BookingDetailsOnclickInterface
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment(), BookingDetailsOnclickInterface {
+class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentNumberOfRoomsBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RoomNumberBottomSheetAdapter
@@ -55,9 +55,5 @@ class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment(), Book
         binding.cancelButton.setOnClickListener {
             findNavController().navigate(R.id.action_numberOfRoomsBottomSheetDialogFragment_to_bookingDetailsFragment)
         }
-    }
-
-    override fun passRoomTypes(roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>) {
-
     }
 }

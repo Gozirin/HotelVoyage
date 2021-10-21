@@ -20,11 +20,11 @@ import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-class BookingDetailsFragment(
-    private val bookingDetailsOnclickInterface: BookingDetailsOnclickInterface
-) : Fragment(), PeopleBottomSheetOnClickInterface {
+@AndroidEntryPoint
+class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
     //Set up view binding here
     private var _binding: FragmentBookingDetailsBinding? = null
     private val binding get() = _binding!!
@@ -56,8 +56,7 @@ class BookingDetailsFragment(
         }
 
         binding.roomsEditText.setOnClickListener {
-            bookingDetailsOnclickInterface.passRoomTypes(fetchedRoomTypes)
-//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
+            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
         }
 
         binding.bookNowButton.setOnClickListener {
@@ -83,13 +82,13 @@ class BookingDetailsFragment(
                 binding.checkOutTextInputLayout.error = "Kindly select your preferred check out date"
                 return@setOnClickListener
             }
-//            else if (!numberOfPeopleIsNotEmpty(binding.peopleEditText.text.toString())){
-//                binding.peopleTextInputLayout.error = "Kindly enter the total number of people to be lodged"
-//                return@setOnClickListener
-//            }else if (!roomTypeIsNotEmpty(binding.roomsEditText.text.toString())){
-//                binding.roomsTextInputLayout.error = "Kindly select your preferred rooms"
-//                return@setOnClickListener
-//            }
+            else if (!numberOfPeopleIsNotEmpty(binding.peopleEditText.text.toString())){
+                binding.peopleTextInputLayout.error = "Kindly enter the total number of people to be lodged"
+                return@setOnClickListener
+            }else if (!roomTypeIsNotEmpty(binding.roomsEditText.text.toString())){
+                binding.roomsTextInputLayout.error = "Kindly select your preferred rooms"
+                return@setOnClickListener
+            }
             else{
                 findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
@@ -183,7 +182,7 @@ class BookingDetailsFragment(
         binding.peopleEditText.setText(data)
     }
 
-    fun getRoomTypes(){
+    private fun getRoomTypes(){
         hotelViewModel.getHotelById(args.hotelId)
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
             it.forEach { response ->
