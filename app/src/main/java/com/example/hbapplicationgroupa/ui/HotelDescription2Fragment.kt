@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryAdapter
@@ -38,6 +39,7 @@ class HotelDescription2Fragment : Fragment() {
     lateinit var stackedReviewDecorator: StackedReviewItemDecorator
     lateinit var hotelGalleryAdapter: HotelGalleryAdapter
     private val hotelViewModel: HotelViewModel by viewModels()
+    private val args: HotelDescription2FragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHotelDescription2Binding.inflate(inflater, container, false)
@@ -64,7 +66,7 @@ class HotelDescription2Fragment : Fragment() {
 
     //Observe data ain the database and populate the UI with the data
     private fun populateUiWithResponseFromDb(){
-        hotelViewModel.getHotelById("0dfb4f63-3caf-417e-b7d3-ea63008e8591")
+        hotelViewModel.getHotelById(args.hotelId)
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
             it.forEach { response ->
                 hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(response.roomTypes)
@@ -108,7 +110,8 @@ class HotelDescription2Fragment : Fragment() {
         }
         //Click Listener for Book button
         binding.hotelDescBookBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_bookingDetailsFragment)
+            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId)
+            findNavController().navigate(action)
         }
         //Click Listener for BookMark Button
         binding.hotelDescBookmarkBtn.setOnClickListener {

@@ -195,6 +195,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
     </fragment>
     <dialog
         android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
@@ -272,6 +275,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"

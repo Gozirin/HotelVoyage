@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class GetTopHotelsResponseItem(
     @PrimaryKey
     val tableNumber: Int,
+    var id: String,
     var name: String,
     val thumbnail: String,
     val price: String,
