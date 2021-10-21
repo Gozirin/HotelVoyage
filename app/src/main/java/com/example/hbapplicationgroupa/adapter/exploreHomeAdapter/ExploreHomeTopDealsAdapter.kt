@@ -25,7 +25,7 @@ class ExploreHomeTopDealsAdapter(
     }
 
     interface TopDealsClickListener {
-        fun topDealsClicked(position: Int)
+        fun topDealsClicked(position: Int, hotelId: String)
     }
 
     override fun onCreateViewHolder(
@@ -42,10 +42,14 @@ class ExploreHomeTopDealsAdapter(
             .load(listOfTopDealHotels[position].thumbnail)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.hotelImage2)
+
+        val hotelId = listOfTopDealHotels[position].id
+
         holder.hotelName2.text = listOfTopDealHotels[position].name
         holder.hotelPrice2.text = listOfTopDealHotels[position].price.toString()
+
         holder.itemView.setOnClickListener {
-            topDealsClickListener.topDealsClicked(position)
+            topDealsClickListener.topDealsClicked(position, hotelId)
         }
     }
 

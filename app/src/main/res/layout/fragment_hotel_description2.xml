@@ -76,24 +76,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
                 android:text="@string/hotel_desc_park_plaza"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/hotel_desc_viewPager" />
 
-            <TextView
-                android:id="@+id/hotel_desc_viewStatus_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="Most Viewed"
-                android:textColor="@color/c_red"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_hotelName_tv"
-                app:layout_constraintStart_toEndOf="@id/hotel_desc_hotelName_tv"
-                app:layout_constraintTop_toTopOf="@id/hotel_desc_hotelName_tv" />
+<!--            <TextView-->
+<!--                android:id="@+id/hotel_desc_viewStatus_tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:text="Most Viewed"-->
+<!--                android:textColor="@color/c_red"-->
+<!--                android:textSize="10sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/hotel_desc_hotelName_tv"-->
+<!--                app:layout_constraintStart_toEndOf="@id/hotel_desc_hotelName_tv"-->
+<!--                app:layout_constraintTop_toTopOf="@id/hotel_desc_hotelName_tv" />-->
 
             <TextView
                 android:id="@+id/hotel_desc_location_tv"
@@ -472,7 +475,7 @@
                 android:layout_marginTop="15dp"
                 android:paddingStart="10dp"
                 android:orientation="horizontal"/>
-            
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/hotel_desc_book_btn"
                 android:layout_width="0dp"

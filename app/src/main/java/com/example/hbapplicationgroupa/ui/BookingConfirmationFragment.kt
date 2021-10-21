@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingConfirmationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BookingConfirmationFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentBookingConfirmationBinding? = null
