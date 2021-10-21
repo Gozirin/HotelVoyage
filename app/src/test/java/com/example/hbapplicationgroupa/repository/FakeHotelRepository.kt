@@ -17,7 +17,7 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 
 class FakeHotelRepository: HotelRepositoryInterface {
-    private val data = arrayListOf(GetTopHotelsResponseItem(1, "", "", ""))
+    private val data = arrayListOf(GetTopHotelsResponseItem(1, "", "", "", ""))
     private val topHotelModel = GetTopHotelsResponseModel(200, true, data, "Successful", null)
     private val topHotelsResponseTrue: Response<GetTopHotelsResponseModel>? = Response.success(topHotelModel)
     private val topHotelsResponseFalse: Response<GetTopHotelsResponseModel>? = Response.error(400, "Unexpected Error".toResponseBody())
