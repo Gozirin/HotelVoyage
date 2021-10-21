@@ -40,11 +40,7 @@ interface HotelModuleApiInterface {
 
     @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")
     suspend fun getAllHotels(
-        @Query("Page") Page: Int,
-        @Query("pageSize") pageSize: Int,
-        @Query("IsBooked") IsBooked: Boolean,
-        @Query("Price") Price: Double,
-        @Path("id") id: String
+        @Query("pageSize") pageSize: Int, @Query("pageNumber") pageNumber: Int,
     ): Response<GetAllHotelsResponseModel>
 
     @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")
@@ -71,4 +67,7 @@ interface HotelModuleApiInterface {
 
     @GET("api/Hotel/{hotelId}/amenities?page=1&pageSize=5")
     suspend fun getHotelAmenities(@Path("hotelId") hotelId: String): Response<GetHotelAmenitiesResponseModel>
+
+//    @GET("/api/Hotel/all-hotels")
+//    suspend fun allHotels(@Query("pageSize") pageSize: Int, @Query("pageNumber") pageNumber: Int,): Response<GetAllHotelsResponseItems>
 }

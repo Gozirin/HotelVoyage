@@ -2,7 +2,9 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.database.dao.AllHotelsDao
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
@@ -13,6 +15,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
+import retrofit2.Call
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -23,7 +26,8 @@ and DAOs to communicate with the local room database for data manipulation on th
 
 class HotelRepository @Inject constructor(
     private val hotelModuleApiInterface: HotelModuleApiInterface,
-    private val hotelByIdDao: HotelByIdDao
+    private val hotelByIdDao: HotelByIdDao,
+    private val allHotelDao: AllHotelsDao
     ): HotelRepositoryInterface {
 
     //-----------------Hotel description-----------------
@@ -62,7 +66,41 @@ class HotelRepository @Inject constructor(
         hotelByIdDao.removeHotel(hotel)
     }
 
+
+
     //-----------------------------------------------------------
+
+//---------------All Hotels--------------------
+
+//    override fun getAllHotelFromDb(): LiveData<List<GetAllHotelsResponseItem>> {
+//        return  allHotelDao.getAllHotel()
+//    }
+
+    override suspend fun getAllHotelsFromApi(pageSize: Int, pageNumber: Int) {
+            val response = hotelModuleApiInterface.getAllHotels(pageSize,pageNumber)
+            val allHotel = response.body()?.data
+
+        if (response != null && response.isSuccessful){
+            saveAllHotelsToDb(allHotel!!)
+        }else{
+
+        }
+    }
+
+    override fun getAllHotelFromDb(): LiveData<List<GetAllHotelsResponseItem>> {
+        return allHotelDao.getAllHotel()
+   }
+
+
+    override suspend fun saveAllHotelsToDb(allHotel: GetAllHotelsResponseItem) {
+        allHotelDao.insertHotel(allHotel)
+    }
+
+    override suspend fun getAllHotel(pageSize: Int, pageNumber: Int): Response<GetAllHotelsResponseModel> {
+        return hotelModuleApiInterface.getAllHotels(pageSize,pageNumber)
+    }
+
+    //----------------------------------
 
     override suspend fun getTopHotels(): Response<GetTopHotelsResponseModel> {
         return hotelModuleApiInterface.getTopHotels()
@@ -74,16 +112,16 @@ class HotelRepository @Inject constructor(
     override suspend fun getTopDealss(pageSize: Int, pageNumber: Int): Response<GetTopDealsResponseModel> {
         return hotelModuleApiInterface.getTopDealss(pageSize, pageNumber)
     }
-
-    override suspend fun getAllHotels(
-        Page: Int,
-        pageSize: Int,
-        IsBooked: Boolean,
-        Price: Double,
-        id: String
-    ): Response<GetAllHotelsResponseModel> {
-        return hotelModuleApiInterface.getAllHotels(Page, pageSize, IsBooked, Price, id)
-    }
+//
+//    override suspend fun getAllHotels(
+//        Page: Int,
+//        pageSize: Int,
+//        IsBooked: Boolean,
+//        Price: Double,
+//        id: String
+//    ): Response<GetAllHotelsResponseModel> {
+//        return hotelModuleApiInterface.getAllHotels(Page, pageSize, IsBooked, Price, id)
+//    }
 
     override suspend fun getHotelRoomsByPrice(
         id: String,

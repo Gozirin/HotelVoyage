@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
@@ -32,6 +34,31 @@ class HotelViewModel @Inject constructor(
     }
 
     //-----------------------------------------------------
+
+
+
+
+  private val _allHotelsLiveData: MutableLiveData<Response<GetAllHotelsResponseModel>> = MutableLiveData()
+    val allHotelsLivedata : LiveData<Response<GetAllHotelsResponseModel>> = _allHotelsLiveData
+    //----------All Hotels------------------
+
+
+    fun getAllHotelFromDb(){
+      hotelRepositoryInterface.getAllHotelFromDb()
+    }
+    fun getHotelFromApi(pageSize: Int, pageNumber: Int){
+        viewModelScope.launch(Dispatchers.IO){
+             hotelRepositoryInterface.getAllHotelsFromApi(pageSize,pageNumber)
+
+
+        }
+
+    }
+
+
+
+
+
     val _topDealsLiveData: MutableLiveData<Resource<GetTopDealsResponseModel>> = MutableLiveData()
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 

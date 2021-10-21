@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
@@ -23,20 +24,29 @@ interface HotelRepositoryInterface {
     suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData)
     suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData)
 
+
     //--------------------------------------------------------------------
+
+  //............ All Hotels ...................
+    suspend fun getAllHotelsFromApi(pageSize: Int, pageNumber: Int)
+    fun getAllHotelFromDb(): LiveData<List<GetAllHotelsResponseItem>>
+    suspend fun saveAllHotelsToDb(allHotel: GetAllHotelsResponseItem)
+    suspend fun getAllHotel(pageSize: Int, pageNumber: Int): Response<GetAllHotelsResponseModel>
+
+  //.................................
 
     suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
     suspend fun getTopDeals():Response<GetTopDealsResponseModel>
 
     suspend fun getTopDealss(pageSize: Int, pageNumber: Int):Response<GetTopDealsResponseModel>
 
-    suspend fun getAllHotels(
-        Page: Int,
-        pageSize: Int,
-        IsBooked: Boolean,
-        Price: Double,
-        id: String
-    ): Response<GetAllHotelsResponseModel>
+//    suspend fun getAllHotels(
+//        Page: Int,
+//        pageSize: Int,
+//        IsBooked: Boolean,
+//        Price: Double,
+//        id: String
+//    ): Response<GetAllHotelsResponseModel>
 
     suspend fun getHotelRoomsByPrice(
         id: String,
