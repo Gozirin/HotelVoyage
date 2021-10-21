@@ -49,8 +49,8 @@ interface HotelRepositoryInterface {
 //    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
     suspend fun getAllHotels(
-//        PageNumber: Int,
-//        pageSize: Int,
+        PageNumber: Int,
+        pageSize: Int,
     ): Response<GetAllHotelsResponseModel>
 
     suspend fun getHotelRoomsByPrice(

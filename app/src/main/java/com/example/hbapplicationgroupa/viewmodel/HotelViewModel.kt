@@ -127,7 +127,6 @@ class HotelViewModel @Inject constructor(
         _topDealsLiveData.postValue(handleTopDealssResponse(response))
     }
 
-
     private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resources<GetTopDealsResponseModel> {
         if (response.isSuccessful) {
             response.body()?.let { resultresponse ->
@@ -170,22 +169,18 @@ class HotelViewModel @Inject constructor(
     //fetching all hotels from repository interface
     fun fetchAllHotels(){
         viewModelScope.launch(Dispatchers.IO){
-            val response = hotelRepositoryInterface.getAllHotels()
+            val response = hotelRepositoryInterface.getAllHotels(1, 100)
             try {
                 if (response.isSuccessful) {
                     val data = response.body()?.data
                     _allHotelsLiveData.postValue(data!!)
+                    Log.d("VM hotel Repo Interface", data.toString())
                 }else{
                     Log.d("VmError", "No data from api")
                 }
             }catch (e:Exception){
                 Log.d("VMError", e.message.toString())
             }
-
         }
     }
 }
-
-
-
-

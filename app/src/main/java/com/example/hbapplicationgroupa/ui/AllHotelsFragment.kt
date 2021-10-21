@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
-import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -43,19 +43,19 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         setupRecyclerView()
         showProgressBar()
 
-        binding
 
         //Observing viewModel
-        viewModel.fetchAllHotels()
-        viewModel.allHotelsLiveData.observe(viewLifecycleOwner, { response ->
-            response.pageItems.let {
-                if (it != null) {
-                    allHotelsAdapter.listOfAllHotels.addAll(it)
-                    hideProgressBar()
-                    allHotelsAdapter.notifyDataSetChanged()
-                }
-            }
-        })
+//        viewModel.fetchAllHotels()
+//        viewModel.allHotelsLiveData.observe(viewLifecycleOwner, { response ->
+//            response.pageItems.let {
+//                Log.d("ObservingVM", response.pageItems.toString())
+//                if (it != null) {
+//                    allHotelsAdapter.listOfAllHotels.addAll(it)
+//                    hideProgressBar()
+//                    allHotelsAdapter.notifyDataSetChanged()
+//                }
+//            }
+//        })
     }
 
     override fun allHotelsItemClicked(position: Int) {
@@ -93,6 +93,5 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
             adapter = allHotelsAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
-
     }
 }

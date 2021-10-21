@@ -82,10 +82,10 @@ class HotelRepository @Inject constructor(
     }
 
     override suspend fun getAllHotels(
-//        PageNumber: Int,
-//        pageSize: Int,
+        PageNumber: Int,
+        pageSize: Int,
     ): Response<GetAllHotelsResponseModel> {
-        val result = hotelModuleApiInterface.getAllHotels()
+        val result = hotelModuleApiInterface.getAllHotels(1, 100)
         Log.d("API Calls:", result.toString())
         return result
     }

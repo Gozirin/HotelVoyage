@@ -20,7 +20,6 @@ class AllHotelsAdapter(
 
     var listOfAllHotels: MutableList<PageItem> = mutableListOf()
 
-
     inner class AllHotelsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val nameOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_name)
         val priceOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_price)
