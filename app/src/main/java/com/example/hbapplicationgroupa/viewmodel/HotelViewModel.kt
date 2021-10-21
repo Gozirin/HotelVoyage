@@ -169,7 +169,7 @@ class HotelViewModel @Inject constructor(
     //fetching all hotels from repository interface
     fun fetchAllHotels(){
         viewModelScope.launch(Dispatchers.IO){
-            val response = hotelRepositoryInterface.getAllHotels(1, 100)
+            val response = hotelRepositoryInterface.getAllHotels()
             try {
                 if (response.isSuccessful) {
                     val data = response.body()?.data

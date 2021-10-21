@@ -3,9 +3,10 @@ package com.example.hbapplicationgroupa.adapter.allHotelsAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -25,8 +26,8 @@ class AllHotelsAdapter(
         val priceOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_price)
         val ratingOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_rating)
         val imageOfAllHotel: ImageView = itemView.findViewById(R.id.allHotels_recyclerview_imageview)
-        val allHotelBookBtn: Button = itemView.findViewById(R.id.allHotelsBookBtn)
-        val allHotelView: TextView = itemView.findViewById(R.id.allHotelsView)
+        val allHotelBookBtn: AppCompatButton = itemView.findViewById(R.id.allHotelsBookBtn)
+        val allHotelView: CardView = itemView.findViewById(R.id.allHotelsView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllHotelsViewHolder {

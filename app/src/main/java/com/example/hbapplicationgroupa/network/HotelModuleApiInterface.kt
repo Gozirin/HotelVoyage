@@ -39,10 +39,11 @@ interface HotelModuleApiInterface {
         @Query("pageNumber") pageNumber: Int
     ):Response<GetTopDealsResponseModel>
 
-    @GET("api/v1/Hotels/{Id}/rooms?pageNumber={pageNumber}&pageSize={pageSize}")
+    //api/v1/Hotels/{Id}/rooms?pageNumber={pageNumber}&pageSize={pageSize}
+    @GET("api/Hotel/all-hotels")
     suspend fun getAllHotels(
-        @Query("PageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int
+//        @Query("PageNumber") pageNumber: Int,
+//        @Query("pageSize") pageSize: Int
     ): Response<GetAllHotelsResponseModel>
 
     @GET("api/v1/Hotels/{Id}/rooms?page={pageNumber}&pageSize={pageSize}&IsBooked={true}&Price={amount}")
