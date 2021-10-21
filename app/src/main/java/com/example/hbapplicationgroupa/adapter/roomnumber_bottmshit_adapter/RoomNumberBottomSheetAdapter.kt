@@ -38,7 +38,5 @@ class RoomNumberBottomSheetAdapter : RecyclerView.Adapter<RoomNumberBottomSheetA
         }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
+    override fun getItemCount() = differ.currentList.size
 }

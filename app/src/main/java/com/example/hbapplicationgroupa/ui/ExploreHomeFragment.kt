@@ -82,14 +82,16 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     }
 
 
-    override fun onTopHotelClicked(position: Int) {
+    override fun onTopHotelClicked(position: Int, hotelId: String) {
         //Click listener for Top hotel click listeners
-        findNavController().navigate(R.id.action_exploreHomeFragment_to_hotelDescription2Fragment)
+        val action = ExploreHomeFragmentDirections.actionExploreHomeFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
-    override fun topDealsClicked(position: Int) {
+    override fun topDealsClicked(position: Int, hotelId: String) {
         //Click Listener for Top Deal Click Listeners
-        findNavController().navigate(R.id.action_exploreHomeFragment_to_hotelDescription2Fragment)
+        val action = ExploreHomeFragmentDirections.actionExploreHomeFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //set up top hotels recycler view

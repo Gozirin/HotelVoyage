@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Room No. 1"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/radio_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/radio_button" />
@@ -30,7 +31,9 @@
         android:id="@+id/radio_button"
         android:layout_width="32dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />

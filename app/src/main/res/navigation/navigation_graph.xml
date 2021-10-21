@@ -195,6 +195,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
     </fragment>
     <dialog
         android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
@@ -272,6 +275,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
@@ -317,7 +323,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.hbapplicationgroupa.ui.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment2"
             app:destination="@id/forgotPasswordFragment"
@@ -503,12 +509,16 @@
         android:id="@+id/emailConfirmation"
         android:name="com.example.hbapplicationgroupa.ui.EmailConfirmation"
         android:label="fragment_email_comfirmation"
-        tools:layout="@layout/fragment_email_comfirmation" >
+        tools:layout="@layout/fragment_email_comfirmation">
         <action
             android:id="@+id/action_emailConfirmation_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_left"
             app:popEnterAnim="@anim/slide_in_left" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:action="ACTION_VIEW"
+            app:uri="http://www.example.com/confirm-email/{token}/{email}" />
     </fragment>
     <fragment
         android:id="@+id/pendingConfirmation"
