@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException
 
 
 fun <T> LiveData<T>.getOrAwaitValueTest(
-    time: Long = 10,
+    time: Long = 2,
     timeUnit: TimeUnit = TimeUnit.SECONDS,
     afterObserve: () ->Unit = {}
 ) : T {
