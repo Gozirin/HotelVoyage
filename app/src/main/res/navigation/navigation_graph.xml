@@ -543,7 +543,8 @@
     <fragment
         android:id="@+id/allHotelsFragments"
         android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"
-        android:label="AllHotelsFragments" >
+        android:label="fragment_all_hotels_fragment"
+        tools:layout="@layout/fragment_all_hotels_fragment" >
         <action
             android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
