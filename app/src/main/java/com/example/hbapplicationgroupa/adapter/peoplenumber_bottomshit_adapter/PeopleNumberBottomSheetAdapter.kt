@@ -9,7 +9,9 @@ import com.example.hbapplicationgroupa.model.adaptermodels.PeopleNumberBottomShe
 import com.example.hbapplicationgroupa.databinding.PeopleNumberBottomSheetViewHolderBinding
 
 class PeopleNumberBottomSheetAdapter : RecyclerView.Adapter<PeopleNumberBottomSheetAdapter.PeopleNumberBottomSheetViewHolder>() {
-    inner class PeopleNumberBottomSheetViewHolder(var binding: PeopleNumberBottomSheetViewHolderBinding): RecyclerView.ViewHolder(binding.root)
+    inner class PeopleNumberBottomSheetViewHolder(
+        var binding: PeopleNumberBottomSheetViewHolderBinding
+        ): RecyclerView.ViewHolder(binding.root)
 
     private val diffCallback = object: DiffUtil.ItemCallback<PeopleNumberBottomSheetData>(){
         override fun areItemsTheSame(oldItem: PeopleNumberBottomSheetData, newItem: PeopleNumberBottomSheetData): Boolean {
@@ -29,13 +31,27 @@ class PeopleNumberBottomSheetAdapter : RecyclerView.Adapter<PeopleNumberBottomSh
     }
 
     override fun onBindViewHolder(holder: PeopleNumberBottomSheetViewHolder, position: Int) {
-        with(holder){
-            with(differ.currentList[position]){
-                binding.peopleClass.text = peopleClass
-                binding.ageRange.text = ageRange
-                binding.numberCount.text = numberCount
-            }
-        }
+//        with(holder){
+//            with(differ.currentList[position]){
+//                binding.peopleClass.text = peopleClass
+//                binding.ageRange.text = ageRange
+//                binding.numberCount.text = numberCount
+//
+//                var count = 0
+//
+//                binding.addButton.setOnClickListener {
+//                    count++
+//                    binding.numberCount.text = count.toString()
+//                }
+//
+//                binding.minusButton.setOnClickListener {
+//                    if (count > 0){
+//                        count--
+//                        binding.numberCount.text = count.toString()
+//                    }
+//                }
+//            }
+//        }
     }
 
     override fun getItemCount(): Int {
