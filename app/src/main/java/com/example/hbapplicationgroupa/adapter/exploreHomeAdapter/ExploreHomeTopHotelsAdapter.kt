@@ -27,7 +27,7 @@ class ExploreHomeTopHotelsAdapter(
     }
 
     interface TopHotelClickListener {
-        fun onTopHotelClicked(position: Int)
+        fun onTopHotelClicked(position: Int, hotelId: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Recycler1ViewHolder {
@@ -41,10 +41,14 @@ class ExploreHomeTopHotelsAdapter(
             .load(listOfTopHotels[position].thumbnail)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.hotelImage)
-        holder.hotelName?.text = listOfTopHotels[position].name
-          holder.hotelPrice?.text = listOfTopHotels[position].price
+
+        val hotelId = listOfTopHotels[position].id
+
+        holder.hotelName.text = listOfTopHotels[position].name
+        holder.hotelPrice.text = listOfTopHotels[position].price
+
         holder.itemView.setOnClickListener {
-            topHotelClickListener.onTopHotelClicked(position)
+            topHotelClickListener.onTopHotelClicked(position, hotelId)
         }
     }
 

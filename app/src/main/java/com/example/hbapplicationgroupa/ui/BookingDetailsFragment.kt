@@ -8,20 +8,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
 import com.example.hbapplicationgroupa.utils.*
+import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import java.util.*
 
-class BookingDetailsFragment : Fragment(), PeopleBottomSheetOnClickInterface {
+class BookingDetailsFragment(
+    private val bookingDetailsOnclickInterface: BookingDetailsOnclickInterface
+) : Fragment(), PeopleBottomSheetOnClickInterface {
     //Set up view binding here
     private var _binding: FragmentBookingDetailsBinding? = null
     private val binding get() = _binding!!
+    private val args: BookingDetailsFragmentArgs by navArgs()
+    private val hotelViewModel: HotelViewModel by viewModels()
+    private lateinit var fetchedRoomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -47,7 +56,8 @@ class BookingDetailsFragment : Fragment(), PeopleBottomSheetOnClickInterface {
         }
 
         binding.roomsEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
+            bookingDetailsOnclickInterface.passRoomTypes(fetchedRoomTypes)
+//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
         }
 
         binding.bookNowButton.setOnClickListener {
@@ -90,6 +100,7 @@ class BookingDetailsFragment : Fragment(), PeopleBottomSheetOnClickInterface {
 //            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
         }
 
+        getRoomTypes()
         onBackPressed()
     }
 
@@ -168,7 +179,16 @@ class BookingDetailsFragment : Fragment(), PeopleBottomSheetOnClickInterface {
         _binding = null
     }
 
-    override fun passData(data: String) {
+    override fun passDataFromPeopleBottomSheetToBookingDetailsScreen(data: String) {
         binding.peopleEditText.setText(data)
+    }
+
+    fun getRoomTypes(){
+        hotelViewModel.getHotelById(args.hotelId)
+        hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
+            it.forEach { response ->
+                fetchedRoomTypes = response.roomTypes
+            }
+        })
     }
 }
