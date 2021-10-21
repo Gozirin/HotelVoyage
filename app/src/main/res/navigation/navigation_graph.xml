@@ -198,9 +198,15 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_bookingDetailsFragment_to_allHotelsFragments"
             app:destination="@id/allHotelsFragments" />
+
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
+
     </fragment>
     <dialog
         android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
@@ -278,9 +284,15 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_hotelDescription2Fragment_to_allHotelsFragments"
             app:destination="@id/allHotelsFragments" />
+
+        <argument
+            android:name="hotelId"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"

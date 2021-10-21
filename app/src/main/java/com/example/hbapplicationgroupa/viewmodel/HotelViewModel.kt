@@ -27,8 +27,8 @@ class HotelViewModel @Inject constructor(
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
-    //set response from network call to a variable
-    private val topHotels = MutableLiveData<Resource<ArrayList<GetTopHotelsResponseItem>>>()
+//    fun getRoomTypeFromDb(hotelId: String) = hotelRepositoryInterface.getRoomTypesFromDb(hotelId)
+
     fun getHotelById(hotelId: String) = viewModelScope.launch(Dispatchers.IO) {
         try {
             hotelRepositoryInterface.getHotelDescriptionFromApi(hotelId)
@@ -41,9 +41,14 @@ class HotelViewModel @Inject constructor(
     val _topDealsLiveData: MutableLiveData<Resources<GetTopDealsResponseModel>> = MutableLiveData()
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 
+
     //------------------All Hotels------------------------------------
     private var _allHotelsLiveData: MutableLiveData<Data> = MutableLiveData()
     var allHotelsLiveData: LiveData<Data> = _allHotelsLiveData
+
+
+    //set response from network call to a variable
+    private val topHotels = MutableLiveData<Resource<ArrayList<GetTopHotelsResponseItem>>>()
 
 
     var pageNumber = 1
