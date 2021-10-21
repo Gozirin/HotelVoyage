@@ -65,6 +65,7 @@ class ProfileFragment : Fragment() {
             authPreference.clear("token_key")
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             dialog.dismiss()
+        }
 
             //cancel log out event
             val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
@@ -73,4 +74,3 @@ class ProfileFragment : Fragment() {
             }
         }
     }
-}

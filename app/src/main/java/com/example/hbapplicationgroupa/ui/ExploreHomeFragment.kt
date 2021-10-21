@@ -113,13 +113,13 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top hotels
     private fun getTopHotels(): HotelViewModel {
-        binding.exploreHomeFragmentProgressBar.visibility = View.VISIBLE
+        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
         binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
         hotelViewModel.fetchTopHotels()
         hotelViewModel.exploreHomeTopHotels.observe( viewLifecycleOwner, {
             when (it.statusCode) {
                 200 -> {
-                    binding.exploreHomeFragmentProgressBar.visibility = View.GONE
+                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
                     it.data.let { topHotels -> renderTopHotelsList(topHotels) }
                     binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
                     Log.d("ExploreHome 2: ", it.toString())
@@ -130,7 +130,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 //                }
                 400 -> {
                     //handle error
-                    binding.exploreHomeFragmentProgressBar.visibility = View.GONE
+                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
                     Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
                 }
             }
@@ -146,15 +146,15 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top deals
     private fun getTopDeals(): HotelViewModel {
-        binding.exploreHomeFragmentProgressBar.visibility = View.VISIBLE
-        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+        binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
         hotelViewModel.fetchTopDeals()
         hotelViewModel.exploreHomeTopDeals.observe(viewLifecycleOwner, {
             when (it.statusCode) {
                 200 -> {
-                    binding.exploreHomeFragmentProgressBar.visibility = View.GONE
+                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
                     it.data?.let { topDeals -> renderTopDealsList(topDeals) }
-                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
+                    binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
                     Log.d("ExploreHome 1: ", it.toString())
                 }
 //                Status.LOADING -> {
@@ -162,7 +162,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 //                    binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
 //                }
                 400 -> {
-                    binding.exploreHomeFragmentProgressBar.visibility = View.GONE
+                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
