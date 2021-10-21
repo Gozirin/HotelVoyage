@@ -23,38 +23,55 @@
     <string name="price">$ 6999</string>
     <string name="hotelRating">5 star hotel .96%</string>
     <string name="nameOfHotel">Taj WestSide</string>
-    <string name="inforCollected">in other to efficiently use the mobilfinderTo
-        create an account, simply visit https://www.merrybet.com/ and click on
-        Register, fill in the required information (make sure you provide correct
-        information as you will not be paid if information provided is false).
-        A verification email will be sent to the email used in registering.
-        Please click on the link provided in the email to activate your .</string>
+    <string name="infoCollected"> While registering as a new user on
+        the app, you may have to provide us with some information that reveals your identity. These
+        can also be information collected when booking a room in our hotel and making payment or when
+        updating your user profile. Examples of these information includes; name, email, address,
+        phone number, payment card information amongst others.</string>
+    <string name="infoFromUseOfApp">
+         We also collect information from you when you
+        browse through our app or use make use of certain services at the hotel such as wireless
+        internet services. Examples of information collected here are country details, IP address
+        and other features concerning your device may be collected too.</string>
 
-    <string name="infoProvided">in other to efficiently use the mobilfinder
-        in other to efficiently use the mobilfinderTo
-        create an account, simply visit https://www.merrybet.com/ and click on
-        Register, fill in the required information (make sure you provide correct
-        information as you will not be paid if information provided is false).
-        A verification email will be sent to the email used in registering.
-        Please click on the link provided in the email to activate your</string>
-    <string name="privacyPolicy">last updat August in other to efficiently
-        use the mobilfinderTo
-        create an account, simply visit https://www.merrybet.com/ and click on
-        Register, fill in the required information (make sure you provide correct
-        information as you will not be paid if information provided is false).
-        A verification email will be sent to the email used in registering.
-               create an account, simply visit https://www.merrybet.com/ and click on
-        Register, fill in the required information (make sure you provide correct
-        information as you will not be paid if information provided is false).
-        A verification email will be sent to the email used in registering.
-               create an account, simply visit https://www.merrybet.com/ and click on
-        Register, fill in the required information (make sure you provide correct
-        information as you will not be paid if information provided is false).
-        A verification email will be sent to the email used in registering.
-        Please click on the link provided in the email to activate your</string>
-    <string name="hotel_voyage_privacy_policy"><u>hotel Voyage Privacy Policy</u>  </string>
-    <string name="information_we_collect"><u>Information we Collect</u></string>
-    <string name="information_you_provided"><u>Information You Provided</u></string>
+    <string name="privacyPolicy">The privacy of the information you provided to us is of topmost
+        importance. Which is why we drafted below the ways by which we collect, use and protect the
+        information provided to us by you, either by browsing through our apps to see the details of
+        our prestigious hotel or just by you actually booking a room with us.
+        You are however not  obligated to provide us with your personal information. Note that if
+        you do not, we might be left with no choice than not to attend to you. Therefore, by using
+        this app, you are aware of what information about you are being collected, stored, and
+        disclosed as set out in the policy below.
+        This policy was last updated October 20th, 2021.</string>
+    
+    <string name="why_we_collect_info_text">Information collected by the above means is to ease the
+        process of booking a room prior to stay by sending your details to the hotel and/or
+        communication prior to stay. We also collect information for communication and satisfaction
+        surveys on post-stay so as to get feedbacks on your experience and how we can improve our
+        services in order to serve you better.
+        Also in some cases where we have your permission, we may send you marketing communications
+        such as discounts and latest updates in our hotels.</string>
+    <string name="how_we_protect_information_text">Here in our company, we take utmost precautions
+        to make sure your information are protected from misuse, unauthorised access, loss,
+        interference and disclosure. However, safety of information can never be completely
+        guaranteed but understand that we put the necessary security safeguards in place to protect
+        it.</string>
+    <string name="changes_to_privacy_policy_text">However we retain the utmost right to make
+        amendments to the privacy and policy as need arises. Please ensure you check the privacy
+        policy from time to time to be abreast of any changes made.</string>
+    <string name="contact_us_text">If you have any questions or more clarification about the privacy
+        and policy, you can contact us through our phone contact, email or address as specified
+        below.</string>
+
+    <string name="hotel_voyage_privacy_policy"><u>Hotel Voyage Privacy Policy</u>  </string>
+    <string name="information_we_collect"><u>Information We Collect</u></string>
+    <string name="why_we_collect_information"><u>Why We Collect Personal Information</u></string>
+    <string name="how_we_protect_information"><u>How Information Collected Are Protected</u></string>
+    <string name="changes_to_privacy_policy"><u>Changes To This Privacy and Policy</u></string>
+    <string name="contact_us"><u>How To Contact Us</u></string>
+    <string name="contact"><u>+234 8136678673</u></string>
+    <string name="email"><u>Decagon@gmail.com</u></string>
+    <string name="address">No 32, Okuorhomi community, along estate gate. Edo, Benin city</string>
 
     //_________________________________________________
 

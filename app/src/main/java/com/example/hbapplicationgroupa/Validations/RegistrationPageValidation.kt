@@ -68,7 +68,6 @@ object RegistrationPageValidation {
     }
     fun validateAgeInput(age:Int?):Boolean{
         if (age != null && age > 18){
-
             return true
         }
         return false

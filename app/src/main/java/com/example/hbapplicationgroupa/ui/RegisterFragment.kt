@@ -181,14 +181,10 @@ class RegisterFragment : Fragment() {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     p0?.getItemIdAtPosition(p2)
                 }
-
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                    binding.getSpinner.onItemSelectedListener = this
-
                 }
-
             }
         }
-
     }
 }
