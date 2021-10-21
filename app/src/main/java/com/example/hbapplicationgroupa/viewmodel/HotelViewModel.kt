@@ -101,9 +101,9 @@ class HotelViewModel @Inject constructor(
 
 
         //the amount of info coming in at a time
-//        init {
-//            getTopDealss(10)
-//        }
+        init {
+            getTopDealss(10)
+        }
 //           topDeals.postValue(Resource.loading(null))
 ////            try {
 ////                val response = hotelRepositoryInterface.getTopDeals()
