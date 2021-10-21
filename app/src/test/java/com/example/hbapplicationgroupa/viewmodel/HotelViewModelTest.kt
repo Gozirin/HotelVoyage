@@ -6,7 +6,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.hbapplicationgroupa.MainCoroutineRule
 import com.example.hbapplicationgroupa.getOrAwaitValueTest
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-import com.example.hbapplicationgroupa.repository.FakeHotelRepository
 import com.example.hbapplicationgroupa.utils.TestCoroutineRule
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.google.common.truth.Truth.assertThat
