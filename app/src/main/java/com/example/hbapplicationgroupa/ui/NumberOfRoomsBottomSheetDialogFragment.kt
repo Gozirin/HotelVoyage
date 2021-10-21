@@ -10,10 +10,12 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.model.adaptermodels.RoomNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfRoomsBottomSheetDialogBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.utils.BookingDetailsOnclickInterface
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment(), BookingDetailsOnclickInterface {
     private var _binding: FragmentNumberOfRoomsBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RoomNumberBottomSheetAdapter
@@ -53,5 +55,9 @@ class NumberOfRoomsBottomSheetDialogFragment : BottomSheetDialogFragment() {
         binding.cancelButton.setOnClickListener {
             findNavController().navigate(R.id.action_numberOfRoomsBottomSheetDialogFragment_to_bookingDetailsFragment)
         }
+    }
+
+    override fun passRoomTypes(roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>) {
+
     }
 }
