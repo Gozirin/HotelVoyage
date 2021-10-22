@@ -36,8 +36,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
 
     //confirmEmail LiveData
-    private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse> = MutableLiveData()
-    val getConfirmEmailLiveData: LiveData<ConfirmEmailResponse> = _getConfirmEmailLiveData
+    private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse?> = MutableLiveData()
+    val getConfirmEmailLiveData: LiveData<ConfirmEmailResponse?> = _getConfirmEmailLiveData
 
     fun confirmEmail (email: String, token: String){
         val confirmEmail = ConfirmEmailModel(email, token)
