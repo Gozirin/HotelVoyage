@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,6 +43,10 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Handling on back icon to go back to explore page
+        binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
+
+        //setting recyclerview
         // To filter all hotel location
         val  autoCompleteTextView = binding.allHotelsFilters
         val languages = resources.getStringArray(R.array.languages)
@@ -58,6 +64,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
         onBackPressed()
         setupRecyclerView()
+        //showing progress bar while api data is loading or no internet
         showProgressBar()
         filterAllHotelByLocationObserver()
 
@@ -75,6 +82,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         })
     }
 
+
     override fun allHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
     }
@@ -89,7 +97,16 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     private fun showProgressBar() {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), " Please, switch on your Internet", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), " Please, make sure your Internet is active", Toast.LENGTH_LONG).show()
+    }
+
+    //set up recycler view
+    private fun setupRecyclerView() {
+        allHotelsAdapter = AllHotelsAdapter(this, this)
+        binding.allHotelsRecyclerview.apply {
+            adapter = allHotelsAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
     }
 
     //Method to handle back press
@@ -103,30 +120,20 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
-    //set up recycler view
-    private fun setupRecyclerView() {
-        allHotelsAdapter = AllHotelsAdapter(this, this)
-        binding.allHotelsRecyclerview.apply {
-            adapter = allHotelsAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
 
     fun makeApiCallFilterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int){
-        viewModel.filterAllHotelWithLocation(location,pageSize,pageNumber)
+        viewModel.filterAllHotelWithLocation(location, pageSize, pageNumber)
     }
 
-
-    // Method to make observe the call
     fun filterAllHotelByLocationObserver(){
         viewModel._filterAllHotelByLocationLiveData.observe(requireActivity(),{
-                if (it == null){
-                    Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
-                }else{
-                  allHotelsAdapter.listOfAllHotels =  it.data?.pageItems!!.toMutableList()
-                    allHotelsAdapter.notifyDataSetChanged()
-                    Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
-                }
+            if (it == null){
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+            }else{
+                allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
+                allHotelsAdapter.notifyDataSetChanged()
+            }
+
         })
 
     }
