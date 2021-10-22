@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.repository.authmodulerepository
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -20,5 +21,5 @@ interface AuthRepositoryInterface {
     suspend fun updatePassword(updatePasswordModel: UpdatePasswordModel): Response<UpdatePasswordResponseModel>
     suspend fun forgotPassword(EmailAddress: String): Response<ForgotPasswordResponseModel>
     suspend fun resetPassword(resetPasswordModel: ResetPasswordModel): Response<ResetPasswordResponseModel>
-    suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponseModel>
+    suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse>
 }

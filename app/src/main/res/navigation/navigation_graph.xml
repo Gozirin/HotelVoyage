@@ -95,6 +95,9 @@
             app:destination="@id/topDealsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_exploreHomeFragment_to_allHotelsFragments"
+            app:destination="@id/allHotelsFragments" />
     </fragment>
     <fragment
         android:id="@+id/wishListFragment"
@@ -195,9 +198,15 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_allHotelsFragments"
+            app:destination="@id/allHotelsFragments" />
+
         <argument
             android:name="hotelId"
             app:argType="string" />
+
     </fragment>
     <dialog
         android:id="@+id/numberOfRoomsBottomSheetDialogFragment"
@@ -275,9 +284,15 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/topDealsFragment"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_to_allHotelsFragments"
+            app:destination="@id/allHotelsFragments" />
+
         <argument
             android:name="hotelId"
             app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/writeAReviewFragment"
@@ -519,10 +534,52 @@
             android:id="@+id/deepLink3"
             app:action="ACTION_VIEW"
             app:uri="http://www.example.com/confirm-email/{token}/{email}" />
+        <argument
+            android:name="token"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
     </fragment>
     <fragment
         android:id="@+id/pendingConfirmation"
         android:name="com.example.hbapplicationgroupa.ui.PendingConfirmation"
         android:label="fragment_pending_confirmation"
-        tools:layout="@layout/fragment_pending_confirmation" />
+        tools:layout="@layout/fragment_pending_confirmation" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/allHotelsFragments"
+        android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"
+        android:label="fragment_all_hotels_fragment"
+        tools:layout="@layout/fragment_all_hotels_fragment" >
+        <action
+            android:id="@+id/action_allHotelsFragments_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
+        <action
+            android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"
+            app:destination="@id/bookingDetailsFragment" />
+    </fragment>
+    <!--        <fragment-->
+<!--        android:id="@+id/allHotelsFragments"-->
+<!--        android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"-->
+<!--        android:label="AllHotelsFragments" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"-->
+<!--            app:destination="@id/bookingDetailsFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_exploreHomeFragment"-->
+<!--            app:destination="@id/exploreHomeFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_hotelDescription2Fragment"-->
+<!--            app:destination="@id/hotelDescription2Fragment" />-->
+<!--    </fragment>-->
 </navigation>

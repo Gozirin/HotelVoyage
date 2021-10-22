@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
@@ -39,19 +41,26 @@ class HotelViewModel @Inject constructor(
     val _topDealsLiveData: MutableLiveData<Resources<GetTopDealsResponseModel>> = MutableLiveData()
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 
+
+    //------------------All Hotels------------------------------------
+    private var _allHotelsLiveData: MutableLiveData<Data> = MutableLiveData()
+    var allHotelsLiveData: LiveData<Data> = _allHotelsLiveData
+
+
     //set response from network call to a variable
     private val topHotels = MutableLiveData<Resource<ArrayList<GetTopHotelsResponseItem>>>()
 
+
     var pageNumber = 1
 
-    private var _exploreHomeTopHotels: MutableLiveData<GetTopHotelsResponseModel> = MutableLiveData()
-      val  exploreHomeTopHotels: LiveData<GetTopHotelsResponseModel>
-      get() = _exploreHomeTopHotels
+    private var _exploreHomeTopHotels: MutableLiveData<GetTopHotelsResponseModel> =
+        MutableLiveData()
+    val exploreHomeTopHotels: LiveData<GetTopHotelsResponseModel>
+        get() = _exploreHomeTopHotels
 
     private var _exploreHomeTopDeals: MutableLiveData<GetTopDealsResponseModel> = MutableLiveData()
     val exploreHomeTopDeals: LiveData<GetTopDealsResponseModel>
-    get() = _exploreHomeTopDeals
-
+        get() = _exploreHomeTopDeals
 
 //    init {
 //        fetchTopHotels()
@@ -78,15 +87,15 @@ class HotelViewModel @Inject constructor(
         }
     }
 
-         fun fetchTopDeals() {
-            viewModelScope.launch {
+    fun fetchTopDeals() {
+        viewModelScope.launch {
 //            topHotels.postValue(Resource.loading(null))
             try {
                 val response = hotelRepositoryInterface.getTopDeals()
-                if (response.isSuccessful){
+                if (response.isSuccessful) {
                     _exploreHomeTopDeals.value = (response.body())
                     Log.d("ExploreHomeVM 5: ", "${response.body()}")
-                }else{
+                } else {
                     Log.d("ExploreHomeVM 5: ", "error")
                 }
                 Log.d("ExploreHomeVM 4: ", "${response.body()}")
@@ -100,9 +109,13 @@ class HotelViewModel @Inject constructor(
 //                }
             }
         }
-        }
+    }
 
 
+    //the amount of info coming in at a time
+//        init {
+//            getTopDealss(10)
+//        }
         //the amount of info coming in at a time
         init {
             getTopDealss(10)
@@ -122,7 +135,6 @@ class HotelViewModel @Inject constructor(
         val response = hotelRepositoryInterface.getTopDealss(pageSize, pageNumber)
         _topDealsLiveData.postValue(handleTopDealssResponse(response))
     }
-
 
     private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resources<GetTopDealsResponseModel> {
         if (response.isSuccessful) {
@@ -144,7 +156,40 @@ class HotelViewModel @Inject constructor(
 //    fun getTopHotels(): LiveData<GetTopHotelsResponseModel> {
 ////        Log.d("ExploreHomeVM 3: ", exploreHomeTopDeals.value?.data.toString())
 //        return exploreHomeTopHotels
+
+//    private fun handleAllHotelssResponse(response: Response<GetAllHotelsResponseModel>): Resources<GetAllHotelsResponseModel> {
+//        if (response.isSuccessful) {
+//            response.body()?.let {
+//                pageNumber++
+//                if (_allHotelsLiveDataResponse == null) {
+//                    _allHotelsLiveDataResponse = it
+//                } else {
+//                    val oldHotels = _topDealsLiveDataResponse?.data
+//                    val newHotels = it.data
+//                    oldHotels?.addAll(newHotels)
+//                }
+//                return Resources.Success(_allHotelsLiveDataResponse ?: it)
+//            }
+//        }
+//        return Resources.Error(response.message())
+//    }
+
+
+    //fetching all hotels from repository interface
+    fun fetchAllHotels(){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = hotelRepositoryInterface.getAllHotels()
+            try {
+                if (response.isSuccessful) {
+                    val data = response.body()?.data
+                    _allHotelsLiveData.postValue(data!!)
+                    Log.d("VM hotel Repo Interface", data.toString())
+                }else{
+                    Log.d("VmError", "No data from api")
+                }
+            }catch (e:Exception){
+                Log.d("VMError", e.message.toString())
+            }
+        }
     }
-
-
-
+}

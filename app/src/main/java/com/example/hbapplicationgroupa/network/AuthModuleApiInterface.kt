@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -48,10 +49,10 @@ interface AuthModuleApiInterface {
         @Body resetPasswordModel: ResetPasswordModel
     ): Response<ResetPasswordResponseModel>
 
-    @POST("api/v1/Authentication/confirm")
+    @POST("api/Authentication/confirm-email")
     suspend fun confirmEmail(
-        confirmEmailModel: ConfirmEmailModel
-    ): Response<ConfirmEmailResponseModel>
+        @Body confirmEmailModel: ConfirmEmailModel
+    ): Response<ConfirmEmailResponse>
 
 
 }

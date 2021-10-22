@@ -69,7 +69,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         }
         //click listener for View button navigation to top hotel fragment
         binding.exploreHomeViewAndArrowBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
+            findNavController().navigate(R.id.action_exploreHomeFragment_to_allHotelsFragments)
         }
         //navigation to top Hotel Fragment [it should be topDeal which is yet to be created]
         binding.exploreHomeFragmentTopDealsViewAllTv.setOnClickListener {

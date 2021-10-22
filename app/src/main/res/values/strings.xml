@@ -141,6 +141,8 @@
     <string name="profile">Profile</string>
     <string name="password_should_contain_atleast_one_uppercase_letter_digit_special_character">password should contain atleast one uppercase letter,digit,special character</string>
     <string name="new_password">New Password</string>
+    <string name="allhotels">allhotels</string>
+    <string name="hotels">Hotels</string>
 
     <string-array name="gender">
         <item>Gender</item>
