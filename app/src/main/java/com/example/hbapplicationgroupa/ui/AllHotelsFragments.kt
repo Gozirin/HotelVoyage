@@ -49,7 +49,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         //setting recyclerview
         // To filter all hotel location
         val  autoCompleteTextView = binding.allHotelsFilters
-        val languages = resources.getStringArray(R.array.languages)
+        val languages = resources.getStringArray(R.array.states)
         val filterByAdapter = ArrayAdapter(requireContext(), R.layout.allhotel_autocompletetv_xml, languages)
             autoCompleteTextView.setAdapter(filterByAdapter)
 
