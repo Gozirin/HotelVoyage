@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
@@ -73,4 +74,11 @@ interface HotelModuleApiInterface {
 
     @GET("api/Hotel/{hotelId}/amenities?page=1&pageSize=5")
     suspend fun getHotelAmenities(@Path("hotelId") hotelId: String): Response<GetHotelAmenitiesResponseModel>
+
+    @GET("api/Hotel/search/{location}")
+    suspend fun filterALlHotelByLocation(
+        @Path("location") location: String,
+        @Query("pageSize") pageSize: Int,
+        @Query("pageNumber") pageNumber: Int
+    ):Response<GetAllHotelsResponseModel>
 }

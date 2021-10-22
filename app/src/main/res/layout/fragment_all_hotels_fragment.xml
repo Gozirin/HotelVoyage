@@ -4,7 +4,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".ui.AllHotelsFragment">
+        tools:context=".ui.AllHotelsFragments">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/topHotel_cardview_appBar"
@@ -104,23 +104,27 @@
                 app:tint="#FCEA0707"
                 android:contentDescription="@string/allhotels"/>
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:id="@+id/allHotels_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/allHotelsLocationTxt"
                 app:layout_constraintBottom_toBottomOf="@id/allHotelsLocationTxt">
 
 
                 <AutoCompleteTextView
-                    android:id="@+id/allHotels_filte"
+                    android:id="@+id/allHotels_filters"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:clickable="true"
-                    android:focusable="true"
                     android:text="@string/filter_by"
                     android:textColor="#FCEA0707"
+                    android:layout_weight="1"
+                    android:inputType="none"
                     android:textSize="18sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>

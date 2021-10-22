@@ -6,6 +6,7 @@ import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
@@ -160,5 +161,15 @@ class HotelRepository @Inject constructor(
 
     override suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel> {
         return hotelModuleApiInterface.getHotelAmenities(hotelId)
+    }
+
+
+    //------- To Filter All Hotel By Location
+    override suspend fun filterAllHotelByLocation(
+        location: String,
+        pageSize: Int,
+        pageNumber: Int
+    ): Response<GetAllHotelsResponseModel> {
+        return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
     }
 }

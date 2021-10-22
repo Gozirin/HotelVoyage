@@ -149,4 +149,13 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+
+// String array for filtering All Hotel
+    <string-array name="languages">
+        <item>Javascript</item>
+        <item>Python</item>
+        <item>Kotlin</item>
+        <item>Java</item>
+    </string-array>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/allHotelsFragments">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -292,6 +292,9 @@
         <argument
             android:name="hotelId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_self"
+            app:destination="@id/hotelDescription2Fragment" />
 
     </fragment>
     <fragment
@@ -540,18 +543,46 @@
         android:name="com.example.hbapplicationgroupa.ui.PendingConfirmation"
         android:label="fragment_pending_confirmation"
         tools:layout="@layout/fragment_pending_confirmation" />
+    <navigation android:id="@+id/navigation3"
+        app:startDestination="@id/navigation2">
+        <navigation
+            android:id="@+id/navigation2"
+            app:startDestination="@id/navigation">
+            <navigation
+                android:id="@+id/navigation"
+                app:startDestination="@id/allHotelsFragments2">
+                <fragment
+                    android:id="@+id/allHotelsFragments2"
+                    android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"
+                    android:label="fragment_all_hotels_fragment"
+                    tools:layout="@layout/fragment_all_hotels_fragment" />
+            </navigation>
+        </navigation>
+    </navigation>
     <fragment
         android:id="@+id/allHotelsFragments"
         android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"
-        android:label="AllHotelsFragments" >
+        android:label="fragment_all_hotels_fragment"
+        tools:layout="@layout/fragment_all_hotels_fragment" >
         <action
             android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
         <action
-            android:id="@+id/action_allHotelsFragments_to_exploreHomeFragment"
-            app:destination="@id/exploreHomeFragment" />
-        <action
             android:id="@+id/action_allHotelsFragments_to_hotelDescription2Fragment"
             app:destination="@id/hotelDescription2Fragment" />
     </fragment>
+    <!--    <fragment-->
+<!--        android:id="@+id/allHotelsFragments"-->
+<!--        android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"-->
+<!--        android:label="AllHotelsFragments" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"-->
+<!--            app:destination="@id/bookingDetailsFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_exploreHomeFragment"-->
+<!--            app:destination="@id/exploreHomeFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_allHotelsFragments_to_hotelDescription2Fragment"-->
+<!--            app:destination="@id/hotelDescription2Fragment" />-->
+<!--    </fragment>-->
 </navigation>
