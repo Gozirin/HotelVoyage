@@ -292,6 +292,9 @@
         <argument
             android:name="hotelId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_hotelDescription2Fragment_self"
+            app:destination="@id/hotelDescription2Fragment" />
 
     </fragment>
     <fragment
@@ -568,18 +571,4 @@
             android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
     </fragment>
-    <!--        <fragment-->
-<!--        android:id="@+id/allHotelsFragments"-->
-<!--        android:name="com.example.hbapplicationgroupa.ui.AllHotelsFragments"-->
-<!--        android:label="AllHotelsFragments" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"-->
-<!--            app:destination="@id/bookingDetailsFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_allHotelsFragments_to_exploreHomeFragment"-->
-<!--            app:destination="@id/exploreHomeFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_allHotelsFragments_to_hotelDescription2Fragment"-->
-<!--            app:destination="@id/hotelDescription2Fragment" />-->
-<!--    </fragment>-->
 </navigation>

@@ -3,20 +3,19 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
+
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
-import com.example.hbapplicationgroupa.utils.Resource
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -27,7 +26,7 @@ and DAOs to communicate with the local room database for data manipulation on th
 
 class HotelRepository @Inject constructor(
     private val hotelModuleApiInterface: HotelModuleApiInterface,
-    private val hotelByIdDao: HotelByIdDao
+    private val hotelByIdDao: HotelByIdDao,
     ): HotelRepositoryInterface {
 
     //-----------------Hotel description-----------------
@@ -162,5 +161,15 @@ class HotelRepository @Inject constructor(
 
     override suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel> {
         return hotelModuleApiInterface.getHotelAmenities(hotelId)
+    }
+
+
+    //------- To Filter All Hotel By Location
+    override suspend fun filterAllHotelByLocation(
+        location: String,
+        pageSize: Int,
+        pageNumber: Int
+    ): Response<GetAllHotelsResponseModel> {
+        return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
     }
 }

@@ -36,6 +36,7 @@ abstract class HotelDatabase: RoomDatabase() {
     abstract fun getUserByIdDao(): UserByIdDao
     abstract fun getUserPhotoByIdDao(): UserPhotoByIdDao
 
+
     //Creating a single instance of the database
     companion object{
         @Volatile

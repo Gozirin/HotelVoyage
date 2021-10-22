@@ -30,7 +30,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/topDeal_backBtn"
+                        android:id="@+id/allHotels_backBtn"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:background="@color/white"
@@ -44,16 +44,19 @@
                         android:id="@+id/topDeal_titleText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="72dp"
+                        android:layout_marginStart="108dp"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/hotels"
+                        android:textColor="@color/black"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/topDeal_backBtn"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.075"
+                        app:layout_constraintStart_toEndOf="@+id/allHotels_backBtn"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
@@ -103,20 +106,32 @@
                 app:layout_constraintTop_toTopOf="@id/allHotels_filter"
                 app:tint="#FCEA0707"
                 android:contentDescription="@string/allhotels"/>
-
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:id="@+id/allHotels_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/filter_by"
-                android:textColor="#FCEA0707"
-                android:textSize="18sp"
+                app:boxBackgroundMode="filled"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/allHotelsLocationTxt"
-                app:layout_constraintBottom_toBottomOf="@id/allHotelsLocationTxt"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintBottom_toBottomOf="@id/allHotelsLocationTxt">
+
+
+                <AutoCompleteTextView
+                    android:id="@+id/allHotels_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="0dp"
+                    android:text="@string/filter_by"
+                    android:textColor="#FCEA0707"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:textSize="18sp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView

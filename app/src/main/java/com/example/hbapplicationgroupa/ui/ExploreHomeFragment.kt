@@ -61,6 +61,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         getTopHotels()
         getTopDeals()
 
+
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
         //navigating to topHotel Fragment
@@ -169,6 +170,21 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         })
         return  hotelViewModel
     }
+//    fun initViewModel(pageSize: Int, pageNumber: Int){
+//        hotelViewModel.getHotelFromApi(pageSize,pageNumber)
+//
+//    }
+
+//    fun makeApiCall(){
+//       hotelViewModel.allHotelsLivedata.observe(requireActivity(),{
+//            if (it == null){
+//               Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+//         }else{
+//
+//
+//           }
+//        })
+//    }
 
     //set fetched data to top deals adapter
     private fun renderTopDealsList(topDeals: List<GetTopDealsResponseItem>) {

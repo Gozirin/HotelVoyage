@@ -1,22 +1,20 @@
-//package com.example.hbapplicationgroupa.viewmodel
-//
-//
-//import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-//import com.example.hbapplicationgroupa.MainCoroutineRule
-//import com.example.hbapplicationgroupa.getOrAwaitValueTest
-//import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-//import com.example.hbapplicationgroupa.repository.FakeHotelRepository
-//import com.example.hbapplicationgroupa.utils.TestCoroutineRule
-//import com.example.hbapplicationgroupa.viewModel.HotelViewModel
-//import com.google.common.truth.Truth.assertThat
-//import kotlinx.coroutines.ExperimentalCoroutinesApi
-//import org.junit.Before
-//import org.junit.Rule
-//import org.junit.Test
-//import org.junit.rules.TestRule
-//import org.junit.runner.RunWith
-//import org.mockito.junit.MockitoJUnitRunner
-//
+package com.example.hbapplicationgroupa.viewmodel
+
+
+import android.util.Log
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+import com.example.hbapplicationgroupa.utils.TestCoroutineRule
+import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
+import org.junit.rules.TestRule
+import org.junit.runner.RunWith
+import org.mockito.junit.MockitoJUnitRunner
+
 //
 //@ExperimentalCoroutinesApi
 ////@RunWith(MockitoJUnitRunner::class)
@@ -31,20 +29,21 @@
 //    private lateinit var hotelViewModel: HotelViewModel
 //
 //    private lateinit var fakeHotelRepository: FakeHotelRepository
-////
-////    @Mock
-////    private lateinit var hotelRepositoryInterface: HotelRepositoryInterface
-////
-////    @Mock
-////    private lateinit var hotelDatabaseRepositoryInterface: HotelDatabaseRepositoryInterface
-////
-////    @Mock
-////    private lateinit var topHotelsObserver: Observer<Resource<List<GetTopHotelsResponseItem>>>
-////
-////    @Mock
-////    private lateinit var topDealsObserver: Observer<Resource<List<GetTopDealsResponseItem>>>
-////
-////
+
+    //
+//    @Mock
+//    private lateinit var hotelRepositoryInterface: HotelRepositoryInterface
+//
+//    @Mock
+//    private lateinit var hotelDatabaseRepositoryInterface: HotelDatabaseRepositoryInterface
+//
+//    @Mock
+//    private lateinit var topHotelsObserver: Observer<Resource<List<GetTopHotelsResponseItem>>>
+//
+//    @Mock
+//    private lateinit var topDealsObserver: Observer<Resource<List<GetTopDealsResponseItem>>>
+//
+//
 //    @Before
 //    fun setUp() {
 //        hotelViewModel = HotelViewModel(FakeHotelRepository())
@@ -52,19 +51,23 @@
 //    }
 //
 //    @Test
-//    fun `get top hotels request when no network should return error`(){
+//    fun `get top hotels request when no network should return error`() {
 //        hotelViewModel.fetchTopHotels()
 //        val value = hotelViewModel.exploreHomeTopHotels.getOrAwaitValueTest()
 //        assertThat(value.statusCode).isEqualTo(400)
 //    }
 //
 //    @Test
-//    fun `get top hotels request when network is available should return success`(){
+//    fun `get top hotels request when network is available should return success`() {
 //        fakeHotelRepository.isNetworkAvailable(true)
 //        hotelViewModel.fetchTopHotels()
+//
 //        val value = hotelViewModel.exploreHomeTopHotels.getOrAwaitValueTest()
+//
 //        assertThat(value.statusCode).isEqualTo(200)
+//
 //    }
+//}
 //
 //
 //    @Test
@@ -134,4 +137,3 @@
 //    fun tearDown() {
 //
 //    }
-//}

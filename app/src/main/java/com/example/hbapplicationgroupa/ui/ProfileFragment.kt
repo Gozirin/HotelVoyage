@@ -54,15 +54,23 @@ class ProfileFragment : Fragment() {
             dialog.show()
             dialogActivities()
         }
+
     }
 
     //Method to logout by clearing authToken from sharedPreference
     private fun dialogActivities(){
+        //logout
         val logout = dialog.findViewById<TextView>(R.id.dialogLogout)
         logout.setOnClickListener {
             authPreference.clear("token_key")
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             dialog.dismiss()
         }
+
+            //cancel log out event
+            val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
+            cancel.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
     }
-}
