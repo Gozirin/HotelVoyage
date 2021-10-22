@@ -1,7 +1,5 @@
 package com.example.hbapplicationgroupa.dependencyinjection
 
-import com.example.hbapplicationgroupa.database.dao.TopDealsDao
-import com.example.hbapplicationgroupa.database.dao.TopHotelsDao
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
@@ -58,12 +56,20 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-        fun provideHotelRepositoryInterface(
-            hotelModuleApiInterface: HotelModuleApiInterface,
-            hotelByIdDao: HotelByIdDao
-        ): HotelRepositoryInterface {
-            return HotelRepository(hotelModuleApiInterface, hotelByIdDao)
-        }
+    fun provideHotelRepositoryInterface(
+        hotelModuleApiInterface: HotelModuleApiInterface,
+        hotelByIdDao: HotelByIdDao,
+
+    ): HotelRepositoryInterface{
+        return HotelRepository(hotelModuleApiInterface, hotelByIdDao)
+    }
+//        fun provideHotelRepositoryInterface(
+//            hotelModuleApiInterface: HotelModuleApiInterface,
+//            hotelByIdDao: HotelByIdDao
+//
+//        ): HotelRepositoryInterface {
+//            return HotelRepository(hotelModuleApiInterface, hotelByIdDao,)
+//        }
 
         @Singleton
         @Provides

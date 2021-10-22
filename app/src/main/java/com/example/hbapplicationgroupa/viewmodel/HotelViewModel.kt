@@ -5,8 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
@@ -38,7 +42,36 @@ class HotelViewModel @Inject constructor(
     }
 
     //-----------------------------------------------------
+
+
+
+
+
+//  private val _allHotelsLiveData: MutableLiveData<Response<GetAllHotelsResponseModel>> = MutableLiveData()
+//    val allHotelsLivedata : LiveData<Response<GetAllHotelsResponseModel>> = _allHotelsLiveData
+//    //----------All Hotels------------------
+
+
+//    fun getAllHotelFromDb(){
+//      hotelRepositoryInterface.getAllHotelFromDb()
+//    }
+//    fun getHotelFromApi(pageSize: Int, pageNumber: Int){
+//        viewModelScope.launch(Dispatchers.IO){
+//             hotelRepositoryInterface.getAllHotelsFromApi(pageSize,pageNumber)
+//
+//
+//        }
+//
+//    }
+
+
+
+
+
+//    val _topDealsLiveData: MutableLiveData<Resource<GetTopDealsResponseModel>> = MutableLiveData()
+
     val _topDealsLiveData: MutableLiveData<Resources<GetTopDealsResponseModel>> = MutableLiveData()
+
     var _topDealsLiveDataResponse: GetTopDealsResponseModel? = null
 
 
@@ -190,5 +223,22 @@ class HotelViewModel @Inject constructor(
                 Log.d("VMError", e.message.toString())
             }
         }
+    }
+
+
+    val filterAllHotelByLocationLiveData: MutableLiveData<GetAllHotelsResponseModel> = MutableLiveData()
+    val _filterAllHotelByLocationLiveData: LiveData<GetAllHotelsResponseModel> =  filterAllHotelByLocationLiveData
+
+    fun filterAllHotelWithLocation(location: String, pageSize: Int, pageNumber: Int){
+        viewModelScope.launch(Dispatchers.IO){
+               try {
+                   val response = hotelRepositoryInterface.filterAllHotelByLocation(location, pageSize, pageNumber)
+                   filterAllHotelByLocationLiveData.postValue(response.body())
+               }catch (e: Exception){
+                   Log.d("MQ", ": ${e.message}")
+               }
+
+        }
+
     }
 }
