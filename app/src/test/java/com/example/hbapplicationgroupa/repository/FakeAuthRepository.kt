@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.repository
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -67,7 +68,7 @@ class FakeAuthRepository(): AuthRepositoryInterface {
         TODO("Not yet implemented")
     }
 
-    override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponseModel> {
+    override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse> {
         TODO("Not yet implemented")
     }
 
