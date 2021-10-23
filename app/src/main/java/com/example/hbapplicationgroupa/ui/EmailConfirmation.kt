@@ -49,11 +49,11 @@ class EmailConfirmation : Fragment() {
         onBackPressed()
     }
 
-    fun confirmEmail (email: String, token: String){
+    private fun confirmEmail (email: String, token: String){
         viewModel.confirmEmail(email, token)
     }
 
-    fun observeConfirmEmailLiveData(){
+    private fun observeConfirmEmailLiveData(){
         viewModel.getConfirmEmailLiveData.observe(viewLifecycleOwner, Observer {
             if (it != null && it.succeeded){
                 binding.emailConfirmationProgressBar.visibility = View.GONE
