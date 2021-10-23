@@ -2,6 +2,8 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
@@ -23,9 +25,9 @@ interface HotelRepositoryInterface {
     //-----------------Hotel description-----------------
     suspend fun getHotelDescriptionFromApi(hotelId: String)
     fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>>
-//    fun getRoomTypesFromDb(hotelId: String): LiveData<List<GetHotelByIdResponseItemData>>
     suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData)
     suspend fun deleteHotelDescriptionFromDb(hotel: GetHotelByIdResponseItemData)
+
 
     //--------------------------------------------------------------------
     suspend fun getTopHotels(): Response<GetTopHotelsResponseModel>
@@ -49,9 +51,7 @@ interface HotelRepositoryInterface {
 //
 //    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
-    suspend fun getAllHotels(
-//        PageNumber: Int,
-//        pageSize: Int,
+   suspend fun getAllHotels(
     ): Response<GetAllHotelsResponseModel>
 
     suspend fun getHotelRoomsByPrice(
@@ -73,4 +73,8 @@ interface HotelRepositoryInterface {
     suspend fun getHotelRatings(hotelId: String): Response<GetHotelRatingsResponseModel>
 
     suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel>
+
+
+    //------- Filter All Hotel By Location
+    suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<GetAllHotelsResponseModel>
 }

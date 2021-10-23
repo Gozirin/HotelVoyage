@@ -72,15 +72,16 @@ class RegisterFragment : Fragment() {
             val email = binding.tvEmailText.text.toString()
             val password = binding.tvConfirmPasswordResetPassword.text.toString()
             val phoneNumber = binding.fragmentRegisterPhoneNumberEtv.text.toString()
-            val age = if (binding.fragmentRegisterAgeEtv.text?.isEmpty() == true){
-                null
-            }else{
-                binding.fragmentRegisterAgeEtv.text.toString().toInt()
-            }
+            val userName = binding.fragmentRegisterUserNameEtv.text.toString()
+//            val age = if (binding.fragmentRegisterAgeEtv.text?.isEmpty() == true){
+//                null
+//            }else{
+//                binding.fragmentRegisterAgeEtv.text.toString().toInt()
+//            }
 
-            val userName = firstName
+//            val userName = firstName
             val gender = binding.getSpinner.selectedItem.toString()
-            userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, age)
+            userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, 21)
 
 
             if(!function.validateFirstNameInput(firstName)){
@@ -98,8 +99,8 @@ class RegisterFragment : Fragment() {
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
-            if(!function.validateAgeInput(age)){
-                binding.fragmentRegisterAgeEtv.error = "You must be above 18"
+            if(!function.validateUserName(userName)){
+                binding.fragmentRegisterUserNameEtv.error = "User name cannot be left empty"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
@@ -125,9 +126,9 @@ class RegisterFragment : Fragment() {
             }
             else if(function.validateFirstNameInput(firstName)
                 && function.validateLastNameInput(lastName)
+                && function.validateUserName(userName)
                 && function.validateEmailInput(email)
                 && function.validatePasswordInput(password)
-                && function.validateAgeInput(age)
                 && function.validatePhoneInput(phoneNumber)
                 && function.validateSexInput(gender)){
                 viewModel.addUser(userInfo)
@@ -135,12 +136,11 @@ class RegisterFragment : Fragment() {
                     if(it.body()?.succeeded == true){
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         binding.fragmentRegisterGenderErrorTv.visibility = View.GONE
-
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                        val action = RegisterFragmentDirections.actionRegisterFragmentToPendingConfirmation(email)
+                        findNavController().navigate(action)
                         binding.fragmentRegisterPhoneNumberEtv.text?.clear()
                         binding.tvEmailText.text?.clear()
                         binding.tvConfirmPasswordResetPassword.text?.clear()
-                        binding.fragmentRegisterAgeEtv.text?.clear()
                         binding.RegisterTickButton.isChecked = false
                     }else{
                         binding.btnRegister.setEnabled(true)

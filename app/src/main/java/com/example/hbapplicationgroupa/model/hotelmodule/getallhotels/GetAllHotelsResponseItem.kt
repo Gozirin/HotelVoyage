@@ -1,9 +1,13 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.getallhotels
-//
-//data class GetAllHotelsResponseItem(
-//    val id: String,
-//    val Name: String,
-//    val Thumbmail: String,
-//    val Rating: Double,
-//    val CheapestRoomPrice: String
-//)
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+data class GetAllHotelsResponseItem(
+    val id: String,
+    val name: String,
+    val Rating: Double,
+    val cheapestRoomPrice: String
+
+
+)
