@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,21 +29,24 @@ class EmailConfirmation : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentEmailComfirmationBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
+        val token = args.token
+        val email = args.email
+        if (email != null && token != null) {
+            confirmEmail(email, token)
+        }
+
+        observeConfirmEmailLiveData()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val token = args.token
-        val email = args.email
-        viewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
         binding.confirmationBtn.setOnClickListener {
-            if (email != null && token != null) {
-                confirmEmail(email, token)
-            }
+            findNavController().navigate(R.id.action_emailConfirmation_to_loginFragment)
         }
 
-        observeConfirmEmailLiveData()
+        onBackPressed()
     }
 
     fun confirmEmail (email: String, token: String){
@@ -51,13 +55,25 @@ class EmailConfirmation : Fragment() {
 
     fun observeConfirmEmailLiveData(){
         viewModel.getConfirmEmailLiveData.observe(viewLifecycleOwner, Observer {
-            if (it != null){
-                findNavController().navigate(R.id.action_emailConfirmation_to_loginFragment)
+            if (it != null && it.succeeded){
+                binding.emailConfirmationProgressBar.visibility = View.GONE
+                binding.emailConfirmationSuccess.visibility = View.VISIBLE
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
             }else{
-                Toast.makeText(requireContext(), "Confirmation Failed", Toast.LENGTH_SHORT).show()
+                binding.emailConfirmationProgressBar.visibility = View.GONE
+                binding.emailConfirmationErrorText.text = "Confirmation Failed, kindly check your network"
             }
         })
+    }
+
+    fun onBackPressed() {
+        //Overriding onBack press to finish activity and exit app
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_emailConfirmation_to_registerFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
 }
