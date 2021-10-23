@@ -33,24 +33,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/explore_home_filter_img_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:contentDescription="@string/imageview"
-                    android:src="@drawable/ic_filter"
-                    app:layout_constraintBottom_toBottomOf="@+id/explore_home_filter_tv"
-                    app:layout_constraintEnd_toStartOf="@+id/explore_home_filter_tv"
-                    app:layout_constraintTop_toTopOf="@+id/explore_home_filter_tv"
-                    app:tint="#FCEA0707" />
+
 
                 <TextView
-                    android:id="@+id/explore_home_filter_tv"
+                    android:id="@+id/explore_home_allHotels_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/filter_icon"
+                    android:text="All Hotels"
+                    android:textStyle="bold"
                     android:textColor="#FCEA0707"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
