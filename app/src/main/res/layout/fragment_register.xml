@@ -64,196 +64,266 @@
                 local:layout_constraintStart_toStartOf="parent"
                 local:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.cardview.widget.CardView
                 android:id="@+id/tv_register_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
-                android:focusedByDefault="false"
-                android:hint="@string/registration_hintName"
-                android:textColorHint="@color/black"
-                app:endIconMode="clear_text"
-                app:helperTextTextColor="#ED4639"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edt_firstName"
-                app:startIconDrawable="@drawable/reg_person_image"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_register_lastName_etv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_User_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:focusedByDefault="false"
-                android:hint="User Name"
-                android:textColorHint="@color/black"
-                app:endIconMode="clear_text"
-                app:helperTextTextColor="#ED4639"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_register_name"
-                app:startIconDrawable="@drawable/reg_person_image"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_register_userName_etv"
+                app:cardCornerRadius="5dp"
+                >
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:focusedByDefault="false"
+                    android:hint="@string/registration_hintName"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeWidth="0dp"
+                    app:endIconMode="clear_text"
+                    app:helperTextTextColor="#ED4639"
+                    app:boxStrokeColor="@null"
+                    app:startIconDrawable="@drawable/reg_person_image"
+                    app:startIconTint="#ED4639">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tvEmail_register_field"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_register_lastName_etv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tv_User_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:focusedByDefault="false"
-                android:hint="@string/registration_email_field"
-                android:textColorHint="@color/black"
-                app:endIconMode="clear_text"
-                app:helperTextTextColor="#ED4639"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/getSpinner"
-                app:startIconDrawable="@drawable/reg_email_icon"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tvEmailText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_firstName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                app:cardElevation="5dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_register_name"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:hint="FirstName"
-                android:textColorHint="@color/black"
-                app:endIconMode="clear_text"
-                app:helperTextTextColor="#ED4639"
-                app:hintTextColor="@color/black"
+                app:cardCornerRadius="5dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusedByDefault="false"
+                    android:hint="User Name"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeColor="@null"
+                    android:textColorHint="@color/black"
+                    app:endIconMode="clear_text"
+                    app:helperTextTextColor="#ED4639"
+                    app:startIconDrawable="@drawable/reg_person_image"
+                    app:startIconTint="#ED4639">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_register_userName_etv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tvEmail_register_field"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/getSpinnerCard"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:cardElevation="5dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="5dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusedByDefault="false"
+                    android:hint="@string/registration_email_field"
+                    android:textColorHint="@color/black"
+                    app:endIconMode="clear_text"
+                    app:boxStrokeColor="@null"
+                    app:boxStrokeWidth="0dp"
+                    app:helperTextTextColor="#ED4639"
+                    app:startIconDrawable="@drawable/reg_email_icon"
+                    app:startIconTint="#ED4639">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tvEmailText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/edt_firstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_image_register"
-                app:startIconDrawable="@drawable/reg_person_image"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_register_firstName_etv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edt_register_PhoneNumber"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Phone Number"
-                android:textColorHint="@color/black"
-                app:helperTextTextColor="#ED4639"
-                app:hintTextColor="@color/black"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="5dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="FirstName"
+                    android:textColorHint="@color/black"
+                    app:endIconMode="clear_text"
+                    app:helperTextTextColor="#ED4639"
+                    app:boxStrokeWidth="0dp"
+                    app:boxBackgroundColor="@null"
+                    app:hintTextColor="@color/black"
+                    app:startIconDrawable="@drawable/reg_person_image"
+                    app:startIconTint="#ED4639">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_register_firstName_etv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/edt_register_PhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_User_name"
-                app:startIconDrawable="@drawable/phone_image"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_register_phoneNumber_etv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:inputType="number"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-<!--                register_phoneNumber-->
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_password"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:focusedByDefault="false"
-                android:hint="Password"
-                android:textColorHint="@color/black"
-                app:endIconMode="password_toggle"
-                app:helperTextTextColor="#ED4639"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@id/tvEmail_register_field"
-                app:layout_constraintStart_toStartOf="@id/tvEmail_register_field"
-                app:layout_constraintTop_toBottomOf="@id/tvEmail_register_field"
-                app:startIconDrawable="@drawable/registration_password_lock"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_confirm_Password_reset_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:inputType="textPassword"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Spinner
-                android:id="@+id/getSpinner"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="14dp"
-                android:background="@drawable/reg_field"
-                android:entries="@array/gender"
-                android:padding="10dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="5dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    android:textColorHint="@color/black"
+                    app:helperTextTextColor="#ED4639"
+                    app:hintTextColor="@color/black"
+                    app:boxBackgroundColor="@null"
+                    app:boxStrokeWidth="0dp"
+                    app:startIconDrawable="@drawable/phone_image"
+                    app:startIconTint="#ED4639">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/fragment_register_phoneNumber_etv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <!--                register_phoneNumber-->
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tv_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEmail_register_field"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="5dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:focusedByDefault="false"
+                    android:hint="Password"
+                    android:textColorHint="@color/black"
+                    app:endIconMode="password_toggle"
+                    app:helperTextTextColor="#ED4639"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeColor="@null"
+                    app:hintTextColor="@color/black"
+                    app:startIconDrawable="@drawable/registration_password_lock"
+                    app:startIconTint="#ED4639">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tv_confirm_Password_reset_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/getSpinnerCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"
-                tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="602dp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="5dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/spinnerIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:background="@drawable/reg_person_image"
+                        android:layout_marginStart="10dp"/>
+                    <Spinner
+                        android:id="@+id/getSpinner"
+                        android:layout_width="0dp"
+                        android:layout_height="55dp"
+                        android:entries="@array/gender"
+                        android:paddingStart="12dp"
+                        app:layout_constraintStart_toEndOf="@id/spinnerIcon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
 
 <!--            Spinner-->
 
@@ -267,7 +337,7 @@
                 android:visibility="gone"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/getSpinner" />
+                app:layout_constraintBottom_toTopOf="@id/getSpinnerCard" />
 
             <RadioButton
                 android:id="@+id/RegisterTickButton"
