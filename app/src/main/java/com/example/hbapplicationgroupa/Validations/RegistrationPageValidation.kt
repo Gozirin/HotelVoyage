@@ -66,6 +66,15 @@ object RegistrationPageValidation {
 
         return true
     }
+
+    fun validateUserName(userName:String):Boolean{
+        if(userName.isEmpty()){
+            return false
+        }
+
+        return true
+    }
+
     fun validateAgeInput(age:Int?):Boolean{
         if (age != null && age > 18){
             return true

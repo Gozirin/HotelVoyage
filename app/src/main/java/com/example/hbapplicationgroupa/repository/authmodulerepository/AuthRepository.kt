@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupa.repository.authmodulerepository
 import android.util.Log
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -43,7 +44,7 @@ class AuthRepository @Inject constructor(
         return authModuleApiInterface.resetPassword(resetPasswordModel)
     }
 
-    override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponseModel> {
+    override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse> {
         return authModuleApiInterface.confirmEmail(confirmEmailModel)
     }
 }
