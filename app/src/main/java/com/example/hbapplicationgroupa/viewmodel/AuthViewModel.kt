@@ -11,6 +11,8 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
+import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
@@ -32,6 +34,26 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     //Login authentication LiveData
     private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
     val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
+
+    //confirmEmail LiveData
+    private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse?> = MutableLiveData()
+    val getConfirmEmailLiveData: LiveData<ConfirmEmailResponse?> = _getConfirmEmailLiveData
+
+    fun confirmEmail (email: String, token: String){
+        val confirmEmail = ConfirmEmailModel(email, token)
+        viewModelScope.launch {
+            try {
+                val response = authRepository.confirmEmail(confirmEmail)
+                if (response.isSuccessful){
+                    _getConfirmEmailLiveData.value = response.body()
+                }else{
+                    _getConfirmEmailLiveData.value = null
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 
     fun addUser(userInfo : AddUserModel){
         viewModelScope.launch{

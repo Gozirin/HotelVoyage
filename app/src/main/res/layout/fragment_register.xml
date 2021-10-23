@@ -49,8 +49,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -93,6 +92,33 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tv_User_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:focusedByDefault="false"
+                android:hint="User Name"
+                android:textColorHint="@color/black"
+                app:endIconMode="clear_text"
+                app:helperTextTextColor="#ED4639"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_register_name"
+                app:startIconDrawable="@drawable/reg_person_image"
+                app:startIconTint="#ED4639">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_register_userName_etv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="18sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tvEmail_register_field"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
@@ -107,7 +133,7 @@
                 app:helperTextTextColor="#ED4639"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_age"
+                app:layout_constraintTop_toBottomOf="@id/getSpinner"
                 app:startIconDrawable="@drawable/reg_email_icon"
                 app:startIconTint="#ED4639">
 
@@ -163,7 +189,7 @@
                 app:hintTextColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_register_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_User_name"
                 app:startIconDrawable="@drawable/phone_image"
                 app:startIconTint="#ED4639">
 
@@ -215,13 +241,14 @@
             <Spinner
                 android:id="@+id/getSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="14dp"
                 android:background="@drawable/reg_field"
                 android:entries="@array/gender"
                 android:padding="1dp"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"
@@ -241,33 +268,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/getSpinner" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_age"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:hint="Age"
-                android:textColorHint="@color/black"
-                app:helperTextTextColor="#ED4639"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@id/tvEmail_register_field"
-                app:layout_constraintStart_toStartOf="@id/tvEmail_register_field"
-                app:layout_constraintTop_toBottomOf="@id/getSpinner"
-                app:startIconTint="#ED4639">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fragment_register_age_etv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <RadioButton
                 android:id="@+id/RegisterTickButton"

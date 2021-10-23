@@ -154,7 +154,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
             when (it.statusCode) {
                 200 -> {
                     binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-                    it.data?.let { topDeals -> renderTopDealsList(topDeals) }
+                    it.data.let { topDeals -> renderTopDealsList(topDeals) }
                     binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
                     Log.d("ExploreHome 1: ", it.toString())
                 }
