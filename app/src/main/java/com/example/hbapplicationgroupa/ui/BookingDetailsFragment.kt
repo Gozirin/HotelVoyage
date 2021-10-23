@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.SparseIntArray
 import android.view.LayoutInflater
@@ -22,6 +24,7 @@ import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
@@ -52,11 +55,12 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
             NumberOfPeopleBottomSheetDialogFragment(this).show(
                 requireActivity().supportFragmentManager, "peopleBottomSheet"
             )
-//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment)
         }
 
         binding.roomsEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
+            NumberOfRoomsBottomSheetDialogFragment(fetchedRoomTypes).show(
+                requireActivity().supportFragmentManager, "roomTypeBottomSheet"
+            )
         }
 
         binding.bookNowButton.setOnClickListener {
@@ -96,7 +100,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
 
         binding.bookingDetailsBackBtn.setOnClickListener {
             findNavController().popBackStack()
-//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
         }
 
         getRoomTypes()
@@ -189,5 +192,9 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
                 fetchedRoomTypes = response.roomTypes
             }
         })
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            Log.d("GKB", "Room types in booking details --> $fetchedRoomTypes")
+        }, 3000)
     }
 }

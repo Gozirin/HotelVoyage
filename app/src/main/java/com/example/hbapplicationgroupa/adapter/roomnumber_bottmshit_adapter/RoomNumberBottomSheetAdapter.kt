@@ -2,27 +2,24 @@ package com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.model.adaptermodels.RoomNumberBottomSheetData
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
 
-class RoomNumberBottomSheetAdapter : RecyclerView.Adapter<RoomNumberBottomSheetAdapter.RoomNumberBottomSheetViewHolder>() {
+class RoomNumberBottomSheetAdapter(
+    private val roomTypeAdapterInterface: RoomTypeAdapterInterface
+): RecyclerView.Adapter<RoomNumberBottomSheetAdapter.RoomNumberBottomSheetViewHolder>() {
+
     inner class RoomNumberBottomSheetViewHolder(
-        var binding: RoomNumberBottomSheetViewHolderBinding): RecyclerView.ViewHolder(binding.root)
+        var binding: RoomNumberBottomSheetViewHolderBinding
+    ): RecyclerView.ViewHolder(binding.root)
 
-    private val diffCallback = object: DiffUtil.ItemCallback<RoomNumberBottomSheetData>(){
-        override fun areItemsTheSame(oldItem: RoomNumberBottomSheetData, newItem: RoomNumberBottomSheetData): Boolean {
-            return oldItem.roomNumber == newItem.roomNumber
-        }
+    var listOfRooms = arrayListOf<GetHotelByIdResponseItemRoomTypes>()
 
-        override fun areContentsTheSame(oldItem: RoomNumberBottomSheetData, newItem: RoomNumberBottomSheetData): Boolean {
-            return oldItem == newItem
-        }
+    fun addRoomType(roomType: ArrayList<GetHotelByIdResponseItemRoomTypes>){
+        listOfRooms.addAll(roomType)
     }
-
-    val differ = AsyncListDiffer(this, diffCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomNumberBottomSheetViewHolder {
         val binding = RoomNumberBottomSheetViewHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,12 +28,15 @@ class RoomNumberBottomSheetAdapter : RecyclerView.Adapter<RoomNumberBottomSheetA
 
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
         with(holder){
-            with(differ.currentList[position]){
-                binding.roomNumber.text = roomNumber
-                binding.radioButton.isChecked = isRadioButtonChecked
+            with(listOfRooms[position]){
+                binding.roomNumber.text = name
+
+                binding.radioButton.setOnClickListener {
+                    roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
+                }
             }
         }
     }
 
-    override fun getItemCount() = differ.currentList.size
+    override fun getItemCount() = listOfRooms.size
 }
