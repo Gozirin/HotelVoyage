@@ -162,16 +162,6 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
             binding.tvNotificationAllHotels.text = "No Hotel in this Location"
         }
 
-//        binding.tvNotificationAllHotels.text = viewModel.error
-//        Log.d("AllFragment 1:", viewModel.error!!)
-//        for (i in selectedState){
-//            if (selectedStates == i.state){
-//                allHotelsAdapter.setList(selectedState)
-//            }else{
-//                binding.tvNotificationAllHotels.visibility = View.VISIBLE
-//            }
-//        }
-
 
     }
 }
