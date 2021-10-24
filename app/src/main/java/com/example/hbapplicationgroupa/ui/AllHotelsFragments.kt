@@ -26,6 +26,9 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
+    val arrayList =  ArrayList<PageItem>()
+    lateinit var selectedState: String
+
 
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
@@ -56,9 +59,18 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         // to set filter_By textView to Location textView on the screen
         binding.allHotelsFilters.onItemClickListener = object :AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val selectedState = languages[p2].toString()
-                makeApiCallFilterAllHotelByLocation(selectedState, 5, 1)
+              selectedState = languages[p2].toString()
+//                if (selectedState.isEmpty()){
+//                    binding.tvNotificationAllHotels.visibility = View.VISIBLE
+//                    allHotelsAdapter.notifyDataSetChanged()
+//                    binding.tvNotificationAllHotels.visibility = View.VISIBLE
+//                }else{
+//                 //   search(selectedState)
+//                }
+             //search(selectedState)
                 binding.allHotelsLocationTxt.text = selectedState
+                binding.allHotelsLocationTxt.visibility = View.VISIBLE
+
             }
         }
 
@@ -80,6 +92,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
                 }
             }
         })
+
     }
 
 
@@ -130,11 +143,22 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
-                allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
+        allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
                 allHotelsAdapter.notifyDataSetChanged()
+                Log.d("All hotels: ", "${it.data.pageItems}")
+                Toast.makeText(requireContext(),"${it.data.pageItems}", Toast.LENGTH_SHORT).show()
+
+
             }
 
         })
+
+    }
+
+    fun search(selectedState: String) {
+        val selectedState =  viewModel.search(selectedState)
+        Log.d("Selected State", selectedState.toString())
+        allHotelsAdapter.setList(selectedState)
 
     }
 }

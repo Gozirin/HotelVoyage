@@ -105,7 +105,7 @@
     <string name="login">Login</string>
     <string name="registration_registerTextview">Register</string>
     <string name="registration_hintName">LastName</string>
-    <string name="t_c_and_privacy_policy"><u><![CDATA[T&C and Privacy Policy.]]></u></string>
+    <string name="t_c_and_privacy_policy"> I hereby agree <u><![CDATA[T&C and Privacy Policy.]]></u></string>
     <string name="registration_login"><u>Login</u></string>
     <string name="registration_email_field">Email</string>
     <string name="login_welcome_back_textview">welcome_back</string>
@@ -153,6 +153,9 @@
 
 // String array for filtering All Hotel
     <string-array name="states">
+        <item>Iowa</item>
+        <item>North Carolina</item>
+        <item>California</item>
         <item>Abia</item>
         <item>Adamawa</item>
         <item>Akwa-Ibom</item>
@@ -189,6 +192,7 @@
         <item>Yobe</item>
         <item>Zamfara</item>
         <item>Fct-Abuja</item>
+
 
 
     </string-array>

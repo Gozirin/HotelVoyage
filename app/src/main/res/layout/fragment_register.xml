@@ -59,7 +59,8 @@
                 android:id="@+id/iv_image_register"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:src="@drawable/registration_image"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/iv_image"
                 local:layout_constraintEnd_toEndOf="parent"
                 local:layout_constraintStart_toStartOf="parent"
                 local:layout_constraintTop_toTopOf="parent" />
@@ -151,7 +152,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:hint="FirstName"
                 android:textColorHint="@color/black"
@@ -200,7 +201,7 @@
                     android:layout_marginTop="32dp"
                     android:inputType="number"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
 
 <!--                register_phoneNumber-->
 
@@ -248,7 +249,6 @@
                 android:background="@drawable/reg_field"
                 android:entries="@array/gender"
                 android:padding="1dp"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edt_register_PhoneNumber"
@@ -351,7 +351,7 @@
                 android:layout_width="294dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="60dp"
                 android:background="@drawable/registration_custom_button"
                 android:gravity="center"
                 android:text="Register"

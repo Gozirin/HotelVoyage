@@ -40,16 +40,22 @@ class ResetPasswordFragment : Fragment() {
 
         val token = arguments?.getString("token")
         val email = arguments?.getString("email")
-        val newPassword = binding.tvEmailTextResetPassword.text.toString()
-        val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
 
         //method to display hint a user on the password to input
         binding.tvEmailTextResetPassword.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus){
-                binding.tvCheckEmptyNewPasswordResetPassword.text = "password should contain at least one uppercase letter digit special character"
+                binding.tvCheckEmptyNewPasswordResetPassword.text = "Must contain one uppercase,lowercase letter,digit and special character"
+                binding.tvCheckEmptyNewPasswordResetPassword.setTextColor(resources.getColor(R.color.custom_green_color))
                 binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
             }else{
-                binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.GONE
+                binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.INVISIBLE
+            }
+        }
+
+        //method to set textView to invisible while the view is not visible
+        binding.tvConfirmPasswordResetPassword.setOnFocusChangeListener {_, hasFocus ->
+            if (!hasFocus){
+                binding.tvCheckEmptyConfirmPasswordResetPassword.visibility = View.INVISIBLE
             }
         }
 
@@ -59,26 +65,31 @@ class ResetPasswordFragment : Fragment() {
         // button to navigate to login fragment after password reset
         binding.btnResetPassword.setOnClickListener {
 
-          if (validateNotEmptyNewPasswordField(newPassword) && validateNotEmptyConfirmPasswordField(confirmPassword) &&
-                validateNewPassword(newPassword) &&
-                validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)){
-               makeApiCall(token!!,email!!, newPassword,confirmPassword)
+            val newPassword = binding.tvEmailTextResetPassword.text.toString()
+            val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
+
+            if (validateNotEmptyNewPasswordField(newPassword)
+                && validateNewPassword(newPassword)
+                &&  validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)
+              // validateNotEmptyConfirmPasswordField(confirmPassword)
+//                &&
+//
+          ){
+              // makeApiCall(token!!,email!!, newPassword,confirmPassword)
+              findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
             }else{
 
                 if (!validateNotEmptyNewPasswordField(newPassword)){
                     binding.tvCheckEmptyNewPasswordResetPassword.text = "please enter your new password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
+                    binding.tvCheckEmptyNewPasswordResetPassword.setTextColor(resources.getColor(R.color.custom_orange_color))
                 }
-                if(!validateNotEmptyConfirmPasswordField(confirmPassword) && binding.tvConfirmPasswordResetPassword.hasFocus()){
-                    binding.tvCheckEmptyConfirmPasswordResetPassword.visibility = View.VISIBLE
-                }
-
-                if (!validateNewPassword(newPassword)){
-                    binding.tvCheckEmptyNewPasswordResetPassword.text = "enter valid password"
+                if(!validateNewPassword(newPassword) ){
+                    binding.tvCheckEmptyNewPasswordResetPassword.text = "please enter valid password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
                 }
 
-                if (!validateNewPasswordAndConfirmPassword(newPassword,confirmPassword)){
+                if (validateNewPassword(newPassword) && !validateNewPasswordAndConfirmPassword(newPassword,confirmPassword)){
                     binding.tvCheckEmptyConfirmPasswordResetPassword.text = "password does not match"
                     binding.tvCheckEmptyConfirmPasswordResetPassword.visibility = View.VISIBLE
 
@@ -103,6 +114,7 @@ class ResetPasswordFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
 
     }
+
 
 
     // making Api call to reset user's password

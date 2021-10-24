@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
@@ -26,8 +27,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HotelViewModel @Inject constructor(
+
     private val hotelRepositoryInterface: HotelRepositoryInterface
     ): ViewModel() {
+    var allHotels: MutableList<PageItem> = mutableListOf()
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
@@ -217,6 +220,8 @@ class HotelViewModel @Inject constructor(
             val response = hotelRepositoryInterface.getAllHotels()
             try {
                 if (response.isSuccessful) {
+                    val neededData = response.body()?.data?.pageItems as MutableList
+                    allHotels = neededData
                     val data = response.body()?.data
                     _allHotelsLiveData.postValue(data!!)
                     Log.d("VM hotel Repo Interface", data.toString())
@@ -230,8 +235,8 @@ class HotelViewModel @Inject constructor(
     }
 
 
-    val filterAllHotelByLocationLiveData: MutableLiveData<GetAllHotelsResponseModel> = MutableLiveData()
-    val _filterAllHotelByLocationLiveData: LiveData<GetAllHotelsResponseModel> =  filterAllHotelByLocationLiveData
+    val filterAllHotelByLocationLiveData: MutableLiveData<FilterAllHotelByLocation> = MutableLiveData()
+    val _filterAllHotelByLocationLiveData: LiveData<FilterAllHotelByLocation> =  filterAllHotelByLocationLiveData
 
     fun filterAllHotelWithLocation(location: String, pageSize: Int, pageNumber: Int){
         viewModelScope.launch(Dispatchers.IO){
@@ -244,5 +249,11 @@ class HotelViewModel @Inject constructor(
 
         }
 
+    }
+    fun search(location: String): MutableList<PageItem>{
+        val newHotelList = allHotels.filter {
+            it.state == location
+        }
+     return newHotelList as MutableList
     }
 }
