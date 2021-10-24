@@ -1,7 +1,9 @@
 package com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
@@ -29,10 +31,16 @@ class RoomNumberBottomSheetAdapter(
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
         with(holder){
             with(listOfRooms[position]){
-                binding.roomNumber.text = name
+                binding.radioButton.text = name
 
                 binding.radioButton.setOnClickListener {
-                    roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
+                    if (!binding.radioButton.isSelected){
+                        binding.radioButton.isChecked = true
+                        binding.radioButton.isSelected = true
+                    }else{
+                        binding.radioButton.isChecked = false
+                        binding.radioButton.isSelected = false
+                    }
                 }
             }
         }
