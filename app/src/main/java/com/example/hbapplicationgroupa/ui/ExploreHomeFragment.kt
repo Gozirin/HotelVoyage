@@ -1,10 +1,12 @@
 package com.example.hbapplicationgroupa.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -30,6 +32,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     private lateinit var topDealsAdapter: ExploreHomeTopDealsAdapter
     private lateinit var topHotelsRecyclerView: RecyclerView
     private lateinit var topDealsRecyclerView: RecyclerView
+    private lateinit var dialog: Dialog
     private val hotelViewModel: HotelViewModel by viewModels()
 
 
@@ -45,13 +48,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Overriding onBack press to finish activity and exit app
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                requireActivity().finish()
-                requireActivity().finishAffinity()
-            }
-        }
+        dialog = Dialog(requireContext())
+        onBackPressed()
 
         topHotelsAdapter = ExploreHomeTopHotelsAdapter( this)
         topDealsAdapter = ExploreHomeTopDealsAdapter( this)
@@ -61,24 +59,48 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         getTopHotels()
         getTopDeals()
 
-
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
-
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
         }
-        //click listener for View button navigation to top hotel fragment
+        //click listener for View button navigation to all hotel fragment
         binding.exploreHomeViewAndArrowBtn.setOnClickListener {
             findNavController().navigate(R.id.action_exploreHomeFragment_to_allHotelsFragments)
         }
-        //navigation to top Hotel Fragment [it should be topDeal which is yet to be created]
+        //navigation to top Deal Fragment
         binding.exploreHomeFragmentTopDealsViewAllTv.setOnClickListener {
            findNavController().navigate(R.id.action_exploreHomeFragment_to_topDealsFragment)
         }
-        //click listener for filter button navigation to exploreHomeAfterSearch
-        binding.exploreHomeFilterImgBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_exploreHomeFragment_to_exploreHomeAfterSearchFragment)
+        //navigation to all hotels screen
+        binding.exploreHomeAllHotelsTv.setOnClickListener {
+            findNavController().navigate(R.id.action_exploreHomeFragment_to_allHotelsFragments)
+        }
+    }
+
+    private fun onBackPressed (){
+        //Overriding onBack press to finish activity and exit app
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                dialog.setContentView(R.layout.exit_dialog)
+                dialog.show()
+                dialogActivities()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
+    private fun dialogActivities(){
+        //logout
+        val logout = dialog.findViewById<TextView>(R.id.exit_dialogLogout)
+        logout.setOnClickListener {
+            dialog.dismiss()
+            requireActivity().finish()
+            requireActivity().finishAffinity()
+        }
+
+        //cancel log out event
+        val cancel = dialog.findViewById<TextView>(R.id.exit_dialogCancel)
+        cancel.setOnClickListener {
+            dialog.dismiss()
         }
     }
 

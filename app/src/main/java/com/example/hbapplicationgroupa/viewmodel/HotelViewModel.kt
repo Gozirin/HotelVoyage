@@ -30,6 +30,7 @@ class HotelViewModel @Inject constructor(
 
     private val hotelRepositoryInterface: HotelRepositoryInterface
     ): ViewModel() {
+    var error: String? =  "No Hotel in this location"
     var allHotels: MutableList<PageItem> = mutableListOf()
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
@@ -252,6 +253,8 @@ class HotelViewModel @Inject constructor(
     }
     fun search(location: String): MutableList<PageItem>{
         val newHotelList = allHotels.filter {
+//            it.state == location
+//            error = ""
             it.state == location
         }
      return newHotelList as MutableList

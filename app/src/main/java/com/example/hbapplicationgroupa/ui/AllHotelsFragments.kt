@@ -30,6 +30,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
     lateinit var selectedState: String
 
 
+
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
     private val binding get() = _binding!!
@@ -46,6 +47,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //Handling on back icon to go back to explore page
         binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
 
@@ -60,14 +62,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         binding.allHotelsFilters.onItemClickListener = object :AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
               selectedState = languages[p2].toString()
-//                if (selectedState.isEmpty()){
-//                    binding.tvNotificationAllHotels.visibility = View.VISIBLE
-//                    allHotelsAdapter.notifyDataSetChanged()
-//                    binding.tvNotificationAllHotels.visibility = View.VISIBLE
-//                }else{
-//                 //   search(selectedState)
-//                }
-             //search(selectedState)
+              search(selectedState)
                 binding.allHotelsLocationTxt.text = selectedState
                 binding.allHotelsLocationTxt.visibility = View.VISIBLE
 
@@ -77,6 +72,8 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         onBackPressed()
         setupRecyclerView()
         //showing progress bar while api data is loading or no internet
+        showProgressBar("loading hotels, Please, make sure your internet is active")
+
         showProgressBar()
         filterAllHotelByLocationObserver()
 
@@ -104,13 +101,13 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         findNavController().navigate(R.id.action_allHotelsFragments_to_bookingDetailsFragment)
     }
 
-    private fun hideProgressBar() {
+    private fun hideProgressBar(message: String = "") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.INVISIBLE
     }
 
-    private fun showProgressBar() {
+    private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), " Please, make sure your Internet is active", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     //set up recycler view
@@ -155,10 +152,26 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     }
 
-    fun search(selectedState: String) {
-        val selectedState =  viewModel.search(selectedState)
-        Log.d("Selected State", selectedState.toString())
-        allHotelsAdapter.setList(selectedState)
+    fun search(selectedStates: String) {
+        val selectedState =  viewModel.search(selectedStates)
+        if (selectedState.isNotEmpty()){
+            allHotelsAdapter.setList(selectedState)
+            binding.tvNotificationAllHotels.text = ""
+        }else{
+            allHotelsAdapter.setList(selectedState)
+            binding.tvNotificationAllHotels.text = "No Hotel in this Location"
+        }
+
+//        binding.tvNotificationAllHotels.text = viewModel.error
+//        Log.d("AllFragment 1:", viewModel.error!!)
+//        for (i in selectedState){
+//            if (selectedStates == i.state){
+//                allHotelsAdapter.setList(selectedState)
+//            }else{
+//                binding.tvNotificationAllHotels.visibility = View.VISIBLE
+//            }
+//        }
+
 
     }
 }
