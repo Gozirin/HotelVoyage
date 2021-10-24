@@ -65,6 +65,8 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         onBackPressed()
         setupRecyclerView()
         //showing progress bar while api data is loading or no internet
+        showProgressBar("loading hotels, Please, make sure your internet is active")
+
         showProgressBar()
         filterAllHotelByLocationObserver()
 
@@ -91,13 +93,13 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         findNavController().navigate(R.id.action_allHotelsFragments_to_bookingDetailsFragment)
     }
 
-    private fun hideProgressBar() {
+    private fun hideProgressBar(message: String = "") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.INVISIBLE
     }
 
-    private fun showProgressBar() {
+    private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), " Please, make sure your Internet is active", Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     //set up recycler view
