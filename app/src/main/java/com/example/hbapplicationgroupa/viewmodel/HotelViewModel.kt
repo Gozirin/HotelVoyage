@@ -51,25 +51,6 @@ class HotelViewModel @Inject constructor(
 
 
 
-//  private val _allHotelsLiveData: MutableLiveData<Response<GetAllHotelsResponseModel>> = MutableLiveData()
-//    val allHotelsLivedata : LiveData<Response<GetAllHotelsResponseModel>> = _allHotelsLiveData
-//    //----------All Hotels------------------
-
-
-//    fun getAllHotelFromDb(){
-//      hotelRepositoryInterface.getAllHotelFromDb()
-//    }
-//    fun getHotelFromApi(pageSize: Int, pageNumber: Int){
-//        viewModelScope.launch(Dispatchers.IO){
-//             hotelRepositoryInterface.getAllHotelsFromApi(pageSize,pageNumber)
-//
-//
-//        }
-//
-//    }
-
-
-
 
 
 //    val _topDealsLiveData: MutableLiveData<Resource<GetTopDealsResponseModel>> = MutableLiveData()
@@ -253,8 +234,7 @@ class HotelViewModel @Inject constructor(
     }
     fun search(location: String): MutableList<PageItem>{
         val newHotelList = allHotels.filter {
-//            it.state == location
-//            error = ""
+
             it.state == location
         }
      return newHotelList as MutableList
