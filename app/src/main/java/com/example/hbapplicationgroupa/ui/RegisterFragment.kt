@@ -16,6 +16,7 @@ import com.example.hbapplicationgroupa.connectivity.ConnectivityLiveData
 import com.example.hbapplicationgroupa.databinding.FragmentRegisterBinding
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.viewModel.AuthViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,24 +38,6 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        connectivityLiveData = ConnectivityLiveData(application)
-//
-//        connectivityLiveData.observe(viewLifecycleOwner, {isAvailable ->
-//            when(isAvailable){
-//                true->{
-//                    networkText.visibility = View.GONE
-//                    networkImage.visibility = View.GONE
-//                    postRecyclerview.visibility = View.VISIBLE
-//                }
-//                false->{
-//                    networkText.visibility = View.VISIBLE
-//                    networkImage.visibility = View.VISIBLE
-//                    postRecyclerview.visibility = View.GONE
-//                }
-//            }
-//        })
-
-
         binding.tvRegistrationTAndC.setOnClickListener {
             findNavController().navigate(R.id.action_registerFragment_to_privacyPolicyFragment)
         }
@@ -73,13 +56,6 @@ class RegisterFragment : Fragment() {
             val password = binding.tvConfirmPasswordResetPassword.text.toString()
             val phoneNumber = binding.fragmentRegisterPhoneNumberEtv.text.toString()
             val userName = binding.fragmentRegisterUserNameEtv.text.toString()
-//            val age = if (binding.fragmentRegisterAgeEtv.text?.isEmpty() == true){
-//                null
-//            }else{
-//                binding.fragmentRegisterAgeEtv.text.toString().toInt()
-//            }
-
-//            val userName = firstName
             val gender = binding.getSpinner.selectedItem.toString()
             userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, 21)
 
@@ -133,7 +109,7 @@ class RegisterFragment : Fragment() {
                 && function.validateSexInput(gender)){
                 viewModel.addUser(userInfo)
                 viewModel.addUserResponse.observe(viewLifecycleOwner,{
-                    if(it.body()?.succeeded == true){
+                    if(it.statusCode == 201){
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         binding.fragmentRegisterGenderErrorTv.visibility = View.GONE
                         val action = RegisterFragmentDirections.actionRegisterFragmentToPendingConfirmation(email)
@@ -146,12 +122,11 @@ class RegisterFragment : Fragment() {
                         binding.btnRegister.setEnabled(true)
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         binding.fragmentRegisterGenderErrorTv.visibility = View.GONE
+                        Snackbar.make(view, it.message, Snackbar.LENGTH_SHORT).show()
                     }
                 })
-
             }
         }
-
         onBackPressed()
     }
 
