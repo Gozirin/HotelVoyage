@@ -162,7 +162,7 @@ class HotelRepository @Inject constructor(
         location: String,
         pageSize: Int,
         pageNumber: Int
-    ): Response<GetAllHotelsResponseModel> {
+    ): Response<FilterAllHotelByLocation> {
         return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
     }
 }
