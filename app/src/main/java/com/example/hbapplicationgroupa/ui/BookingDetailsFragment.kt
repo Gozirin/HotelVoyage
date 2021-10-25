@@ -65,13 +65,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         }
 
         binding.bookNowButton.setOnClickListener {
-            if (!fullNameIsNotEmpty(binding.nameTextInputEditText.text.toString())){
-                binding.nameTextInputLayout.error = "Kindly enter your full name"
-                return@setOnClickListener
-            }else if (!fullNameMatchesPattern(binding.nameTextInputEditText.text.toString())){
-                binding.nameTextInputLayout.error = "Kindly enter a valid full name eg. John Doe"
-                return@setOnClickListener
-            }else if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
+            if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
                 return@setOnClickListener
             }else if (!phoneNumberEqualsLength(binding.phoneTextInputEditText.text.toString())){
