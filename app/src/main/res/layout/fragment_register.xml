@@ -1,4 +1,4 @@
-m <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:local="http://schemas.android.com/apk/res-auto"
@@ -60,7 +60,7 @@ m <?xml version="1.0" encoding="utf-8"?>
                 android:id="@+id/iv_image_register"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:src="@drawable/registration_image"
+                android:src="@drawable/iv_image"
                 local:layout_constraintEnd_toEndOf="parent"
                 local:layout_constraintStart_toStartOf="parent"
                 local:layout_constraintTop_toTopOf="parent" />
