@@ -26,6 +26,10 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
+    val arrayList =  ArrayList<PageItem>()
+    lateinit var selectedState: String
+
+
 
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
@@ -43,6 +47,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //Handling on back icon to go back to explore page
         binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
 
@@ -56,9 +61,11 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         // to set filter_By textView to Location textView on the screen
         binding.allHotelsFilters.onItemClickListener = object :AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val selectedState = languages[p2].toString()
-                makeApiCallFilterAllHotelByLocation(selectedState, 5, 1)
+              selectedState = languages[p2].toString()
+              search(selectedState)
                 binding.allHotelsLocationTxt.text = selectedState
+                binding.allHotelsLocationTxt.visibility = View.VISIBLE
+
             }
         }
 
@@ -82,6 +89,7 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
                 }
             }
         })
+
     }
 
 
@@ -132,11 +140,28 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
-                allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
+        allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
                 allHotelsAdapter.notifyDataSetChanged()
+                Log.d("All hotels: ", "${it.data.pageItems}")
+                Toast.makeText(requireContext(),"${it.data.pageItems}", Toast.LENGTH_SHORT).show()
+
+
             }
 
         })
+
+    }
+
+    fun search(selectedStates: String) {
+        val selectedState =  viewModel.search(selectedStates)
+        if (selectedState.isNotEmpty()){
+            allHotelsAdapter.setList(selectedState)
+            binding.tvNotificationAllHotels.text = ""
+        }else{
+            allHotelsAdapter.setList(selectedState)
+            binding.tvNotificationAllHotels.text = "No Hotel in this Location"
+        }
+
 
     }
 }

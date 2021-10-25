@@ -17,4 +17,8 @@
     <color name="custom_red">#ED4639</color>
     <color name="red">#E94138</color>
     <color name="splash_screen_background_color">#E94138</color>
+    <color name="custom_green_color">#5EBA7D</color>
+    <color name="custom_orange_color"> #ED4639</color>
+
+
 </resources>

@@ -19,6 +19,7 @@ import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPas
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,8 +28,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val authRepository: AuthRepositoryInterface): ViewModel() {
-    private val _addUserResponse: MutableLiveData<Response<AddUserResponseModel>> = MutableLiveData()
-    val addUserResponse: LiveData<Response<AddUserResponseModel>> = _addUserResponse
+    private val _addUserResponse: MutableLiveData<AddUserResponseModel> = MutableLiveData()
+    val addUserResponse: LiveData<AddUserResponseModel> = _addUserResponse
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
 
     //Login authentication LiveData
@@ -59,9 +60,17 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch{
             try{
                 val response = authRepository.addUser(userInfo)
-                _addUserResponse.value = response
+                if (response.isSuccessful){
+                    try {
+                        _addUserResponse.value = response.body()
+                    }catch (e:Exception){
+                        _addUserResponse.postValue(AddUserResponseModel(null, true, "Server Error", 500))
+                    }
+                }else{
+                    _addUserResponse.postValue(AddUserResponseModel(null, false, "username/email has already been used", 400))
+                }
             }catch (e:Exception){
-                e.printStackTrace()
+                _addUserResponse.postValue(AddUserResponseModel(null, false, "Error Occurred, Pls check your internet connection", 500))
             }
         }
     }

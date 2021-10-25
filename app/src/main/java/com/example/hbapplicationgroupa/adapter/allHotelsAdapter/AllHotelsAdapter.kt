@@ -17,6 +17,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 class AllHotelsAdapter(
         val allHotelsItemClickListener: AllHotelsItemClickListener,
         val allHotelsBookBtnClickListener: AllHotelsBookBtnClickListener
+
 ): RecyclerView.Adapter<AllHotelsAdapter.AllHotelsViewHolder>() {
 
     var listOfAllHotels: MutableList<PageItem> = mutableListOf()
@@ -28,6 +29,8 @@ class AllHotelsAdapter(
         val imageOfAllHotel: ImageView = itemView.findViewById(R.id.allHotels_recyclerview_imageview)
         val allHotelBookBtn: AppCompatButton = itemView.findViewById(R.id.allHotelsBookBtn)
         val allHotelView: CardView = itemView.findViewById(R.id.allHotelsView)
+        val bind: TextView = itemView.findViewById(R.id.tv_notification)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllHotelsViewHolder {
@@ -69,7 +72,9 @@ class AllHotelsAdapter(
         fun allHotelsBookBtnClicked(position: Int)
     }
 
-//    fun setList(list: List<PageItem>){
-//        listOfAllHotels.addAll(list)
-//    }
+    fun setList(list: MutableList<PageItem>){
+        listOfAllHotels.clear()
+        listOfAllHotels = list
+        notifyDataSetChanged()
+    }
 }
