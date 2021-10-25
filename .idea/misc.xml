@@ -58,6 +58,7 @@
         <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_email_comfirmation.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_explore_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/layout/fragment_explore_home_after_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_help_and_support.xml" value="0.33" />
@@ -71,6 +72,7 @@
         <entry key="app/src/main/res/layout/fragment_pending_confirmation.xml" value="0.25427350427350426" />
         <entry key="app/src/main/res/layout/fragment_privacy_policy.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.21875" />
+        <entry key="app/src/main/res/layout/fragment_splash_screen.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.18" />
