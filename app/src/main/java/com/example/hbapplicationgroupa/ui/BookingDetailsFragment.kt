@@ -34,6 +34,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
     private val args: BookingDetailsFragmentArgs by navArgs()
     private val hotelViewModel: HotelViewModel by viewModels()
     private lateinit var fetchedRoomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
+    private lateinit var hotelName: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -189,13 +190,14 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         hotelViewModel.getHotelById(args.hotelId)
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
             it.forEach { response ->
+                hotelName = response.name
                 fetchedRoomTypes = response.roomTypes
             }
-        })
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            Log.d("GKB", "Room types in booking details --> $fetchedRoomTypes")
-        }, 3000)
+            if (it != null){
+                binding.nameTextInputEditText.setText(hotelName)
+            }
+        })
     }
 
     override fun getSelectedRoomTypes(position: Int, name: String) {
