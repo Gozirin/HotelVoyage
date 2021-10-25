@@ -56,13 +56,6 @@ class HotelRepository @Inject constructor(
     override fun getHotelDescriptionFromDb(): LiveData<List<GetHotelByIdResponseItemData>> {
         return hotelByIdDao.getHotelById()
     }
-//    override suspend fun getHotelById(hotelId: String): Response<GetHotelByIdResponseModel> {
-//        return hotelModuleApiInterface.getHotelById(hotelId)
-//    }
-
-//    override fun getRoomTypesFromDb(hotelId: String): LiveData<List<GetHotelByIdResponseItemData>> {
-//        return hotelByIdDao.getHotelRoomTypes(hotelId)
-//    }
 
     override suspend fun saveHotelDescriptionToDb(hotel: GetHotelByIdResponseItemData) {
         hotelByIdDao.insertHotel(hotel)
