@@ -12,7 +12,8 @@ import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class NumberOfRoomsBottomSheetDialogFragment(
-    private val roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
+    private val roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>,
+    private val roomTypeAdapterInterface: RoomTypeAdapterInterface
 ) : BottomSheetDialogFragment(), RoomTypeAdapterInterface {
     private var _binding: FragmentNumberOfRoomsBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
@@ -38,6 +39,10 @@ class NumberOfRoomsBottomSheetDialogFragment(
     }
 
     override fun getSelectedRoomTypes(position: Int, name: String) {
+        binding.doneButton.setOnClickListener {
+            roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
+            dismiss()
+        }
         Log.d("GKB", "$name was selected")
     }
 }

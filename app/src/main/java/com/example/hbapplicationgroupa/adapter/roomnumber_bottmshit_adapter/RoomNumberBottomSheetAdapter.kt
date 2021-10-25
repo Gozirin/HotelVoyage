@@ -31,16 +31,24 @@ class RoomNumberBottomSheetAdapter(
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
         with(holder){
             with(listOfRooms[position]){
-                binding.radioButton.text = name
+                binding.roomType.text = name
 
-                binding.radioButton.setOnClickListener {
-                    if (!binding.radioButton.isSelected){
-                        binding.radioButton.isChecked = true
-                        binding.radioButton.isSelected = true
-                    }else{
-                        binding.radioButton.isChecked = false
-                        binding.radioButton.isSelected = false
+                val roomTypeList = arrayListOf<String>()
+//                binding.roomTypeCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+//                    if (isChecked){
+//                        roomTypeList.add(binding.roomType.text.toString())
+//                        Log.d("GKB", "$roomTypeList")
+//                    }
+//                }
+
+                binding.roomTypeCheckbox.setOnClickListener {
+                    if (binding.roomTypeCheckbox.isChecked){
+                        roomTypeList.add(binding.roomType.text.toString())
+                        Log.d("GKB", "$roomTypeList")
                     }
+
+                    val data = roomTypeList.joinToString(", ")
+                    roomTypeAdapterInterface.getSelectedRoomTypes(position, data)
                 }
             }
         }

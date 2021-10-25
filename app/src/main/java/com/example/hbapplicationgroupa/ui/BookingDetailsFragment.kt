@@ -27,7 +27,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
+class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, RoomTypeAdapterInterface {
     //Set up view binding here
     private var _binding: FragmentBookingDetailsBinding? = null
     private val binding get() = _binding!!
@@ -58,7 +58,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
         }
 
         binding.roomsEditText.setOnClickListener {
-            NumberOfRoomsBottomSheetDialogFragment(fetchedRoomTypes).show(
+            NumberOfRoomsBottomSheetDialogFragment(fetchedRoomTypes, this).show(
                 requireActivity().supportFragmentManager, "roomTypeBottomSheet"
             )
         }
@@ -196,5 +196,9 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
         Handler(Looper.getMainLooper()).postDelayed({
             Log.d("GKB", "Room types in booking details --> $fetchedRoomTypes")
         }, 3000)
+    }
+
+    override fun getSelectedRoomTypes(position: Int, name: String) {
+        binding.roomsEditText.setText(name)
     }
 }
