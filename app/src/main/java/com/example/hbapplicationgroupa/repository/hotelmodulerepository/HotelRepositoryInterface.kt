@@ -76,5 +76,5 @@ interface HotelRepositoryInterface {
 
 
     //------- Filter All Hotel By Location
-    suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<GetAllHotelsResponseModel>
+    suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<FilterAllHotelByLocation>
 }

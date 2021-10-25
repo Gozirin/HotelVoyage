@@ -80,5 +80,5 @@ interface HotelModuleApiInterface {
         @Path("location") location: String,
         @Query("pageSize") pageSize: Int,
         @Query("pageNumber") pageNumber: Int
-    ):Response<GetAllHotelsResponseModel>
+    ):Response<FilterAllHotelByLocation>
 }
