@@ -89,7 +89,8 @@ class RegisterFragment : Fragment() {
                 binding.genderError.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-            }else if(function.validateSexInput(gender)){
+            }
+            if(function.validateSexInput(gender)){
                 binding.genderError.visibility = View.GONE
             }
             if(!function.validatePasswordInput(password)){
@@ -101,10 +102,11 @@ class RegisterFragment : Fragment() {
                 binding.radioButtonMustBeCheckedErr.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-            }else if(binding.RegisterTickButton.isChecked){
+            }
+            if(binding.RegisterTickButton.isChecked){
                 binding.radioButtonMustBeCheckedErr.visibility = View.GONE
             }
-            else if(function.validateFirstNameInput(firstName)
+            if(function.validateFirstNameInput(firstName)
                 && function.validateLastNameInput(lastName)
                 && function.validateUserName(userName)
                 && function.validateEmailInput(email)
