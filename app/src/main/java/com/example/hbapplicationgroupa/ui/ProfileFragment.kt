@@ -55,6 +55,10 @@ class ProfileFragment : Fragment() {
             dialogActivities()
         }
 
+        binding.ivImageProfile.setOnClickListener {
+
+        }
+
     }
 
     //Method to logout by clearing authToken from sharedPreference
