@@ -72,7 +72,6 @@ class LoginFragment : Fragment() {
     //set function to observe Login Live Data
     private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
-
             when (it?.statusCode) {
                 200 -> {
                     Log.d("Login-succeed", it.message)
