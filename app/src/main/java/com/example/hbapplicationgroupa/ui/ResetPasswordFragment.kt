@@ -71,12 +71,10 @@ class ResetPasswordFragment : Fragment() {
             if (validateNotEmptyNewPasswordField(newPassword)
                 && validateNewPassword(newPassword)
                 &&  validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)
-              // validateNotEmptyConfirmPasswordField(confirmPassword)
-//                &&
-//
+
           ){
-              // makeApiCall(token!!,email!!, newPassword,confirmPassword)
-              findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+               makeApiCall(token!!,email!!, newPassword,confirmPassword)
+
             }else{
 
                 if (!validateNotEmptyNewPasswordField(newPassword)){
