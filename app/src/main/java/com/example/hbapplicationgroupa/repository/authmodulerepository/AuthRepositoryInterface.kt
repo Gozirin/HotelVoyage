@@ -17,7 +17,7 @@ import retrofit2.Response
 
 interface AuthRepositoryInterface {
     suspend fun addUser(addUserModel: AddUserModel): Response<AddUserResponseModel>
-    suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel>?
+    suspend fun loginUser(loginUserModel: LoginUserModel): Response<LoginUserResponseModel>
     suspend fun updatePassword(updatePasswordModel: UpdatePasswordModel): Response<UpdatePasswordResponseModel>
     suspend fun forgotPassword(EmailAddress: String): Response<ForgotPasswordResponseModel>
     suspend fun resetPassword(resetPasswordModel: ResetPasswordModel): Response<ResetPasswordResponseModel>
