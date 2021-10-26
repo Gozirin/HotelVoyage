@@ -5,6 +5,7 @@ import androidx.paging.PagingSource
 import androidx.room.Index
 import com.example.hbapplicationgroupa.MainActivity
 import com.example.hbapplicationgroupa.database.AuthPreference
+import com.example.hbapplicationgroupa.database.dao.BookingByUserIdDao
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -23,9 +24,6 @@ class PastBookingPagingDataSource @Inject constructor(
         return try {
             val nextPage = params.key ?: 1
             val response = customerApi.getCustomerBookingsByUserId(userId!!, 5, nextPage)
-//            if (response.isSuccessful){
-//                  database should come here
-//            }
             return LoadResult.Page(
                 data = response.body()!!.data,
                 prevKey = null,

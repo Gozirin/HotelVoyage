@@ -84,7 +84,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch {
             try {
                val response = authRepository.loginUser(loginUserModel)
-                if (response.isSuccessful){
+                if ( response != null && response.isSuccessful){
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
