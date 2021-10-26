@@ -8,6 +8,6 @@ data class GetTopDealsResponseItem(
     val description: String,
     val price: Double,
     val discount: Double,
-    val percentageRating: Int,
+    val percentageRating: Double,
     val thumbnail: String,
 )

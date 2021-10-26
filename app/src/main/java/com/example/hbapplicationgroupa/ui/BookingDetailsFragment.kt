@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.SparseIntArray
 import android.view.LayoutInflater
@@ -22,15 +24,17 @@ import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
+class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, RoomTypeAdapterInterface {
     //Set up view binding here
     private var _binding: FragmentBookingDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: BookingDetailsFragmentArgs by navArgs()
     private val hotelViewModel: HotelViewModel by viewModels()
     private lateinit var fetchedRoomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
+    private lateinit var hotelName: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -52,21 +56,16 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
             NumberOfPeopleBottomSheetDialogFragment(this).show(
                 requireActivity().supportFragmentManager, "peopleBottomSheet"
             )
-//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfPeopleBottomSheetDialogFragment)
         }
 
         binding.roomsEditText.setOnClickListener {
-            findNavController().navigate(R.id.action_bookingDetailsFragment_to_numberOfRoomsBottomSheetDialogFragment)
+            NumberOfRoomsBottomSheetDialogFragment(fetchedRoomTypes, this).show(
+                requireActivity().supportFragmentManager, "roomTypeBottomSheet"
+            )
         }
 
         binding.bookNowButton.setOnClickListener {
-            if (!fullNameIsNotEmpty(binding.nameTextInputEditText.text.toString())){
-                binding.nameTextInputLayout.error = "Kindly enter your full name"
-                return@setOnClickListener
-            }else if (!fullNameMatchesPattern(binding.nameTextInputEditText.text.toString())){
-                binding.nameTextInputLayout.error = "Kindly enter a valid full name eg. John Doe"
-                return@setOnClickListener
-            }else if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
+            if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
                 return@setOnClickListener
             }else if (!phoneNumberEqualsLength(binding.phoneTextInputEditText.text.toString())){
@@ -96,7 +95,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
 
         binding.bookingDetailsBackBtn.setOnClickListener {
             findNavController().popBackStack()
-//            findNavController().navigate(R.id.action_bookingDetailsFragment_to_hotelDescription2Fragment)
         }
 
         getRoomTypes()
@@ -186,8 +184,17 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface {
         hotelViewModel.getHotelById(args.hotelId)
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
             it.forEach { response ->
+                hotelName = response.name
                 fetchedRoomTypes = response.roomTypes
             }
+
+            if (it != null){
+                binding.nameTextInputEditText.setText(hotelName)
+            }
         })
+    }
+
+    override fun getSelectedRoomTypes(position: Int, name: String) {
+        binding.roomsEditText.setText(name)
     }
 }

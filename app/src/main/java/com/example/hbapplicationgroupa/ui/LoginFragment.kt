@@ -51,12 +51,12 @@ class LoginFragment : Fragment() {
         val password = binding.tvEditPasswordLoginScreen
         val loginBtn = binding.btnLoginScreen
 
-        loginBtn.enable(false)
-
-        LoginValidations.validateLoginFields(email, password, loginBtn)
-
         loginBtn.setOnClickListener {
-            login(email.text.toString().trim(), password.text.toString().trim())
+            if (LoginValidations.validateLoginScreen(email, password)){
+                login(email.text.toString().trim(), password.text.toString().trim())
+            }else{
+                binding.loginErrorMsg.text = "Email and Password fields can't be empty"
+            }
         }
 
         observeLoginAuthLiveData()
