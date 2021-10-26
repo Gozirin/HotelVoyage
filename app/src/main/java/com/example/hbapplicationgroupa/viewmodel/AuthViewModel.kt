@@ -33,8 +33,9 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
 
     //Login authentication LiveData
-    private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
-    val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
+    private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel> = MutableLiveData()
+    val getLoginAuthLiveData: LiveData<LoginUserResponseModel> = _getLoginAuthLiveData
+    var loginErrorMsg = ""
 
     //confirmEmail LiveData
     private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse?> = MutableLiveData()
@@ -49,6 +50,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     _getConfirmEmailLiveData.value = response.body()
                 }else{
                     _getConfirmEmailLiveData.value = null
+
                 }
             }catch (e: Exception){
                 e.printStackTrace()
@@ -82,14 +84,14 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch {
             try {
                val response = authRepository.loginUser(loginUserModel)
-                if (response !=null && response.isSuccessful){
+                if ( response != null && response.isSuccessful){
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
                         _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
                     }
                 } else {
-                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Email is not registered/Account might not be Activated",403))
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Invalid Credentials/Email is not registered or activated",403))
                 }
             }catch (e: Exception){
                 _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
