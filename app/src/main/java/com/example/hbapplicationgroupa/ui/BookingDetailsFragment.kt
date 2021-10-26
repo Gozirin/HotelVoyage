@@ -19,6 +19,7 @@ import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
@@ -89,7 +90,8 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
                 return@setOnClickListener
             }
             else{
-                findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+                pushBookHotelData()
+               // findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
         }
 
@@ -196,5 +198,15 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
 
     override fun getSelectedRoomTypes(position: Int, name: String) {
         binding.roomsEditText.setText(name)
+    }
+
+    private fun pushBookHotelData() {
+        val hotelBookingInfo = BookHotel(args.hotelId, binding.checkInEditText.toString(), binding.checkOutEditText.toString(), binding.peopleEditText.toString().toInt(), "")
+        hotelViewModel.pushBookHotel(hotelBookingInfo)
+        hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+            if (it != null) {
+                findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+            }
+        })
     }
 }
