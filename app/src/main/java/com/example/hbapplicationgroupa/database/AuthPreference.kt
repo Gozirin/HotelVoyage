@@ -8,7 +8,7 @@ import android.content.SharedPreferences
  * This class is created to use sharedPreferences preferences to store auth token generated when a user logs in
  * This auth token can be used to monitor user login sessions
  */
-class AuthPreference(activity: Activity) {
+class AuthPreference() {
 
     companion object {
         val MY_PREF = "my_pref"
