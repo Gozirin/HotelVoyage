@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -52,8 +53,15 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         observeBookingHistoryFlow()
-
+        displayNoBookingImage()
         onBackPressed()
+    }
+
+    private fun displayNoBookingImage(){
+        if (binding.bookingRecyclerview.isEmpty()){
+            binding.noBooking.visibility = View.VISIBLE
+            binding.noBookingTxt.visibility = View.VISIBLE
+        }
     }
 
     override fun pastBookBtnClicked(position: Int) {
