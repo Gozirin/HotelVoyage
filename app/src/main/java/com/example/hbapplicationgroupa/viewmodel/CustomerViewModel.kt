@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository, private val api: CustomerModuleApiInterface): ViewModel() {
 
-
+    //booking history flow data using pagination from PastBookingPagingDataSource
     val bookingHistory: Flow<PagingData<BookingByUserIdResponseItems>> = Pager(PagingConfig(pageSize = 5)) {
         PastBookingPagingDataSource(api)
     }.flow

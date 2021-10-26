@@ -10,6 +10,9 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingby
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import javax.inject.Inject
 
+/**
+ * This is the paging data source for booking history data pagination
+ */
 class PastBookingPagingDataSource @Inject constructor(
     private val customerApi: CustomerModuleApiInterface
 ): PagingSource<Int, BookingByUserIdResponseItems>() {
@@ -21,7 +24,7 @@ class PastBookingPagingDataSource @Inject constructor(
             val nextPage = params.key ?: 1
             val response = customerApi.getCustomerBookingsByUserId(userId!!, 5, nextPage)
 //            if (response.isSuccessful){
-//
+//                  database should come here
 //            }
             return LoadResult.Page(
                 data = response.body()!!.data,
