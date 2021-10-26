@@ -89,6 +89,9 @@ class RegisterFragment : Fragment() {
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
+            if(function.validateSexInput(gender)){
+                binding.genderError.visibility = View.GONE
+            }
             if(!function.validatePasswordInput(password)){
                 binding.tvConfirmPasswordResetPassword.error = "At least 1 uppercase, 1 lowercase, 1 special character 1 digit and must not be less than 8 characters"
                 binding.btnRegister.setEnabled(true)
@@ -99,8 +102,10 @@ class RegisterFragment : Fragment() {
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
-
-            if (function.validateFirstNameInput(firstName)
+            if(binding.RegisterTickButton.isChecked){
+                binding.radioButtonMustBeCheckedErr.visibility = View.GONE
+            }
+            if(function.validateFirstNameInput(firstName)
                 && function.validateLastNameInput(lastName)
                 && function.validateUserName(userName)
                 && function.validateEmailInput(email)
