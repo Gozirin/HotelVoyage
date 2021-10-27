@@ -12,9 +12,10 @@ interface CustomerRepositoryInterface {
 //    suspend fun addCustomerBookingByHotelId()
 
     suspend fun getCustomerBookingsByUserId(
-        userId: String,
+//        userId: String,
         pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        authToken: String
     ): Response<BookingByUserIdResponseModel>
 
     suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel>

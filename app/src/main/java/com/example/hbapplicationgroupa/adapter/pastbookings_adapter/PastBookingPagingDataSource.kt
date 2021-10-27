@@ -19,15 +19,16 @@ class PastBookingPagingDataSource @Inject constructor(
 ): PagingSource<Int, BookingByUserIdResponseItems>() {
 
     private val userId = AuthPreference.getId("id_key")
+    private val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BookingByUserIdResponseItems> {
         //TODO
         return try {
             val nextPage = params.key ?: 1
-            val response = customerApi.getCustomerBookingsByUserId(userId!!, 5, nextPage)
+            val response = customerApi.getCustomerBookingsByUserId(5, nextPage, authToken)
             return LoadResult.Page(
-                data = response.body()!!.data,
+                data = response.body()!!.data.pageItems,
                 prevKey = null,
-                nextKey = response.body()?.data?.size?.plus(1)
+                nextKey = response.body()?.data?.pageItems?.size?.plus(1)
             )
         }catch (e: Exception){
             LoadResult.Error(e)
