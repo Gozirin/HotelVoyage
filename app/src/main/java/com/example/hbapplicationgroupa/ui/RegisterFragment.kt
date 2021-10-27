@@ -59,7 +59,6 @@ class RegisterFragment : Fragment() {
             val gender = binding.getSpinner.selectedItem.toString()
             userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, 21)
 
-
             if(!function.validateFirstNameInput(firstName)){
                 binding.fragmentRegisterFirstNameEtv.error = "atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
@@ -89,11 +88,12 @@ class RegisterFragment : Fragment() {
                 binding.genderError.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-            }else if(function.validateSexInput(gender)){
+            }
+            if(function.validateSexInput(gender)){
                 binding.genderError.visibility = View.GONE
             }
             if(!function.validatePasswordInput(password)){
-                binding.tvConfirmPasswordResetPassword.error = "atleast 1 uppercase, 1 lowercase, 1 special character 1 digit and must not be less than 8 characters"
+                binding.tvConfirmPasswordResetPassword.error = "At least 1 uppercase, 1 lowercase, 1 special character 1 digit and must not be less than 8 characters"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
@@ -101,10 +101,11 @@ class RegisterFragment : Fragment() {
                 binding.radioButtonMustBeCheckedErr.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
-            }else if(binding.RegisterTickButton.isChecked){
+            }
+            if(binding.RegisterTickButton.isChecked){
                 binding.radioButtonMustBeCheckedErr.visibility = View.GONE
             }
-            else if(function.validateFirstNameInput(firstName)
+            if(function.validateFirstNameInput(firstName)
                 && function.validateLastNameInput(lastName)
                 && function.validateUserName(userName)
                 && function.validateEmailInput(email)
@@ -113,7 +114,7 @@ class RegisterFragment : Fragment() {
                 && function.validateSexInput(gender)
                 && binding.RegisterTickButton.isChecked){
                 viewModel.addUser(userInfo)
-                viewModel.addUserResponse.observe(viewLifecycleOwner,{
+                viewModel.addUserResponse.observe(viewLifecycleOwner, {
                     if(it.statusCode == 201){
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         binding.radioButtonMustBeCheckedErr.visibility = View.GONE

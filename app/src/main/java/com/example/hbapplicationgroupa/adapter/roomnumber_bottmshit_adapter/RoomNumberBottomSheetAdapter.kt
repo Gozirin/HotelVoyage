@@ -41,10 +41,13 @@ class RoomNumberBottomSheetAdapter(
 //                    }
 //                }
 
+                //Get selection from adapter and send it to rooms bottom sheet fragment
                 binding.roomTypeCheckbox.setOnClickListener {
                     if (binding.roomTypeCheckbox.isChecked){
                         roomTypeList.add(binding.roomType.text.toString())
                         Log.d("GKB", "$roomTypeList")
+                    }else{
+                        roomTypeList.remove(binding.roomType.text.toString())
                     }
 
                     val data = roomTypeList.joinToString(", ")
