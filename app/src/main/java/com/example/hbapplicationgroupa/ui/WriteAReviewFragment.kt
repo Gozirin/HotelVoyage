@@ -72,7 +72,7 @@ class WriteAReviewFragment : Fragment() {
     private fun observeAddReviewLiveData(){
         postReviewBtn.setEnabled(false)
         viewModel.addReviewResponse.observe(viewLifecycleOwner, Observer {
-            if (it.statusCode == 200){
+            if (it.statusCode == 200 || it.statusCode == 204){
                 binding.fragmentRatingProgressBarPb.visibility = View.GONE
                 binding.reviewEdt.text.clear()
                 postReviewBtn.setEnabled(true)
