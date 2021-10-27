@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
@@ -17,7 +18,7 @@ interface CustomerRepositoryInterface {
         pageSize: Int
     ): Response<BookingByUserIdResponseModel>
 
-    suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel>
+    suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel): Response<ReviewByHotelIdResponseModel>
 
     suspend fun addCustomerRatingsByHotelId(
         rating: Int,

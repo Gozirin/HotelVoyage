@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.repository.customermodulerepository
 
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
@@ -22,8 +23,8 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.getCustomerBookingsByUserId(userId, pageNumber, pageSize)
     }
 
-    override suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel> {
-        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelId)
+    override suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel): Response<ReviewByHotelIdResponseModel> {
+        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelIdModel)
     }
 
     override suspend fun addCustomerRatingsByHotelId(

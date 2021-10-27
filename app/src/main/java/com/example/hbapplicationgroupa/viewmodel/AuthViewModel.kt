@@ -42,6 +42,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun confirmEmail (email: String, token: String){
         val confirmEmail = ConfirmEmailModel(email, token)
+
         viewModelScope.launch {
             try {
                 val response = authRepository.confirmEmail(confirmEmail)

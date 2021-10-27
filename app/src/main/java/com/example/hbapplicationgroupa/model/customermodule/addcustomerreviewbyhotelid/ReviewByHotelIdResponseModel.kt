@@ -3,8 +3,8 @@ package com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdModel
 
 data class ReviewByHotelIdResponseModel(
-    val statusCode: String,
-    val success: Boolean,
-    val Data: HotelIdModel,
-    val Message: String
+    val Data: String?,
+    val Succeeded: Boolean,
+    val Message: String,
+    val statusCode: Int
 )

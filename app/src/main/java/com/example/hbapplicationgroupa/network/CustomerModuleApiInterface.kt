@@ -1,14 +1,12 @@
 package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CustomerModuleApiInterface {
     //TODO: Need clarity on this API
@@ -24,8 +22,7 @@ interface CustomerModuleApiInterface {
 
     @POST("api/v1/Customer/add-review/{hotelId}")
     suspend fun addCustomerrReviewByHotelId(
-        @Path("hotelId")
-        hotelId: String
+        @Body hotelIdModel: HotelIdModel
     ): Response<ReviewByHotelIdResponseModel>
 
     @POST("api/v1/Customer/add-ratings/{hotelId}/{rating}")
