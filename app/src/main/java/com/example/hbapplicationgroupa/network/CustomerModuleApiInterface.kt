@@ -15,11 +15,11 @@ interface CustomerModuleApiInterface {
 //    @POST("api/v1/Customer/create-booking")
 //    suspend fun addCustomerBookingByHotelId()
 
-    @GET("api/v1/Customer/get-bookings/{userId}/{pageNumber}&{pageSize}")
+    @GET("/api/Customer/{userId}/bookings")
     suspend fun getCustomerBookingsByUserId(
         @Path("userId") userId: String,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int
+        @Query("pageSize") pageSize: Int,
+        @Query("pageNumber") pageNumber: Int
     ): Response<BookingByUserIdResponseModel>
 
     @POST("api/v1/Customer/add-review/{hotelId}")

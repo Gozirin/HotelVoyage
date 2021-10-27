@@ -3,7 +3,7 @@ package com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingb
 data class BookingByUserIdResponseModel(
     val statusCode: String,
     val success: Boolean,
-    val Data: ArrayList<BookingByUserIdResponseItems>,
-    val Message: String,
+    val data: ArrayList<BookingByUserIdResponseItems>,
+    val message: String,
     val errors: String?
 )

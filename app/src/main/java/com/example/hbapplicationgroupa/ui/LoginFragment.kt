@@ -27,11 +27,9 @@ class LoginFragment : Fragment() {
 
     private lateinit var errorMsg: TextView
     private val viewModel: AuthViewModel by viewModels()
-    lateinit var authPreference: AuthPreference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        authPreference = AuthPreference(requireActivity())
         return binding.root
     }
 
@@ -59,6 +57,7 @@ class LoginFragment : Fragment() {
             }
         }
 
+        AuthPreference.initPreference(requireActivity())
         observeLoginAuthLiveData()
 
         onBackPressed()
@@ -73,7 +72,6 @@ class LoginFragment : Fragment() {
     //set function to observe Login Live Data
     private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
-            Log.d("AuthView", "Enter here")
             when (it?.statusCode) {
                 200 -> {
                     Log.d("Login-succeed", it.message)
@@ -81,16 +79,23 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_loginFragment_to_exploreHomeFragment)
                     //Saving auth Token and Id to Shared Preference
-                    authPreference.setToken(it.data!!.token)
-                    authPreference.setId(it.data.id)
+                    AuthPreference.setToken(it.data!!.token)
+                    AuthPreference.setId(it.data.id)
+                }
+                400 -> {
+                    binding.loginProgressBar.visibility = View.GONE
+                    errorMsg.text = it.message
+                    Log.d("Login400: ", it.message)
                 }
                 403 -> {
                     binding.loginProgressBar.visibility = View.GONE
                     errorMsg.text = it.message
+                    Log.d("Login403: ", it.message)
                 }
                 else -> {
                     binding.loginProgressBar.visibility = View.GONE
                     errorMsg.text = it?.message
+                    Log.d("Login500: ", "error")
                 }
             }
         })
