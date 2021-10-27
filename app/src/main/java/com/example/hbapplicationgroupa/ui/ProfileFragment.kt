@@ -53,6 +53,17 @@ class ProfileFragment : Fragment() {
             dialogActivities()
         }
 
+        //Display bottom sheet to update user's profile
+        binding.fragmentProfileTitleTv.setOnClickListener {
+            UpdateProfileBottomSheetDialogFragment().show(
+                requireActivity().supportFragmentManager, "updateProfileBottomSheet"
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     //Method to logout by clearing authToken from sharedPreference
@@ -66,10 +77,10 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
         }
 
-            //cancel log out event
-            val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
-            cancel.setOnClickListener {
-                dialog.dismiss()
-            }
+        //cancel log out event
+        val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
+        cancel.setOnClickListener {
+            dialog.dismiss()
         }
     }
+}
