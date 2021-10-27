@@ -4,11 +4,12 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface CustomerModuleApiInterface {
     //TODO: Need clarity on this API
@@ -40,6 +41,16 @@ interface CustomerModuleApiInterface {
         @Query("pageNumber") pageNumber: Int,
         @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+
+    // function to upload to our backend
+    @Multipart
+    @PATCH("api/Customer/update-image")
+    suspend fun uploadImage(
+        @Header("Authorization") authToken: String,
+        @Part image: MultipartBody.Part
+    ): Response<UpdateProfileImage>
+
 
 //    @PATCH("Customer/update-review/{hotelId}")
 //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>

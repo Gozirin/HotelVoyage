@@ -5,7 +5,9 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
+import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -39,5 +41,9 @@ class CustomerRepository @Inject constructor(
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel> {
         return customerModuleApiInterface.getCustomerWishListByPageNumber(userId, pageNumber, pageSize)
+    }
+
+    override suspend fun updateProfileImage(authToken: String,image: MultipartBody.Part): Response<UpdateProfileImage> {
+       return customerModuleApiInterface.uploadImage(authToken, image)
     }
 }

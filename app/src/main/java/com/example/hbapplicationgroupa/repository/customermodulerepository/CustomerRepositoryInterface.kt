@@ -4,6 +4,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -29,6 +31,9 @@ interface CustomerRepositoryInterface {
         pageNumber: Int,
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+
+    suspend fun updateProfileImage(authToken: String, image: MultipartBody.Part): Response<UpdateProfileImage>
 
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
 }
