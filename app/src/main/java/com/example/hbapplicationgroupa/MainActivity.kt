@@ -35,6 +35,7 @@ class MainActivity:AppCompatActivity() {
                 R.id.exploreHomeAfterSearchFragment -> showBottomNav()
                 R.id.exploreHomeFragment -> showBottomNav()
                 R.id.profileFragment -> showBottomNav()
+                R.id.allHotelsFragments ->showBottomNav()
              else ->  hideBottomNav()
             }
         }
