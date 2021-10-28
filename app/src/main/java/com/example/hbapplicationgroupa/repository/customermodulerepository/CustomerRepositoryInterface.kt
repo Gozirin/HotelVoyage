@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
@@ -18,11 +19,12 @@ interface CustomerRepositoryInterface {
         pageSize: Int
     ): Response<BookingByUserIdResponseModel>
 
-    suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel): Response<ReviewByHotelIdResponseModel>
+    suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel, token:String): Response<ReviewByHotelIdResponseModel>
 
     suspend fun addCustomerRatingsByHotelId(
-        rating: Int,
-        hotelId: String
+        hotelIdRatingsModel: HotelIdRatingsModel,
+        hotelId: String,
+        token: String
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(

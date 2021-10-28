@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.hbapplicationgroupa.database.dao.*
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.typeconverter.TypeConverter
@@ -14,7 +15,7 @@ import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.
 
 /*
 Tables containing data are stored in the database as entities.
-Data access objects(DAO) are interfaces that contain functions that tell the application how to manipulate data in the database
+data access objects(DAO) are interfaces that contain functions that tell the application how to manipulate data in the database
 If no instance of the database has been created, a new instance is created.
 This new instance runs in a background thread.
 However, if there is an instance of the database, no new instance is created as that same instance is used.
@@ -25,7 +26,8 @@ However, if there is an instance of the database, no new instance is created as 
     GetHotelByIdResponseItemData::class,
     WishlistByPageNumberResponseItems::class,
     GetUserByIdResponseItem::class,
-    UpdateUserPhotoByUserIdResponseItem::class
+    UpdateUserPhotoByUserIdResponseItem::class,
+    BookingByUserIdResponseItems::class
 ], version = 1, exportSchema = false)
 
 @TypeConverters(TypeConverter::class)
@@ -35,6 +37,7 @@ abstract class HotelDatabase: RoomDatabase() {
     abstract fun getWishlistByPageNumberDao(): WishlistByPageNumberDao
     abstract fun getUserByIdDao(): UserByIdDao
     abstract fun getUserPhotoByIdDao(): UserPhotoByIdDao
+    abstract fun getBookingByUserId(): BookingByUserIdDao
 
 
     //Creating a single instance of the database

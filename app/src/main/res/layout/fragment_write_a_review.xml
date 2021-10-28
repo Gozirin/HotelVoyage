@@ -96,8 +96,8 @@
                 android:isIndicator="false"
                 android:numStars="5"
                 android:progressTint="@color/c_red"
-                android:rating="4.5"
-                android:stepSize="0.5"
+                android:rating="0"
+                android:stepSize="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/review_post_btn"
@@ -121,6 +121,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/review_ratingProgressBar" />
 
+
             <TextView
                 android:id="@+id/review_edtCount"
                 android:layout_width="wrap_content"
@@ -131,6 +132,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/review_edt"
                 app:layout_constraintTop_toBottomOf="@id/review_edt" />
+
+            <TextView
+                android:id="@+id/fragment_review_validation_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/c_red"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/review_edtCount" />
 
             <ProgressBar
                 android:id="@+id/fragment_rating_progressBar_pb"

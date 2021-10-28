@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
@@ -23,15 +24,16 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.getCustomerBookingsByUserId(userId, pageNumber, pageSize)
     }
 
-    override suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel): Response<ReviewByHotelIdResponseModel> {
-        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelIdModel)
+    override suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel, token:String): Response<ReviewByHotelIdResponseModel> {
+        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelIdModel, token)
     }
 
     override suspend fun addCustomerRatingsByHotelId(
-        rating: Int,
-        hotelId: String
+        hotelIdRatingsModel: HotelIdRatingsModel,
+        hotelId: String,
+        token:String
     ): Response<RatingsByHotelIdResponseModel> {
-        return customerModuleApiInterface.addCustomerRatingsByHotelId(rating, hotelId)
+        return customerModuleApiInterface.addCustomerRatingsByHotelId(hotelIdRatingsModel, hotelId, token)
     }
 
     override suspend fun getCustomerWishListByPageNumber(

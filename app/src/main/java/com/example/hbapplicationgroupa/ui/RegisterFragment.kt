@@ -59,14 +59,13 @@ class RegisterFragment : Fragment() {
             val gender = binding.getSpinner.selectedItem.toString()
             userInfo = AddUserModel(firstName,lastName,email, userName, password, phoneNumber, gender, 21)
 
-
             if(!function.validateFirstNameInput(firstName)){
-                binding.fragmentRegisterFirstNameEtv.error = "atleast 1 letter, atleast 3 character"
+                binding.fragmentRegisterFirstNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateLastNameInput(lastName)){
-                binding.fragmentRegisterLastNameEtv.error = "atleast 1 letter, atleast 3 character"
+                binding.fragmentRegisterLastNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
@@ -76,12 +75,12 @@ class RegisterFragment : Fragment() {
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateUserName(userName)){
-                binding.fragmentRegisterUserNameEtv.error = "atleast 1 letter, atleast 3 character"
+                binding.fragmentRegisterUserNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validatePhoneInput(phoneNumber)){
-                binding.fragmentRegisterPhoneNumberEtv.error = "starts with '0' followed by '7', '8' or '9' and 11 characters"
+                binding.fragmentRegisterPhoneNumberEtv.error = "Starts with '0' followed by '7', '8' or '9' and 11 characters"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
@@ -94,7 +93,7 @@ class RegisterFragment : Fragment() {
                 binding.genderError.visibility = View.GONE
             }
             if(!function.validatePasswordInput(password)){
-                binding.tvConfirmPasswordResetPassword.error = "atleast 1 uppercase, 1 lowercase, 1 special character 1 digit and must not be less than 8 characters"
+                binding.tvConfirmPasswordResetPassword.error = "At least 1 uppercase, 1 lowercase, 1 special character 1 digit and more than 7 characters"
                 binding.btnRegister.setEnabled(true)
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
@@ -115,7 +114,7 @@ class RegisterFragment : Fragment() {
                 && function.validateSexInput(gender)
                 && binding.RegisterTickButton.isChecked){
                 viewModel.addUser(userInfo)
-                viewModel.addUserResponse.observe(viewLifecycleOwner,{
+                viewModel.addUserResponse.observe(viewLifecycleOwner, {
                     if(it.statusCode == 201){
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         binding.radioButtonMustBeCheckedErr.visibility = View.GONE
