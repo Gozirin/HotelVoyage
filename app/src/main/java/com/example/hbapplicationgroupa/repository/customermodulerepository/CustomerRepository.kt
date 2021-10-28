@@ -5,6 +5,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
@@ -40,5 +42,12 @@ class CustomerRepository @Inject constructor(
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel> {
         return customerModuleApiInterface.getCustomerWishListByPageNumber(userId, pageNumber, pageSize)
+    }
+
+    override suspend fun updateUser(
+        authToken: String,
+        updateUserModel: UpdateUserByIdModel
+    ): Response<UpdateUserByIdResponseModel> {
+        return customerModuleApiInterface.updateUser(authToken, updateUserModel)
     }
 }

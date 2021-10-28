@@ -18,7 +18,6 @@ class PastBookingPagingDataSource @Inject constructor(
     private val customerApi: CustomerModuleApiInterface
 ): PagingSource<Int, BookingByUserIdResponseItems>() {
 
-    private val userId = AuthPreference.getId("id_key")
     private val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, BookingByUserIdResponseItems> {
         //TODO

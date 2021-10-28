@@ -4,6 +4,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -37,6 +39,12 @@ interface CustomerModuleApiInterface {
         @Query("pageNumber") pageNumber: Int,
         @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+    @PUT("api/Customer/update")
+    suspend fun updateUser(
+        @Header("Authorization") authToken: String,
+        @Body updateUserModel: UpdateUserByIdModel
+    ) : Response<UpdateUserByIdResponseModel>
 
 //    @PATCH("Customer/update-review/{hotelId}")
 //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
