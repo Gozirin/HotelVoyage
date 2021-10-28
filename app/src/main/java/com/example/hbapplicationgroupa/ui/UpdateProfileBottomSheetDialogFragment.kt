@@ -51,6 +51,8 @@ class UpdateProfileBottomSheetDialogFragment : BottomSheetDialogFragment() {
         observeUpdateUserLiveData()
 
         binding.updateProfileBtn.setOnClickListener {
+            //I passed these values in like this because the variables above were giving me null for whatever reasons
+            //I haven't handled validations
             updateUser(authToken, binding.updateProfileFirstNameEt.text.toString(), binding.updateProfileLastNameEt.text.toString(), binding.updateProfilePhoneNumberEt.text.toString(), binding.updateProfileAgeEt.text.toString().toInt(), binding.updateProfileAddressEt.text.toString(), binding.updateProfileCreditCardEt.text.toString(), binding.updateProfileStateEt.text.toString(), currentDate.toString())
         }
     }
