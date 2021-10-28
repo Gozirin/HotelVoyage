@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
@@ -20,7 +21,7 @@ interface CustomerModuleApiInterface {
         @Query("pageSize") pageSize: Int,
         @Query("pageNumber") pageNumber: Int,
         @Header("Authorization") authToken: String
-    ): Response<BookingByUserIdResponseModel>
+    ): Response<GetCustomerBookingResponse>
 
     @POST("/api/Review/add-reviews")
     suspend fun addCustomerrReviewByHotelId(
