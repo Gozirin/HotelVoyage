@@ -7,6 +7,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHote
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
@@ -77,4 +78,5 @@ interface HotelRepositoryInterface {
 
     //------- Filter All Hotel By Location
     suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<FilterAllHotelByLocation>
+    suspend fun getHotelReview(id: String): Response<GetHotelReviewsResponseModel>
 }

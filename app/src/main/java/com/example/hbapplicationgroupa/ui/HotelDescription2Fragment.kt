@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -134,15 +135,19 @@ class HotelDescription2Fragment : Fragment() {
 
     //Method setting StackedReviewRecyclerView attributes
     private fun initStackedReviewRecyclerView(){
-        binding.hotelDescOverlapRv.apply {
-            adapter = stackedReviewAdapter
-            stackedReviewDecorator = StackedReviewItemDecorator()
-            addItemDecoration(stackedReviewDecorator)
-            stackedReviewLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            stackedReviewLayoutManager.reverseLayout = true
-            stackedReviewLayoutManager.stackFromEnd = true
-            layoutManager = stackedReviewLayoutManager
-        }
+
+        hotelViewModel.getHotelReview(args.hotelId)
+        hotelViewModel.hotelReview.observe(viewLifecycleOwner, Observer {
+            binding.hotelDescOverlapRv.apply {
+                adapter = stackedReviewAdapter
+                stackedReviewDecorator = StackedReviewItemDecorator()
+                addItemDecoration(stackedReviewDecorator)
+                stackedReviewLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                stackedReviewLayoutManager.reverseLayout = true
+                stackedReviewLayoutManager.stackFromEnd = true
+                layoutManager = stackedReviewLayoutManager
+            }
+        })
     }
 
     //Method setting HotelGalleryViewPager attributes
@@ -162,5 +167,7 @@ class HotelDescription2Fragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
+
+
 
 }

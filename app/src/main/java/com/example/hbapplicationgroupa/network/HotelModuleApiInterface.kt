@@ -1,10 +1,13 @@
 package com.example.hbapplicationgroupa.network
 
+import com.example.hbapplicationgroupa.databinding.HotelDescStackedReviewRecyclerviewBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemReviews
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
@@ -81,4 +84,9 @@ interface HotelModuleApiInterface {
         @Query("pageSize") pageSize: Int,
         @Query("pageNumber") pageNumber: Int
     ):Response<FilterAllHotelByLocation>
+
+
+    @GET("api/Hotel/{hotelId}/raviews")
+    suspend fun getHotelReview(@Path("hotelId") hotelId :String):Response<GetHotelReviewsResponseModel>
+
 }
