@@ -30,7 +30,7 @@ class PastBookingPagingDataSource @Inject constructor(
             return LoadResult.Page(
                 data = response.body()!!.data.pageItems,
                 prevKey = null,
-                nextKey = response.body()!!.data.currentPage
+                nextKey = response.body()!!.data.numberOfPages
             )
         }catch (e: Exception){
             LoadResult.Error(e)
