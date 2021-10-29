@@ -8,7 +8,7 @@
     <string name="stay">stay</string>
     <string name="book_now">Book Now</string>
     <string name="_99">99%</string>
-    <string name="per_night">per_night</string>
+    <string name="per_night">per night</string>
     <string name="imageview">imageView</string>
     <string name="we_have_deals_for">We have deals for</string>
     <string name="your_favourite_and_relaxing">your favourite and relaxing</string>
@@ -43,7 +43,7 @@
         this app, you are aware of what information about you are being collected, stored, and
         disclosed as set out in the policy below.
         This policy was last updated October 20th, 2021.</string>
-    
+
     <string name="why_we_collect_info_text">Information collected by the above means is to ease the
         process of booking a room prior to stay by sending your details to the hotel and/or
         communication prior to stay. We also collect information for communication and satisfaction
@@ -130,7 +130,7 @@
     <string name="debit_card">Debit Card</string>
     <string name="paytm">Paytm</string>
     <string name="merdan_place_turkey">Merdan Place Turkey</string>
-    <string name="_9_star_hotel">9 Star Hotel</string>
+    <string name="_9_star_hotel">4 Star Hotel</string>
     <string name="meridian_palace">Meridian Palace</string>
     <string name="ignore">ignore</string>
     <string name="logout">Logout</string>
@@ -153,7 +153,7 @@
     </string-array>
 
 
-// String array for filtering All Hotel
+    // String array for filtering All Hotel
     <string-array name="states">
         <item>Iowa</item>
         <item>North Carolina</item>
@@ -194,7 +194,6 @@
         <item>Yobe</item>
         <item>Zamfara</item>
         <item>Fct-Abuja</item>
-
 
 
     </string-array>

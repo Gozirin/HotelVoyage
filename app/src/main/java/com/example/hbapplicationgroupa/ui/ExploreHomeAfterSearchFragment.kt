@@ -46,7 +46,7 @@ class ExploreHomeAfterSearchFragment : Fragment(),
         }
 
         onBackPressed()
-        //creating dummy Hotel Data
+        //creating dummy Hotel data
         val atlantisParadise = Hotel(
             1, "Atlantis Paradise", 6500,
             "9 Star Hotel", "99%", R.drawable.hotel_atlantis_paradise_bahamas
@@ -92,7 +92,7 @@ class ExploreHomeAfterSearchFragment : Fragment(),
 
 
         //dummy data to populate 2nd recyclerView
-        //creating dummy Hotel Data
+        //creating dummy Hotel data
         val hotel1 = TopHotel(
             1, "Atlantis Paradise", 6500, 7500,
             "9 Star Hotel", "99%", R.drawable.hotel_atlantis_paradise_bahamas,

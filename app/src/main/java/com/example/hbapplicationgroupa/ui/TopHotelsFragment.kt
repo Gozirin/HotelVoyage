@@ -49,6 +49,7 @@ class TopHotelsFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         //connecting the view with the data response
         showProgressBar()
         Toast.makeText(requireContext(), "Please, Ensure your internet is active", Toast.LENGTH_LONG).show()

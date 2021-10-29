@@ -17,11 +17,9 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var dialog: Dialog
-    private lateinit var authPreference: AuthPreference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        authPreference = AuthPreference(requireActivity())
         return binding.root
     }
 
@@ -55,6 +53,17 @@ class ProfileFragment : Fragment() {
             dialogActivities()
         }
 
+        //Display bottom sheet to update user's profile
+        binding.fragmentProfileTitleTv.setOnClickListener {
+            UpdateProfileBottomSheetDialogFragment().show(
+                requireActivity().supportFragmentManager, "updateProfileBottomSheet"
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     //Method to logout by clearing authToken from sharedPreference
@@ -62,15 +71,16 @@ class ProfileFragment : Fragment() {
         //logout
         val logout = dialog.findViewById<TextView>(R.id.dialogLogout)
         logout.setOnClickListener {
-            authPreference.clear("token_key")
+            AuthPreference.initPreference(requireActivity())
+            AuthPreference.clear("token_key")
             findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
             dialog.dismiss()
         }
 
-            //cancel log out event
-            val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
-            cancel.setOnClickListener {
-                dialog.dismiss()
-            }
+        //cancel log out event
+        val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
+        cancel.setOnClickListener {
+            dialog.dismiss()
         }
     }
+}

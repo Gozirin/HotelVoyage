@@ -1,9 +1,16 @@
 package com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid
 
 data class BookingByUserIdResponseModel(
-    val statusCode: String,
-    val success: Boolean,
-    val Data: ArrayList<BookingByUserIdResponseItems>,
-    val Message: String,
-    val errors: String?
+    val data: Data,
+    val message: String,
+    val statusCode: Int,
+    val succeeded: Boolean
+)
+
+data class Data(
+    val currentPage: Int,
+    val numberOfPages: Int,
+    val pageItems: List<BookingByUserIdResponseItems>,
+    val pageSize: Int,
+    val previousPage: Int
 )

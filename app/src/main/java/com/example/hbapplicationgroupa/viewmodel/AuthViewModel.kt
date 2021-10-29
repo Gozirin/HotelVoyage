@@ -17,8 +17,11 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.network.LoginAuthResource
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
+import com.example.hbapplicationgroupa.utils.Resource
+import com.example.hbapplicationgroupa.utils.Resources
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +38,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     //Login authentication LiveData
     private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
     val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
+    var loginErrorMsg = ""
 
     //confirmEmail LiveData
     private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse?> = MutableLiveData()
@@ -42,6 +46,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun confirmEmail (email: String, token: String){
         val confirmEmail = ConfirmEmailModel(email, token)
+
         viewModelScope.launch {
             try {
                 val response = authRepository.confirmEmail(confirmEmail)
@@ -49,6 +54,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     _getConfirmEmailLiveData.value = response.body()
                 }else{
                     _getConfirmEmailLiveData.value = null
+
                 }
             }catch (e: Exception){
                 e.printStackTrace()
@@ -82,14 +88,14 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch {
             try {
                val response = authRepository.loginUser(loginUserModel)
-                if (response !=null && response.isSuccessful){
+                if ( response != null && response.isSuccessful){
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
                         _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
                     }
                 } else {
-                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Email is not registered/Account might not be Activated",403))
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Invalid Credentials/Email is not registered or activated",403))
                 }
             }catch (e: Exception){
                 _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))

@@ -6,10 +6,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "bookingByUserId")
 data class BookingByUserIdResponseItems(
     @PrimaryKey(autoGenerate = true)
-    val tableNumber: Int,
-    val BookingReference: String,
-    val CheckIn: DateTime,
-    val CheckOut: DateTime,
-    val NumberOfPeople: Int,
-    val ServiceName: String
+    val roomId: Int,
+    val checkIn: String,
+    val checkOut: String,
+    val numberOfPeople: Int,
+    val paymentService: String
 )

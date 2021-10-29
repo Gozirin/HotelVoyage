@@ -44,26 +44,31 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Show the calendar for date selection
         binding.checkInEditText.setOnClickListener {
             showDateRangePicker()
         }
 
+        //Show the calendar for date selection
         binding.checkOutEditText.setOnClickListener {
             showDateRangePicker()
         }
 
+        //Show bottom sheet holding number of people selection
         binding.peopleEditText.setOnClickListener {
             NumberOfPeopleBottomSheetDialogFragment(this).show(
                 requireActivity().supportFragmentManager, "peopleBottomSheet"
             )
         }
 
+        //Show bottom sheet holding rooms selection
         binding.roomsEditText.setOnClickListener {
             NumberOfRoomsBottomSheetDialogFragment(fetchedRoomTypes, this).show(
                 requireActivity().supportFragmentManager, "roomTypeBottomSheet"
             )
         }
 
+        //Validate fields
         binding.bookNowButton.setOnClickListener {
             if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
@@ -80,15 +85,13 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
             }else if (!checkOutIsNotEmpty(binding.nameTextInputEditText.text.toString())){
                 binding.checkOutTextInputLayout.error = "Kindly select your preferred check out date"
                 return@setOnClickListener
-            }
-            else if (!numberOfPeopleIsNotEmpty(binding.peopleEditText.text.toString())){
+            } else if (!numberOfPeopleIsNotEmpty(binding.peopleEditText.text.toString())){
                 binding.peopleTextInputLayout.error = "Kindly enter the total number of people to be lodged"
                 return@setOnClickListener
             }else if (!roomTypeIsNotEmpty(binding.roomsEditText.text.toString())){
                 binding.roomsTextInputLayout.error = "Kindly select your preferred rooms"
                 return@setOnClickListener
-            }
-            else{
+            } else{
                 findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
         }
@@ -176,10 +179,12 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         _binding = null
     }
 
+    //Receive data from number of people bottom sheet and populate it on the people edit text
     override fun passDataFromPeopleBottomSheetToBookingDetailsScreen(data: String) {
         binding.peopleEditText.setText(data)
     }
 
+    //Make a network request to get room info and hotel name
     private fun getRoomTypes(){
         hotelViewModel.getHotelById(args.hotelId)
         hotelViewModel.getHotelFromDb().observe(viewLifecycleOwner, {
@@ -194,6 +199,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         })
     }
 
+    //Receive data from rooms bottom sheet and populate it on the rooms edit text
     override fun getSelectedRoomTypes(position: Int, name: String) {
         binding.roomsEditText.setText(name)
     }
