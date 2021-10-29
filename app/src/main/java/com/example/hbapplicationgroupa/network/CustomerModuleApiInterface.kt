@@ -41,9 +41,10 @@ interface CustomerModuleApiInterface {
 
     @GET("/api/Customer/wishlist")
     suspend fun getCustomerWishListByPageNumber(
-//        @Path("userId") userId: String,
-//        @Query("pageNumber") pageNumber: Int,
-//        @Query("pageSize") pageSize: Int
+        //@Path("userId") userId: String,
+        @Path("token") token: String,
+        @Query("pageNumber") pageNumber: Int,
+        @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
 
     @PUT("api/Customer/update")

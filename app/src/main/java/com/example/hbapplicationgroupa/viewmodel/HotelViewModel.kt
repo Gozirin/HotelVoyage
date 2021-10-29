@@ -73,10 +73,6 @@ class HotelViewModel @Inject constructor(
     private var _topHotelsLiveData: MutableLiveData<ArrayList<GetTopHotelsResponseItem>> = MutableLiveData()
     var topHotelsLiveData: LiveData<ArrayList<GetTopHotelsResponseItem>> = _topHotelsLiveData
 
-    //----------------WishList------------------------------
-    private var _wishListLiveData: MutableLiveData<ArrayList<WishlistByPageNumberResponseItems>> = MutableLiveData()
-    var wishListLiveData: LiveData<ArrayList<WishlistByPageNumberResponseItems>> = _wishListLiveData
-
 
     var pageNumber = 1
 
@@ -239,26 +235,6 @@ class HotelViewModel @Inject constructor(
                 }
             }catch (e:Exception){
                 Log.d("VMError", e.message.toString())
-            }
-        }
-    }
-
-    //--------------wishList-------------------------
-    //fetching user wishList from repository interface
-    fun fetchWishList(){
-        viewModelScope.launch(Dispatchers.IO){
-            val response = customerRepository.getCustomerWishListByPageNumber()
-            try {
-                if (response.isSuccessful) {
-                    response.body()?.Data.let {
-                        val wishLists = _wishListLiveData.postValue(it!!)
-                        Log.d("VM -> wishList", wishLists.toString())
-                    }
-                }else{
-//                    Log.d("VmError", "No data from api")
-                }
-            }catch (e:Exception){
-                Log.d("VM -> WISHLIST ERROR", e.message.toString())
             }
         }
     }

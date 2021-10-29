@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +22,7 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
     private val binding get() = _binding!!
 
     //initializing vm and recyclerview
-   // val customerViewModel: CustomerViewModel by viewModels()
+    val customerViewModel: CustomerViewModel by viewModels()
     val wishListRecyclerView = binding.wishListRecyclerView
     lateinit var wishListAdapter: WishListAdapter
 
@@ -39,16 +41,20 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         setupRecyclerView()
 
         //observing data and setting it on the recyclerView
-//        customerViewModel.getWishList()
-//        customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
-//            if (it.isNullOrEmpty()){
-//                //Log.d("wishList Observer", it.toString())
-//            }else{
-//                wishListAdapter.setDataToAdapter(it)
-//                hideProgressBar()
-//                //Log.d("wishList Observer", it.toString())
-//            }
-//        })
+        try {
+            customerViewModel.getWishList()
+            customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
+                if (it.isNullOrEmpty()) {
+                    Log.d("wishList Observer", "No data from the Vm")
+                } else {
+                    wishListAdapter.setDataToAdapter(it)
+                    hideProgressBar()
+                    Log.d("wishList Observer", it.toString())
+                }
+            })
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
 
         //TODO: Set click listener on recycler view item
         binding.appBarTitle.setOnClickListener {
@@ -94,7 +100,7 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         binding.tvNotificationWishList.visibility = View.INVISIBLE
     }
 
-    private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
+    private fun showProgressBar() {
         binding.wishListProgressBar.visibility = View.VISIBLE
         binding.tvNotificationWishList.visibility = View.VISIBLE
     }

@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.adapter.wishlistadapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,6 +53,7 @@ class WishListAdapter(var context: Context,
 
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {
         holder.hotelName.text = listOfWishList[position].hotelName
+        Log.d("Name", listOfWishList[position].hotelName)
         holder.hotelPrice.text = listOfWishList[position].price.toString()
         holder.hotelRating.text = listOfWishList[position].percentageRating.toInt().toString()
         holder.savedImage.let {

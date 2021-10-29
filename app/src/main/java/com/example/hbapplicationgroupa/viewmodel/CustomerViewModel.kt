@@ -14,6 +14,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -33,19 +34,32 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
         MutableLiveData()
     val addReviewResponse: LiveData<ReviewByHotelIdResponseModel> = _addReviewResponse
 
-
-    val _wishListLiveData: MutableLiveData<ArrayList<WishlistByPageNumberResponseItems>> =
+    // wishlist livedata
+    private val _wishListLiveData: MutableLiveData<ArrayList<WishlistByPageNumberResponseItems>> =
         MutableLiveData()
+    val wishListLiveData: LiveData<ArrayList<WishlistByPageNumberResponseItems>> = _wishListLiveData
 
 
     fun getWishList() {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = customerRepository.getCustomerWishListByPageNumber()
-            if (result.isSuccessful) {
-                //Log.d("getWishListVM", result.body().toString())
-                val data = result.body()?.Data.let {
-                    _wishListLiveData.postValue(it)
+            try {
+                val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+                val response = customerRepository.getCustomerWishListByPageNumber(
+                        authToken,
+                        pageNumber = 1,
+                        pageSize = 50
+                    )
+
+                if (response.isSuccessful) {
+                    Log.d("getWishListVM", response.body().toString())
+                    response.body()?.Data.let {
+                        _wishListLiveData.postValue(it)
+                    }
+                } else {
+                    Log.d("getWishListVMerror", response.body()?.errors.toString())
                 }
+            }catch(e: Exception) {
+                e.printStackTrace()
             }
         }
     }
