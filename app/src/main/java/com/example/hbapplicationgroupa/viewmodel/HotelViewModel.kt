@@ -10,6 +10,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
@@ -85,6 +86,10 @@ class HotelViewModel @Inject constructor(
     private var _paymentOption: MutableLiveData<BookHotel> = MutableLiveData()
     val paymentOption: LiveData<BookHotel>
         get() = _paymentOption
+
+    private var _hotelRoom: MutableLiveData<GetHotelRoomByIdResponseModel> = MutableLiveData()
+    val hotelRoom: LiveData<GetHotelRoomByIdResponseModel>
+        get() = _hotelRoom
 
 //    init {
 //        fetchTopHotels()
@@ -247,25 +252,25 @@ class HotelViewModel @Inject constructor(
     }
 
 
-    fun pushBookHotel(bookHotelInfo: BookHotel) {
+    fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel) {
         viewModelScope.launch {
             try {
-                val response = hotelRepositoryInterface.pushBookHotel(bookHotelInfo)
+                val response = hotelRepositoryInterface.pushBookHotel(authToken, bookHotelInfo)
                 _bookingInfo.postValue(response.body())
             }catch (e: Exception) {
-                //display error msg
+                //handle error
+            }
+        }
+    }
+    fun getHotelRoomByRoomId(hotelId: String, roomTypeId: String) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.getHotelRoomByRoomId(hotelId, roomTypeId)
+                _hotelRoom.postValue(response.body())
+            }catch (e: Exception) {
+                //handle error
             }
         }
     }
 
-    fun pushPaymentOption(paymentOption: BookHotel) {
-        viewModelScope.launch {
-            try {
-                val response = hotelRepositoryInterface.pushPaymentOption(paymentOption)
-                _paymentOption.postValue(response.body())
-            }catch (e: Exception) {
-                //display error msg
-            }
-        }
-    }
 }

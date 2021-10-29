@@ -1,8 +1,11 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.allhotels
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class RoomType(
     @SerializedName("description")
     val description: String?,
@@ -16,4 +19,4 @@ data class RoomType(
     val price: Double?,
     @SerializedName("thumbnail")
     val thumbnail: String?
-)
+): Parcelable

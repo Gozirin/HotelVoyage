@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfRoomsBottomSheetDialogBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
 import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -42,6 +44,7 @@ class NumberOfRoomsBottomSheetDialogFragment(
         binding.doneButton.setOnClickListener {
             roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
             dismiss()
+
         }
         Log.d("GKB", "$name was selected")
     }

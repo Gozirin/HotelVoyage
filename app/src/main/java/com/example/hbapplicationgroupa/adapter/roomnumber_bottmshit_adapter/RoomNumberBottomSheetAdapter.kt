@@ -7,6 +7,7 @@ import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
 import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
 
 class RoomNumberBottomSheetAdapter(
@@ -17,10 +18,17 @@ class RoomNumberBottomSheetAdapter(
         var binding: RoomNumberBottomSheetViewHolderBinding
     ): RecyclerView.ViewHolder(binding.root)
 
-    var listOfRooms = arrayListOf<GetHotelByIdResponseItemRoomTypes>()
+//    var listOfRoomsByNumber = arrayListOf<GetHotelRoomByIdResponseItem>()
 
-    fun addRoomType(roomType: ArrayList<GetHotelByIdResponseItemRoomTypes>){
-        listOfRooms.addAll(roomType)
+    var listOfRoomsByName = arrayListOf<GetHotelByIdResponseItemRoomTypes>()
+
+
+//    fun addRoomNumber(roomNumber: ArrayList<GetHotelRoomByIdResponseItem>){
+//        listOfRoomsByNumber.addAll(roomNumber)
+//    }
+
+    fun addRoomType(roomName: ArrayList<GetHotelByIdResponseItemRoomTypes>){
+        listOfRoomsByName.addAll(roomName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomNumberBottomSheetViewHolder {
@@ -30,8 +38,13 @@ class RoomNumberBottomSheetAdapter(
 
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
         with(holder){
-            with(listOfRooms[position]){
-                binding.roomType.text = name
+//            with(listOfRoomsByNumber[position]){
+//                binding.roomNumber.text = roomNo.toString()
+
+                with(listOfRoomsByName[position]) {
+                    binding.roomName.text = name
+                }
+              //  binding.roomTypeNumberCount.text = numberOfRooms
 
                 val roomTypeList = arrayListOf<String>()
 //                binding.roomTypeCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -42,17 +55,40 @@ class RoomNumberBottomSheetAdapter(
 //                }
 
                 binding.roomTypeCheckbox.setOnClickListener {
-                    if (binding.roomTypeCheckbox.isChecked){
-                        roomTypeList.add(binding.roomType.text.toString())
+                    if (binding.roomTypeCheckbox.isChecked) {
+                        roomTypeList.add(binding.roomName.text.toString())
                         Log.d("GKB", "$roomTypeList")
                     }
 
                     val data = roomTypeList.joinToString(", ")
                     roomTypeAdapterInterface.getSelectedRoomTypes(position, data)
                 }
+
+
+//                    var roomCount = 0
+//                    binding.roomTypeMinusButton.setOnClickListener {
+//                        if (roomCount > 0) {
+//                            roomCount--
+//                            binding.roomTypeNumberCount.text = roomCount.toString()
+//                        }
+//                    }
+//
+//                    binding.roomTypeAddButton.setOnClickListener {
+//                        roomCount++
+//                        binding.roomTypeNumberCount.text = roomCount.toString()
+//                    }
+//
+//                    var numberOfRoomsData = ""
+//                    if (roomCount == 1) {
+//                        numberOfRoomsData = "$roomCount $name suite"
+//                    } else if (roomCount > 1) {
+//                        numberOfRoomsData = "$roomCount $name suites"
+//                    }
+//
+//                    val numberOfRoomsDataToString = numberOfRoomsData.toString()
+
             }
         }
-    }
 
-    override fun getItemCount() = listOfRooms.size
+    override fun getItemCount() = listOfRoomsByName.size
 }

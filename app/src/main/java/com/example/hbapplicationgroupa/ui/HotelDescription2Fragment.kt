@@ -40,6 +40,7 @@ class HotelDescription2Fragment : Fragment() {
     lateinit var hotelGalleryAdapter: HotelGalleryAdapter
     private val hotelViewModel: HotelViewModel by viewModels()
     private val args: HotelDescription2FragmentArgs by navArgs()
+    private var roomTypeList: Array<GetHotelByIdResponseItemRoomTypes>? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHotelDescription2Binding.inflate(inflater, container, false)
@@ -56,11 +57,11 @@ class HotelDescription2Fragment : Fragment() {
         //Setting fake list to HotelGallery Adapter
         hotelGalleryAdapter = HotelGalleryAdapter()
 
-        viewClickListeners()
         initStackedReviewRecyclerView()
         initHotelRoomServiceRecyclerView()
         initHotelGalleryViewPager()
         populateUiWithResponseFromDb()
+        viewClickListeners()
         onBackPressed()
     }
 
@@ -79,6 +80,7 @@ class HotelDescription2Fragment : Fragment() {
                 binding.hotelDescEmailTv.text = response.email
                 binding.hotelDescPhoneTv.text = response.phone
                 binding.hotelDescRatingBar.rating = response.rating
+                roomTypeList = response.roomTypes.toTypedArray()
             }
         })
     }
@@ -110,7 +112,7 @@ class HotelDescription2Fragment : Fragment() {
         }
         //Click Listener for Book button
         binding.hotelDescBookBtn.setOnClickListener {
-            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId)
+            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId, roomTypeList!!)
             findNavController().navigate(action)
         }
         //Click Listener for BookMark Button

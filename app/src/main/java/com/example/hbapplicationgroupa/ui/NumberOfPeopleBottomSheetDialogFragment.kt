@@ -80,6 +80,7 @@ class NumberOfPeopleBottomSheetDialogFragment(
 
         binding.doneButton.setOnClickListener {
             val peopleData = mutableListOf<String>()
+            var peopleCount = 0
             var adultsData = ""
             var teensData = ""
             var childrenData = ""
@@ -111,18 +112,22 @@ class NumberOfPeopleBottomSheetDialogFragment(
 
             if (adultCount > 0){
                 peopleData.add(adultsData)
+                peopleCount+=adultCount
             }
 
             if (teensCount > 0){
                 peopleData.add(teensData)
+                peopleCount+=teensCount
             }
 
             if (childrenCount > 0){
                 peopleData.add(childrenData)
+                peopleCount+=childrenCount
             }
 
             if (infantsCount > 0){
                 peopleData.add(infantsData)
+                peopleCount+=infantsCount
             }
 
             val peopleDataToString = peopleData.joinToString(", ")

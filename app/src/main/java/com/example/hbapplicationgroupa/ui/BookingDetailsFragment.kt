@@ -8,6 +8,7 @@ import android.util.SparseIntArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,9 +19,11 @@ import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +39,9 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
     private val hotelViewModel: HotelViewModel by viewModels()
     private lateinit var fetchedRoomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
     private lateinit var hotelName: String
+    var roomId = ""
+    var roomTId = ""
+    var hotelBookingInfo: BookHotel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -44,6 +50,10 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        AuthPreference.initPreference(requireActivity())
+
+        getHotelRoomByRoomId(args.hotelId, roomTId)
 
         binding.checkInEditText.setOnClickListener {
             showDateRangePicker()
@@ -91,7 +101,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
             }
             else{
                 pushBookHotelData()
-               // findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+//               findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
         }
 
@@ -200,13 +210,45 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         binding.roomsEditText.setText(name)
     }
 
-    private fun pushBookHotelData() {
-        val hotelBookingInfo = BookHotel(args.hotelId, binding.checkInEditText.toString(), binding.checkOutEditText.toString(), binding.peopleEditText.toString().toInt(), "")
-        hotelViewModel.pushBookHotel(hotelBookingInfo)
-        hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+    private fun getHotelRoomByRoomId(hotelId: String, roomTypeId: String) {
+        for(i in args.roomTypeList.indices) {
+            if (binding.roomsEditText.text.toString() == args.roomTypeList[i].name) {
+              roomTId = args.roomTypeList[i].id
+                Log.d("XYZ", "getHotelRoomByRoomId: roomId")
+            }
+        }
+        hotelViewModel.getHotelRoomByRoomId(hotelId, roomTypeId)
+        hotelViewModel.hotelRoom.observe(viewLifecycleOwner, {
+            Log.d("XYZ", "getHotelRoomByRoomId: $it")
             if (it != null) {
-                findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+               for (i in it.toString().indices) {
+//                   if (it.toString()[0].isB == false)
+               }
             }
         })
     }
+
+    private fun pushBookHotelData() {
+
+            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+            hotelBookingInfo = BookHotel(
+                roomId,
+                binding.checkInEditText.text.toString(),
+                binding.checkOutEditText.text.toString(),
+                5,
+                ""
+            )
+            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
+            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+                if (it != null) {
+                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
+                        .show()
+                    val action =
+                        BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(
+                            hotelBookingInfo
+                        )
+                    findNavController().navigate(action)
+                }
+            })
+        }
 }

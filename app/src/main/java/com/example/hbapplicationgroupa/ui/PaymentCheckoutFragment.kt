@@ -19,8 +19,6 @@ class PaymentCheckoutFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentPaymentCheckoutBinding? = null
     private val binding get() = _binding!!
-    private val hotelViewModel: HotelViewModel by viewModels()
-    private lateinit var selectedPaymentOption: BookHotel
     private val navToGPay = binding.paymentOptionGpay
     private val navToVisa = binding.paymentOptionGpay
     private val navToMasterCard = binding.paymentOptionGpay
@@ -118,13 +116,4 @@ class PaymentCheckoutFragment : Fragment() {
 //        }
 //    }
 
-//    private fun pushPaymentOption() {
-//        val selectedPaymentOption = BookHotel(paymentOptionSelected().toString())
-//        hotelViewModel.pushBookHotel(selectedPaymentOption)
-//        hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
-//            if (it != null) {
-//                findNavController().navigate(R.id.action_paymentCheckoutFragment_to_bookingConfirmationFragment)
-//            }
-//        })
-//    }
 }
