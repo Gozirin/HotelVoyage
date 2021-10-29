@@ -17,8 +17,11 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.network.LoginAuthResource
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
+import com.example.hbapplicationgroupa.utils.Resource
+import com.example.hbapplicationgroupa.utils.Resources
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -33,8 +36,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     var forgotPasswordEmail = MutableLiveData<ForgotPasswordResponseModel>()
 
     //Login authentication LiveData
-    private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel> = MutableLiveData()
-    val getLoginAuthLiveData: LiveData<LoginUserResponseModel> = _getLoginAuthLiveData
+    private val _getLoginAuthLiveData: MutableLiveData<LoginUserResponseModel?> = MutableLiveData()
+    val getLoginAuthLiveData: LiveData<LoginUserResponseModel?> = _getLoginAuthLiveData
     var loginErrorMsg = ""
 
     //confirmEmail LiveData
@@ -43,6 +46,7 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun confirmEmail (email: String, token: String){
         val confirmEmail = ConfirmEmailModel(email, token)
+
         viewModelScope.launch {
             try {
                 val response = authRepository.confirmEmail(confirmEmail)

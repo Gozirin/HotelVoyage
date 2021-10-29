@@ -6,12 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.ratingreviewadapter.RatingReviewRecyclerViewAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentRatingBinding
 import com.example.hbapplicationgroupa.model.adaptermodels.RatingReviewModel
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * This Fragment is the Rating page where users can rate hotels
@@ -26,6 +31,9 @@ class RatingFragment : Fragment() {
     //Late-initializing RecyclerView Adapter
     lateinit var ratingReviewRecyclerViewAdapter: RatingReviewRecyclerViewAdapter
     lateinit var ratingDataList: ArrayList<RatingReviewModel>
+
+    //getting hotel id from hoteldescription2 fragment
+    private val args :RatingFragmentArgs by navArgs()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRatingBinding.inflate(inflater, container, false)
@@ -62,10 +70,13 @@ class RatingFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
+
+
     //Method Triggering onClickEvents
     private fun clickListeners(){
         binding.ratingPostBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_ratingFragment_to_writeAReviewFragment)
+            val action = RatingFragmentDirections.actionRatingFragmentToWriteAReviewFragment(args.postReviewHotelId)
+            findNavController().navigate(action)
         }
 
         binding.ratingBackBtn.setOnClickListener {

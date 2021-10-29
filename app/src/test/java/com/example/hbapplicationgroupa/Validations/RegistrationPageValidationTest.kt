@@ -82,4 +82,14 @@ class RegistrationPageValidationTest{
         val result = RegistrationPageValidation.validateAgeInput(14)
         assertThat(result).isFalse()
     }
+    @Test
+    fun `invalid review input returns false`(){
+        val result = RegistrationPageValidation.validateReviewInput("")
+        assertThat(result).isFalse()
+    }
+    @Test
+    fun `invalid rating input returns false`(){
+        val result = RegistrationPageValidation.validateRatingInput(0)
+        assertThat(result).isFalse()
+    }
 }

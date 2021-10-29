@@ -1,7 +1,7 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class GetHotelByIdResponseItemRoomTypes(
@@ -11,4 +11,5 @@ data class GetHotelByIdResponseItemRoomTypes(
     val price: Float,
     val discount: Float,
     val thumbnail: String
-): Parcelable
+) : Parcelable
+
