@@ -28,7 +28,7 @@ class TopDealAdapter(
         val nameOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_name)
         val priceOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_price)
         val classOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_status)
-        val ratingOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_rating)
+//        val ratingOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_rating)
         val imageOfDeal = view.findViewById<ImageView>(R.id.topDeal_recyclerview_imageview)
         val hotelBookBtn: AppCompatButton = itemView.findViewById(R.id.topDealBookBtn)
         val topDealView: CardView = itemView.findViewById(R.id.topDealView)
@@ -52,8 +52,8 @@ class TopDealAdapter(
     override fun onBindViewHolder(holder: TopDealViewHolder, position: Int) {
         holder.nameOfDeal?.text = topDealList[position].name
         holder.priceOfDeal?.text = "$${topDealList[position].price}"
-        holder.classOfDeal?.text = topDealList[position].description
-        holder.ratingOfDeal?.text = "${topDealList[position].discount}% OFF"
+//        holder.classOfDeal?.text = topDealList[position].description
+//        holder.ratingOfDeal?.text = "${topDealList[position].discount}% OFF"
         holder.imageOfDeal?.let {
             Glide.with(it.context)
                 .load(topDealList[position].thumbnail)

@@ -1,10 +1,8 @@
 package com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid
 
-import com.example.hbapplicationgroupa.model.authmodule.adduser.UserIdModel
-
 data class RatingsByHotelIdResponseModel(
-    val statusCode: String,
-    val success: Boolean,
-    val Data: HotelIdModel,
-    val Message: String
+    val data: String?,
+    val succeeded: Boolean,
+    val message: String,
+    val statusCode: Int
 )
