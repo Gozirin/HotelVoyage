@@ -1,17 +1,19 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import retrofit2.Response
 import javax.inject.Inject
 
 class CustomerRepository @Inject constructor(
-    private val customerModuleApiInterface: CustomerModuleApiInterface,
-    private val wishlistByPageNumberDao: WishlistByPageNumberDao
+    private val customerModuleApiInterface: CustomerModuleApiInterface
     ): CustomerRepositoryInterface {
 
     override suspend fun getCustomerBookingsByUserId(
@@ -34,10 +36,11 @@ class CustomerRepository @Inject constructor(
     }
 
     override suspend fun getCustomerWishListByPageNumber(
-        userId: String,
-        pageNumber: Int,
-        pageSize: Int
+//        userId: String,
+//        pageNumber: Int,
+//        pageSize: Int
     ): Response<WishlistByPageNumberResponseModel> {
-        return customerModuleApiInterface.getCustomerWishListByPageNumber(userId, pageNumber, pageSize)
+        return customerModuleApiInterface.getCustomerWishListByPageNumber()
     }
+
 }

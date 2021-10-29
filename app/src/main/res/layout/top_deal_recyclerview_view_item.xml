@@ -57,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/book_now"
+            android:text="@string/preview"
             android:textColor="#FCEA0707"
             android:textAllCaps="false"
             android:textSize="14sp"

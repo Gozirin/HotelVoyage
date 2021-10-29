@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.network
 
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
@@ -34,11 +35,11 @@ interface CustomerModuleApiInterface {
         @Path("hotelId") hotelId: String
     ): Response<RatingsByHotelIdResponseModel>
 
-    @GET("api/v1/Customer/{userId}/wishlist/?page={pageNumber}&{pageSize}")
+    @GET("/api/Customer/wishlist")
     suspend fun getCustomerWishListByPageNumber(
-        @Path("userId") userId: String,
-        @Query("pageNumber") pageNumber: Int,
-        @Query("pageSize") pageSize: Int
+//        @Path("userId") userId: String,
+//        @Query("pageNumber") pageNumber: Int,
+//        @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
 
 //    @PATCH("Customer/update-review/{hotelId}")

@@ -6,16 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
+
+    //initializing vm and recyclerview
+   // val customerViewModel: CustomerViewModel by viewModels()
+    val wishListRecyclerView = binding.wishListRecyclerView
+    lateinit var wishListAdapter: WishListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentWishListBinding.inflate(inflater, container, false)
@@ -25,21 +32,23 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // this is a temporary data, to be removed when the required data is available
-        val item1 = WishListData("\$2334", "BeachTowa", "5 Star hotel.96%")
-        val item2 = WishListData("\$6339", "Arizona Hotel", "3 Star hotel.90%")
-        val item3 = WishListData("\$4338", "Eko Hotel", "4 Star hotel.93%")
-        val item4 = WishListData("\$8374", "Sharaton", "5 Star hotel.96%")
-        val item5 = WishListData("\$1354", "Edo lunge", "4 Star hotel.93%")
+        //show progress bar while pulling api data
+        showProgressBar()
 
-        val items = arrayListOf(item1, item2, item3, item4, item5)
+        //setting recycler view
+        setupRecyclerView()
 
-        val wishlistRecyclerView = binding.wishListRecyclerView
-        wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        // initialise the adapter and pass the items to the adapter
-        val adapter = WishListAdapter(items, requireContext(), this, this)
-        wishlistRecyclerView.adapter = adapter
+        //observing data and setting it on the recyclerView
+//        customerViewModel.getWishList()
+//        customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
+//            if (it.isNullOrEmpty()){
+//                //Log.d("wishList Observer", it.toString())
+//            }else{
+//                wishListAdapter.setDataToAdapter(it)
+//                hideProgressBar()
+//                //Log.d("wishList Observer", it.toString())
+//            }
+//        })
 
         //TODO: Set click listener on recycler view item
         binding.appBarTitle.setOnClickListener {
@@ -70,5 +79,23 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         findNavController().navigate(R.id.action_wishListFragment_to_bookingDetailsFragment)
     }
 
+    //setting adapter
+    //set up recycler view
+    private fun setupRecyclerView() {
+        wishListAdapter = WishListAdapter(requireContext(), this, this)
+        wishListRecyclerView.apply {
+            adapter = wishListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
 
+    private fun hideProgressBar() {
+        binding.wishListProgressBar.visibility = View.INVISIBLE
+        binding.tvNotificationWishList.visibility = View.INVISIBLE
+    }
+
+    private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
+        binding.wishListProgressBar.visibility = View.VISIBLE
+        binding.tvNotificationWishList.visibility = View.VISIBLE
+    }
 }

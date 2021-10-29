@@ -72,6 +72,7 @@ dependencies {
     //Fragment testing dependency
     def fragment_version = "1.4.0-alpha09"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     //espresso rule and runner
     androidTestImplementation('androidx.test:runner:1.4.0')
     androidTestImplementation('androidx.test:rules:1.4.0')

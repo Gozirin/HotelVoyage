@@ -4,6 +4,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -25,10 +26,13 @@ interface CustomerRepositoryInterface {
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(
-        userId: String,
-        pageNumber: Int,
-        pageSize: Int
+//        userId: String,
+//        pageNumber: Int,
+//        pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+
+
 
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
 }

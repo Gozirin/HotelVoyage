@@ -1,6 +1,5 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals
 
-import androidx.room.PrimaryKey
 
 data class GetTopDealsResponseItem(
     val id: String,
@@ -10,4 +9,7 @@ data class GetTopDealsResponseItem(
     val discount: Double,
     val percentageRating: Double,
     val thumbnail: String,
+    val address: String,
+    val city: String,
+    val state: String
 )

@@ -9,19 +9,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
+import kotlin.math.ceil
 
 
-class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: Context,
+class WishListAdapter(var context: Context,
                       private val wishListItemClickListener: WishListItemClickListener,
-                        private val wishListBookButtonClickListener: WishListBookButtonClickListener) :
+                      private val wishListBookButtonClickListener: WishListBookButtonClickListener) :
     RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
+    private var listOfWishList = mutableListOf<WishlistByPageNumberResponseItems>()
 
-    class WishListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-
+    inner class WishListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var hotelPrice: TextView = itemView.findViewById(R.id.tv_hotelprice)
         var hotelName: TextView = itemView.findViewById(R.id.tv_nameOfHotel)
         var hotelRating: TextView = itemView.findViewById(R.id.tv_hotelRating)
@@ -30,11 +34,6 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
         val bookingBtn: Button = itemView.findViewById(R.id.bookingBtn)
         val savedImage: ImageView = itemView.findViewById(R.id.hotelImageView)
 
-        fun bind(itemList: WishListData) {
-            hotelName.text = itemList.hotelName
-            hotelPrice.text = itemList.hotelprice
-            hotelRating.text = itemList.hotelRating
-        }
     }
 
     interface WishListItemClickListener {
@@ -45,42 +44,41 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
         fun wishListBookBtnClicked(position: Int)
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WishListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.wish_list_items, parent, false)
         return WishListViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {
-        var curentItem = wishListitems[position]
-        holder.bind(curentItem)
+        holder.hotelName.text = listOfWishList[position].hotelName
+        holder.hotelPrice.text = listOfWishList[position].price.toString()
+        holder.hotelRating.text = listOfWishList[position].percentageRating.toInt().toString()
+        holder.savedImage.let {
+            Glide.with(it.context)
+                .load(listOfWishList[position].ImageUrl)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.savedImage)
+        }
+
 
         holder.apply {
             // set the onclick listener to the save button
             saveButton.setOnClickListener {
 
-                //remove the toast and add navigation to required destination
-                Toast.makeText(context, "saved to wishlist", Toast.LENGTH_LONG).show()
             }
 
             // set the onclick listener to the bookmark icon
             bookmarkIcon.setOnClickListener {
-
-                //remove the toast and add navigation to required destination
                 bookmarkIcon.setImageResource(R.drawable.bookmark_icon)
-                Toast.makeText(context, "this hotel has been add to your list", Toast.LENGTH_LONG)
-                    .show()
             }
 
             // set the onclick listener to the booking button
             bookingBtn.setOnClickListener {
-
-                //remove the toast and add navigation to required destination
                 wishListBookButtonClickListener.wishListBookBtnClicked(position)
-//                Toast.makeText(
-//                    context,
-//                    " you will be redirected to the booking page, Thank you",
-//                    Toast.LENGTH_LONG
-//                ).show()
+//
             }
 
             //click listener for each saved Item
@@ -89,6 +87,12 @@ class WishListAdapter(val wishListitems: ArrayList<WishListData>, var context: C
             }
         }
     }
-    override fun getItemCount() = wishListitems.size
+    override fun getItemCount() = listOfWishList.size
 
+    //setting data to listOfWishList
+    fun setDataToAdapter(list: ArrayList<WishlistByPageNumberResponseItems>){
+        listOfWishList.clear()
+        listOfWishList = list
+        notifyDataSetChanged()
+    }
 }
