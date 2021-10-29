@@ -1,20 +1,26 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isEmpty
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.filter
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingsAdapter
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentPastBookingsBinding
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,24 +56,30 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         binding.bookingRecyclerview.adapter = adapter
         binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
+        AuthPreference.initPreference(requireActivity())
+
         observeBookingHistoryFlow()
         displayNoBookingImage()
         onBackPressed()
     }
 
     private fun displayNoBookingImage(){
-        if (binding.bookingRecyclerview.isEmpty()){
-            binding.noBooking.visibility = View.VISIBLE
-            binding.noBookingTxt.visibility = View.VISIBLE
+        if (binding.bookingRecyclerview.isVisible){
+            binding.noBookingTxt.text = ""
+        }else{
+            binding.noBookingTxt.text = "You have made no bookings"
         }
     }
 
     override fun pastBookBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_pastBookingsFragment2_to_bookingDetailsFragment)
+        //hotelId and roomItem needs to be passed here
+//        val action = PastBookingsFragmentDirections.actionPastBookingsFragment2ToBookingDetailsFragment("", adapter.)
+//        findNavController().navigate(action)
     }
 
     private fun observeBookingHistoryFlow(){
         viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.bookingHistory.collectLatest {
                 adapter.submitData(it)

@@ -1,10 +1,16 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
+import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource_Factory
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
@@ -23,7 +29,7 @@ class CustomerRepository @Inject constructor(
         pageNumber: Int,
         pageSize: Int,
         authToken: String
-    ): Response<BookingByUserIdResponseModel> {
+    ): Response<GetCustomerBookingResponse> {
         return customerModuleApiInterface.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
     }
 
