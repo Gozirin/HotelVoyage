@@ -10,6 +10,8 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
@@ -19,6 +21,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import retrofit2.Response
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -37,6 +41,28 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
         PastBookingPagingDataSource(api)
     }.flow
         .cachedIn(viewModelScope)
+
+
+    private val _updateUserLiveData: MutableLiveData<UpdateUserByIdResponseModel> = MutableLiveData()
+    val updateUserLiveData: LiveData<UpdateUserByIdResponseModel> = _updateUserLiveData
+    //method to update user profile
+    fun updateUser (
+        authToken: String,
+        updateUser: UpdateUserByIdModel
+    ) {
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.updateUser(authToken, updateUser)
+                if (response.isSuccessful){
+                    _updateUserLiveData.value = response.body()
+                }else{
+                    _updateUserLiveData.value = response.body()
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 
 
 

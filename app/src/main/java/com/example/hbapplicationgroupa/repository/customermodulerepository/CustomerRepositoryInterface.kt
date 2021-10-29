@@ -6,6 +6,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
+import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,9 +16,10 @@ interface CustomerRepositoryInterface {
 //    suspend fun addCustomerBookingByHotelId()
 
     suspend fun getCustomerBookingsByUserId(
-        userId: String,
+//        userId: String,
         pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        authToken: String
     ): Response<BookingByUserIdResponseModel>
 
     suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel, token:String): Response<ReviewByHotelIdResponseModel>
@@ -32,6 +35,11 @@ interface CustomerRepositoryInterface {
         pageNumber: Int,
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+    suspend fun updateUser(
+        authToken: String,
+        updateUserModel: UpdateUserByIdModel
+    ) : Response<UpdateUserByIdResponseModel>
 
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
 }
