@@ -124,7 +124,7 @@ class WriteAReviewFragment : Fragment() {
             if (it.statusCode == 200){
                 binding.fragmentRatingProgressBarPb.visibility = View.GONE
                 postReviewBtn.setEnabled(true)
-                Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
+//                Snackbar.make(requireView(), it.message, Snackbar.LENGTH_SHORT).show()
 //                findNavController().popBackStack()
                     viewModel.addReviewResponse.observe(viewLifecycleOwner, Observer {
                         if (it.statusCode == 200 || it.statusCode == 204){
