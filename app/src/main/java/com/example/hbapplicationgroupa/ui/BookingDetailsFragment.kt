@@ -52,7 +52,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         //Show the calendar for date selection
         AuthPreference.initPreference(requireActivity())
 
-
         binding.checkInEditText.setOnClickListener {
             showDateRangePicker()
         }

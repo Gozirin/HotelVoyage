@@ -262,15 +262,4 @@ class HotelViewModel @Inject constructor(
             }
         }
     }
-    fun getHotelRoomByRoomId(hotelId: String, roomTypeId: String) {
-        viewModelScope.launch {
-            try {
-                val response = hotelRepositoryInterface.getHotelRoomByRoomId(hotelId, roomTypeId)
-                _hotelRoom.postValue(response.body())
-            }catch (e: Exception) {
-                //handle error
-            }
-        }
-    }
-
 }
