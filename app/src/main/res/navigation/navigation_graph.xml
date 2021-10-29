@@ -206,6 +206,10 @@
         <argument
             android:name="hotelId"
             app:argType="string" />
+        <argument
+            android:name="roomItem"
+            app:argType="com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes"
+            app:nullable="true" />
 
     </fragment>
     <dialog

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isEmpty
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -56,47 +57,32 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         AuthPreference.initPreference(requireActivity())
-        //val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
 
         observeBookingHistoryFlow()
-       // getUserBooking(1, 5, authToken)//
         displayNoBookingImage()
         onBackPressed()
     }
 
     private fun displayNoBookingImage(){
-        if (adapter.itemCount == 0){
-            binding.noBooking.visibility = View.VISIBLE
-            binding.noBookingTxt.visibility = View.VISIBLE
+        if (binding.bookingRecyclerview.isVisible){
+            binding.noBookingTxt.text = ""
+        }else{
+            binding.noBookingTxt.text = "You have made no bookings"
         }
     }
 
     override fun pastBookBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_pastBookingsFragment2_to_bookingDetailsFragment)
+        //hotelId and roomItem needs to be passed here
+//        val action = PastBookingsFragmentDirections.actionPastBookingsFragment2ToBookingDetailsFragment("", adapter.)
+//        findNavController().navigate(action)
     }
-
-//    private fun getUserBooking(pageNumber: Int,
-//                               pageSize: Int,
-//                               authToken: String){
-//        viewModel.getUserBooking(pageNumber, pageSize, authToken)
-//    }
 
     private fun observeBookingHistoryFlow(){
         viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
 
-//        viewModel.getUserBookingLiveData.observe(viewLifecycleOwner, Observer {
-//            if (it != null){
-//                adapter.bookingList = it.data.pageItems
-//                adapter.notifyDataSetChanged()
-//                Log.d("PastBooking 1:", it.toString())
-//            }
-//        })
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.bookingHistory.collectLatest {
-
                 adapter.submitData(it)
-                adapter.notifyDataSetChanged()
-                Log.d("BookingHistory 2", "${adapter.itemCount}")
             }
         }
     }

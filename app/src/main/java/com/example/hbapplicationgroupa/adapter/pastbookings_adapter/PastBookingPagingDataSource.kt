@@ -25,12 +25,12 @@ class PastBookingPagingDataSource @Inject constructor(
         //TODO
         return try {
             val nextPage = params.key ?: 1
-            val response = customerApi.getCustomerBookingsByUserId(5, nextPage, authToken)
+            val response = customerApi.getCustomerBookingsByUserId(params.loadSize, nextPage, authToken)
             Log.d("BookingHistory 1", "${response.body()}")
             return LoadResult.Page(
                 data = response.body()!!.data.pageItems,
-                prevKey = null,
-                nextKey = response.body()!!.data.numberOfPages
+                prevKey = if (nextPage == 1) null else nextPage - 1,
+                nextKey = if (response.body()!!.data.pageItems.isEmpty()) null else nextPage + 1
             )
         }catch (e: Exception){
             LoadResult.Error(e)
