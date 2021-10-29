@@ -13,7 +13,7 @@ class PastBookingsAdapter(
     val pastBookingBookingClickListener: PastBookingBookClickListener
     ): PagingDataAdapter<BookingByUserIdResponseItems, PastBookingsAdapter.MyViewHolder>(DiffUtilCallBack()) {
 
-    var bookingList:  ArrayList<BookingByUserIdResponseItems> = arrayListOf()
+    var bookingList:  List<BookingByUserIdResponseItems> = listOf()
 
     class MyViewHolder(val binding:PastBookingItemsBinding):RecyclerView.ViewHolder(binding.root){
         val bookBtn = binding.fragmentBookingBookBtn

@@ -46,8 +46,6 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
             findNavController().navigate(R.id.action_pastBookingsFragment2_to_profileFragment)
         }
 
-        viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
-
         adapter = PastBookingsAdapter(this)
         binding.bookingRecyclerview.adapter = adapter
         binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
@@ -69,13 +67,10 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
     }
 
     private fun observeBookingHistoryFlow(){
+        viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.bookingHistory.collectLatest {
-                if (it != null){
-                    adapter.submitData(it)
-                }else{
-                    Toast.makeText(requireContext(), "not implemented", Toast.LENGTH_SHORT).show()
-                }
+                adapter.submitData(it)
             }
         }
     }
