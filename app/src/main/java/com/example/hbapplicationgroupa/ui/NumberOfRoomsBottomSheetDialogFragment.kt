@@ -33,13 +33,16 @@ class NumberOfRoomsBottomSheetDialogFragment(
         binding.roomNumberBottomSheetRecyclerView.adapter = adapter
         binding.roomNumberBottomSheetRecyclerView.setHasFixedSize(true)
 
+        //Receive rooms from booking details fragment and add them to the adapter for selection/display
         adapter.addRoomType(roomTypes)
 
+        //Click event to dismiss the bottom sheet
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
     }
 
+    //Pass name of room when a room is selected to the booking details fragment
     override fun getSelectedRoomTypes(position: Int, name: String) {
         binding.doneButton.setOnClickListener {
             roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
