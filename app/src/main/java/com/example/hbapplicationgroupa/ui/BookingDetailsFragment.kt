@@ -39,8 +39,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
     private val hotelViewModel: HotelViewModel by viewModels()
     private lateinit var fetchedRoomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>
     private lateinit var hotelName: String
-    var roomId = ""
-    var roomTId = ""
     var hotelBookingInfo: BookHotel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -54,7 +52,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         //Show the calendar for date selection
         AuthPreference.initPreference(requireActivity())
 
-        getHotelRoomByRoomId(args.hotelId, roomTId)
 
         binding.checkInEditText.setOnClickListener {
             showDateRangePicker()
@@ -79,7 +76,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
             )
         }
 
-        //Validate fields
         binding.bookNowButton.setOnClickListener {
             if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
@@ -106,8 +102,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
             else{
                 pushBookHotelData()
 //               findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
-            } else{
-                findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
         }
 
@@ -219,34 +213,17 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface, Roo
         binding.roomsEditText.setText(name)
     }
 
-    private fun getHotelRoomByRoomId(hotelId: String, roomTypeId: String) {
-        for(i in args.roomTypeList.indices) {
-            if (binding.roomsEditText.text.toString() == args.roomTypeList[i].name) {
-              roomTId = args.roomTypeList[i].id
-                Log.d("XYZ", "getHotelRoomByRoomId: roomId")
-            }
-        }
-        hotelViewModel.getHotelRoomByRoomId(hotelId, roomTypeId)
-        hotelViewModel.hotelRoom.observe(viewLifecycleOwner, {
-            Log.d("XYZ", "getHotelRoomByRoomId: $it")
-            if (it != null) {
-               for (i in it.toString().indices) {
-//                   if (it.toString()[0].isB == false)
-               }
-            }
-        })
-    }
 
     private fun pushBookHotelData() {
 
             val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-            hotelBookingInfo = BookHotel(
-                roomId,
-                binding.checkInEditText.text.toString(),
-                binding.checkOutEditText.text.toString(),
-                5,
-                ""
-            )
+//            hotelBookingInfo = BookHotel(
+//                roomId,
+//                binding.checkInEditText.text.toString(),
+//                binding.checkOutEditText.text.toString(),
+//                5,
+//                ""
+//            )
             hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
             hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
                 if (it != null) {

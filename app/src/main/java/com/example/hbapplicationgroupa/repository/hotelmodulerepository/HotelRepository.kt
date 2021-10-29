@@ -148,13 +148,6 @@ class HotelRepository @Inject constructor(
         return hotelModuleApiInterface.getHotelRoomById(roomId)
     }
 
-    override suspend fun getHotelRoomByRoomId(
-        hotelId: String,
-        roomTypeId: String
-    ): Response<GetHotelRoomByIdResponseModel> {
-        return hotelModuleApiInterface.getHotelRoomByRoomId(hotelId, roomTypeId)
-    }
-
     override suspend fun getHotelRatings(hotelId: String): Response<GetHotelRatingsResponseModel> {
         return hotelModuleApiInterface.getHotelRatings(hotelId)
     }

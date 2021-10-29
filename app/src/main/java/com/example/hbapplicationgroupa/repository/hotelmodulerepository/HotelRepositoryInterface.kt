@@ -77,6 +77,5 @@ interface HotelRepositoryInterface {
 
     suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel>
 
-    suspend fun getHotelRoomByRoomId(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
 
 }

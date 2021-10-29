@@ -60,7 +60,7 @@ class RoomNumberBottomSheetAdapter(
                         roomTypeList.add(binding.roomName.text.toString())
                         Log.d("GKB", "$roomTypeList")
                     }else{
-                        roomTypeList.remove(binding.roomType.text.toString())
+                      //  roomTypeList.remove(binding.roomType.text.toString())
                     }
 
                     val data = roomTypeList.joinToString(", ")

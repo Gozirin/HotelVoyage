@@ -110,11 +110,6 @@ class HotelDescription2Fragment : Fragment() {
         binding.hotelDescAmenitiesMoreIb.setOnClickListener {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_three), Toast.LENGTH_SHORT).show()
         }
-        //Click Listener for Book button
-        binding.hotelDescBookBtn.setOnClickListener {
-            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId, roomTypeList!!)
-            findNavController().navigate(action)
-        }
         //Click Listener for BookMark Button
         binding.hotelDescBookmarkBtn.setOnClickListener {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
