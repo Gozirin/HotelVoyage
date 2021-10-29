@@ -8,7 +8,7 @@
     <string name="stay">stay</string>
     <string name="book_now">Book Now</string>
     <string name="_99">99%</string>
-    <string name="per_night">per_night</string>
+    <string name="per_night">per night</string>
     <string name="imageview">imageView</string>
     <string name="we_have_deals_for">We have deals for</string>
     <string name="your_favourite_and_relaxing">your favourite and relaxing</string>
@@ -130,7 +130,7 @@
     <string name="debit_card">Debit Card</string>
     <string name="paytm">Paytm</string>
     <string name="merdan_place_turkey">Merdan Place Turkey</string>
-    <string name="_9_star_hotel">9 Star Hotel</string>
+    <string name="_9_star_hotel">4 Star Hotel</string>
     <string name="meridian_palace">Meridian Palace</string>
     <string name="ignore">ignore</string>
     <string name="logout">Logout</string>

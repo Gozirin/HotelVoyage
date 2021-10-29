@@ -82,5 +82,19 @@ object RegistrationPageValidation {
         return false
     }
 
+    fun validateReviewInput(review:String):Boolean{
+        if(review.length < 3){
+            return false
+        }
+        return true
+    }
+
+    fun validateRatingInput(rating:Int):Boolean{
+        if (rating == 0){
+            return false
+        }
+        return true
+    }
+
 
 }

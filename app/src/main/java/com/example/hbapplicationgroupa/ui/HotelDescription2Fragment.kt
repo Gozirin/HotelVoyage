@@ -120,7 +120,8 @@ class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapte
 
         //Navigate to ratings page
         binding.hotelDescReviewTv.setOnClickListener {
-            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
+            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToRatingFragment(args.hotelId)
+            findNavController().navigate(action)
         }
     }
 

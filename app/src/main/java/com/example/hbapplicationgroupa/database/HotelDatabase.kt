@@ -15,7 +15,7 @@ import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.
 
 /*
 Tables containing data are stored in the database as entities.
-Data access objects(DAO) are interfaces that contain functions that tell the application how to manipulate data in the database
+data access objects(DAO) are interfaces that contain functions that tell the application how to manipulate data in the database
 If no instance of the database has been created, a new instance is created.
 This new instance runs in a background thread.
 However, if there is an instance of the database, no new instance is created as that same instance is used.

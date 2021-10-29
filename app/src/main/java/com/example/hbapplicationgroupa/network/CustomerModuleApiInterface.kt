@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupa.network
 
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
@@ -23,15 +25,17 @@ interface CustomerModuleApiInterface {
         @Header("Authorization") authToken: String
     ): Response<GetCustomerBookingResponse>
 
-    @POST("/api/Review/add-reviews")
+    @POST("api/Review/add-reviews")
     suspend fun addCustomerrReviewByHotelId(
-        @Path("hotelId") hotelId: String
+        @Body hotelIdModel: HotelIdModel,
+        @Header ("Authorization") token:String
     ): Response<ReviewByHotelIdResponseModel>
 
-    @POST("api/v1/Customer/add-ratings/{hotelId}/{rating}")
+    @POST("api/Hotel/{hotelId}/add-ratings")
     suspend fun addCustomerRatingsByHotelId(
-        @Path("rating") rating: Int,
-        @Path("hotelId") hotelId: String
+        @Body hotelIdRatingsModel: HotelIdRatingsModel,
+        @Path("hotelId") hotelId: String,
+        @Header ("Authorization") token:String
     ): Response<RatingsByHotelIdResponseModel>
 
     @GET("api/v1/Customer/{userId}/wishlist/?page={pageNumber}&{pageSize}")

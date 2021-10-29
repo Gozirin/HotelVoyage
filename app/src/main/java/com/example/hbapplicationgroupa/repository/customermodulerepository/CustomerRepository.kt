@@ -6,7 +6,9 @@ import androidx.paging.liveData
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource_Factory
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
@@ -31,15 +33,16 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
     }
 
-    override suspend fun addCustomerReviewByHotelId(hotelId: String): Response<ReviewByHotelIdResponseModel> {
-        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelId)
+    override suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel, token:String): Response<ReviewByHotelIdResponseModel> {
+        return customerModuleApiInterface.addCustomerrReviewByHotelId(hotelIdModel, token)
     }
 
     override suspend fun addCustomerRatingsByHotelId(
-        rating: Int,
-        hotelId: String
+        hotelIdRatingsModel: HotelIdRatingsModel,
+        hotelId: String,
+        token:String
     ): Response<RatingsByHotelIdResponseModel> {
-        return customerModuleApiInterface.addCustomerRatingsByHotelId(rating, hotelId)
+        return customerModuleApiInterface.addCustomerRatingsByHotelId(hotelIdRatingsModel, hotelId, token)
     }
 
     override suspend fun getCustomerWishListByPageNumber(

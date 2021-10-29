@@ -37,7 +37,7 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
             findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
         }
 
-        //creating dummy Hotel Data
+        //creating dummy Hotel data
         val atlantisParadise = Hotel(
             1, "Atlantis Paradise", 6500,
             "9 Star Hotel", "99%", R.drawable.hotel_atlantis_paradise_bahamas

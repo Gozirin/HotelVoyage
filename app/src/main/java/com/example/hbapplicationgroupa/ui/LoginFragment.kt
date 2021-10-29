@@ -69,7 +69,7 @@ class LoginFragment : Fragment() {
         binding.loginProgressBar.visibility = View.VISIBLE
     }
 
-    //set function to observe Login Live Data
+    //set function to observe Login Live data
     private fun observeLoginAuthLiveData(){
         viewModel.getLoginAuthLiveData.observe(viewLifecycleOwner, Observer {
             when (it?.statusCode) {
