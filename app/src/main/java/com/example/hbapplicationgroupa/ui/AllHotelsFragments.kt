@@ -6,26 +6,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
+import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingsAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
-class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListener, AllHotelsAdapter.AllHotelsBookBtnClickListener {
+class AllHotelsFragments : Fragment(),
+                        AllHotelsAdapter.AllHotelsItemClickListener,
+                        AllHotelsAdapter.AllHotelsBookBtnClickListener,
+                        AllHotelsAdapter.AllHotelSaveIconClickListener{
 
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
+  //  val customerViewModel: CustomerViewModel by viewModels()
     val arrayList =  ArrayList<PageItem>()
     lateinit var selectedState: String
 
@@ -80,39 +86,39 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
         //Observing viewModel
         viewModel.fetchAllHotels()
         viewModel.allHotelsLiveData.observe(viewLifecycleOwner, { response ->
-            response.pageItems.let {
-                Log.d("ObservingVM", response.pageItems.toString())
-                if (it != null) {
-                    allHotelsAdapter.listOfAllHotels.addAll(it)
+            response.pageItems.let {responseList ->
+                //Log.d("ObservingVM", response.pageItems.toString())
+                    if (responseList != null) {
+                        allHotelsAdapter.listOfAllHotels.addAll(responseList)
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
                 }
             }
         })
-
     }
-
 
     override fun allHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
     }
 
-    override fun allHotelsBookBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_allHotelsFragments_to_bookingDetailsFragment)
+    override fun allHotelsPreviewBtnClicked(position: Int) {
+        findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
     }
 
-    private fun hideProgressBar(message: String = "") {
+    private fun hideProgressBar() {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.INVISIBLE
     }
 
     private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     //set up recycler view
     private fun setupRecyclerView() {
-        allHotelsAdapter = AllHotelsAdapter(this, this)
+        allHotelsAdapter = AllHotelsAdapter(this,
+                                          this,
+                                          this)
         binding.allHotelsRecyclerview.apply {
             adapter = allHotelsAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -144,12 +150,8 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
                 allHotelsAdapter.notifyDataSetChanged()
                 Log.d("All hotels: ", "${it.data.pageItems}")
                 Toast.makeText(requireContext(),"${it.data.pageItems}", Toast.LENGTH_SHORT).show()
-
-
             }
-
         })
-
     }
 
     fun search(selectedStates: String) {
@@ -161,7 +163,17 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
             allHotelsAdapter.setList(selectedState)
             binding.tvNotificationAllHotels.text = "No Hotel in this Location"
         }
+    }
+    //set save icon to save hotel to wishList
+    val saveText = view?.findViewById<TextView>(R.id.allHotels_recyclerview_textview)
+    val saveIcon = view?.findViewById<ImageView>(R.id.allHotels_recyclerview_imageview_save)
 
-
+    override fun allHotelSaveIconClickListener(position: Int) {
+        var wishList = allHotelsAdapter.listOfAllHotels[position]
+         saveIcon?.setOnClickListener{
+             //customerViewModel.saveHotelWishToDb(wishList)
+             it.setBackgroundColor(R.drawable.bookmark_icon)
+             saveText?.text = "Saved"
+         }
     }
 }

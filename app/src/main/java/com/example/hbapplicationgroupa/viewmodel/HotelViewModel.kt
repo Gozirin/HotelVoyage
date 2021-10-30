@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
@@ -16,6 +18,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDeals
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
 import com.example.hbapplicationgroupa.utils.Resource
 import com.example.hbapplicationgroupa.utils.Resources
@@ -27,11 +30,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HotelViewModel @Inject constructor(
-
-    private val hotelRepositoryInterface: HotelRepositoryInterface
+    private val hotelRepositoryInterface: HotelRepositoryInterface,
+    private val customerRepository: CustomerRepository
     ): ViewModel() {
+
     var error: String? =  "No Hotel in this location"
     var allHotels: MutableList<PageItem> = mutableListOf()
+
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
 
@@ -64,9 +69,9 @@ class HotelViewModel @Inject constructor(
     private var _allHotelsLiveData: MutableLiveData<Data> = MutableLiveData()
     var allHotelsLiveData: LiveData<Data> = _allHotelsLiveData
 
-
-    //set response from network call to a variable
-    private val topHotels = MutableLiveData<Resource<ArrayList<GetTopHotelsResponseItem>>>()
+    //------------------Top Hotels ----------------------------------
+    private var _topHotelsLiveData: MutableLiveData<ArrayList<GetTopHotelsResponseItem>> = MutableLiveData()
+    var topHotelsLiveData: LiveData<ArrayList<GetTopHotelsResponseItem>> = _topHotelsLiveData
 
 
     var pageNumber = 1
@@ -115,12 +120,12 @@ class HotelViewModel @Inject constructor(
                 val response = hotelRepositoryInterface.getTopDeals()
                 if (response.isSuccessful) {
                     _exploreHomeTopDeals.value = (response.body())
-                    Log.d("ExploreHomeVM 5: ", "${response.body()}")
+//                    Log.d("ExploreHomeVM 5: ", "${response.body()}")
                 } else {
-                    Log.d("ExploreHomeVM 5: ", "error")
+//                    Log.d("ExploreHomeVM 5: ", "error")
                 }
-                Log.d("ExploreHomeVM 4: ", "${response.body()}")
-                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
+//                Log.d("ExploreHomeVM 4: ", "${response.body()}")
+//                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
             } catch (e: Exception) {
 //                topHotels.postValue(Resource.error("Network error", null))
                 Log.d("ExploreHomeVM 8: ", exploreHomeTopDeals.value?.data.toString())
@@ -206,9 +211,27 @@ class HotelViewModel @Inject constructor(
                     allHotels = neededData
                     val data = response.body()?.data
                     _allHotelsLiveData.postValue(data!!)
-                    Log.d("VM hotel Repo Interface", data.toString())
+//                    Log.d("VM hotel Repo Interface", data.toString())
                 }else{
-                    Log.d("VmError", "No data from api")
+//                    Log.d("VmError", "No data from api")
+                }
+            }catch (e:Exception){
+                Log.d("VMError", e.message.toString())
+            }
+        }
+    }
+
+    //fetching top hotels from repository interface
+    fun fetchTopScreenHotels(){
+        viewModelScope.launch(Dispatchers.IO){
+            val response = hotelRepositoryInterface.getTopHotels()
+            try {
+                if (response.isSuccessful) {
+                    val topHotels = response.body()?.data
+                    _topHotelsLiveData.postValue(topHotels!!)
+//                    Log.d("VM hotel Repo Interface", data.toString())
+                }else{
+//                    Log.d("VmError", "No data from api")
                 }
             }catch (e:Exception){
                 Log.d("VMError", e.message.toString())
