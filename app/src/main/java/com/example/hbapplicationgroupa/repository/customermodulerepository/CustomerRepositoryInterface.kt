@@ -35,8 +35,8 @@ interface CustomerRepositoryInterface {
     suspend fun getCustomerWishListByPageNumber(
 //        userId: String,
         token: String,
-        pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
 
     suspend fun updateUser(

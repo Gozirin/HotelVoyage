@@ -40,14 +40,13 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     val wishListLiveData: LiveData<ArrayList<WishlistByPageNumberResponseItems>> = _wishListLiveData
 
 
-    fun getWishList() {
+    fun getWishList(authToken: String, pageSize: Int, pageNumber: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
                 val response = customerRepository.getCustomerWishListByPageNumber(
                         authToken,
-                        pageNumber = 1,
-                        pageSize = 50
+                        pageSize,
+                        pageNumber
                     )
 
                 if (response.isSuccessful) {

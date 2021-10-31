@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +25,8 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
 
     //initializing vm and recyclerview
     val customerViewModel: CustomerViewModel by viewModels()
-    val wishListRecyclerView = binding.wishListRecyclerView
+    private lateinit var wishListRecyclerView : RecyclerView
+
     lateinit var wishListAdapter: WishListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -34,6 +37,8 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        wishListRecyclerView = binding.wishListRecyclerView
+
         //show progress bar while pulling api data
         showProgressBar()
 
@@ -41,20 +46,18 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         setupRecyclerView()
 
         //observing data and setting it on the recyclerView
-        try {
-            customerViewModel.getWishList()
+            AuthPreference.initPreference(requireActivity())
+            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+            customerViewModel.getWishList(authToken, 50, 1)
             customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
                 if (it.isNullOrEmpty()) {
-                    Log.d("wishList Observer", "No data from the Vm")
+                    Log.d("wishList fragError", "No data from the Vm")
                 } else {
                     wishListAdapter.setDataToAdapter(it)
                     hideProgressBar()
-                    Log.d("wishList Observer", it.toString())
+                    Log.d("wishList fragSuccess", it.toString())
                 }
             })
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
 
         //TODO: Set click listener on recycler view item
         binding.appBarTitle.setOnClickListener {
@@ -88,7 +91,8 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
     //setting adapter
     //set up recycler view
     private fun setupRecyclerView() {
-        wishListAdapter = WishListAdapter(requireContext(), this, this)
+        wishListAdapter = WishListAdapter(requireContext(),
+                    this, this)
         wishListRecyclerView.apply {
             adapter = wishListAdapter
             layoutManager = LinearLayoutManager(requireContext())

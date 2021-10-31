@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.databinding.WishListItemsBinding
 import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import kotlin.math.ceil
@@ -26,14 +28,14 @@ class WishListAdapter(var context: Context,
 
     private var listOfWishList = mutableListOf<WishlistByPageNumberResponseItems>()
 
-    inner class WishListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var hotelPrice: TextView = itemView.findViewById(R.id.tv_hotelprice)
-        var hotelName: TextView = itemView.findViewById(R.id.tv_nameOfHotel)
-        var hotelRating: TextView = itemView.findViewById(R.id.tv_hotelRating)
-        val saveButton: TextView = itemView.findViewById(R.id.tv_Save)
-        val bookmarkIcon: ImageView = itemView.findViewById(R.id.bookmarkIcon)
-        val bookingBtn: Button = itemView.findViewById(R.id.bookingBtn)
-        val savedImage: ImageView = itemView.findViewById(R.id.hotelImageView)
+    inner class WishListViewHolder(binding: WishListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
+        var hotelPrice: TextView = binding.tvHotelprice
+        var hotelName: TextView = binding.tvNameOfHotel
+        var hotelRating: TextView = binding.tvHotelRating
+        val saveButton: TextView = binding.tvSave
+        val bookmarkIcon: ImageView = binding.bookmarkIcon
+        val bookingBtn: Button = binding.bookingBtn
+        val savedImage: ImageView = binding.hotelImageView
 
     }
 
@@ -47,8 +49,8 @@ class WishListAdapter(var context: Context,
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WishListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.wish_list_items, parent, false)
-        return WishListViewHolder(view)
+        val binding = WishListItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return WishListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {

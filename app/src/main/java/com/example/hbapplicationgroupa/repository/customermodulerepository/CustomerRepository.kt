@@ -50,8 +50,8 @@ class CustomerRepository @Inject constructor(
     override suspend fun getCustomerWishListByPageNumber(
 //        userId: String,
         token: String,
-        pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel> {
         return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageNumber, pageSize)
     }

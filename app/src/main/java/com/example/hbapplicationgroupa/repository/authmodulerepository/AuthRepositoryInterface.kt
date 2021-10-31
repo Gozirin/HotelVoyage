@@ -4,15 +4,14 @@ import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
-import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.refreshToken.RefreshTokenResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordResponseModel
-import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface AuthRepositoryInterface {
@@ -22,4 +21,5 @@ interface AuthRepositoryInterface {
     suspend fun forgotPassword(EmailAddress: String): Response<ForgotPasswordResponseModel>
     suspend fun resetPassword(resetPasswordModel: ResetPasswordModel): Response<ResetPasswordResponseModel>
     suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse>
+    suspend fun refreshToken(userId: String, refreshToken: String): Response<RefreshTokenResponseModel>
 }

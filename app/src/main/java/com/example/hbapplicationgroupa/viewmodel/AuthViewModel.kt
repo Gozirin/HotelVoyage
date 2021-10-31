@@ -17,6 +17,8 @@ import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponse
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.refreshToken.Data
+import com.example.hbapplicationgroupa.model.authmodule.refreshToken.RefreshTokenResponseModel
 import com.example.hbapplicationgroupa.network.LoginAuthResource
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
@@ -43,6 +45,10 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     //confirmEmail LiveData
     private val _getConfirmEmailLiveData: MutableLiveData<ConfirmEmailResponse?> = MutableLiveData()
     val getConfirmEmailLiveData: LiveData<ConfirmEmailResponse?> = _getConfirmEmailLiveData
+
+    //Refresh Token Live Data
+    private val _refreshTokenLiveData: MutableLiveData<Data> = MutableLiveData()
+    val refreshTokenLiveData: LiveData<Data> = _refreshTokenLiveData
 
     fun confirmEmail (email: String, token: String){
         val confirmEmail = ConfirmEmailModel(email, token)
@@ -92,13 +98,13 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                     try {
                         _getLoginAuthLiveData.value = response.body()
                     }catch (e: Exception){
-                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                        _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("","", ""),false,"Unexpected Error, kindly check your Network",400))
                     }
                 } else {
-                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Invalid Credentials/Email is not registered or activated",403))
+                    _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("","", ""),false,"Invalid Credentials/Email is not registered or activated",403))
                 }
             }catch (e: Exception){
-                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("",""),false,"Unexpected Error, kindly check your Network",400))
+                _getLoginAuthLiveData.postValue(LoginUserResponseModel(LoginUserResponse("","", ""),false,"Unexpected Error, kindly check your Network",400))
                 e.printStackTrace()
             }
 
@@ -130,6 +136,24 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
         viewModelScope.launch(Dispatchers.IO) {
             val response : Response<ForgotPasswordResponseModel> = authRepository.forgotPassword( userEmail)
             forgotPasswordEmail.postValue(response.body())
+        }
+    }
+
+    //Refresh Token ViewModel
+    fun refreshToken(userId: String, refreshToken: String){
+        viewModelScope.launch (Dispatchers.IO){
+            try {
+            val response = authRepository.refreshToken(userId, refreshToken)
+                if (response.isSuccessful) {
+                    Log.d(
+                        "RefreshTokenVMError",
+                        response.body()?.data?.newJwtAccessToken.toString()
+                    )
+                    _refreshTokenLiveData.postValue(response.body()?.data!!)
+                }
+            }catch (e:Exception){
+                Log.d("RefreshTokenVMError", "Error from Refresh Token API call")
+            }
         }
     }
 }
