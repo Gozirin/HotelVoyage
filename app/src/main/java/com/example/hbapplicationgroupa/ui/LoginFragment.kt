@@ -87,13 +87,18 @@ class LoginFragment : Fragment() {
                     AuthPreference.setRefreshToken(it.data.refreshToken)
 
                     //refreshing token from api after 8 mins
+                    AuthPreference.initPreference(requireActivity())
+                    val token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+                        Log.d("TOKEN", token.toString())
                     val userId = AuthPreference.getId(AuthPreference.ID_KEY)
-                    Log.d("ID_KEY", userId.toString())
+                        Log.d("ID_KEY", userId.toString())
                     val refreshKey = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
-                    Log.d("REFRESH_KEY", refreshKey.toString())
+                        Log.d("REFRESH_KEY", refreshKey.toString())
                     if (userId != null) {
                         if (refreshKey != null) {
-                            refreshTokenCountDown(userId, refreshKey)
+                            if (token != null) {
+                                refreshTokenCountDown(token, userId, refreshKey)
+                            }
                         }
                     }
                 }
@@ -128,9 +133,9 @@ class LoginFragment : Fragment() {
     }
 
     //observing refresh token live data
-    private fun observeRefreshTokenLiveData(userId: String, refreshToken: String){
+    private fun observeRefreshTokenLiveData(token: String, userId: String, refreshToken: String){
         try {
-            viewModel.refreshToken(userId, refreshToken)
+            viewModel.refreshToken(token, userId, refreshToken)
             viewModel.refreshTokenLiveData.observe(viewLifecycleOwner, {
                 it.newJwtAccessToken?.let { newRefreshToken ->
                     AuthPreference.setToken(newRefreshToken)
@@ -146,14 +151,14 @@ class LoginFragment : Fragment() {
     }
 
     //time countdown to refresh token
-    fun refreshTokenCountDown(userId: String, refreshToken: String){
+    fun refreshTokenCountDown(token: String, userId: String, refreshToken: String){
         val timer = object: CountDownTimer((8*60*1000).toLong(), 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
                 }
 
             override fun onFinish() {
-                observeRefreshTokenLiveData(userId, refreshToken)
+                observeRefreshTokenLiveData(token, userId, refreshToken)
             }
         }
         timer.start()

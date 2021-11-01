@@ -140,10 +140,10 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
     }
 
     //Refresh Token ViewModel
-    fun refreshToken(userId: String, refreshToken: String){
+    fun refreshToken(token: String, userId: String, refreshToken: String){
         viewModelScope.launch (Dispatchers.IO){
             try {
-            val response = authRepository.refreshToken(userId, refreshToken)
+            val response = authRepository.refreshToken(token, userId, refreshToken)
                 if (response.isSuccessful) {
                     Log.d(
                         "RefreshTokenVMError",

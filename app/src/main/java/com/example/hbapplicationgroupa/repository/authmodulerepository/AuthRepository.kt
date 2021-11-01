@@ -50,9 +50,10 @@ class AuthRepository @Inject constructor(
     }
 
     override suspend fun refreshToken(
+        token: String,
         userId: String,
         refreshToken: String
     ): Response<RefreshTokenResponseModel> {
-        return authModuleApiInterface.refreshToken(userId, refreshToken)
+        return authModuleApiInterface.refreshToken(token, userId, refreshToken)
     }
 }

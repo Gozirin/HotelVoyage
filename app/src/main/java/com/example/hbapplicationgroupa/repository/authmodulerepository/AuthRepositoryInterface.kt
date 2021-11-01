@@ -21,5 +21,5 @@ interface AuthRepositoryInterface {
     suspend fun forgotPassword(EmailAddress: String): Response<ForgotPasswordResponseModel>
     suspend fun resetPassword(resetPasswordModel: ResetPasswordModel): Response<ResetPasswordResponseModel>
     suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse>
-    suspend fun refreshToken(userId: String, refreshToken: String): Response<RefreshTokenResponseModel>
+    suspend fun refreshToken(token: String, userId: String, refreshToken: String): Response<RefreshTokenResponseModel>
 }

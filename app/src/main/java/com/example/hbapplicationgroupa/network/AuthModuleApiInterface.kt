@@ -58,6 +58,7 @@ interface AuthModuleApiInterface {
 
     @GET("/api/Authentication/refresh-token")
     suspend fun refreshToken(
+        token: String,
         userId: String,
         refreshToken: String
     ): Response<RefreshTokenResponseModel>
