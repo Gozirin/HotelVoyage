@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import co.paystack.android.PaystackSdk
 import com.example.hbapplicationgroupa.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +19,7 @@ class MainActivity:AppCompatActivity() {
 
     binding = ActivityMainBinding.inflate(layoutInflater)
        setContentView(binding.root)
+
     /** This is the setup for bottom navigation bar that is used to navigate to explore fragment,
         Wishlist fragment and Profile fragment
     */

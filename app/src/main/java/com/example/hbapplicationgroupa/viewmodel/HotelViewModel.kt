@@ -10,11 +10,13 @@ import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPassw
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
-import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 
-import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
@@ -85,10 +87,27 @@ class HotelViewModel @Inject constructor(
     val exploreHomeTopDeals: LiveData<GetTopDealsResponseModel>
         get() = _exploreHomeTopDeals
 
+    private var _bookingInfo: MutableLiveData<BookHotel> = MutableLiveData()
+    val bookingInfo: LiveData<BookHotel>
+        get() = _bookingInfo
+
+    private var _paymentOption: MutableLiveData<BookHotel> = MutableLiveData()
+    val paymentOption: LiveData<BookHotel>
+        get() = _paymentOption
+
+    private var _hotelRooms: MutableLiveData<GetHotelRoomByIdResponseModel> = MutableLiveData()
+    val hotelRooms: LiveData<GetHotelRoomByIdResponseModel>
+        get() = _hotelRooms
+
+    private var _bookingVerificationDetails: MutableLiveData<VerifyBooking> = MutableLiveData()
+    val bookingVerificationDetails: LiveData<VerifyBooking>
+        get() = _bookingVerificationDetails
+
 //    init {
 //        fetchTopHotels()
 //        fetchTopDeals()
 //    }
+
 
 
     fun fetchTopHotels() {
@@ -261,5 +280,39 @@ class HotelViewModel @Inject constructor(
             it.state == location
         }
      return newHotelList as MutableList
+    }
+
+
+    fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.pushBookHotel(authToken, bookHotelInfo)
+                _bookingInfo.postValue(response.body())
+            }catch (e: Exception) {
+                //handle error
+            }
+        }
+    }
+
+    fun getHotelRoomIdByRoomTypeId(hotelId: String, roomTypeId: String) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.getHotelRoomIdByRoomType(hotelId, roomTypeId)
+                _hotelRooms.postValue(response.body())
+            }catch (e: Exception) {
+
+            }
+        }
+    }
+
+    fun pushPaymentTransactionDetails(verificationDetails: VerifyBooking) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.pushPaymentTransactionDetails(verificationDetails)
+                _bookingVerificationDetails.postValue(response.body())
+            }catch (e: Exception) {
+
+            }
+        }
     }
 }
