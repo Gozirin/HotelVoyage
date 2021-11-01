@@ -138,16 +138,18 @@ class HotelDescription2Fragment : Fragment() {
 
         hotelViewModel.getHotelReview(args.hotelId)
         hotelViewModel.hotelReview.observe(viewLifecycleOwner, Observer {
-            binding.hotelDescOverlapRv.apply {
-                adapter = stackedReviewAdapter
-                stackedReviewDecorator = StackedReviewItemDecorator()
-                addItemDecoration(stackedReviewDecorator)
-                stackedReviewLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                stackedReviewLayoutManager.reverseLayout = true
-                stackedReviewLayoutManager.stackFromEnd = true
-                layoutManager = stackedReviewLayoutManager
-            }
+
         })
+
+        binding.hotelDescOverlapRv.apply {
+            adapter = stackedReviewAdapter
+            stackedReviewDecorator = StackedReviewItemDecorator()
+            addItemDecoration(stackedReviewDecorator)
+            stackedReviewLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            stackedReviewLayoutManager.reverseLayout = true
+            stackedReviewLayoutManager.stackFromEnd = true
+            layoutManager = stackedReviewLayoutManager
+        }
     }
 
     //Method setting HotelGalleryViewPager attributes

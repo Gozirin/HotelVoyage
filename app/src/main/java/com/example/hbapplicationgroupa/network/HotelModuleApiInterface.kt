@@ -86,7 +86,7 @@ interface HotelModuleApiInterface {
     ):Response<FilterAllHotelByLocation>
 
 
-    @GET("api/Hotel/{hotelId}/raviews")
+    @GET("api/Hotel/{hotelId}/reviews")
     suspend fun getHotelReview(@Path("hotelId") hotelId :String):Response<GetHotelReviewsResponseModel>
 
 }
