@@ -3,6 +3,8 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
@@ -77,5 +79,8 @@ interface HotelRepositoryInterface {
 
     suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel>
 
+    suspend fun getHotelRoomIdByRoomType(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
+
+    suspend fun pushPaymentTransactionDetails(verifyBooking: VerifyBooking): Response<VerifyBooking>
 
 }

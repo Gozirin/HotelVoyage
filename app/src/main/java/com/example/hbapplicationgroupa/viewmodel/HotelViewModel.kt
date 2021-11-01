@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 
@@ -87,14 +89,19 @@ class HotelViewModel @Inject constructor(
     val paymentOption: LiveData<BookHotel>
         get() = _paymentOption
 
-    private var _hotelRoom: MutableLiveData<GetHotelRoomByIdResponseModel> = MutableLiveData()
-    val hotelRoom: LiveData<GetHotelRoomByIdResponseModel>
-        get() = _hotelRoom
+    private var _hotelRooms: MutableLiveData<GetHotelRoomByIdResponseModel> = MutableLiveData()
+    val hotelRooms: LiveData<GetHotelRoomByIdResponseModel>
+        get() = _hotelRooms
+
+    private var _bookingVerificationDetails: MutableLiveData<VerifyBooking> = MutableLiveData()
+    val bookingVerificationDetails: LiveData<VerifyBooking>
+        get() = _bookingVerificationDetails
 
 //    init {
 //        fetchTopHotels()
 //        fetchTopDeals()
 //    }
+
 
 
     fun fetchTopHotels() {
@@ -259,6 +266,28 @@ class HotelViewModel @Inject constructor(
                 _bookingInfo.postValue(response.body())
             }catch (e: Exception) {
                 //handle error
+            }
+        }
+    }
+
+    fun getHotelRoomIdByRoomTypeId(hotelId: String, roomTypeId: String) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.getHotelRoomIdByRoomType(hotelId, roomTypeId)
+                _hotelRooms.postValue(response.body())
+            }catch (e: Exception) {
+
+            }
+        }
+    }
+
+    fun pushPaymentTransactionDetails(verificationDetails: VerifyBooking) {
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.pushPaymentTransactionDetails(verificationDetails)
+                _bookingVerificationDetails.postValue(response.body())
+            }catch (e: Exception) {
+
             }
         }
     }

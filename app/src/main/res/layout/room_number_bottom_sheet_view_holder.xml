@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Room No. 1"
+            android:hint="Room No"
             android:textSize="20sp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@+id/room_type_checkbox"
@@ -28,13 +28,14 @@
             app:layout_constraintTop_toTopOf="@id/view" />
 
     <TextView
-        android:id="@+id/room_name"
+        android:id="@+id/room_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="Room Type"
+        android:text="Room Id"
         android:textSize="20sp"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/room_number"
         app:layout_constraintTop_toBottomOf="@id/room_number" />

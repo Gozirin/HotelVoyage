@@ -64,6 +64,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
+    //paystack
+    implementation 'co.paystack.android:paystack:3.1.2'
     // Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:1.1.1"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"

@@ -1,34 +1,35 @@
 package com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
-import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
+
 
 class RoomNumberBottomSheetAdapter(
-    private val roomTypeAdapterInterface: RoomTypeAdapterInterface
+    private val roomIdByRoomTypeAdapterInterface: RoomIdByRoomTypeAdapterInterface
 ): RecyclerView.Adapter<RoomNumberBottomSheetAdapter.RoomNumberBottomSheetViewHolder>() {
 
     inner class RoomNumberBottomSheetViewHolder(
         var binding: RoomNumberBottomSheetViewHolderBinding
     ): RecyclerView.ViewHolder(binding.root)
 
-//    var listOfRoomsByNumber = arrayListOf<GetHotelRoomByIdResponseItem>()
+    private var listOfRoomsByRoomId = arrayListOf<GetHotelRoomByIdResponseItem>()
 
-    var listOfRoomsByName = arrayListOf<GetHotelByIdResponseItemRoomTypes>()
+   // var listOfRoomsByName = arrayListOf<GetHotelByIdResponseItemRoomTypes>()
 
 
 //    fun addRoomNumber(roomNumber: ArrayList<GetHotelRoomByIdResponseItem>){
 //        listOfRoomsByNumber.addAll(roomNumber)
 //    }
 
-    fun addRoomType(roomName: ArrayList<GetHotelByIdResponseItemRoomTypes>){
-        listOfRoomsByName.addAll(roomName)
+//    fun addRoomType(roomName: ArrayList<GetHotelByIdResponseItemRoomTypes>){
+//        listOfRoomsByName.addAll(roomName)
+//    }
+
+    fun addRoomIdByRoomType(roomNumber: ArrayList<GetHotelRoomByIdResponseItem>) {
+        listOfRoomsByRoomId.addAll(roomNumber)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomNumberBottomSheetViewHolder {
@@ -37,16 +38,26 @@ class RoomNumberBottomSheetAdapter(
     }
 
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
-        with(holder){
-//            with(listOfRoomsByNumber[position]){
-//                binding.roomNumber.text = roomNo.toString()
-
-                with(listOfRoomsByName[position]) {
-                    binding.roomName.text = name
+        with(holder) {
+            with(listOfRoomsByRoomId[position]) {
+                if (!isBooked) {
+                    binding.roomNumber.text = roomNo.toString()
+                    binding.roomId.text = id.toString()
                 }
-              //  binding.roomTypeNumberCount.text = numberOfRooms
+            }
+//            with(listOfRoomsByNumber[position]){
+//                binding.roomNumber.text = roomNo.toString
 
-                val roomTypeList = arrayListOf<String>()
+//                with(listOfRoomsByName[position]) {
+//                    binding.roomName.text = name
+//                }
+            //  binding.roomTypeNumberCount.text = numberOfRooms
+
+//            val roomsByIdList = arrayListOf<String>()
+//            val roomsByRoomNoList = arrayListOf<String>()
+
+            var toBookRoomId = ""
+            var toBookRoomNum = ""
 //                binding.roomTypeCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
 //                    if (isChecked){
 //                        roomTypeList.add(binding.roomType.text.toString())
@@ -54,44 +65,27 @@ class RoomNumberBottomSheetAdapter(
 //                    }
 //                }
 
-                //Get selection from adapter and send it to rooms bottom sheet fragment
-                binding.roomTypeCheckbox.setOnClickListener {
-                    if (binding.roomTypeCheckbox.isChecked) {
-                        roomTypeList.add(binding.roomName.text.toString())
-                        Log.d("GKB", "$roomTypeList")
-                    }else{
-                      //  roomTypeList.remove(binding.roomType.text.toString())
-                    }
 
-                    val data = roomTypeList.joinToString(", ")
-                    roomTypeAdapterInterface.getSelectedRoomTypes(position, data)
+            //Get selection from adapter and send it to rooms bottom sheet fragment
+            binding.roomTypeCheckbox.setOnClickListener {
+                if (binding.roomTypeCheckbox.isChecked) {
+                    toBookRoomId = binding.roomId.text.toString()
+                    toBookRoomNum = binding.roomNumber.text.toString()
+//                    roomsByIdList.add(binding.roomId.text.toString())
+//                    roomsByRoomNoList.add(binding.roomNumber.text.toString())
+//                    Log.d("GKB", "$roomsByIdList")
+                } else {
+                    //  roomTypeList.remove(binding.roomType.text.toString())
                 }
 
-
-//                    var roomCount = 0
-//                    binding.roomTypeMinusButton.setOnClickListener {
-//                        if (roomCount > 0) {
-//                            roomCount--
-//                            binding.roomTypeNumberCount.text = roomCount.toString()
-//                        }
-//                    }
-//
-//                    binding.roomTypeAddButton.setOnClickListener {
-//                        roomCount++
-//                        binding.roomTypeNumberCount.text = roomCount.toString()
-//                    }
-//
-//                    var numberOfRoomsData = ""
-//                    if (roomCount == 1) {
-//                        numberOfRoomsData = "$roomCount $name suite"
-//                    } else if (roomCount > 1) {
-//                        numberOfRoomsData = "$roomCount $name suites"
-//                    }
-//
-//                    val numberOfRoomsDataToString = numberOfRoomsData.toString()
-
+              //  val data = roomsByIdList.joinToString(", ")
+//                val getroomId = roomsByIdList.joinToString { ", " }
+//                val getroomNum = roomsByRoomNoList.joinToString(", ")
+                roomIdByRoomTypeAdapterInterface.getSelectedRoomIdByRoomTypes(position, toBookRoomNum, toBookRoomId)
             }
         }
+    }
 
-    override fun getItemCount() = listOfRoomsByName.size
+    override fun getItemCount() = listOfRoomsByRoomId.size
+
 }

@@ -2,6 +2,8 @@ package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseModel
@@ -11,7 +13,6 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.Ge
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -81,13 +82,15 @@ interface HotelModuleApiInterface {
         @Query("pageNumber") pageNumber: Int
     ):Response<FilterAllHotelByLocation>
 
-
     @POST("/api/Hotel/book-hotel")
     suspend fun  pushBookHotel (@Header("Authorization") authToken: String, @Body bookHotelInfo: BookHotel): Response<BookHotel>
 
     @GET("api/Hotel/{hotelId}/room/{roomTypeId}")
-    suspend fun  getHotelRoomByRoomId(
+    suspend fun  getHotelRoomIdByRoomType(
         @Path("hotelId") hotelId: String,
         @Path("roomTypeId") roomTypeId: String
     ): Response<GetHotelRoomByIdResponseModel>
+
+    @POST("/api/Hotel/verify-booking")
+    suspend fun pushPaymentTransactionDetails(@Body verifyBooking: VerifyBooking): Response<VerifyBooking>
 }
