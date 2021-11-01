@@ -144,6 +144,8 @@
     <string name="allhotels">allhotels</string>
     <string name="hotels">Hotels</string>
     <string name="expiry_forwardSlash">/</string>
+    <string name="preview">Preview</string>
+    <string name="gra_ikeja_lagos">GRA, Ikeja, Lagos</string>
 
     <string-array name="gender">
         <item>Gender</item>

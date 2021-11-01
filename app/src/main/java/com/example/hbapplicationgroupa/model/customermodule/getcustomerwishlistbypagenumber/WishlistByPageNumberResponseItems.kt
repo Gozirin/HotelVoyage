@@ -9,5 +9,8 @@ data class WishlistByPageNumberResponseItems(
     val tableNumber: Int,
     val hotelId: String,
     val hotelName: String,
+    val percentageRating: String,
+    val price: Double,
+    val description: String,
     val ImageUrl: String
 )

@@ -6,6 +6,7 @@ import androidx.paging.liveData
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource_Factory
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
@@ -13,6 +14,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -20,8 +23,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class CustomerRepository @Inject constructor(
-    private val customerModuleApiInterface: CustomerModuleApiInterface,
-    private val wishlistByPageNumberDao: WishlistByPageNumberDao
+    private val customerModuleApiInterface: CustomerModuleApiInterface
     ): CustomerRepositoryInterface {
 
     override suspend fun getCustomerBookingsByUserId(
@@ -46,11 +48,12 @@ class CustomerRepository @Inject constructor(
     }
 
     override suspend fun getCustomerWishListByPageNumber(
-        userId: String,
+//        userId: String,
+        token: String,
         pageNumber: Int,
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel> {
-        return customerModuleApiInterface.getCustomerWishListByPageNumber(userId, pageNumber, pageSize)
+        return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageNumber, pageSize)
     }
 
     override suspend fun updateUser(
@@ -59,4 +62,5 @@ class CustomerRepository @Inject constructor(
     ): Response<UpdateUserByIdResponseModel> {
         return customerModuleApiInterface.updateUser(authToken, updateUserModel)
     }
+
 }

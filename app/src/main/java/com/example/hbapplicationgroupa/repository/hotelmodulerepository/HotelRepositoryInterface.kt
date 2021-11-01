@@ -1,6 +1,8 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
@@ -50,8 +52,10 @@ interface HotelRepositoryInterface {
 //
 //    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
+    //------------All Hotels response-----------------------
    suspend fun getAllHotels(
     ): Response<GetAllHotelsResponseModel>
+
 
     suspend fun getHotelRoomsByPrice(
         id: String,

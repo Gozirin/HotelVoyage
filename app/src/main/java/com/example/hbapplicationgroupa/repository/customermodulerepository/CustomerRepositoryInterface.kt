@@ -7,6 +7,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
@@ -32,7 +33,8 @@ interface CustomerRepositoryInterface {
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(
-        userId: String,
+//        userId: String,
+        token: String,
         pageNumber: Int,
         pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
@@ -41,6 +43,7 @@ interface CustomerRepositoryInterface {
         authToken: String,
         updateUserModel: UpdateUserByIdModel
     ) : Response<UpdateUserByIdResponseModel>
+
 
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
 }

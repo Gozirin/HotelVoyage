@@ -36,10 +36,9 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideCustomerRepository(
-        customerModuleApiInterface: CustomerModuleApiInterface,
-        wishlistByPageNumberDao: WishlistByPageNumberDao
+        customerModuleApiInterface: CustomerModuleApiInterface
     ): CustomerRepository {
-        return CustomerRepository(customerModuleApiInterface, wishlistByPageNumberDao)
+        return CustomerRepository(customerModuleApiInterface)
     }
 
 //    @Singleton

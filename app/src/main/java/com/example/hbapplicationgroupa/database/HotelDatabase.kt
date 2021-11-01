@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.example.hbapplicationgroupa.database.dao.*
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.typeconverter.TypeConverter
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem

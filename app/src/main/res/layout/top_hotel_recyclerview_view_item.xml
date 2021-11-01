@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,7 +20,7 @@
             android:layout_width="0dp"
             android:contentDescription="@string/ignore"
             android:scaleType="centerCrop"
-            android:src="@drawable/hotel_merdan_palace_turkey"
+            tools:src="@drawable/hotel_merdan_palace_turkey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +41,15 @@
             app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview" />
 
         <TextView
-            android:id="@+id/topHotel_recyclerview_textview"
+            android:id="@+id/topHotel_recyclerview_save_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/save"
             android:textColor="#FCEA0707"
-            android:textSize="14sp"
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_imageview_save"
             app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_imageview" />
@@ -55,14 +57,15 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/topHotelBookBtn"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/book_now"
+            android:text="@string/preview"
             android:textColor="#FCEA0707"
             android:textAllCaps="false"
-            android:textSize="14sp"
+            android:textSize="16sp"
+            android:paddingHorizontal="20dp"
             android:background="@drawable/outline_button_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,10 +76,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="140dp"
             android:text="@string/merdan_place_turkey"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/topHotel_recyclerview_imageview"
             app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_imageview" />
 
@@ -85,12 +89,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
             android:text="@string/_9_star_hotel"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/topHotel_recyclerview_hotel_name"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topHotel_recyclerview_hotel_name" />
 
         <TextView
             android:id="@+id/topHotel_recyclerview_hotel_rating"
@@ -102,6 +106,7 @@
             android:text="@string/_99"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_hotel_status"
             app:layout_constraintStart_toEndOf="@+id/topHotel_recyclerview_hotel_status"/>
 
@@ -132,10 +137,11 @@
             android:id="@+id/topHotel_recyclerview_hotel_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="@string/_7999"
+            android:layout_marginEnd="24dp"
+            android:text="@string/_7554"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/topHotel_recyclerview_hotel_name" />
 
@@ -148,6 +154,7 @@
             android:text="@string/per_night"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/topHotel_recyclerview_hotel_status"
             app:layout_constraintEnd_toEndOf="@+id/topHotel_recyclerview_imageview"
             app:layout_constraintVertical_bias="0.285" />

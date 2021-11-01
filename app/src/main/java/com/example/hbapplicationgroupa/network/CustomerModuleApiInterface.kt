@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.network
 
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
@@ -38,9 +39,10 @@ interface CustomerModuleApiInterface {
         @Header ("Authorization") token:String
     ): Response<RatingsByHotelIdResponseModel>
 
-    @GET("api/v1/Customer/{userId}/wishlist/?page={pageNumber}&{pageSize}")
+    @GET("/api/Customer/wishlist")
     suspend fun getCustomerWishListByPageNumber(
-        @Path("userId") userId: String,
+        //@Path("userId") userId: String,
+        @Path("token") token: String,
         @Query("pageNumber") pageNumber: Int,
         @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>

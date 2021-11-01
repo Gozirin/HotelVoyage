@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserModel
 import com.example.hbapplicationgroupa.model.authmodule.adduser.AddUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.adduser.UserIdModel
 import com.example.hbapplicationgroupa.model.authmodule.comfirmpassword.ConfirmEmailResponse
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailModel
 import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmailResponseModel
