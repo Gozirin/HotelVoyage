@@ -89,11 +89,11 @@ class LoginFragment : Fragment() {
                     //refreshing token from api after 8 mins
                     val userId = AuthPreference.getId(AuthPreference.ID_KEY)
                     Log.d("ID_KEY", userId.toString())
-                    val refresh_key = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
-                    Log.d("REFRESH_KEY", refresh_key.toString())
+                    val refreshKey = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
+                    Log.d("REFRESH_KEY", refreshKey.toString())
                     if (userId != null) {
-                        if (refresh_key != null) {
-                            refreshTokenCountDown(userId, refresh_key)
+                        if (refreshKey != null) {
+                            refreshTokenCountDown(userId, refreshKey)
                         }
                     }
                 }

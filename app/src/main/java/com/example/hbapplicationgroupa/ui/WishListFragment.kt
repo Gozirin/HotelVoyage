@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,6 +53,8 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
             customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
                 if (it.isNullOrEmpty()) {
                     Log.d("wishList fragError", "No data from the Vm")
+                    hideProgressBar()
+                    Toast.makeText(requireContext(), "No WishList Saved", Toast.LENGTH_LONG).show()
                 } else {
                     wishListAdapter.setDataToAdapter(it)
                     hideProgressBar()
