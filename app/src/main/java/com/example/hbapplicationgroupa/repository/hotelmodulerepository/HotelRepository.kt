@@ -3,9 +3,11 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
-import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
@@ -165,4 +167,20 @@ class HotelRepository @Inject constructor(
     ): Response<FilterAllHotelByLocation> {
         return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
     }
+
+    override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel> {
+        return hotelModuleApiInterface.pushBookHotel(authToken, bookHotelInfo)
+    }
+
+    override suspend fun getHotelRoomIdByRoomType(
+        hotelId: String,
+        roomTypeId: String
+    ): Response<GetHotelRoomByIdResponseModel> {
+        return hotelModuleApiInterface.getHotelRoomIdByRoomType(hotelId, roomTypeId)
+    }
+
+    override suspend fun pushPaymentTransactionDetails(verifyBooking: VerifyBooking): Response<VerifyBooking> {
+       return hotelModuleApiInterface.pushPaymentTransactionDetails(verifyBooking)
+    }
+
 }
