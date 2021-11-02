@@ -7,8 +7,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(private val userModuleApiInterface: UserModuleApiInterface): UserRepositoryInterface {
-    override suspend fun getUserById(id: String): Response<GetUserByIdResponseModel> {
-        return userModuleApiInterface.getUserById(id)
+    override suspend fun getUserById(token: String): Response<GetUserByIdResponseModel> {
+        return userModuleApiInterface.getUserById(token)
     }
 
     override suspend fun updateUserPhotoById(

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,6 +24,8 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.UploadRequestBody
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentProfileBinding
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.utils.TO_READ_EXTERNAL_STORAGE
 import com.example.hbapplicationgroupa.utils.getFileName
 import com.example.hbapplicationgroupa.utils.snackbar
@@ -33,9 +35,8 @@ import okhttp3.MultipartBody
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+
 @AndroidEntryPoint
-
-
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -43,13 +44,12 @@ class ProfileFragment : Fragment() {
    private lateinit var  body : UploadRequestBody
     private var selectedImage: Uri? = null
     private val viewModel: CustomerViewModel by viewModels()
-
+    private lateinit var customerInfo: GetUserByIdResponseItem
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,6 +61,9 @@ class ProfileFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
+
+        //Update profile page with customer's info from the server
+        getCustomerDetails()
 
         binding.fragmentProfileBookingsCon.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_pastBookingsFragment2)
@@ -88,7 +91,7 @@ class ProfileFragment : Fragment() {
 
         //Display bottom sheet to update user's profile
         binding.fragmentProfileTitleTv.setOnClickListener {
-            UpdateProfileBottomSheetDialogFragment().show(
+            UpdateProfileBottomSheetDialogFragment(customerInfo).show(
                 requireActivity().supportFragmentManager, "updateProfileBottomSheet"
             )
         }
@@ -98,7 +101,6 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
     //Method to logout by clearing authToken from sharedPreference
     private fun dialogActivities(){
@@ -124,6 +126,7 @@ class ProfileFragment : Fragment() {
            startActivityForResult(it, REQUEST_CODE_IMAGE_PICKER)
         }
     }
+
     companion object{
         private const val  REQUEST_CODE_IMAGE_PICKER = 100
     }
@@ -134,6 +137,7 @@ class ProfileFragment : Fragment() {
             binding.fragmentProfilePage.snackbar("select an Image first")
             return
         }
+
         val parcelFileDescriptor = context?.contentResolver?.openAssetFileDescriptor(selectedImage!!, "r", null)?:  return
         val file = File(requireActivity().cacheDir, requireActivity().contentResolver.getFileName(selectedImage!!))
         body = UploadRequestBody(file, "image", this )
@@ -141,61 +145,65 @@ class ProfileFragment : Fragment() {
         val outputStream = FileOutputStream(file)
         inputStream.copyTo(outputStream )
         // binding.progressCircular.progress = 0
+
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
 //       val body = file.asRequestBody("image/jpg".toMediaTypeOrNull())
         observeNetwork(authToken, MultipartBody.Part.createFormData("image", file.name, body))
+    }
 
-
+    private fun getCustomerDetails(){
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        viewModel.getCustomerDetails(authToken)
+        viewModel.getCustomerDetailsLiveData.observe(viewLifecycleOwner, {
+            customerInfo = it.data
+            binding.fragmentProfileNameTv.text = "${customerInfo.firstName} ${customerInfo.lastName}"
+            binding.fragmentProfileEmailTv.text = customerInfo.email
+            Log.d("GKB", "getCustomerDetails: $customerInfo")
+        })
     }
 
     //method to observe the for updating image
-    fun observeNetwork(authToken: String, image: MultipartBody.Part){
+    private fun observeNetwork(authToken: String, image: MultipartBody.Part){
         showProgressBar()
-        viewModel.updateProfileImageLiveData.observe(viewLifecycleOwner,{
+        viewModel.makeApiCall(authToken,image)
+        viewModel.updateProfileImageLiveData.observe(viewLifecycleOwner, {
+
             hideProgressBar()
+
             if (it == null){
-                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
                 hideProgressBar()
             }else{
                 hideProgressBar()
                 binding.fragmentProfilePage.snackbar("Image uploaded Successfully")
             }
         })
-        viewModel.makeApiCall(authToken,image)
     }
 
     private fun hideProgressBar() {
         binding.progressCircular.visibility = View.INVISIBLE
-
     }
-    //
+
     private fun showProgressBar() {
         binding.progressCircular.visibility = View.VISIBLE
-        //  Toast.makeText(requireContext(), "", Toast.LENGTH_LONG).show()
     }
 
-
-
-
-    // this is the function that check if the request is  granted
+    // this is the function that check if the request is granted
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK){
             when(requestCode){
-                REQUEST_CODE_IMAGE_PICKER ->{
+                REQUEST_CODE_IMAGE_PICKER -> {
                     selectedImage = data?.data
                     binding.ivImageUserProfile.setImageURI(selectedImage)
                     uploadImage()
-
                 }
             }
         }
-
     }
-
-
 
     private fun readStorage(){
         if (ContextCompat.checkSelfPermission(requireActivity(),android.Manifest.permission.READ_EXTERNAL_STORAGE) !=

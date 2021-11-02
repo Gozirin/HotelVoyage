@@ -34,17 +34,20 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import kotlinx.coroutines.launch
 
 import javax.inject.Inject
 
 @HiltViewModel
-class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository, private val api: CustomerModuleApiInterface): ViewModel() {
+class CustomerViewModel @Inject constructor(
+    private val customerRepository: CustomerRepository,
+    private val api: CustomerModuleApiInterface
+    ): ViewModel() {
 
     private val _updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = MutableLiveData()
       val updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = _updateProfileImageLiveData
 
-  //
     fun makeApiCall(authToken: String, image: MultipartBody.Part){
         viewModelScope.launch(Dispatchers.IO){
             try {
@@ -148,6 +151,23 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
         }
     }
 
+    private val _getCustomerDetailsLiveData: MutableLiveData<GetUserByIdResponseModel> = MutableLiveData()
+    val getCustomerDetailsLiveData: LiveData<GetUserByIdResponseModel> = _getCustomerDetailsLiveData
+
+    fun getCustomerDetails(token: String){
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.getUserById(token)
+                if (response.isSuccessful){
+                    _getCustomerDetailsLiveData.value = response.body()
+                }else{
+                    _getCustomerDetailsLiveData.value = response.body()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     fun addReview(comment: String, hotelId: String, token: String) {
         val addReviewModel = HotelIdModel(comment, hotelId)
