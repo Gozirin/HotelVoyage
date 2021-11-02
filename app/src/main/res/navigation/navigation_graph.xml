@@ -206,6 +206,10 @@
         <argument
             android:name="hotelId"
             app:argType="string" />
+        <argument
+            android:name="roomItem"
+            app:argType="com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes"
+            app:nullable="true" />
 
     </fragment>
     <dialog
@@ -243,6 +247,9 @@
             app:destination="@id/writeAReviewFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
+        <argument
+            android:name="postReviewHotelId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/hotelDescription2Fragment"
@@ -309,6 +316,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/ratingFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="postReviewHotelId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -489,17 +499,13 @@
         android:label="fragment_payment_checkout"
         tools:layout="@layout/fragment_payment_checkout" >
         <action
-            android:id="@+id/action_paymentCheckoutFragment_to_bookingConfirmationFragment"
-            app:destination="@id/bookingConfirmationFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in" />
-        <action
             android:id="@+id/action_paymentCheckoutFragment_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment"
-            app:enterAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_out"
             app:popUpTo="@id/bookingDetailsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_paymentCheckoutFragment_to_paymentDetailsFragment"
+            app:destination="@id/paymentDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"
@@ -575,5 +581,14 @@
         <action
             android:id="@+id/action_allHotelsFragments_to_bookingDetailsFragment"
             app:destination="@id/bookingDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentDetailsFragment"
+        android:name="com.example.hbapplicationgroupa.ui.PaymentDetailsFragment"
+        android:label="fragment_payment_details"
+        tools:layout="@layout/fragment_payment_details" >
+        <action
+            android:id="@+id/action_paymentDetailsFragment_to_bookingConfirmationFragment"
+            app:destination="@id/bookingConfirmationFragment" />
     </fragment>
 </navigation>

@@ -2,6 +2,9 @@ package com.example.hbapplicationgroupa.network
 
 import com.example.hbapplicationgroupa.databinding.HotelDescStackedReviewRecyclerviewBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemReviews
@@ -15,9 +18,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDeals
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import com.example.hbapplicationgroupa.utils.Resource
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface HotelModuleApiInterface {
     @GET("api/Hotel/{hotelId}")
@@ -89,4 +90,20 @@ interface HotelModuleApiInterface {
     @GET("api/Hotel/{hotelId}/reviews")
     suspend fun getHotelReview(@Path("hotelId") hotelId :String):Response<GetHotelReviewsResponseModel>
 
+
+    @GET("api/Hotel/{hotelId}/reviews")
+    suspend fun getHotelReview2(@Path("hotelId") hotelId :String, @Header("Authorization")token:String):Response<GetHotelReviewsResponseModel>
+
+
+    @POST("/api/Hotel/book-hotel")
+    suspend fun  pushBookHotel (@Header("Authorization") authToken: String, @Body bookHotelInfo: BookHotel): Response<BookHotel>
+
+    @GET("api/Hotel/{hotelId}/room/{roomTypeId}")
+    suspend fun  getHotelRoomIdByRoomType(
+        @Path("hotelId") hotelId: String,
+        @Path("roomTypeId") roomTypeId: String
+    ): Response<GetHotelRoomByIdResponseModel>
+
+    @POST("/api/Hotel/verify-booking")
+    suspend fun pushPaymentTransactionDetails(@Body verifyBooking: VerifyBooking): Response<VerifyBooking>
 }

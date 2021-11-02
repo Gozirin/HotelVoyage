@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 
+
 @Dao
 interface WishlistByPageNumberDao {
     @Query("SELECT * FROM wishlistByPageNumber")

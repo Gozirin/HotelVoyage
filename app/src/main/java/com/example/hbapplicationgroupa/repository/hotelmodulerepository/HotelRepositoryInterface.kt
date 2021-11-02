@@ -1,7 +1,12 @@
 package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 
 import androidx.lifecycle.LiveData
+import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
@@ -52,6 +57,7 @@ interface HotelRepositoryInterface {
 //
 //    suspend fun getTopDealsFromDatabase(): LiveData<List<GetTopDealsResponseItem>>
 
+    //------------All Hotels response-----------------------
    suspend fun getAllHotels(
     ): Response<GetAllHotelsResponseModel>
 
@@ -75,8 +81,18 @@ interface HotelRepositoryInterface {
 
     suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel>
 
+    //to get hotel reviews
+    suspend fun getHotelReview2(hotelId: String, token:String):Response<GetHotelReviewsResponseModel>
+
 
     //------- Filter All Hotel By Location
     suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<FilterAllHotelByLocation>
     suspend fun getHotelReview(id: String): Response<GetHotelReviewsResponseModel>
+
+    suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel>
+
+    suspend fun getHotelRoomIdByRoomType(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
+
+    suspend fun pushPaymentTransactionDetails(verifyBooking: VerifyBooking): Response<VerifyBooking>
+
 }

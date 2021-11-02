@@ -1,6 +1,4 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.allhotels
-
-
 import com.google.gson.annotations.SerializedName
 
 data class PageItem(

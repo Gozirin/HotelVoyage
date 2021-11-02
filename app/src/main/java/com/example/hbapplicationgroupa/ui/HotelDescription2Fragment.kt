@@ -17,6 +17,7 @@ import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryA
 import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoomServiceRecyclerViewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
 import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
@@ -30,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
  * There are two RecyclerViews attached to this fragment: HotelRoomServiceRecyclerView & HotelOverlayReviewRecyclerView
  */
 @AndroidEntryPoint
-class HotelDescription2Fragment : Fragment() {
+class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapter.BookNowClickListener {
     //Initialize variables
     private var _binding: FragmentHotelDescription2Binding? = null
     private val binding get() = _binding!!
@@ -49,7 +50,7 @@ class HotelDescription2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter()
+        hotelRoomServiceRecyclerViewAdapter = HotelRoomServiceRecyclerViewAdapter(this)
 
         //Setting fake list to StackedReview Adapter
         stackedReviewAdapter = StackedReviewAdapter()
@@ -72,8 +73,9 @@ class HotelDescription2Fragment : Fragment() {
             it.forEach { response ->
                 hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(response.roomTypes)
                 hotelGalleryAdapter.addImageToGallery(response.gallery)
-                stackedReviewAdapter.addReviewerImages(response.reviews)
                 binding.hotelDescHotelNameTv.text = response.name
+                stackedReviewAdapter.addReviewerImages(response.reviews)
+
                 binding.hotelDescLocationTv.text = response.city
                 binding.hotelDescLocationTv3.text = response.state
                 binding.hotelDescExpandableTv.text = response.description
@@ -83,6 +85,7 @@ class HotelDescription2Fragment : Fragment() {
             }
         })
     }
+
 
     //Method Triggering onClickEvents
     private fun viewClickListeners(){
@@ -110,18 +113,19 @@ class HotelDescription2Fragment : Fragment() {
             Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_three), Toast.LENGTH_SHORT).show()
         }
         //Click Listener for Book button
-        binding.hotelDescBookBtn.setOnClickListener {
-            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId)
-            findNavController().navigate(action)
-        }
+//        binding.hotelDescBookBtn.setOnClickListener {
+//            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId)
+//            findNavController().navigate(action)
+//        }
         //Click Listener for BookMark Button
-        binding.hotelDescBookmarkBtn.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
-        }
+//        binding.hotelDescBookmarkBtn.setOnClickListener {
+//            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_five), Toast.LENGTH_SHORT).show()
+//        }
 
         //Navigate to ratings page
         binding.hotelDescReviewTv.setOnClickListener {
-            findNavController().navigate(R.id.action_hotelDescription2Fragment_to_ratingFragment)
+            val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToRatingFragment(args.hotelId)
+            findNavController().navigate(action)
         }
     }
 
@@ -136,7 +140,10 @@ class HotelDescription2Fragment : Fragment() {
     //Method setting StackedReviewRecyclerView attributes
     private fun initStackedReviewRecyclerView(){
 
-        hotelViewModel.getHotelReview(args.hotelId)
+        AuthPreference.initPreference(requireActivity())
+        var token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+
+        hotelViewModel.getHotelReview2(args.hotelId, token)
         hotelViewModel.hotelReview.observe(viewLifecycleOwner, Observer {
 
         })
@@ -170,6 +177,10 @@ class HotelDescription2Fragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
-
+    override fun bookClick(position: Int, roomTypeId: String) {
+        //hotel Id and roomTypeId are passed to bookNow Page
+        val action = HotelDescription2FragmentDirections.actionHotelDescription2FragmentToBookingDetailsFragment(args.hotelId, hotelRoomServiceRecyclerViewAdapter.roomDataList[position])
+        findNavController().navigate(action)
+    }
 
 }

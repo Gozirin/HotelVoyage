@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
+import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
@@ -30,6 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 
     private lateinit var topHotelsAdapter: ExploreHomeTopHotelsAdapter
+    private lateinit var topHotelsScreenAdapter: TopHotelAdapter
     private lateinit var topDealsAdapter: ExploreHomeTopDealsAdapter
     private lateinit var topHotelsRecyclerView: RecyclerView
     private lateinit var topDealsRecyclerView: RecyclerView
@@ -147,7 +149,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                     binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
                     it.data.let { topHotels -> renderTopHotelsList(topHotels) }
                     binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
-                    Log.d("ExploreHome 2: ", it.toString())
+                   // Log.d("ExploreHome 2: ", it.toString())
                 }
 //                40 -> {
 //                    binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
@@ -180,7 +182,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                     binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
                     it.data.let { topDeals -> renderTopDealsList(topDeals) }
                     binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
-                    Log.d("ExploreHome 1: ", it.toString())
+                    //Log.d("ExploreHome 1: ", it.toString())
                 }
 //                Status.LOADING -> {
 //                    binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE

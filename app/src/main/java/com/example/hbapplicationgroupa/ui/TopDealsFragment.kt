@@ -21,7 +21,7 @@ import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealBookBtnClickListener {
+class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealPreviewBtnClickListener {
 
     private lateinit var topDealAdapter: TopDealAdapter
     val viewModel: HotelViewModel by viewModels()
@@ -36,9 +36,6 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentTopDealsBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
     }
 
@@ -129,7 +126,7 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
         findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescription2Fragment)
     }
 
-    override fun topHotelsBookBtnClicked(position: Int) {
+    override fun topHotelsPreviewBtnClicked(position: Int) {
         findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsFragment)
     }
 
