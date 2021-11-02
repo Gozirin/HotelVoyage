@@ -6,7 +6,9 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
@@ -33,11 +35,21 @@ interface CustomerRepositoryInterface {
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(
-//        userId: String,
         token: String,
         pageSize: Int,
         pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+    suspend fun addCustomerWishlistById(
+        token: String,
+        hotelWishList: WishlistByPageNumberResponseItems,
+        hotelId: String
+    ): Response<WishlistResponse>
+
+    suspend fun  removeCustomerWishlistByHotelId(
+        token: String,
+        hotelId: String
+    ): Response<WishlistResponse>
 
     suspend fun updateUser(
         authToken: String,

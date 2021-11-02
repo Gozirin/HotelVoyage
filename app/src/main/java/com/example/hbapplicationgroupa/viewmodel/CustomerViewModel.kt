@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
@@ -25,6 +27,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.security.AccessController.getContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,7 +41,6 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     private val _wishListLiveData: MutableLiveData<ArrayList<WishlistByPageNumberResponseItems>> =
         MutableLiveData()
     val wishListLiveData: LiveData<ArrayList<WishlistByPageNumberResponseItems>> = _wishListLiveData
-
 
     fun getWishList(authToken: String, pageSize: Int, pageNumber: Int) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -62,6 +64,62 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
             }
         }
     }
+
+    //add customer hotel wishlist
+    fun addWishList(token: String,
+                    hotelWishlist: WishlistByPageNumberResponseItems,
+                    hotelId: String){
+        try {
+            viewModelScope.launch(Dispatchers.IO){
+                val response = customerRepository.addCustomerWishlistById(
+                    token,
+                    hotelWishlist,
+                    hotelId
+                )
+                if (response.isSuccessful){
+                    Toast.makeText(getApplicationContext(),
+                        " ${response.body()?.message}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                            " ${response.body()?.message}",
+                            Toast.LENGTH_SHORT)
+                            .show()
+                    }
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Log.d("VM Error ADD WISHLIST", e.toString())
+        }
+    }
+
+
+    //remove customer hotel wishlist
+    fun removeWishList(token: String, hotelId: String){
+        try {
+            viewModelScope.launch(Dispatchers.IO){
+                val response = customerRepository.removeCustomerWishlistByHotelId(
+                    token, hotelId
+                )
+                if (response.body()?.succeeded == true){
+                    Toast.makeText(getApplicationContext(),
+                        " ${response.body()?.message}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                        " ${response.body()?.message}",
+                        Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Log.d("VM Error ADD WISHLIST", e.toString())
+        }
+    }
+
 
     private val _addRatingsResponse: MutableLiveData<RatingsByHotelIdResponseModel> =
         MutableLiveData()

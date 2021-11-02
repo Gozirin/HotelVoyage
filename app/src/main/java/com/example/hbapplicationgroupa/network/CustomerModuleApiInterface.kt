@@ -7,7 +7,9 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
@@ -46,6 +48,21 @@ interface CustomerModuleApiInterface {
         @Query("pageSize") pageSize: Int,
         @Query("pageNumber") pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+    @POST("/api/Customer/{hotelId}/add-wishlist")
+    suspend fun addCustomerWishListByHotelId(
+        @Header("Authorization") token: String,
+        @Body hotelWishlist: WishlistByPageNumberResponseItems,
+        @Path("hotelId") hotelId : String
+    ): Response<WishlistResponse>
+
+    @DELETE("/api/Customer/{hotelId}/remove-wishlist")
+    suspend fun removeCustomerWishListByHotelId(
+        @Header("Authorization") token: String,
+        @Path("hotelId") hotelId : String
+    ): Response<WishlistResponse>
+
+
 
     @PUT("api/Customer/update")
     suspend fun updateUser(

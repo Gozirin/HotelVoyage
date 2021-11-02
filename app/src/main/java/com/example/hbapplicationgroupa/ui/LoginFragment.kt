@@ -87,18 +87,15 @@ class LoginFragment : Fragment() {
                     AuthPreference.setRefreshToken(it.data.refreshToken)
 
                     //refreshing token from api after 8 mins
-                    AuthPreference.initPreference(requireActivity())
                     val token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-                        Log.d("TOKEN", token.toString())
+                        Log.d("TOKEN", token)
                     val userId = AuthPreference.getId(AuthPreference.ID_KEY)
                         Log.d("ID_KEY", userId.toString())
                     val refreshKey = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
                         Log.d("REFRESH_KEY", refreshKey.toString())
                     if (userId != null) {
                         if (refreshKey != null) {
-                            if (token != null) {
-                                refreshTokenCountDown(token, userId, refreshKey)
-                            }
+                            refreshTokenCountDown(token, userId, refreshKey)
                         }
                     }
                 }
@@ -137,12 +134,14 @@ class LoginFragment : Fragment() {
         try {
             viewModel.refreshToken(token, userId, refreshToken)
             viewModel.refreshTokenLiveData.observe(viewLifecycleOwner, {
-                it.newJwtAccessToken?.let { newRefreshToken ->
-                    AuthPreference.setToken(newRefreshToken)
+                it.newJwtAccessToken?.let { token ->
+                    AuthPreference.clear(AuthPreference.TOKEN_KEY)
+                    AuthPreference.clear(AuthPreference.REFRESH_KEY)
+                    AuthPreference.setToken(token)
                     AuthPreference.setRefreshToken(it.newRefreshToken.toString())
-                Log.d("NewRefreshToken", newRefreshToken)
+                Log.d("NewToken", token)
                 }
-                Log.d("REFRESH ACCESS TOKEN", it.newJwtAccessToken.toString())
+                Log.d("NEW ACESS TOKEN", it.newJwtAccessToken.toString())
                 Log.d("REFRESH TOKEN", it.newRefreshToken.toString())
             })
         }catch (e: Exception){
