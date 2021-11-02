@@ -40,7 +40,7 @@ interface AuthModuleApiInterface {
         updatePasswordModel: UpdatePasswordModel
     ): Response<UpdatePasswordResponseModel>
 
-    @POST("api/Authentication/forgot-password")
+    @GET("api/Authentication/forgot-password")
     suspend fun forgotPassword(
         @Query ("email") query: String
     ): Response<ForgotPasswordResponseModel>

@@ -32,8 +32,9 @@ class AllHotelsFragments : Fragment(),
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
   //  val customerViewModel: CustomerViewModel by viewModels()
-    val arrayList =  ArrayList<PageItem>()
+    lateinit var arrayList : List<PageItem>
     lateinit var selectedState: String
+    lateinit var hotelId: String
 
 
 
@@ -52,7 +53,7 @@ class AllHotelsFragments : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        arrayList = listOf()
 
         //Handling on back icon to go back to explore page
         binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
@@ -89,6 +90,7 @@ class AllHotelsFragments : Fragment(),
             response.pageItems.let {responseList ->
                 //Log.d("ObservingVM", response.pageItems.toString())
                     if (responseList != null) {
+                        arrayList = responseList
                         allHotelsAdapter.listOfAllHotels.addAll(responseList)
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
@@ -98,11 +100,17 @@ class AllHotelsFragments : Fragment(),
     }
 
     override fun allHotelsItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
+        val item = arrayList[position]
+        hotelId = item.id!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     override fun allHotelsPreviewBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
+        val item = arrayList[position]
+        hotelId = item.id!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     private fun hideProgressBar() {

@@ -33,6 +33,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import kotlinx.coroutines.launch
@@ -82,11 +83,12 @@ class CustomerViewModel @Inject constructor(
 
                 if (response.isSuccessful) {
                     Log.d("getWishListVM", response.body().toString())
-                    response.body()?.Data.let {
-                        _wishListLiveData.postValue(it)
+                    response.body()?.data.let {
+                        _wishListLiveData.postValue(it?.pageItems)
                     }
                 } else {
-                    Log.d("getWishListVMerror", response.body()?.errors.toString())
+
+//                    Log.d("getWishListVMerror", response.body()?.errors.toString())
                 }
             }catch(e: Exception) {
                 e.printStackTrace()
@@ -100,11 +102,29 @@ class CustomerViewModel @Inject constructor(
 
 
 
+    //booking history Live Data
+    private val _getPastBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
+    val getPastBookingLiveData: LiveData<GetCustomerBookingResponse> = _getPastBookingLiveData
+
+    fun getPastBooking (pageNumber: Int, pageSize: Int, authToken: String){
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
+                if (response.isSuccessful){
+                    _getPastBookingLiveData.value = response.body()
+                }else{
+                    _getPastBookingLiveData.value = response.body()
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
     //    booking history flow data using pagination from PastBookingPagingDataSource
-    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
-        PastBookingPagingDataSource(api)
-    }.flow
-        .cachedIn(viewModelScope)
+//    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
+//        PastBookingPagingDataSource(api)
+//    }.flow
+//        .cachedIn(viewModelScope)
 //    private val _getUserBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
 //    val getUserBookingLiveData : LiveData<GetCustomerBookingResponse> = _getUserBookingLiveData
 //
