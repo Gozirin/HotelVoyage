@@ -11,6 +11,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Path
@@ -49,6 +50,6 @@ interface CustomerRepositoryInterface {
         updateUserModel: UpdateUserByIdModel
     ) : Response<UpdateUserByIdResponseModel>
 
-
+    suspend fun getUserById(token: String): Response<GetUserByIdResponseModel>
     //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
 }
