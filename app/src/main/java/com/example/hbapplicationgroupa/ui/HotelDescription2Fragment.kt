@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.hbapplicationgroupa.adapter.hotelgalleryadapter.HotelGalleryA
 import com.example.hbapplicationgroupa.adapter.hotelroomserviceadapter.HotelRoomServiceRecyclerViewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewadapter.StackedReviewAdapter
 import com.example.hbapplicationgroupa.adapter.stackedreviewitemdeco.StackedReviewItemDecorator
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentHotelDescription2Binding
 import com.example.hbapplicationgroupa.model.adaptermodels.StackedReviewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
@@ -71,8 +73,9 @@ class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapte
             it.forEach { response ->
                 hotelRoomServiceRecyclerViewAdapter.addHotelRoomService(response.roomTypes)
                 hotelGalleryAdapter.addImageToGallery(response.gallery)
-                stackedReviewAdapter.addReviewerImages(response.reviews)
                 binding.hotelDescHotelNameTv.text = response.name
+                stackedReviewAdapter.addReviewerImages(response.reviews)
+
                 binding.hotelDescLocationTv.text = response.city
                 binding.hotelDescLocationTv3.text = response.state
                 binding.hotelDescExpandableTv.text = response.description
@@ -82,6 +85,7 @@ class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapte
             }
         })
     }
+
 
     //Method Triggering onClickEvents
     private fun viewClickListeners(){
@@ -135,6 +139,15 @@ class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapte
 
     //Method setting StackedReviewRecyclerView attributes
     private fun initStackedReviewRecyclerView(){
+
+        AuthPreference.initPreference(requireActivity())
+        var token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+
+        hotelViewModel.getHotelReview2(args.hotelId, token)
+        hotelViewModel.hotelReview.observe(viewLifecycleOwner, Observer {
+
+        })
+
         binding.hotelDescOverlapRv.apply {
             adapter = stackedReviewAdapter
             stackedReviewDecorator = StackedReviewItemDecorator()

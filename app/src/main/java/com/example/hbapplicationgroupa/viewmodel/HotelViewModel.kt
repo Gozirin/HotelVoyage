@@ -15,6 +15,8 @@ import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
@@ -38,6 +40,11 @@ class HotelViewModel @Inject constructor(
 
     var error: String? =  "No Hotel in this location"
     var allHotels: MutableList<PageItem> = mutableListOf()
+
+    /**hotel Review livedata*/
+    private var _hotelReview :MutableLiveData<GetHotelReviewsResponseModel> = MutableLiveData()
+    val hotelReview: LiveData<GetHotelReviewsResponseModel> = _hotelReview
+
 
     //----------------Hotel description----------------
     fun getHotelFromDb() = hotelRepositoryInterface.getHotelDescriptionFromDb()
@@ -282,6 +289,16 @@ class HotelViewModel @Inject constructor(
      return newHotelList as MutableList
     }
 
+    fun getHotelReview2(hotelId:String, token:String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = hotelRepositoryInterface.getHotelReview2(hotelId, token)
+                _hotelReview.postValue(response.body())
+            } catch (e: Exception) {
+                Log.d("Review", "${e.message}")
+            }
+        }
+    }
 
     fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel) {
         viewModelScope.launch {

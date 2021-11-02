@@ -8,14 +8,19 @@ import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+import com.example.hbapplicationgroupa.utils.Resource
 import retrofit2.Response
 
 /*
@@ -56,7 +61,6 @@ interface HotelRepositoryInterface {
    suspend fun getAllHotels(
     ): Response<GetAllHotelsResponseModel>
 
-
     suspend fun getHotelRoomsByPrice(
         id: String,
         pageSize: Int,
@@ -77,9 +81,13 @@ interface HotelRepositoryInterface {
 
     suspend fun getHotelAmenities(hotelId: String): Response<GetHotelAmenitiesResponseModel>
 
+    //to get hotel reviews
+    suspend fun getHotelReview2(hotelId: String, token:String):Response<GetHotelReviewsResponseModel>
+
 
     //------- Filter All Hotel By Location
     suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<FilterAllHotelByLocation>
+    suspend fun getHotelReview(id: String): Response<GetHotelReviewsResponseModel>
 
     suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel>
 

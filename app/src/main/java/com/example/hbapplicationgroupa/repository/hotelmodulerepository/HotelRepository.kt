@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupa.repository.hotelmodulerepository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
+import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
@@ -11,7 +12,9 @@ import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemReviews
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyprice.GetHotelRoomsByPriceResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroomsbyvacancy.GetHotelRoomsByVacancyResponseModel
@@ -166,6 +169,17 @@ class HotelRepository @Inject constructor(
         pageNumber: Int
     ): Response<FilterAllHotelByLocation> {
         return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
+    }
+
+    override suspend fun getHotelReview(id :String):Response<GetHotelReviewsResponseModel>{
+        return hotelModuleApiInterface.getHotelReview(id)
+    }
+
+    override suspend fun getHotelReview2(
+        hotelId: String,
+        token: String
+    ): Response<GetHotelReviewsResponseModel> {
+        return hotelModuleApiInterface.getHotelReview2(hotelId, token)
     }
 
     override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel> {
