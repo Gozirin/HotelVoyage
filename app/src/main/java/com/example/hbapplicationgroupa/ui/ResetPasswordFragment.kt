@@ -78,17 +78,17 @@ class ResetPasswordFragment : Fragment() {
             }else{
 
                 if (!validateNotEmptyNewPasswordField(newPassword)){
-                    binding.tvCheckEmptyNewPasswordResetPassword.text = "please enter your new password"
+                    binding.tvCheckEmptyNewPasswordResetPassword.text = "Please enter your new password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
                     binding.tvCheckEmptyNewPasswordResetPassword.setTextColor(resources.getColor(R.color.custom_orange_color))
                 }
                 if(!validateNewPassword(newPassword) ){
-                    binding.tvCheckEmptyNewPasswordResetPassword.text = "please enter valid password"
+                    binding.tvCheckEmptyNewPasswordResetPassword.text = "Please enter valid password"
                     binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
                 }
 
                 if (validateNewPassword(newPassword) && !validateNewPasswordAndConfirmPassword(newPassword,confirmPassword)){
-                    binding.tvCheckEmptyConfirmPasswordResetPassword.text = "password does not match"
+                    binding.tvCheckEmptyConfirmPasswordResetPassword.text = "Password does not match"
                     binding.tvCheckEmptyConfirmPasswordResetPassword.visibility = View.VISIBLE
 
                 }

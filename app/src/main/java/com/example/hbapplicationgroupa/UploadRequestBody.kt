@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa
 
 import android.os.Handler
 import android.os.Looper
+import com.example.hbapplicationgroupa.ui.ProfileFragment
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okio.BufferedSink
@@ -9,11 +10,11 @@ import java.io.File
 import java.io.FileInputStream
 
 
-class UploadRequestBody(
+open class UploadRequestBody(
     //image to be upload
     private val file: File,
     private val contentType: String,
-    private val callBack: uploadCalback
+    private val callBack: ProfileFragment
 
 ) : RequestBody() {
 
@@ -23,15 +24,7 @@ class UploadRequestBody(
     }
 
 
-    inner class ProgressUpdate(
-        private val uploaded: Long,
-        private val total: Long
-    ):Runnable{
-        override fun run() {
-            callBack.onProgressUpdate((100 * uploaded / total).toInt() )
-        }
 
-    }
 
     // error
     override fun contentType() = "$contentType/*".toMediaTypeOrNull()
@@ -43,7 +36,7 @@ class UploadRequestBody(
         val length = file.length()
         val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
         val fileInputStream = FileInputStream(file)
-        // to track the byte of the image upload
+       //  to track the byte of the image upload
         var uploaded = 0L
 
 
@@ -53,7 +46,7 @@ class UploadRequestBody(
             // to update the progress in the main thread
             val handler = Handler(Looper.getMainLooper())
             while (inputStream.read(buffer).also {read = it } != -1){
-                handler.post(ProgressUpdate(uploaded, length))
+               // handler.post(ProgressUpdate(uploaded, length))
                 uploaded += read
                 sink.write(buffer,0, read)
             }

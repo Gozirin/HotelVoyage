@@ -23,11 +23,9 @@ class SplashFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModels()
-    lateinit var authPreference: AuthPreference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
-        authPreference = AuthPreference(requireActivity())
         return binding.root
     }
 
@@ -53,9 +51,10 @@ class SplashFragment : Fragment() {
 
     //create function that moves to the next fragment using sharePreference
     private fun navigateToNextFragment(){
+        AuthPreference.initPreference(requireActivity())
         val handler = Handler(Looper.getMainLooper())
-        val userId = authPreference.getId("id_key")
-        val authToken = authPreference.getToken("token_key")
+        val userId = AuthPreference.getId("id_key")
+        val authToken = AuthPreference.getToken("token_key")
         if (userId == null){
             handler.postDelayed({
                 findNavController().navigate(R.id.action_splashScreenFragment_to_onboarding01Fragment2)

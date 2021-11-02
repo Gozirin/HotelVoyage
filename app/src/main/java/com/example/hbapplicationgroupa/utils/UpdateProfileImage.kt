@@ -12,7 +12,7 @@ const val TO_READ_EXTERNAL_STORAGE = 1
 
 fun View.snackbar(message: String){
     Snackbar.make(this, message, Snackbar.LENGTH_LONG).also {
-            snackbar ->  snackbar.setAction("Ok"){
+            snackbar ->  snackbar.setAction(""){
         snackbar.dismiss()
     }
     }.show()
