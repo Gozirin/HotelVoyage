@@ -3,6 +3,7 @@ package com.example.hbapplicationgroupa.adapter.pastbookings_adapter
 import android.app.Activity
 import android.util.Log
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import androidx.room.Index
 import com.example.hbapplicationgroupa.MainActivity
 import com.example.hbapplicationgroupa.database.AuthPreference
@@ -35,5 +36,9 @@ class PastBookingPagingDataSource @Inject constructor(
         }catch (e: Exception){
             LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, PageItem>): Int? {
+        TODO("Not yet implemented")
     }
 }

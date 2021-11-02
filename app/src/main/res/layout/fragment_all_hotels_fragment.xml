@@ -17,13 +17,7 @@
             android:elevation="10dp"
             tools:targetApi="lollipop">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/topHotel_cardview_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -33,15 +27,16 @@
                         android:id="@+id/allHotels_backBtn"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:layout_marginStart="5dp"
                         android:background="@color/white"
+                        android:contentDescription="@string/allhotels"
                         android:src="@drawable/ic_back_arrow"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:tint="@color/black"
-                        android:contentDescription="@string/allhotels"/>
+                        app:tint="@color/black" />
 
                     <TextView
-                        android:id="@+id/topDeal_titleText"
+                        android:id="@+id/hotel_titleText"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginStart="108dp"
@@ -59,9 +54,7 @@
                         app:layout_constraintVertical_bias="1.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/allHotelslayout_text"
@@ -69,20 +62,21 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintTop_toBottomOf="@id/topHotel_cardview_appBar">
 
             <ImageView
                 android:id="@+id/allHotelsLocationIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/allhotels"
                 android:src="@drawable/ic_location_icon"
                 app:layout_constraintBottom_toBottomOf="@id/allHotelsLocationTxt"
                 app:layout_constraintEnd_toStartOf="@id/allHotelsLocationTxt"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/allHotelsLocationTxt"
-                app:tint="#FCEA0707"
-                android:contentDescription="@string/allhotels"/>
+                app:layout_constraintVertical_bias="1.0"
+                app:tint="#FCEA0707" />
 
             <TextView
                 android:id="@+id/allHotelsLocationTxt"
@@ -129,7 +123,8 @@
                     android:textColor="#FCEA0707"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:textSize="18sp"/>
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

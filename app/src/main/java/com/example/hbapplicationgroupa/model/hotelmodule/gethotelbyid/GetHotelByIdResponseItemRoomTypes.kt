@@ -12,3 +12,4 @@ data class GetHotelByIdResponseItemRoomTypes(
     val discount: Float,
     val thumbnail: String
 ) : Parcelable
+

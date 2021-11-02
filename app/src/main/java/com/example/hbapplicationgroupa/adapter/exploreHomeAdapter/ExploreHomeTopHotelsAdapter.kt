@@ -21,7 +21,7 @@ class ExploreHomeTopHotelsAdapter(
 
     inner class Recycler1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hotelName: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewName1)
-        val hotelPrice: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTextviewPrice1)
+        val hotelAddress: TextView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewTvAddress)
         val hotelImage: ImageView = itemView.findViewById(R.id.exploreHomeFragmentRecyclerViewImageview1)
 
     }
@@ -45,7 +45,9 @@ class ExploreHomeTopHotelsAdapter(
         val hotelId = listOfTopHotels[position].id
 
         holder.hotelName.text = listOfTopHotels[position].name
-        holder.hotelPrice.text = listOfTopHotels[position].price
+        holder.hotelAddress.text = (listOfTopHotels[position].address + ", "+
+                                    listOfTopHotels[position].city + ", "+
+                                    listOfTopHotels[position].state)
 
         holder.itemView.setOnClickListener {
             topHotelClickListener.onTopHotelClicked(position, hotelId)

@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.application
 
 import android.app.Application
+import co.paystack.android.PaystackSdk
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

@@ -15,20 +15,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
 import com.example.hbapplicationgroupa.utils.Resources
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealBookBtnClickListener {
+class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealPreviewBtnClickListener {
 
     private lateinit var topDealAdapter: TopDealAdapter
     val viewModel: HotelViewModel by viewModels()
+    lateinit var hotelList: List<GetTopDealsResponseItem>
 
     //Set up view binding here
     private var _binding: FragmentTopDealsBinding? = null
     private val binding get() = _binding!!
+    lateinit var hotelId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,15 +39,12 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentTopDealsBinding.inflate(inflater, container, false)
-
-
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        hotelList = listOf()
         setupRecyclerView()
 
         viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
@@ -56,6 +56,7 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
                         topDealAdapter.notifyDataSetChanged()
                         val totalPages = 6000 / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.pageNumber == totalPages
+                        hotelList = newsResponse.data
                     }
 
                 }
@@ -126,11 +127,17 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
 
 
     override fun topHotelsItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescription2Fragment)
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopDealsFragmentDirections.actionTopDealsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
-    override fun topHotelsBookBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsFragment)
+    override fun topHotelsPreviewBtnClicked(position: Int) {
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopDealsFragmentDirections.actionTopDealsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //Method to handle back press

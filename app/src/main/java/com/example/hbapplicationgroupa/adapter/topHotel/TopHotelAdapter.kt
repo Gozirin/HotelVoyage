@@ -1,32 +1,40 @@
 package com.example.hbapplicationgroupa.adapter.topHotel
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.TopHotelRecyclerviewViewItemBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
+import kotlin.math.ceil
 
 
-class TopHotelAdapter(private var adapterList : List<Hotel>,
-                        private val topHotelsItemClickListener: TopHotelsItemClickListener,
-                            private val topHotelsBookBtnClickListener: TopHotelsBookBtnClickListener)
-    : RecyclerView.Adapter<TopHotelAdapter.ViewHolder>(){
+class TopHotelAdapter(
+    val context : Context,
+    private val topHotelsItemClickListener: TopHotelsItemClickListener,
+    private val topHotelsSaveIconClickListener: TopHotelSaveIconClickListener,
+    private val topHotelsBookBtnClickListener: TopHotelsBookBtnClickListener,
+    private val topHotelsSaveTextClickListener: TopHotelSaveTextClickListener
+    ): RecyclerView.Adapter<TopHotelAdapter.ViewHolder>(){
 
-    val binding: TopHotelRecyclerviewViewItemBinding? = null
+    private var listOfTopHotels = arrayListOf<GetTopHotelsResponseItem>()
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val nameOfHotel = binding?.topHotelRecyclerviewHotelName
-        val priceOfHotel = binding?.topHotelRecyclerviewHotelPrice
-        val classOfHotel = binding?.topHotelRecyclerviewHotelStatus
-        val ratingOfHotel = binding?.topHotelRecyclerviewHotelRating
-        val imageOfHotel = binding?.topHotelRecyclerviewImageview
+    inner class ViewHolder(binding: TopHotelRecyclerviewViewItemBinding): RecyclerView.ViewHolder(binding.root) {
+        val nameOfHotel = binding.topHotelRecyclerviewHotelName
+        val priceOfHotel = binding.topHotelRecyclerviewHotelPrice
+        val classOfHotel = binding.topHotelRecyclerviewHotelStatus
+        val ratingOfHotel = binding.topHotelRecyclerviewHotelRating
+        val imageOfHotel = binding.topHotelRecyclerviewImageview
+        val saveIcon = binding.topHotelRecyclerviewImageviewSave
+        val saveText = binding.topHotelRecyclerviewSaveTv
         val hotelBookBtn: AppCompatButton = itemView.findViewById(R.id.topHotelBookBtn)
         val topHotelView: CardView = itemView.findViewById(R.id.topHotelView)
-
     }
 
     interface TopHotelsItemClickListener {
@@ -34,35 +42,59 @@ class TopHotelAdapter(private var adapterList : List<Hotel>,
     }
 
     interface TopHotelsBookBtnClickListener {
-        fun topHotelsBookBtnClicked(position: Int)
+        fun topHotelsPreviewBtnClicked(position: Int)
+    }
+
+    interface TopHotelSaveIconClickListener{
+        fun topHotelSaveIconClickListener(position: Int)
+    }
+
+    interface TopHotelSaveTextClickListener{
+        fun topHotelSaveTextClickListener(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.top_hotel_recyclerview_view_item, parent, false)
-        )
+        val binding = TopHotelRecyclerviewViewItemBinding.inflate(
+            LayoutInflater.from(parent.context),parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.nameOfHotel?.text = adapterList[position].name
-        holder.priceOfHotel?.text = adapterList[position].price.toString()
-        holder.classOfHotel?.text = adapterList[position].classOfHotel
-        holder.ratingOfHotel?.text = adapterList[position].rating
-        holder.imageOfHotel?.setImageResource(adapterList[position].image)
+        holder.nameOfHotel.text = listOfTopHotels[position].name
+        holder.priceOfHotel.text = listOfTopHotels[position].price
+        holder.classOfHotel.text = listOfTopHotels[position].description
+        holder.ratingOfHotel.text = ceil(listOfTopHotels[position].percentageRating).toString()
+        holder.imageOfHotel.let {
+            Glide.with(holder.itemView)
+                .load(listOfTopHotels[position].thumbnail)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(it)
+        }
 
         holder.topHotelView.setOnClickListener {
             topHotelsItemClickListener.topHotelsItemClicked(position)
         }
 
         holder.hotelBookBtn.setOnClickListener {
-            topHotelsBookBtnClickListener.topHotelsBookBtnClicked(position)
+            topHotelsBookBtnClickListener.topHotelsPreviewBtnClicked(position)
         }
 
+        holder.saveIcon.setOnClickListener {
+            topHotelsSaveIconClickListener.topHotelSaveIconClickListener(position)
+        }
 
+        holder.saveText.setOnClickListener {
+            topHotelsSaveTextClickListener.topHotelSaveTextClickListener(position)
+        }
     }
 
     override fun getItemCount(): Int {
-       return adapterList.size
+       return listOfTopHotels.size
+    }
+
+    fun setListOfTopHotels(topHotels: ArrayList<GetTopHotelsResponseItem>) {
+        listOfTopHotels.addAll(topHotels)
+        Log.d("newList", listOfTopHotels.toString())
+        notifyDataSetChanged()
     }
 }
