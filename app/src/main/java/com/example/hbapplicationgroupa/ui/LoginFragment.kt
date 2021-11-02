@@ -46,15 +46,12 @@ class LoginFragment : Fragment() {
         val password = binding.tvEditPasswordLoginScreen
         val loginBtn = binding.btnLoginScreen
         loginBtn.setOnClickListener {
-            binding.loginProgressBar.visibility = View.VISIBLE
             if (LoginValidations.validateLoginScreen(email, password)){
                 login(email.text.toString().trim(), password.text.toString().trim())
-                binding.btnLoginScreen.text = "Logging In..."
-                binding.loginProgressBar.visibility = View.GONE
+                binding.btnLoginScreen.text = "Logging In"
             }else{
                 binding.loginErrorMsg.text = "Email and Password fields can't be empty"
                 binding.btnLoginScreen.text = "Login"
-                binding.loginProgressBar.visibility = View.GONE
             }
         }
         AuthPreference.initPreference(requireActivity())

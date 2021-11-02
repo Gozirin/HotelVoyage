@@ -49,7 +49,7 @@ class RegisterFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
 
             binding.btnRegister.setEnabled(false)
-            binding.btnRegister.text = "Registering..."
+            binding.btnRegister.text = "Registering"
             binding.fragmentRegisterProgressBarPb.visibility = View.VISIBLE
             val firstName = binding.fragmentRegisterFirstNameEtv.text.toString()
             val lastName = binding.fragmentRegisterLastNameEtv.text.toString()
