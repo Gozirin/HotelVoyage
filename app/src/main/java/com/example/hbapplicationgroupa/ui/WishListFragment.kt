@@ -92,6 +92,7 @@ class WishListFragment : Fragment(),
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
         customerViewModel.removeWishList(authToken, wishListAdapter.listOfWishList[position].hotelId)
+
     }
 
     //setting adapter
