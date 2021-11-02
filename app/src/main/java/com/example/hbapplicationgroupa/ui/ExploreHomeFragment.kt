@@ -67,6 +67,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         setUpTopDealsRecyclerView()
         checkNetworkStatus()
 
+
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
            findNavController().navigate(R.id.action_exploreHomeFragment_to_topHotelsFragment)
@@ -230,6 +231,11 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 //        })
         return  hotelViewModel
     }
+
+
+
+
+
 //    fun initViewModel(pageSize: Int, pageNumber: Int){
 //        hotelViewModel.getHotelFromApi(pageSize,pageNumber)
 //
@@ -274,5 +280,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
 
     }
+
+
 
 }

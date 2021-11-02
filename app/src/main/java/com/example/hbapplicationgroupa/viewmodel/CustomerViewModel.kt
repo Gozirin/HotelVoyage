@@ -14,21 +14,49 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
+
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import retrofit2.Response
+import java.lang.Exception
+
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
-import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+
 import javax.inject.Inject
 
 @HiltViewModel
 class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository, private val api: CustomerModuleApiInterface): ViewModel() {
+
+    private val _updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = MutableLiveData()
+      val updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = _updateProfileImageLiveData
+
+  //
+    fun makeApiCall(authToken: String, image: MultipartBody.Part){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = customerRepository.updateProfileImage(authToken,image)
+                _updateProfileImageLiveData.postValue(response)
+            }catch (e:Exception){
+                Log.d("MQ", "updateImage: ${e.message}")
+            }
+        }
+    }
+
     //class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository): ViewModel() {
     private val _addReviewResponse: MutableLiveData<ReviewByHotelIdResponseModel> =
         MutableLiveData()
@@ -52,11 +80,12 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
 
                 if (response.isSuccessful) {
                     Log.d("getWishListVM", response.body().toString())
-                    response.body()?.Data.let {
-                        _wishListLiveData.postValue(it)
+                    response.body()?.data.let {
+                        _wishListLiveData.postValue(it?.pageItems)
                     }
                 } else {
-                    Log.d("getWishListVMerror", response.body()?.errors.toString())
+
+//                    Log.d("getWishListVMerror", response.body()?.errors.toString())
                 }
             }catch(e: Exception) {
                 e.printStackTrace()
@@ -69,11 +98,30 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     val addRatingsResponse: LiveData<RatingsByHotelIdResponseModel> = _addRatingsResponse
 
 
+
+    //booking history Live Data
+    private val _getPastBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
+    val getPastBookingLiveData: LiveData<GetCustomerBookingResponse> = _getPastBookingLiveData
+
+    fun getPastBooking (pageNumber: Int, pageSize: Int, authToken: String){
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
+                if (response.isSuccessful){
+                    _getPastBookingLiveData.value = response.body()
+                }else{
+                    _getPastBookingLiveData.value = response.body()
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
     //    booking history flow data using pagination from PastBookingPagingDataSource
-    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
-        PastBookingPagingDataSource(api)
-    }.flow
-        .cachedIn(viewModelScope)
+//    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
+//        PastBookingPagingDataSource(api)
+//    }.flow
+//        .cachedIn(viewModelScope)
 //    private val _getUserBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
 //    val getUserBookingLiveData : LiveData<GetCustomerBookingResponse> = _getUserBookingLiveData
 //

@@ -161,6 +161,9 @@
             app:destination="@id/bookingDetailsFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_pastBookingsFragment2_to_hotelDescription2Fragment"
+            app:destination="@id/hotelDescription2Fragment" />
     </fragment>
 
     <fragment

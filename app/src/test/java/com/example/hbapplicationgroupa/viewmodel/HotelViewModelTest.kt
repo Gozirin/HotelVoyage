@@ -18,7 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner
 //
 //@ExperimentalCoroutinesApi
 ////@RunWith(MockitoJUnitRunner::class)
-//class HotelViewModelTest {
+class HotelViewModelTest {
 //
 //    @get: Rule
 //    var testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
@@ -136,4 +136,4 @@ import org.mockito.junit.MockitoJUnitRunner
 //    @After
 //    fun tearDown() {
 //
-//    }
+   }
