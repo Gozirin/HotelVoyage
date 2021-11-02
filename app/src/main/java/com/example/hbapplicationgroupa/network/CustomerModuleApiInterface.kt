@@ -10,6 +10,10 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingby
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -46,6 +50,16 @@ interface CustomerModuleApiInterface {
         @Query("pageNumber") pageNumber: Int,
         @Query("pageSize") pageSize: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+
+    // function to upload to our backend
+    @Multipart
+    @PATCH("api/Customer/update-image")
+    suspend fun uploadImage(
+        @Header("Authorization") authToken: String,
+        @Part image: MultipartBody.Part
+    ): Response<UpdateProfileImage>
+
 
     @PUT("api/Customer/update")
     suspend fun updateUser(

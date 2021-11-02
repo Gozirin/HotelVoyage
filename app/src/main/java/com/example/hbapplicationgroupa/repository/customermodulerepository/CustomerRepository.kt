@@ -16,9 +16,11 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingby
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
+import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -63,4 +65,8 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.updateUser(authToken, updateUserModel)
     }
 
+
+    override suspend fun updateProfileImage(authToken: String,image: MultipartBody.Part): Response<UpdateProfileImage> {
+       return customerModuleApiInterface.uploadImage(authToken, image)
+    }
 }
