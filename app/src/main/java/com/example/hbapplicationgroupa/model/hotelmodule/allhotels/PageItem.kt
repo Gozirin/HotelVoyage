@@ -1,8 +1,12 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.allhotels
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@Parcelize
 data class PageItem(
     @SerializedName("address")
     val address: String?,
@@ -25,7 +29,7 @@ data class PageItem(
     @SerializedName("rating")
     val rating: Double?,
     @SerializedName("roomTypes")
-    val roomTypes: List<RoomType>?,
+    val roomTypes: @RawValue List<RoomType>?,
     @SerializedName("state")
     val state: String?
-)
+): Parcelable

@@ -57,8 +57,9 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         binding.bookingRecyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         AuthPreference.initPreference(requireActivity())
-
+        binding.pastBookingProgressBar.visibility = View.VISIBLE
         observeBookingHistoryFlow()
+        binding.pastBookingProgressBar.visibility = View.GONE
         displayNoBookingImage()
         onBackPressed()
     }
@@ -79,7 +80,6 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
 
     private fun observeBookingHistoryFlow(){
         viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.bookingHistory.collectLatest {
                 adapter.submitData(it)

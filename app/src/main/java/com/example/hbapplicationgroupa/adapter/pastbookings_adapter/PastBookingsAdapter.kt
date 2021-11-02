@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.paging.Pager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -50,10 +51,6 @@ class PastBookingsAdapter(
             pastBookingBookingClickListener.pastBookBtnClicked(position)
         }
     }
-
-//    override fun getItemCount(): Int {
-//        return itemCount
-//    }
 
     class DiffUtilCallBack: DiffUtil.ItemCallback<PageItem>() {
         override fun areItemsTheSame(

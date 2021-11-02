@@ -92,7 +92,6 @@ class AllHotelsFragments : Fragment(), AllHotelsAdapter.AllHotelsItemClickListen
 
     }
 
-
     override fun allHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
     }
