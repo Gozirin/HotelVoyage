@@ -39,6 +39,8 @@ class TopHotelsFragment : Fragment(),
     private lateinit var topHotelAdapter: TopHotelAdapter
     val hotelViewModel : HotelViewModel by viewModels()
     lateinit var recyclerView: RecyclerView
+    lateinit var hotelId: String
+    lateinit var hotelList: List<GetTopHotelsResponseItem>
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -48,7 +50,7 @@ class TopHotelsFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        hotelList = listOf()
 
         //connecting the view with the data response
         showProgressBar()
@@ -58,6 +60,7 @@ class TopHotelsFragment : Fragment(),
         hotelViewModel.topHotelsLiveData.observe(viewLifecycleOwner,{
             Log.d("Frag -> TopHotel", it.toString())
             topHotelAdapter.setListOfTopHotels(it)
+            hotelList = it
             hideProgressBar()
         })
 
@@ -77,11 +80,17 @@ class TopHotelsFragment : Fragment(),
     }
 
     override fun topHotelsItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     override fun topHotelsPreviewBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //Method to handle back press

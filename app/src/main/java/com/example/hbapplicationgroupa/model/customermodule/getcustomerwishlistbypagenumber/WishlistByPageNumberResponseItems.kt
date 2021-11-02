@@ -5,12 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "wishlistByPageNumber")
 data class WishlistByPageNumberResponseItems(
-    @PrimaryKey(autoGenerate = true)
-    val tableNumber: Int,
+    @PrimaryKey()
     val hotelId: String,
     val hotelName: String,
-    val percentageRating: String,
-    val price: Double,
-    val description: String,
-    val ImageUrl: String
+    val imageUrl: String
 )
