@@ -32,9 +32,6 @@ class AllHotelsFragments : Fragment(),
     val customerViewModel: CustomerViewModel by viewModels()
     val arrayList =  ArrayList<PageItem>()
     lateinit var selectedState: String
-    lateinit var wishListAdapter: WishListAdapter
-
-
 
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
