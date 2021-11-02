@@ -107,6 +107,8 @@ class AllHotelsFragments : Fragment(),
     }
 
     override fun allHotelsPreviewBtnClicked(position: Int) {
+        val item = arrayList[position]
+        hotelId = item.id!!
         val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
     }

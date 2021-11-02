@@ -93,7 +93,7 @@ class TopHotelAdapter(
     }
 
     fun setListOfTopHotels(topHotels: ArrayList<GetTopHotelsResponseItem>) {
-        listOfTopHotels.addAll(topHotels)
+        listOfTopHotels = topHotels
         Log.d("newList", listOfTopHotels.toString())
         notifyDataSetChanged()
     }
