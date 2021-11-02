@@ -182,7 +182,6 @@ class HotelRepository @Inject constructor(
         return hotelModuleApiInterface.getHotelReview2(hotelId, token)
     }
 
-    override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel> {
     override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotelResponse> {
         return hotelModuleApiInterface.pushBookHotel(authToken, bookHotelInfo)
     }

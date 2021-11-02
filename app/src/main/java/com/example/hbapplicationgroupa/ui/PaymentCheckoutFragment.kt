@@ -146,13 +146,13 @@ class PaymentCheckoutFragment : Fragment() {
 
     //direct user to web payment service
     private fun goToPaymentUrl() {
-//        val openUrlIntent = Intent()
-//            .setAction(ACTION_VIEW)
-//            .addCategory(CATEGORY_BROWSABLE)
-//            .setData(Uri.parse(paymentUrl))
-//        startActivity(openUrlIntent)
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl))
-        startActivity(intent)
+        val openUrlIntent = Intent()
+            .setAction(ACTION_VIEW)
+            .addCategory(CATEGORY_BROWSABLE)
+            .setData(Uri.parse(paymentUrl))
+        startActivity(openUrlIntent)
+//        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl))
+//        startActivity(intent)
     }
 
     private fun pushPaymentVerificationDetails() {
