@@ -159,7 +159,7 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     //Paging 3 library
-    def paging_version = "3.0.0-alpha03"
+    def paging_version = "3.1.0-beta01"
     implementation "androidx.paging:paging-runtime:$paging_version"
     // optional - RxJava2 support
     implementation "androidx.paging:paging-rxjava2:$paging_version"

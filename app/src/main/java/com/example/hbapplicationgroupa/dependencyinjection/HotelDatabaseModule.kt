@@ -66,9 +66,4 @@ class HotelDatabaseModule {
         return hotelDatabase.getUserPhotoByIdDao()
     }
 
-    @Singleton
-    @Provides
-    fun provideBookingByUserIdDao(hotelDatabase: HotelDatabase): BookingByUserIdDao {
-        return hotelDatabase.getBookingByUserId()
-    }
 }

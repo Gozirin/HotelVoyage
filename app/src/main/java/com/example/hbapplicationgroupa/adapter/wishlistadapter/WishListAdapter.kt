@@ -54,11 +54,9 @@ class WishListAdapter(var context: Context,
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {
         holder.hotelName.text = listOfWishList[position].hotelName
         Log.d("Name", listOfWishList[position].hotelName)
-        holder.hotelPrice.text = listOfWishList[position].price.toString()
-        holder.hotelRating.text = listOfWishList[position].percentageRating.toInt().toString()
         holder.savedImage.let {
             Glide.with(it.context)
-                .load(listOfWishList[position].ImageUrl)
+                .load(listOfWishList[position].imageUrl)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.mipmap.ic_launcher)
