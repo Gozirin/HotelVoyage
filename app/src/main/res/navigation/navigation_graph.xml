@@ -506,6 +506,15 @@
         <action
             android:id="@+id/action_paymentCheckoutFragment_to_paymentDetailsFragment"
             app:destination="@id/paymentDetailsFragment" />
+        <argument
+            android:name="transactionUrl"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="float" />
+        <argument
+            android:name="bookingReference"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"

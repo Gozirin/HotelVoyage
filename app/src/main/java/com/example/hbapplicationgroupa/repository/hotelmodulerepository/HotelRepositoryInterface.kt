@@ -81,7 +81,7 @@ interface HotelRepositoryInterface {
     //------- Filter All Hotel By Location
     suspend fun filterAllHotelByLocation(location: String, pageSize: Int, pageNumber: Int): Response<FilterAllHotelByLocation>
 
-    suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel>
+    suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotelResponse>
 
     suspend fun getHotelRoomIdByRoomType(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
 

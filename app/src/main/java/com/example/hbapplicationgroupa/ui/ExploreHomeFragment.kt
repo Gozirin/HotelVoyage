@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import co.paystack.android.PaystackSdk.applicationContext
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
@@ -22,9 +24,11 @@ import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
+import com.example.hbapplicationgroupa.utils.ConnectivityLiveData
 import com.example.hbapplicationgroupa.utils.Status
 
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @AndroidEntryPoint
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
@@ -36,6 +40,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     private lateinit var topDealsRecyclerView: RecyclerView
     private lateinit var dialog: Dialog
     private val hotelViewModel: HotelViewModel by viewModels()
+    private lateinit var connectivityLiveData: ConnectivityLiveData
 
 
     //Set up view binding here
@@ -53,13 +58,14 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         dialog = Dialog(requireContext())
         onBackPressed()
 
+        connectivityLiveData = ConnectivityLiveData(requireActivity().application)
+
         topHotelsAdapter = ExploreHomeTopHotelsAdapter( this)
         topDealsAdapter = ExploreHomeTopDealsAdapter( this)
 
         setUpTopHotelsRecyclerView()
         setUpTopDealsRecyclerView()
-        getTopHotels()
-        getTopDeals()
+        checkNetworkStatus()
 
         //navigating to topHotel Fragment
         binding.exploreHomeFragmentTopHotelViewAllTv.setOnClickListener {
@@ -138,28 +144,43 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top hotels
     private fun getTopHotels(): HotelViewModel {
-        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
-        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+//        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+//        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
         hotelViewModel.fetchTopHotels()
         hotelViewModel.exploreHomeTopHotels.observe( viewLifecycleOwner, {
-            when (it.statusCode) {
-                200 -> {
-                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
-                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
-                   // Log.d("ExploreHome 2: ", it.toString())
-                }
-//                40 -> {
-//                    binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
-//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
-//                }
-                400 -> {
-                    //handle error
-                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
-                }
+            if (it != null) {
+               // binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+                it.data.let { topHotels -> renderTopHotelsList(topHotels) }
+                binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
             }
+//            when (it.statusCode) {
+//                200 -> {
+//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+//                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
+//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
+//                   // Log.d("ExploreHome 2: ", it.toString())
+//                }
+//
+//                400 -> {
+//                    //handle error
+//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+//                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
+//                }
+//            }
         })
+//        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
+//            //2
+//            when (isAvailable) {
+//                true -> {
+//                    //3
+//                    hotelViewModel.exploreHomeTopHotels
+//                }
+//                false -> {
+//                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
+//                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        })
        return hotelViewModel
     }
 
@@ -171,27 +192,42 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     //fetch a selected number of top deals
     private fun getTopDeals(): HotelViewModel {
-        binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
-        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+//        binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
+//        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
         hotelViewModel.fetchTopDeals()
         hotelViewModel.exploreHomeTopDeals.observe(viewLifecycleOwner, {
-            when (it.statusCode) {
-                200 -> {
-                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-                    it.data.let { topDeals -> renderTopDealsList(topDeals) }
-                    binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
-                    //Log.d("ExploreHome 1: ", it.toString())
-                }
-//                Status.LOADING -> {
-//                    binding.exploreHomeFragmentProgressBar2.visibility = View.VISIBLE
-//                    binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
-//                }
-                400 -> {
-                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                }
+            if (it != null) {
+              //  binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
+                it.data.let { topDeals -> renderTopDealsList(topDeals) }
+                binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
             }
+//            when (it.statusCode) {
+//                200 -> {
+//                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
+//                    it.data.let { topDeals -> renderTopDealsList(topDeals) }
+//                    binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
+//                    //Log.d("ExploreHome 1: ", it.toString())
+//                }
+//
+//                400 -> {
+//                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
+//                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+//                }
+//            }
         })
+//        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
+//            //2
+//            when (isAvailable) {
+//                true -> {
+//                    //3
+//                    hotelViewModel.exploreHomeTopDeals
+//                }
+//                false -> {
+//                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
+//                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        })
         return  hotelViewModel
     }
 //    fun initViewModel(pageSize: Int, pageNumber: Int){
@@ -213,6 +249,29 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
     //set fetched data to top deals adapter
     private fun renderTopDealsList(topDeals: List<GetTopDealsResponseItem>) {
         topDealsAdapter.setListOfTopDeals(topDeals)
+
+    }
+
+    private fun checkNetworkStatus() {
+        binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
+        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
+        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+
+        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
+            //2
+            when (isAvailable) {
+                true -> {
+                    //3
+                    getTopHotels()
+                    getTopDeals()
+                }
+                false -> {
+                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
+                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
 
     }
 

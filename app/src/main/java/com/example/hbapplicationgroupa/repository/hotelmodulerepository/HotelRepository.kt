@@ -168,7 +168,7 @@ class HotelRepository @Inject constructor(
         return hotelModuleApiInterface.filterALlHotelByLocation(location, pageSize, pageNumber)
     }
 
-    override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotel> {
+    override suspend fun pushBookHotel(authToken: String, bookHotelInfo: BookHotel): Response<BookHotelResponse> {
         return hotelModuleApiInterface.pushBookHotel(authToken, bookHotelInfo)
     }
 
