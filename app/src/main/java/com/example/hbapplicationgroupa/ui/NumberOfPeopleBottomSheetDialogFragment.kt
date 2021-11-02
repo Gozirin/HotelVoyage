@@ -22,10 +22,12 @@ class NumberOfPeopleBottomSheetDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Dismiss the bottom sheet when the cancel button is clicked
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
 
+        //Implement counter functionality on the number of people
         var adultCount = 0
         binding.adultAddButton.setOnClickListener {
             adultCount++
@@ -78,8 +80,10 @@ class NumberOfPeopleBottomSheetDialogFragment(
             }
         }
 
+        //Save users selections in a list and pass them to the edit text in the booking details fragment
         binding.doneButton.setOnClickListener {
             val peopleData = mutableListOf<String>()
+            var peopleCount = 0
             var adultsData = ""
             var teensData = ""
             var childrenData = ""
@@ -111,21 +115,27 @@ class NumberOfPeopleBottomSheetDialogFragment(
 
             if (adultCount > 0){
                 peopleData.add(adultsData)
+                peopleCount+=adultCount
             }
 
             if (teensCount > 0){
                 peopleData.add(teensData)
+                peopleCount+=teensCount
             }
 
             if (childrenCount > 0){
                 peopleData.add(childrenData)
+                peopleCount+=childrenCount
             }
 
             if (infantsCount > 0){
                 peopleData.add(infantsData)
+                peopleCount+=infantsCount
             }
 
             val peopleDataToString = peopleData.joinToString(", ")
+
+            //Send number of people info selected by a user to the booking details fragment
             onClickInterface.passDataFromPeopleBottomSheetToBookingDetailsScreen(peopleDataToString)
             dismiss()
         }

@@ -15,14 +15,13 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.UploadRequestBody
-
-//import com.example.hbapplicationgroupa.UploadRequestBody
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupa.utils.TO_READ_EXTERNAL_STORAGE
@@ -35,6 +34,8 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 @AndroidEntryPoint
+
+
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
@@ -85,6 +86,17 @@ class ProfileFragment : Fragment() {
             readStorage()
         }
 
+        //Display bottom sheet to update user's profile
+        binding.fragmentProfileTitleTv.setOnClickListener {
+            UpdateProfileBottomSheetDialogFragment().show(
+                requireActivity().supportFragmentManager, "updateProfileBottomSheet"
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
@@ -99,21 +111,19 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
         }
 
-            //cancel log out event
-            val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
-            cancel.setOnClickListener {
-                dialog.dismiss()
-            }
+        //cancel log out event
+        val cancel = dialog.findViewById<TextView>(R.id.dialogCancel)
+        cancel.setOnClickListener {
+            dialog.dismiss()
         }
-
+    }
 
     // this method allow the user to pick image
     private fun openImageChooser(){
         Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also {
-            startActivityForResult(it, REQUEST_CODE_IMAGE_PICKER)
+           startActivityForResult(it, REQUEST_CODE_IMAGE_PICKER)
         }
     }
-
     companion object{
         private const val  REQUEST_CODE_IMAGE_PICKER = 100
     }
@@ -124,13 +134,13 @@ class ProfileFragment : Fragment() {
             binding.fragmentProfilePage.snackbar("select an Image first")
             return
         }
-      val parcelFileDescriptor = context?.contentResolver?.openAssetFileDescriptor(selectedImage!!, "r", null)?:  return
-       val file = File(requireActivity().cacheDir, requireActivity().contentResolver.getFileName(selectedImage!!))
+        val parcelFileDescriptor = context?.contentResolver?.openAssetFileDescriptor(selectedImage!!, "r", null)?:  return
+        val file = File(requireActivity().cacheDir, requireActivity().contentResolver.getFileName(selectedImage!!))
         body = UploadRequestBody(file, "image", this )
-       val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
-       val outputStream = FileOutputStream(file)
-       inputStream.copyTo(outputStream )
-        binding.progressCircular.progress = 0
+        val inputStream = FileInputStream(parcelFileDescriptor.fileDescriptor)
+        val outputStream = FileOutputStream(file)
+        inputStream.copyTo(outputStream )
+        // binding.progressCircular.progress = 0
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
 //       val body = file.asRequestBody("image/jpg".toMediaTypeOrNull())
@@ -139,35 +149,30 @@ class ProfileFragment : Fragment() {
 
     }
 
-
-
     //method to observe the for updating image
     fun observeNetwork(authToken: String, image: MultipartBody.Part){
         showProgressBar()
         viewModel.updateProfileImageLiveData.observe(viewLifecycleOwner,{
             hideProgressBar()
-        if (it == null){
-            Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
-            hideProgressBar()
-        }else{
-            hideProgressBar()
-            binding.fragmentProfilePage.snackbar("Image uploaded Successfully")
-        }
-      })
+            if (it == null){
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                hideProgressBar()
+            }else{
+                hideProgressBar()
+                binding.fragmentProfilePage.snackbar("Image uploaded Successfully")
+            }
+        })
         viewModel.makeApiCall(authToken,image)
     }
-
-
-
 
     private fun hideProgressBar() {
         binding.progressCircular.visibility = View.INVISIBLE
 
     }
-//
+    //
     private fun showProgressBar() {
         binding.progressCircular.visibility = View.VISIBLE
-      //  Toast.makeText(requireContext(), "", Toast.LENGTH_LONG).show()
+        //  Toast.makeText(requireContext(), "", Toast.LENGTH_LONG).show()
     }
 
 
@@ -182,7 +187,7 @@ class ProfileFragment : Fragment() {
                 REQUEST_CODE_IMAGE_PICKER ->{
                     selectedImage = data?.data
                     binding.ivImageUserProfile.setImageURI(selectedImage)
-                   uploadImage()
+                    uploadImage()
 
                 }
             }
@@ -202,7 +207,7 @@ class ProfileFragment : Fragment() {
         }
     }
 
-   //this is the function that request for permission
+    //this is the function that request for permission
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -211,14 +216,16 @@ class ProfileFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == TO_READ_EXTERNAL_STORAGE){
             if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                 openImageChooser()
+                openImageChooser()
             }else{
 
             }
         }
     }
-
 }
+
+
+
 
 
 

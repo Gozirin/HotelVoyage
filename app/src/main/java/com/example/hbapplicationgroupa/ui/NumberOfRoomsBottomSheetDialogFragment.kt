@@ -5,16 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomIdByRoomTypeAdapterInterface
 import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomNumberBottomSheetAdapter
 import com.example.hbapplicationgroupa.databinding.FragmentNumberOfRoomsBottomSheetDialogBinding
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes
-import com.example.hbapplicationgroupa.utils.RoomTypeAdapterInterface
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class NumberOfRoomsBottomSheetDialogFragment(
-    private val roomTypes: ArrayList<GetHotelByIdResponseItemRoomTypes>,
-    private val roomTypeAdapterInterface: RoomTypeAdapterInterface
-) : BottomSheetDialogFragment(), RoomTypeAdapterInterface {
+    private val roomNumbers: ArrayList<GetHotelRoomByIdResponseItem>,
+    private val roomTypeAdapterInterface: RoomIdByRoomTypeAdapterInterface
+) : BottomSheetDialogFragment(), RoomIdByRoomTypeAdapterInterface {
     private var _binding: FragmentNumberOfRoomsBottomSheetDialogBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: RoomNumberBottomSheetAdapter
@@ -31,18 +31,30 @@ class NumberOfRoomsBottomSheetDialogFragment(
         binding.roomNumberBottomSheetRecyclerView.adapter = adapter
         binding.roomNumberBottomSheetRecyclerView.setHasFixedSize(true)
 
-        adapter.addRoomType(roomTypes)
+        //Receive rooms from booking details fragment and add them to the adapter for selection/display
+       adapter.addRoomIdByRoomType(roomNumbers)
 
+        //Click event to dismiss the bottom sheet
         binding.cancelButton.setOnClickListener {
             dismiss()
         }
     }
 
-    override fun getSelectedRoomTypes(position: Int, name: String) {
+   // Pass name of room when a room is selected to the booking details fragment
+//    override fun getSelectedRoomTypes(position: Int, name: String) {
+//        binding.doneButton.setOnClickListener {
+//            roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
+//            dismiss()
+//
+//        }
+//        Log.d("GKB", "$name was selected")
+//    }
+
+    override fun getSelectedRoomIdByRoomTypes(position: Int, data: String, toBookRoomId: String) {
         binding.doneButton.setOnClickListener {
-            roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
+            roomTypeAdapterInterface.getSelectedRoomIdByRoomTypes(position, data, toBookRoomId)
             dismiss()
         }
-        Log.d("GKB", "$name was selected")
+        Log.d("GKB", "$data was selected")
     }
 }

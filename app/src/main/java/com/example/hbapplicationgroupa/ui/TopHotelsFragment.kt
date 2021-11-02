@@ -1,25 +1,45 @@
 package com.example.hbapplicationgroupa.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
+import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
 import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
+import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
+import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
-class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener, TopHotelAdapter.TopHotelsBookBtnClickListener {
-    private lateinit var adapter: TopHotelAdapter
+@AndroidEntryPoint
+class TopHotelsFragment : Fragment(),
+    TopHotelAdapter.TopHotelsItemClickListener,
+    TopHotelAdapter.TopHotelsBookBtnClickListener,
+    TopHotelAdapter.TopHotelSaveIconClickListener,
+    TopHotelAdapter.TopHotelSaveTextClickListener{
 
     //Set up view binding here
     private var _binding: FragmentTopHotelsBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var topHotelAdapter: TopHotelAdapter
+    val hotelViewModel : HotelViewModel by viewModels()
+    lateinit var recyclerView: RecyclerView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentTopHotelsBinding.inflate(inflater, container, false)
@@ -29,59 +49,24 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.topHotelFilterIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
-        }
 
-        binding.topHotelBackBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_topHotelsFragment_to_exploreHomeAfterSearchFragment)
-        }
-
-        //creating dummy Hotel Data
-        val atlantisParadise = Hotel(
-            1, "Atlantis Paradise", 6500,
-            "9 Star Hotel", "99%", R.drawable.hotel_atlantis_paradise_bahamas
-        )
-        val burbArab = Hotel(
-            2, "Burb Arab", 8500,
-            "7 Star Hotel", "100%", R.drawable.hotel_burg_arab_dubai
-        )
-        val emiratePalace = Hotel(
-            3, "Emirate Palace", 8900,
-            "5 Star Hotel", "100%", R.drawable.hotel_emirates_palace_abu_dhabi
-        )
-        val meridianPalace = Hotel(
-            4, "Meridian Palace", 5500,
-            "9 Star Hotel", "98%", R.drawable.hotel_merdan_palace_turkey
-        )
-        val thePalms = Hotel(
-            5, "The Palms", 6500,
-            "6 Star Hotel", "99%", R.drawable.hotel_the_palms_las_vegas
-        )
-        val thePlaza = Hotel(
-            6, "The Plaza", 7800,
-            "9 Star Hotel", "100%", R.drawable.hotel_the_plaza_newyork
-        )
-        val westinExcelsior = Hotel(
-            7, "Westin Excelsior", 9500,
-            "12 Star Hotel", "100%", R.drawable.hotel_westin_excelsior_rome
-        )
-
-        val listOfHotels = listOf(
-            atlantisParadise, burbArab, emiratePalace,
-            meridianPalace, thePalms, thePlaza, westinExcelsior
-        )
-        adapter = TopHotelAdapter(listOfHotels, this, this)
-        val recyclerView = binding.topHotelRecyclerview
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(false)
+        //connecting the view with the data response
+        showProgressBar()
+        Toast.makeText(requireContext(), "Please, Ensure your internet is active", Toast.LENGTH_LONG).show()
+        setupRecyclerView()
+        hotelViewModel.fetchTopScreenHotels()
+        hotelViewModel.topHotelsLiveData.observe(viewLifecycleOwner,{
+            Log.d("Frag -> TopHotel", it.toString())
+            topHotelAdapter.setListOfTopHotels(it)
+            hideProgressBar()
+        })
 
         // setting back button
         val backButton = binding.topHotelBackBtn
         backButton.setOnClickListener{
             findNavController().popBackStack()
         }
+
         //setting view button
         binding.topHotelSearchView.setOnSearchClickListener{
             it.setBackgroundResource(R.color.splash_screen_background_color)
@@ -89,33 +74,13 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
         }
 
         onBackPressed()
-
-        //filter button
-//        binding.topHotelFilter.setOnClickListener{
-//            it.setBackgroundResource(R.color.purple_500)
-//            Toast.makeText(context, "Filter icon is clicked", Toast.LENGTH_LONG).show()
-//        }
-
-//        val saveButton = view.findViewById<ImageButton>(R.id.topHotel_recyclerview_imageview_save)
-//        saveButton.setOnClickListener{
-//            it.setBackgroundResource(R.color.purple_700)
-//            Toast.makeText(context, "Hotel Saved", Toast.LENGTH_SHORT).show()
-//        }
-
-        //setting book hotel
-//        val bookHotelBtn = view.findViewById<Button>(R.id.topHotel_recyclerview_book_now)
-//        bookHotelBtn.setOnClickListener{
-//            it.setBackgroundResource(R.color.purple_500)
-//            Toast.makeText(requireContext(), "Hotel Booked", Toast.LENGTH_SHORT).show()
-//        }
     }
 
     override fun topHotelsItemClicked(position: Int) {
         findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
-        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
     }
 
-    override fun topHotelsBookBtnClicked(position: Int) {
+    override fun topHotelsPreviewBtnClicked(position: Int) {
         findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
     }
 
@@ -128,5 +93,38 @@ class TopHotelsFragment : Fragment(), TopHotelAdapter.TopHotelsItemClickListener
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
+
+    @SuppressLint("ResourceAsColor")
+    override fun topHotelSaveIconClickListener(position: Int) {
+
+    }
+
+    override fun topHotelSaveTextClickListener(position: Int) {
+        //TODO("Not yet implemented")
+    }
+
+    //show progress bar
+    private fun showProgressBar(){
+        binding.topHotelProgressBar.visibility = View.VISIBLE
+    }
+
+    //hide progress bar
+    private fun hideProgressBar() {
+        binding.topHotelProgressBar.visibility = View.INVISIBLE
+    }
+
+    //set up recycler view
+    private fun setupRecyclerView() {
+        topHotelAdapter = TopHotelAdapter(
+            requireContext(),
+            this,
+            this,
+            this,
+            this)
+        binding.topHotelRecyclerview.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            this.adapter = topHotelAdapter
+        }
     }
 }
