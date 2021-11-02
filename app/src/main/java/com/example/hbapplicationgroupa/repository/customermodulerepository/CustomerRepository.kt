@@ -1,27 +1,16 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
-import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
-import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
-import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
-import okhttp3.MultipartBody
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -61,7 +50,7 @@ class CustomerRepository @Inject constructor(
 
     override suspend fun addCustomerWishlistById(
         token: String,
-        hotelWishList: WishlistByPageNumberResponseItems,
+        hotelWishList: PageItem,
         hotelId: String
     ): Response<WishlistResponse> {
         return customerModuleApiInterface.addCustomerWishListByHotelId(token, hotelWishList, hotelId)

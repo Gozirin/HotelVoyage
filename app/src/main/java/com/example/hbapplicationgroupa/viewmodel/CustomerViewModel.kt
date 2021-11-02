@@ -17,18 +17,13 @@ import androidx.paging.cachedIn
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 
-import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
-import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
 import retrofit2.Response
 import java.lang.Exception
 
-import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
@@ -36,9 +31,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
-import kotlinx.coroutines.launch
 
-import java.security.AccessController.getContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -93,9 +86,10 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     }
 
     //add customer hotel wishlist
-    fun addWishList(token: String,
-                    hotelWishlist: WishlistByPageNumberResponseItems,
-                    hotelId: String){
+    fun addWishList(
+        token: String,
+        hotelWishlist: com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem,
+        hotelId: String){
         try {
             viewModelScope.launch(Dispatchers.IO){
                 val response = customerRepository.addCustomerWishlistById(
@@ -104,16 +98,18 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
                     hotelId
                 )
                 if (response.isSuccessful){
-                    Toast.makeText(getApplicationContext(),
-                        " ${response.body()?.message}",
-                        Toast.LENGTH_SHORT)
-                        .show()
-                }else{
-                    Toast.makeText(getApplicationContext(),
-                            " ${response.body()?.message}",
-                            Toast.LENGTH_SHORT)
-                            .show()
-                    }
+//                    Toast.makeText(getApplicationContext(),
+//                        " ${response.body()?.message}",
+//                        Toast.LENGTH_SHORT)
+//                        .show()
+                    Log.d("ADDWISHLISTVM", response.body()?.message.toString())
+                }else {
+//                    Toast.makeText(getApplicationContext(),
+//                            " ${response.body()?.message}",
+//                            Toast.LENGTH_SHORT)
+//                            .show()
+                    Log.d("ADDWISHLISTVM", response.body()?.message.toString())
+                }
             }
         }catch (e: Exception){
             e.printStackTrace()
@@ -130,15 +126,17 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
                     token, hotelId
                 )
                 if (response.body()?.succeeded == true){
-                    Toast.makeText(getApplicationContext(),
-                        " ${response.body()?.message}",
-                        Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(getApplicationContext(),
+//                        " ${response.body()?.message}",
+//                        Toast.LENGTH_SHORT)
+//                        .show()
+                Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }else{
-                    Toast.makeText(getApplicationContext(),
-                        " ${response.body()?.message}",
-                        Toast.LENGTH_SHORT)
-                        .show()
+//                    Toast.makeText(getApplicationContext(),
+//                        " ${response.body()?.message}",
+//                        Toast.LENGTH_SHORT)
+//                        .show()
+                    Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }
             }
         }catch (e: Exception){

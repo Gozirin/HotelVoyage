@@ -20,7 +20,11 @@ import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
+class WishListFragment : Fragment(),
+                         WishListAdapter.WishListItemClickListener,
+                         WishListAdapter.WishListPreviewButtonClickListener,
+                         WishListAdapter.WishListRemoveButtonClickListener
+                        {
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
 
@@ -49,6 +53,7 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         //observing data and setting it on the recyclerView
             AuthPreference.initPreference(requireActivity())
             val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+
             customerViewModel.getWishList(authToken, 50, 1)
             customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
                 if (it.isNullOrEmpty()) {
@@ -61,16 +66,6 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
                     Log.d("wishList fragSuccess", it.toString())
                 }
             })
-
-        //TODO: Set click listener on recycler view item
-        binding.appBarTitle.setOnClickListener {
-            findNavController().navigate(R.id.action_wishListFragment_to_bookingDetailsFragment)
-        }
-
-        //TODO: Set click listener on recycler view item
-        binding.searchBar.setOnClickListener {
-            findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
-        }
 
         //Overriding onBack press to navigate to home Fragment onBack Pressed
         val callback = object : OnBackPressedCallback(true){
@@ -87,15 +82,25 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
     }
 
     //Click listener for navigation of book btn to booking details
-    override fun wishListBookBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_wishListFragment_to_bookingDetailsFragment)
+    override fun wishListPreviewBtnClicked(position: Int) {
+        findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
+    }
+
+    //remove icon item click
+
+    override fun wishlistRemoveBtnClicked(position: Int) {
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        customerViewModel.removeWishList(authToken, wishListAdapter.listOfWishList[position].hotelId)
     }
 
     //setting adapter
     //set up recycler view
     private fun setupRecyclerView() {
         wishListAdapter = WishListAdapter(requireContext(),
-                    this, this)
+                    this,
+            this,
+            this)
         wishListRecyclerView.apply {
             adapter = wishListAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -111,4 +116,5 @@ class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, 
         binding.wishListProgressBar.visibility = View.VISIBLE
         binding.tvNotificationWishList.visibility = View.VISIBLE
     }
-}
+
+ }

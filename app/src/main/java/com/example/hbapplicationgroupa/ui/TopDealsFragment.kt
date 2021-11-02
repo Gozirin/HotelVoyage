@@ -13,18 +13,26 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
 import com.example.hbapplicationgroupa.utils.Resources
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, TopDealAdapter.TopDealPreviewBtnClickListener {
+class TopDealsFragment : Fragment(),
+                        TopDealAdapter.TopDealItemClickListener,
+                        TopDealAdapter.TopDealPreviewBtnClickListener,
+                        TopDealAdapter.TopDealSaveIconClickListener{
 
     private lateinit var topDealAdapter: TopDealAdapter
     val viewModel: HotelViewModel by viewModels()
+    val customerViewModel: CustomerViewModel by viewModels()
+    private lateinit var allHotelsAdapter: AllHotelsAdapter
 
     //Set up view binding here
     private var _binding: FragmentTopDealsBinding? = null
@@ -141,7 +149,9 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
     private fun setupRecyclerView() {
-        topDealAdapter = TopDealAdapter(this, this)
+        topDealAdapter = TopDealAdapter(this,
+            this,
+            this)
         binding.topDealRecyclerview.apply {
             adapter = topDealAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -150,5 +160,15 @@ class TopDealsFragment : Fragment(), TopDealAdapter.TopDealItemClickListener, To
 
     }
 
-
+    override fun topDealSaveIconClicked(position: Int) {
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val hotelWish = allHotelsAdapter.listOfAllHotels[position]
+        hotelWish.id?.let {
+            customerViewModel.addWishList(authToken,
+                hotelWish,
+                it
+            )
+        }
+    }
 }

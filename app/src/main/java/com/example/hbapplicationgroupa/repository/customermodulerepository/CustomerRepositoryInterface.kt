@@ -5,18 +5,12 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
-import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
-import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface CustomerRepositoryInterface {
 //    suspend fun addCustomerBookingByHotelId()
@@ -47,7 +41,7 @@ interface CustomerRepositoryInterface {
 
     suspend fun addCustomerWishlistById(
         token: String,
-        hotelWishList: WishlistByPageNumberResponseItems,
+        hotelWishList: PageItem,
         hotelId: String
     ): Response<WishlistResponse>
 

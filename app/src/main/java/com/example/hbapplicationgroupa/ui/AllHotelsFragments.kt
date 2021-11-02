@@ -13,15 +13,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingsAdapter
+import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
-import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
-import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class AllHotelsFragments : Fragment(),
@@ -31,9 +29,10 @@ class AllHotelsFragments : Fragment(),
 
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
-  //  val customerViewModel: CustomerViewModel by viewModels()
+    val customerViewModel: CustomerViewModel by viewModels()
     val arrayList =  ArrayList<PageItem>()
     lateinit var selectedState: String
+    lateinit var wishListAdapter: WishListAdapter
 
 
 
@@ -146,9 +145,9 @@ class AllHotelsFragments : Fragment(),
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
-        allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
+        allHotelsAdapter.listOfAllHotels = it.data.pageItems as MutableList<PageItem>
                 allHotelsAdapter.notifyDataSetChanged()
-                Log.d("All hotels: ", "${it.data.pageItems}")
+                //Log.d("All hotels: ", "${it.data.pageItems}")
                 Toast.makeText(requireContext(),"${it.data.pageItems}", Toast.LENGTH_SHORT).show()
             }
         })
@@ -165,15 +164,17 @@ class AllHotelsFragments : Fragment(),
         }
     }
     //set save icon to save hotel to wishList
-    val saveText = view?.findViewById<TextView>(R.id.allHotels_recyclerview_textview)
-    val saveIcon = view?.findViewById<ImageView>(R.id.allHotels_recyclerview_imageview_save)
-
-    override fun allHotelSaveIconClickListener(position: Int) {
-        var wishList = allHotelsAdapter.listOfAllHotels[position]
-         saveIcon?.setOnClickListener{
-             //customerViewModel.saveHotelWishToDb(wishList)
-             it.setBackgroundColor(R.drawable.bookmark_icon)
-             saveText?.text = "Saved"
-         }
+     override fun allHotelSaveIconClickListener(position: Int) {
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val hotelWish = allHotelsAdapter.listOfAllHotels[position]
+        hotelWish.id?.let {
+           customerViewModel.addWishList(authToken,
+                hotelWish,
+                it
+            )
+        }
     }
+
+
 }

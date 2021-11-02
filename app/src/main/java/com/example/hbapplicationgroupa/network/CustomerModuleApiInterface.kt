@@ -1,15 +1,13 @@
 package com.example.hbapplicationgroupa.network
 
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
@@ -52,8 +50,8 @@ interface CustomerModuleApiInterface {
     @POST("/api/Customer/{hotelId}/add-wishlist")
     suspend fun addCustomerWishListByHotelId(
         @Header("Authorization") token: String,
-        @Body hotelWishlist: WishlistByPageNumberResponseItems,
-        @Path("hotelId") hotelId : String
+        @Body hotelWishlist: PageItem,
+        @Path("hotelId") hotelId: String
     ): Response<WishlistResponse>
 
     @DELETE("/api/Customer/{hotelId}/remove-wishlist")

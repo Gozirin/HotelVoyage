@@ -3,38 +3,34 @@ package com.example.hbapplicationgroupa.adapter.wishlistadapter
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
-import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.databinding.WishListItemsBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
-import kotlin.math.ceil
 
 
 class WishListAdapter(var context: Context,
                       private val wishListItemClickListener: WishListItemClickListener,
-                      private val wishListBookButtonClickListener: WishListBookButtonClickListener) :
+                      private val wishListPreviewButtonClickListener: WishListPreviewButtonClickListener,
+                      private val wishListRemoveButtonClickListener: WishListRemoveButtonClickListener
+                      ) :
     RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
-    private var listOfWishList = mutableListOf<WishlistByPageNumberResponseItems>()
+     var listOfWishList = mutableListOf<WishlistByPageNumberResponseItems>()
 
     inner class WishListViewHolder(binding: WishListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
         var hotelPrice: TextView = binding.tvHotelprice
         var hotelName: TextView = binding.tvNameOfHotel
         var hotelRating: TextView = binding.tvHotelRating
-        val saveButton: TextView = binding.tvSave
-        val bookmarkIcon: ImageView = binding.bookmarkIcon
-        val bookingBtn: Button = binding.bookingBtn
+        val removeText: TextView = binding.tvRemove
+        val removeIcon: ImageView = binding.removeIcon
+        val previewBtn: Button = binding.bookingBtn
         val savedImage: ImageView = binding.hotelImageView
 
     }
@@ -43,8 +39,12 @@ class WishListAdapter(var context: Context,
         fun wishListClicked(position: Int)
     }
 
-    interface WishListBookButtonClickListener {
-        fun wishListBookBtnClicked(position: Int)
+    interface WishListPreviewButtonClickListener {
+        fun wishListPreviewBtnClicked(position: Int)
+    }
+
+    interface WishListRemoveButtonClickListener {
+        fun wishlistRemoveBtnClicked(position: Int)
     }
 
 
@@ -69,19 +69,15 @@ class WishListAdapter(var context: Context,
 
 
         holder.apply {
-            // set the onclick listener to the save button
-            saveButton.setOnClickListener {
-
-            }
 
             // set the onclick listener to the bookmark icon
-            bookmarkIcon.setOnClickListener {
-                bookmarkIcon.setImageResource(R.drawable.bookmark_icon)
+            removeIcon.setOnClickListener {
+                wishListRemoveButtonClickListener.wishlistRemoveBtnClicked(position)
             }
 
             // set the onclick listener to the booking button
-            bookingBtn.setOnClickListener {
-                wishListBookButtonClickListener.wishListBookBtnClicked(position)
+            previewBtn.setOnClickListener {
+                wishListPreviewButtonClickListener.wishListPreviewBtnClicked(position)
 //
             }
 
@@ -99,4 +95,5 @@ class WishListAdapter(var context: Context,
         listOfWishList = list
         notifyDataSetChanged()
     }
+
 }

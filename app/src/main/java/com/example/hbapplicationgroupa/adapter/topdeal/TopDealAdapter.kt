@@ -15,7 +15,8 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDeals
 
 class TopDealAdapter(
     private val topDealItemClickListener: TopDealItemClickListener,
-    private val topDealPreviewBtnClickListener: TopDealPreviewBtnClickListener
+    private val topDealPreviewBtnClickListener: TopDealPreviewBtnClickListener,
+    private val topDealSaveIconClickListener: TopDealSaveIconClickListener
 ) : RecyclerView.Adapter<TopDealAdapter.TopDealViewHolder>() {
 
     var topDealList: List<GetTopDealsResponseItem> = listOf()
@@ -24,10 +25,12 @@ class TopDealAdapter(
         val nameOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_name)
         val priceOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_price)
         val classOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_status)
-//        val ratingOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_rating)
+        val ratingOfDeal = view.findViewById<TextView>(R.id.topDeal_recyclerview_hotel_rating)
         val imageOfDeal = view.findViewById<ImageView>(R.id.topDeal_recyclerview_imageview)
         val hotelBookBtn: AppCompatButton = itemView.findViewById(R.id.topDealBookBtn)
         val topDealView: CardView = itemView.findViewById(R.id.topDealView)
+        val saveIcon =  view.findViewById<ImageView>(R.id.topDeal_recyclerview_imageview_save)
+        val saveText = view.findViewById<TextView>(R.id.topDeal_recyclerview_textview)
     }
 
     interface TopDealItemClickListener {
@@ -36,6 +39,10 @@ class TopDealAdapter(
 
     interface TopDealPreviewBtnClickListener {
         fun topHotelsPreviewBtnClicked(position: Int)
+    }
+
+    interface TopDealSaveIconClickListener{
+        fun topDealSaveIconClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopDealViewHolder {
@@ -65,6 +72,12 @@ class TopDealAdapter(
         holder.hotelBookBtn.setOnClickListener {
             topDealPreviewBtnClickListener.topHotelsPreviewBtnClicked(position)
         }
+
+        holder.saveIcon.setOnClickListener{
+            topDealSaveIconClickListener.topDealSaveIconClicked(position)
+            holder.saveText.text = "Saved"
+        }
+
     }
 
     override fun getItemCount(): Int {

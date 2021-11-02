@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import kotlin.math.ceil
@@ -67,7 +68,9 @@ class AllHotelsAdapter(
 
         holder.saveIcon.setOnClickListener{
             allHotelSaveIconClickListener.allHotelSaveIconClickListener(position)
+            holder.saveTextView.text = "saved"
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -85,6 +88,7 @@ class AllHotelsAdapter(
     interface AllHotelSaveIconClickListener{
         fun allHotelSaveIconClickListener(position: Int)
     }
+
 
     fun setList(list: MutableList<PageItem>){
         listOfAllHotels.clear()
