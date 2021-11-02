@@ -27,6 +27,7 @@ import com.example.hbapplicationgroupa.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.utils.TO_READ_EXTERNAL_STORAGE
+import com.example.hbapplicationgroupa.utils.UpdateProfileBottomSheetOnClickInterface
 import com.example.hbapplicationgroupa.utils.getFileName
 import com.example.hbapplicationgroupa.utils.snackbar
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
@@ -37,7 +38,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var dialog: Dialog
@@ -91,7 +92,7 @@ class ProfileFragment : Fragment() {
 
         //Display bottom sheet to update user's profile
         binding.fragmentProfileTitleTv.setOnClickListener {
-            UpdateProfileBottomSheetDialogFragment(customerInfo).show(
+            UpdateProfileBottomSheetDialogFragment(customerInfo, this).show(
                 requireActivity().supportFragmentManager, "updateProfileBottomSheet"
             )
         }
@@ -229,6 +230,10 @@ class ProfileFragment : Fragment() {
 
             }
         }
+    }
+
+    override fun passNameToProfileFragment(firstName: String, lastName: String) {
+        binding.fragmentProfileNameTv.text = "$firstName $lastName"
     }
 }
 
