@@ -7,6 +7,6 @@ import retrofit2.http.Body
 import retrofit2.http.Path
 
 interface UserRepositoryInterface {
-    suspend fun getUserById(id: String): Response<GetUserByIdResponseModel>
+    suspend fun getUserById(token: String): Response<GetUserByIdResponseModel>
     suspend fun updateUserPhotoById(id: String, Photo: Int): Response<UpdateUserPhotoByUserIdResponseModel>
 }
