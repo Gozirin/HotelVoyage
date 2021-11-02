@@ -46,11 +46,10 @@
     <ScrollView
         android:id="@+id/fragment_register_scroll_sv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,7 +59,9 @@
                 android:id="@+id/iv_image_register"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
+                android:layout_marginTop="70dp"
                 android:src="@drawable/iv_image"
+                android:layout_marginBottom="10dp"
                 local:layout_constraintEnd_toEndOf="parent"
                 local:layout_constraintStart_toStartOf="parent"
                 local:layout_constraintTop_toTopOf="parent" />
@@ -178,7 +179,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp"
@@ -247,9 +248,6 @@
                         android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
-
-                    <!--                register_phoneNumber-->
-
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
 
@@ -410,6 +408,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_registrationTAndC" />
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register"

@@ -16,22 +16,49 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
+
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
+import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseItems
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
+import retrofit2.Response
+import java.lang.Exception
+
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
-import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+
 import java.security.AccessController.getContext
 import javax.inject.Inject
 
 @HiltViewModel
 class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository, private val api: CustomerModuleApiInterface): ViewModel() {
+
+    private val _updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = MutableLiveData()
+      val updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = _updateProfileImageLiveData
+
+  //
+//    fun makeApiCall(authToken: String, image: MultipartBody.Part){
+//        viewModelScope.launch(Dispatchers.IO){
+//            try {
+//                val response = customerRepository.updateProfileImage(authToken,image)
+//                _updateProfileImageLiveData.postValue(response)
+//            }catch (e:Exception){
+//                Log.d("MQ", "updateImage: ${e.message}")
+//            }
+//        }
+//    }
+
     //class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository): ViewModel() {
     private val _addReviewResponse: MutableLiveData<ReviewByHotelIdResponseModel> =
         MutableLiveData()
@@ -124,6 +151,7 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     private val _addRatingsResponse: MutableLiveData<RatingsByHotelIdResponseModel> =
         MutableLiveData()
     val addRatingsResponse: LiveData<RatingsByHotelIdResponseModel> = _addRatingsResponse
+
 
 
     //    booking history flow data using pagination from PastBookingPagingDataSource

@@ -5,7 +5,7 @@ plugins {
     id "androidx.navigation.safeargs.kotlin"
     id 'kotlin-kapt'
     id "dagger.hilt.android.plugin"
-    id 'kotlin-parcelize'
+    id "kotlin-parcelize"
 }
 
 android {
@@ -65,6 +65,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
+    //paystack
+    implementation 'co.paystack.android:paystack:3.1.2'
     // Test helpers for LiveData
     testImplementation "android.arch.core:core-testing:1.1.1"
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
@@ -165,7 +167,7 @@ dependencies {
     implementation "androidx.paging:paging-guava:$paging_version"
 
     //for viewmodel delegate
-    def activity_version = "1.4.0-alpha10"
+    def activity_version = "1.4.0"
     implementation "androidx.activity:activity-ktx:$activity_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 }

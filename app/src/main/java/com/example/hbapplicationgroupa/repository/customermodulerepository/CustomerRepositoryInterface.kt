@@ -12,6 +12,8 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistb
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -39,6 +41,9 @@ interface CustomerRepositoryInterface {
         pageSize: Int,
         pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
+
+
+    //suspend fun updateProfileImage(authToken: String, image: MultipartBody.Part): Response<UpdateProfileImage>
 
     suspend fun addCustomerWishlistById(
         token: String,

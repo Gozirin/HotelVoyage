@@ -1,5 +1,6 @@
 package com.example.hbapplicationgroupa.ui
 
+
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -16,12 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
-import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
 import com.example.hbapplicationgroupa.utils.*
-import com.example.hbapplicationgroupa.utils.LoginValidations.enable
 import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -39,19 +37,15 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         errorMsg = binding.loginErrorMsg
-
         binding.tvForgotPasswordText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment2)
         }
-
         binding.tvLoginRegisterText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
-
         val email = binding.tvEmailTeLoginScreen
         val password = binding.tvEditPasswordLoginScreen
         val loginBtn = binding.btnLoginScreen
-
         loginBtn.setOnClickListener {
             if (LoginValidations.validateLoginScreen(email, password)){
                 login(email.text.toString().trim(), password.text.toString().trim())
@@ -59,7 +53,6 @@ class LoginFragment : Fragment() {
                 binding.loginErrorMsg.text = "Email and Password fields can't be empty"
             }
         }
-
         AuthPreference.initPreference(requireActivity())
         observeLoginAuthLiveData()
 
@@ -163,3 +156,4 @@ class LoginFragment : Fragment() {
         timer.start()
     }
 }
+
