@@ -1,14 +1,22 @@
 package com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter
 
+import android.content.Context
+import android.graphics.Paint
+import android.graphics.PaintFlagsDrawFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.databinding.RoomNumberBottomSheetViewHolderBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
+import com.example.hbapplicationgroupa.utils.LoginValidations.enable
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.withContext
 
 
 class RoomNumberBottomSheetAdapter(
-    private val roomIdByRoomTypeAdapterInterface: RoomIdByRoomTypeAdapterInterface
+    private val roomIdByRoomTypeAdapterInterface: RoomIdByRoomTypeAdapterInterface,
+    private val context: Context
 ): RecyclerView.Adapter<RoomNumberBottomSheetAdapter.RoomNumberBottomSheetViewHolder>() {
 
     inner class RoomNumberBottomSheetViewHolder(
@@ -40,9 +48,14 @@ class RoomNumberBottomSheetAdapter(
     override fun onBindViewHolder(holder: RoomNumberBottomSheetViewHolder, position: Int) {
         with(holder) {
             with(listOfRoomsByRoomId[position]) {
-                if (!isBooked) {
-                    binding.roomNumber.text = roomNo.toString()
-                    binding.roomId.text = id.toString()
+                binding.roomNumber.text = "Room $roomNo"
+                binding.roomId.text = id
+                if (isBooked) {
+                   binding.roomNumber.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+                    binding.roomTypeCheckbox.enable(false)
+                    binding.roomNumber.setOnClickListener {
+                        Toast.makeText(context, "Room $roomNo is not available", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 //            with(listOfRoomsByNumber[position]){
@@ -64,7 +77,6 @@ class RoomNumberBottomSheetAdapter(
 //                        Log.d("GKB", "$roomTypeList")
 //                    }
 //                }
-
 
             //Get selection from adapter and send it to rooms bottom sheet fragment
             binding.roomTypeCheckbox.setOnClickListener {

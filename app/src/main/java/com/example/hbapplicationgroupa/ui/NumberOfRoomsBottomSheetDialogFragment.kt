@@ -27,7 +27,7 @@ class NumberOfRoomsBottomSheetDialogFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = RoomNumberBottomSheetAdapter(this)
+        adapter = RoomNumberBottomSheetAdapter(this, requireContext())
         binding.roomNumberBottomSheetRecyclerView.adapter = adapter
         binding.roomNumberBottomSheetRecyclerView.setHasFixedSize(true)
 

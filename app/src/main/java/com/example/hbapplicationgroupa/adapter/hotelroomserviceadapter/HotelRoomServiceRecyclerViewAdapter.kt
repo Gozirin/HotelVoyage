@@ -59,6 +59,7 @@ class HotelRoomServiceRecyclerViewAdapter(
         holder.bindHotelRoomData(roomDataList[position])
 
         val roomTypeId = roomDataList[position].id
+
         holder.bookNowBtn.setOnClickListener {
             bookNowClickListener.bookClick(position, roomTypeId)
         }

@@ -1,22 +1,13 @@
 package com.example.hbapplicationgroupa.repository.customermodulerepository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.liveData
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource_Factory
-import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -65,6 +56,9 @@ class CustomerRepository @Inject constructor(
         return customerModuleApiInterface.updateUser(authToken, updateUserModel)
     }
 
+    override suspend fun getUserById(token: String): Response<GetUserByIdResponseModel> {
+        return customerModuleApiInterface.getCustomerDetails(token)
+    }
 
     override suspend fun updateProfileImage(authToken: String,image: MultipartBody.Part): Response<UpdateProfileImage> {
        return customerModuleApiInterface.uploadImage(authToken, image)

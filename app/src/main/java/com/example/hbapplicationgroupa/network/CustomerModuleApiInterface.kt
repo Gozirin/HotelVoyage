@@ -11,6 +11,7 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistb
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -66,6 +67,12 @@ interface CustomerModuleApiInterface {
         @Header("Authorization") authToken: String,
         @Body updateUserModel: UpdateUserByIdModel
     ) : Response<UpdateUserByIdResponseModel>
+
+    @GET("api/Customer")
+    suspend fun getCustomerDetails(
+        @Header("Authorization")
+        token: String
+    ): Response<GetUserByIdResponseModel>
 
 //    @PATCH("Customer/update-review/{hotelId}")
 //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
