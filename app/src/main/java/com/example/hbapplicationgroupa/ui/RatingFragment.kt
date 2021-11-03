@@ -81,6 +81,13 @@ class RatingFragment : Fragment() {
         viewModel.getHotelRatingsLiveData.observe(viewLifecycleOwner, Observer {
             if (it != null){
                 ratingReviewRecyclerViewAdapter.ratingDataList = it.data
+                var ratings = 0.0
+                for (i in it.data){
+                    ratings += i.ratings
+                }
+                val average = ratings/it.data.size
+                val number3digits:Double = String.format("%.1f", average).toDouble()
+                binding.ratingRatingValueTv.text = "$number3digits"
                 ratingReviewRecyclerViewAdapter.notifyDataSetChanged()
             }
         })
