@@ -54,7 +54,8 @@ class WriteAReviewFragment : Fragment() {
         authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
 
         binding.reviewBackBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_writeAReviewFragment_to_ratingFragment)
+            val action = WriteAReviewFragmentDirections.actionWriteAReviewFragmentToRatingFragment(args.postReviewHotelId)
+            findNavController().navigate(action)
         }
         binding.reviewRatingProgressBar.setOnRatingBarChangeListener { ratingBar, fl, b ->
             customerRating = fl.toInt()

@@ -15,6 +15,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
@@ -119,68 +120,37 @@ class HotelViewModel @Inject constructor(
 
     fun fetchTopHotels() {
         viewModelScope.launch(Dispatchers.IO) {
-//            topHotels.postValue(Resource.loading(null))
             try {
                 val response = hotelRepositoryInterface.getTopHotels()
-                _exploreHomeTopHotels.postValue(response.body())
-//                Log.d("ExploreHomeVM 6: ", exploreHomeTopHotels.toString())
-//                Log.d("ExploreHomeVM 5: ", "The hell $response")
-                println("The response $response")
+                if (response.isSuccessful){
+                    _exploreHomeTopHotels.postValue(response.body())
+                }else{
+                    _exploreHomeTopHotels.postValue(response.body())
+                }
             } catch (e: Exception) {
-
-                println("the exception is $e")
-//                topHotels.postValue(Resource.error("Network error", null))
-//                Log.d("ExploreHomeVM 7: ", exploreHomeTopDeals.value?.data.toString())
-//                val response = hotelRepositoryInterface.getTopHotels()
-//                if (response.isSuccessful) {
-//                    exploreHomeTopHotels.postValue(response.body()?.data)
-//                }
+                e.printStackTrace()
             }
         }
     }
 
     fun fetchTopDeals() {
         viewModelScope.launch(Dispatchers.IO) {
-//            topHotels.postValue(Resource.loading(null))
             try {
                 val response = hotelRepositoryInterface.getTopDeals()
                 if (response.isSuccessful) {
-                    _exploreHomeTopDeals.value = (response.body())
-//                    Log.d("ExploreHomeVM 5: ", "${response.body()}")
+                    _exploreHomeTopDeals.postValue(response.body())
                 } else {
-//                    Log.d("ExploreHomeVM 5: ", "error")
+                    _exploreHomeTopDeals.postValue(response.body())
                 }
-//                Log.d("ExploreHomeVM 4: ", "${response.body()}")
-//                Log.d("ExploreHomeVM 5: ", exploreHomeTopDeals.value?.data.toString())
             } catch (e: Exception) {
-//                topHotels.postValue(Resource.error("Network error", null))
-                Log.d("ExploreHomeVM 8: ", exploreHomeTopDeals.value?.data.toString())
-//                val response = hotelRepositoryInterface.getTopHotels()
-//                if (response.isSuccessful) {
-//                    exploreHomeTopDeals.postValue(response.body()?.data)
-//                }
+                e.printStackTrace()
             }
         }
     }
 
-
-    //the amount of info coming in at a time
-//        init {
-//            getTopDealss(10)
-//        }
-        //the amount of info coming in at a time
         init {
             getTopDealss(10)
         }
-//           topDeals.postValue(Resource.loading(null))
-////            try {
-////                val response = hotelRepositoryInterface.getTopDeals()
-////                if (response.isSuccessful) {
-////                    topDeals.postValue(Resource.success(response.body()?.data) as Resource<ArrayList<GetTopDealsResponseItem>>?)
-////                }
-////            } catch (e: Exception) {
-////                topHotels.postValue(Resource.error("Network Error", null))
-////            }
 
     fun getTopDealss(pageSize: Int) = viewModelScope.launch {
         _topDealsLiveData.postValue(Resources.Loading())
@@ -329,6 +299,25 @@ class HotelViewModel @Inject constructor(
                 _bookingVerificationDetails.postValue(response.body())
             }catch (e: Exception) {
 
+            }
+        }
+    }
+
+    //hotel ratings
+    private val _getHotelRatingsLiveData: MutableLiveData<GetHotelRatingsResponseModel> = MutableLiveData()
+    val getHotelRatingsLiveData: LiveData<GetHotelRatingsResponseModel> = _getHotelRatingsLiveData
+
+    fun getRatings(hotelId: String){
+        viewModelScope.launch {
+            try {
+                val response = hotelRepositoryInterface.getHotelRatings(hotelId)
+                if (response.isSuccessful){
+                    _getHotelRatingsLiveData.value = response.body()
+                }else{
+                    _getHotelRatingsLiveData.value = response.body()
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
             }
         }
     }
