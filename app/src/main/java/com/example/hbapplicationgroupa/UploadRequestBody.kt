@@ -33,7 +33,7 @@ open class UploadRequestBody(
     override fun contentLength() = file.length()
 
     override fun writeTo(sink: BufferedSink) {
-        val length = file.length()
+        //val length = file.length()
         val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
         val fileInputStream = FileInputStream(file)
        //  to track the byte of the image upload
