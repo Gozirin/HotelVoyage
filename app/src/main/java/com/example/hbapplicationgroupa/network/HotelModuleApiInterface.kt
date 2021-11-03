@@ -96,7 +96,7 @@ interface HotelModuleApiInterface {
 
 
     @POST("/api/Hotel/book-hotel")
-    suspend fun  pushBookHotel (@Header("Authorization") authToken: String, @Body bookHotelInfo: BookHotel): Response<BookHotel>
+    suspend fun  pushBookHotel (@Header("Authorization") authToken: String, @Body bookHotelInfo: BookHotel): Response<BookHotelResponse>
 
     @GET("api/Hotel/{hotelId}/room/{roomTypeId}")
     suspend fun  getHotelRoomIdByRoomType(
