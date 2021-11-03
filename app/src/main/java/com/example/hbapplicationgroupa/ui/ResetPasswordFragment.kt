@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavHost
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -21,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ResetPasswordFragment : Fragment() {
     private var _binding: FragmentResetPasswordBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AuthViewModel
+    private val viewModel: AuthViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -68,11 +69,15 @@ class ResetPasswordFragment : Fragment() {
             val newPassword = binding.tvEmailTextResetPassword.text.toString()
             val confirmPassword = binding.tvConfirmPasswordResetPassword.text.toString()
 
+
             if (validateNotEmptyNewPasswordField(newPassword)
                 && validateNewPassword(newPassword)
                 &&  validateNewPasswordAndConfirmPassword(newPassword, confirmPassword)
 
           ){
+                binding.fragmentResetPasswordProgressBarPb.visibility = View.VISIBLE
+                binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
+                binding.btnResetPassword.text = "Resetting"
                makeApiCall(token!!,email!!, newPassword,confirmPassword)
 
             }else{
@@ -84,19 +89,16 @@ class ResetPasswordFragment : Fragment() {
                 }
                 if(!validateNewPassword(newPassword) ){
                     binding.tvCheckEmptyNewPasswordResetPassword.text = "Please enter valid password"
-                    binding.tvCheckEmptyNewPasswordResetPassword.visibility = View.VISIBLE
                 }
 
                 if (validateNewPassword(newPassword) && !validateNewPasswordAndConfirmPassword(newPassword,confirmPassword)){
                     binding.tvCheckEmptyConfirmPasswordResetPassword.text = "Password does not match"
                     binding.tvCheckEmptyConfirmPasswordResetPassword.visibility = View.VISIBLE
-
                 }
 
             }
 
         }
-        binding
 
 
       onBackPressed()
@@ -120,8 +122,12 @@ class ResetPasswordFragment : Fragment() {
         viewModel.resetPasswordLiveData.observe(requireActivity(),{
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+                binding.fragmentResetPasswordProgressBarPb.visibility = View.GONE
+                binding.btnResetPassword.text = "Reset Password"
             }else{
                 findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+                binding.fragmentResetPasswordProgressBarPb.visibility = View.GONE
+                binding.btnResetPassword.text = "Reset Password"
             }
         })
         viewModel.resetUserPassword(token,email, newPassword, confirmPassword)

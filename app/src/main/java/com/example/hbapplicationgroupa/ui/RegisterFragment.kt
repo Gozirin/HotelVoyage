@@ -49,6 +49,7 @@ class RegisterFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
 
             binding.btnRegister.setEnabled(false)
+            binding.btnRegister.text = "Registering"
             binding.fragmentRegisterProgressBarPb.visibility = View.VISIBLE
             val firstName = binding.fragmentRegisterFirstNameEtv.text.toString()
             val lastName = binding.fragmentRegisterLastNameEtv.text.toString()
@@ -62,31 +63,37 @@ class RegisterFragment : Fragment() {
             if(!function.validateFirstNameInput(firstName)){
                 binding.fragmentRegisterFirstNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateLastNameInput(lastName)){
                 binding.fragmentRegisterLastNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateEmailInput(email)){
                 binding.tvEmailText.error = "Invalid email"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateUserName(userName)){
                 binding.fragmentRegisterUserNameEtv.error = "Atleast 1 letter, atleast 3 character"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validatePhoneInput(phoneNumber)){
                 binding.fragmentRegisterPhoneNumberEtv.error = "Starts with '0' followed by '7', '8' or '9' and 11 characters"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(!function.validateSexInput(gender)){
                 binding.genderError.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(function.validateSexInput(gender)){
@@ -95,11 +102,13 @@ class RegisterFragment : Fragment() {
             if(!function.validatePasswordInput(password)){
                 binding.tvConfirmPasswordResetPassword.error = "At least 1 uppercase, 1 lowercase, 1 special character 1 digit and more than 7 characters"
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if (!binding.RegisterTickButton.isChecked){
                 binding.radioButtonMustBeCheckedErr.visibility = View.VISIBLE
                 binding.btnRegister.setEnabled(true)
+                binding.btnRegister.text = "Register"
                 binding.fragmentRegisterProgressBarPb.visibility = View.GONE
             }
             if(binding.RegisterTickButton.isChecked){
@@ -122,6 +131,7 @@ class RegisterFragment : Fragment() {
                         findNavController().navigate(action)
                         binding.fragmentRegisterPhoneNumberEtv.text?.clear()
                         binding.tvEmailText.text?.clear()
+                        binding.btnRegister.text = "Register"
                         binding.tvConfirmPasswordResetPassword.text?.clear()
                         binding.fragmentRegisterFirstNameEtv.text?.clear()
                         binding.fragmentRegisterLastNameEtv.text?.clear()
@@ -130,6 +140,7 @@ class RegisterFragment : Fragment() {
 
                     }else{
                         binding.btnRegister.setEnabled(true)
+                        binding.btnRegister.text = "Register"
                         binding.radioButtonMustBeCheckedErr.visibility = View.GONE
                         binding.fragmentRegisterProgressBarPb.visibility = View.GONE
                         Snackbar.make(view, it.message, Snackbar.LENGTH_SHORT).show()

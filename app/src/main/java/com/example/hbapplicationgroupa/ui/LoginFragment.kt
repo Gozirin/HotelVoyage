@@ -48,8 +48,10 @@ class LoginFragment : Fragment() {
         loginBtn.setOnClickListener {
             if (LoginValidations.validateLoginScreen(email, password)){
                 login(email.text.toString().trim(), password.text.toString().trim())
+                binding.btnLoginScreen.text = "Logging In"
             }else{
                 binding.loginErrorMsg.text = "Email and Password fields can't be empty"
+                binding.btnLoginScreen.text = "Login"
             }
         }
         AuthPreference.initPreference(requireActivity())
@@ -76,21 +78,25 @@ class LoginFragment : Fragment() {
                     //Saving auth Token and Id to Shared Preference
                     AuthPreference.setToken(it.data!!.token)
                     AuthPreference.setId(it.data.id)
+                    binding.btnLoginScreen.text = "Login"
                 }
                 400 -> {
                     binding.loginProgressBar.visibility = View.GONE
                     errorMsg.text = it.message
                     Log.d("Login400: ", it.message)
+                    binding.btnLoginScreen.text = "Login"
                 }
                 403 -> {
                     binding.loginProgressBar.visibility = View.GONE
                     errorMsg.text = it.message
                     Log.d("Login403: ", it.message)
+                    binding.btnLoginScreen.text = "Login"
                 }
                 else -> {
                     binding.loginProgressBar.visibility = View.GONE
                     errorMsg.text = it?.message
                     Log.d("Login500: ", "error")
+                    binding.btnLoginScreen.text = "Login"
                 }
             }
         })
