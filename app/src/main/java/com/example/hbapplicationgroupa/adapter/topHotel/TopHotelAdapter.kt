@@ -81,11 +81,9 @@ class TopHotelAdapter(
 
         holder.saveIcon.setOnClickListener {
             topHotelsSaveIconClickListener.topHotelSaveIconClickListener(position)
+            holder.saveText.text = "Successfully Saved"
         }
 
-        holder.saveText.setOnClickListener {
-            topHotelsSaveTextClickListener.topHotelSaveTextClickListener(position)
-        }
     }
 
     override fun getItemCount(): Int {
