@@ -21,7 +21,7 @@ class RetrofitModule {
     @Singleton
     @Provides
     fun provideRetrofitInstance(): Retrofit {
-        //okhttp interceptor is used to to log retrofit responses especially when debugging.
+        //okhttp interceptor is used to log retrofit responses especially when debugging.
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
         return Retrofit.Builder()

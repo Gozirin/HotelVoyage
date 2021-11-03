@@ -68,8 +68,8 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
         return reviewDataList.size
     }
 
-    fun setData(){
-        notifyDataSetChanged()
-    }
+//    fun setData(){
+//        notifyDataSetChanged()
+//    }
 
 }

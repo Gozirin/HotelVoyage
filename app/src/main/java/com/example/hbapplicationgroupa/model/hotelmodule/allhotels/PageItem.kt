@@ -21,7 +21,7 @@ data class PageItem(
     @SerializedName("gallery")
     val gallery: List<String>?,
     @SerializedName("id")
-    val id: String?,
+    var id: String?,
     @SerializedName("name")
     val name: String?,
     @SerializedName("phone")

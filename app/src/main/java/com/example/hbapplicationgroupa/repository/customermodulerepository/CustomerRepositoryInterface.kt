@@ -5,8 +5,8 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
@@ -14,8 +14,6 @@ import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileIma
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface CustomerRepositoryInterface {
 //    suspend fun addCustomerBookingByHotelId()
@@ -36,14 +34,23 @@ interface CustomerRepositoryInterface {
     ): Response<RatingsByHotelIdResponseModel>
 
     suspend fun getCustomerWishListByPageNumber(
-//        userId: String,
         token: String,
-        pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
 
 
     suspend fun updateProfileImage(authToken: String, image: MultipartBody.Part): Response<UpdateProfileImage>
+
+    suspend fun addCustomerWishlistById(
+        token: String,
+        hotelId: String
+    ): Response<WishlistResponse>
+
+    suspend fun  removeCustomerWishlistByHotelId(
+        token: String,
+        hotelId: String
+    ): Response<WishlistResponse>
 
     suspend fun updateUser(
         authToken: String,
