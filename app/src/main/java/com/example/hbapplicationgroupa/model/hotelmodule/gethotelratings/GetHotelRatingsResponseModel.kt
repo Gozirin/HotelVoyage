@@ -1,9 +1,8 @@
 package com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings
 
 data class GetHotelRatingsResponseModel(
-    val statusCode: String,
-    val success: Boolean,
-    val data: ArrayList<GetHotelRatingsResponseItem>,
-    val Message: String,
-    val errors: String?
+    val `data`: List<GetHotelRatingsResponseItem>,
+    val message: String,
+    val statusCode: Int,
+    val succeeded: Boolean
 )

@@ -55,6 +55,7 @@ class RatingFragment : Fragment() {
         clickListeners()
         onBackPressed()
         getReviews()
+        getRatings(args.postReviewHotelId)
     }
 
      fun getReviews(){
@@ -71,6 +72,16 @@ class RatingFragment : Fragment() {
 
             }else{
                 Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    fun getRatings(hotelId: String){
+        viewModel.getRatings(hotelId)
+        viewModel.getHotelRatingsLiveData.observe(viewLifecycleOwner, Observer {
+            if (it != null){
+                ratingReviewRecyclerViewAdapter.ratingDataList = it.data
+                ratingReviewRecyclerViewAdapter.notifyDataSetChanged()
             }
         })
     }
@@ -105,7 +116,8 @@ class RatingFragment : Fragment() {
         }
 
         binding.ratingBackBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_ratingFragment_to_hotelDescription2Fragment)
+            val action = RatingFragmentDirections.actionRatingFragmentToHotelDescription2Fragment(args.postReviewHotelId)
+            findNavController().navigate(action)
         }
     }
 }

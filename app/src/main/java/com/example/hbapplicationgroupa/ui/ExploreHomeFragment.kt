@@ -199,63 +199,19 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         hotelViewModel.exploreHomeTopDeals.observe(viewLifecycleOwner, {
             if (it != null) {
               //  binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-                it.data.let { topDeals -> renderTopDealsList(topDeals) }
+                  renderTopDealsList(it.data)
+//                it.data.let { topDeals -> renderTopDealsList(topDeals) }
                 binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
             }
-//            when (it.statusCode) {
-//                200 -> {
-//                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-//                    it.data.let { topDeals -> renderTopDealsList(topDeals) }
-//                    binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
-//                    //Log.d("ExploreHome 1: ", it.toString())
-//                }
-//
-//                400 -> {
-//                    binding.exploreHomeFragmentProgressBar2.visibility = View.GONE
-//                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-//                }
-//            }
         })
-//        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
-//            //2
-//            when (isAvailable) {
-//                true -> {
-//                    //3
-//                    hotelViewModel.exploreHomeTopDeals
-//                }
-//                false -> {
-//                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
-//                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        })
         return  hotelViewModel
     }
 
 
-
-
-
-//    fun initViewModel(pageSize: Int, pageNumber: Int){
-//        hotelViewModel.getHotelFromApi(pageSize,pageNumber)
-//
-//    }
-
-//    fun makeApiCall(){
-//       hotelViewModel.allHotelsLivedata.observe(requireActivity(),{
-//            if (it == null){
-//               Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
-//         }else{
-//
-//
-//           }
-//        })
-//    }
-
     //set fetched data to top deals adapter
-    private fun renderTopDealsList(topDeals: List<GetTopDealsResponseItem>) {
+    private fun renderTopDealsList(topDeals: MutableList<GetTopDealsResponseItem>) {
         topDealsAdapter.setListOfTopDeals(topDeals)
-
+        topDealsAdapter.notifyDataSetChanged()
     }
 
     private fun checkNetworkStatus() {
