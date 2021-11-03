@@ -94,8 +94,8 @@ class HotelViewModel @Inject constructor(
     val exploreHomeTopDeals: LiveData<GetTopDealsResponseModel>
         get() = _exploreHomeTopDeals
 
-    private var _bookingInfo: MutableLiveData<BookHotel> = MutableLiveData()
-    val bookingInfo: LiveData<BookHotel>
+    private var _bookingInfo: MutableLiveData<BookHotelResponse> = MutableLiveData()
+    val bookingInfo: LiveData<BookHotelResponse>
         get() = _bookingInfo
 
     private var _paymentOption: MutableLiveData<BookHotel> = MutableLiveData()
@@ -118,7 +118,7 @@ class HotelViewModel @Inject constructor(
 
 
     fun fetchTopHotels() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 //            topHotels.postValue(Resource.loading(null))
             try {
                 val response = hotelRepositoryInterface.getTopHotels()
@@ -140,7 +140,7 @@ class HotelViewModel @Inject constructor(
     }
 
     fun fetchTopDeals() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 //            topHotels.postValue(Resource.loading(null))
             try {
                 val response = hotelRepositoryInterface.getTopDeals()

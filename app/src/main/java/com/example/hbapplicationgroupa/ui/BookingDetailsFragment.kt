@@ -27,6 +27,7 @@ import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
@@ -39,8 +40,11 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
     private var fetchedRoomNumbers: ArrayList<GetHotelRoomByIdResponseItem>? = null
     private lateinit var hotelName: String
     var hotelBookingInfo: BookHotel? = null
-    var roomId = ""
-    var roomNumber = 0
+    private lateinit var roomId: String
+    private var roomNumber by Delegates.notNull<Int>()
+    private lateinit var transactionURL: String
+    private var price by Delegates.notNull<Float>()
+    private lateinit var bookingReference: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -54,7 +58,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
         Log.d("XYZ", "onViewCreatedroomName: ${args.roomItem!!.name}")
         Log.d("XYZ", "onViewCreatedroomTypeId: ${args.roomItem!!.id}")
         Log.d("XYZ", "onViewCreatedhotelId: ${args.hotelId}")
-        Log.d("XYZ", "getHotelRoomIdByRoomTypeId: $roomId ")
 
         //Show the calendar for date selection
         AuthPreference.initPreference(requireActivity())
@@ -221,7 +224,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
     //Receive data from rooms bottom sheet and populate it on the rooms edit text
     override fun getSelectedRoomIdByRoomTypes(position: Int, data: String, toBookRoomId: String) {
         Log.d("XYZ", "getSelectedRoomIdByRoomTypesData: $data")
-        val roomsEditText = "${args.roomItem!!.name} + $data"
+        val roomsEditText = "${args.roomItem!!.name}, $data"
         binding.roomsEditText.setText(roomsEditText)
         roomId = toBookRoomId
         Log.d("XYZ", "getSelectedRoomIdByRoomTyperoomId: $roomId ")
@@ -235,14 +238,17 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
             Log.d("XYZ", "getHotelRoomIdByRoomTypeIdresponse.BookHotelResponseItem: ${response.data}")
             if (response != null) {
                 fetchedRoomNumbers = response.data
+//                for (i in response.data.indices) {
+//                    if (!(response.data[i].isBooked)) {
+//                        fetchedRoomNumbers!!.addAll(listOf(response.data[i]))
+//                    }
+//                }
             }
-
-            for (i in fetchedRoomNumbers!!.indices) {
-                roomId = fetchedRoomNumbers!![i].id
+//            for (i in fetchedRoomNumbers!!.indices) {
 //                if (fetchedRoomNumbers!![i].roomNo == roomNumber) {
 //                    roomId = fetchedRoomNumbers!![i].id
 //                }
-            }
+//            }
             Log.d("XYZ", "getHotelRoomIdByRoomTypeIdfetchedRoomNumbers: $fetchedRoomNumbers")
 
         })
@@ -278,11 +284,17 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
             hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
             hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
                 if (it != null) {
+                    price = it.data.price.toFloat()
+                    transactionURL = it.data.paymentUrl
+                    bookingReference = it.data.paymentReference
+                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
                     Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
                         .show()
                    // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
-                    findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
+                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(transactionURL, price, bookingReference)
+                    findNavController().navigate(action)
                 }
             })
+        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
         }
 }
