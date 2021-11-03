@@ -81,7 +81,7 @@ class TopHotelAdapter(
 
         holder.saveIcon.setOnClickListener {
             topHotelsSaveIconClickListener.topHotelSaveIconClickListener(position)
-            holder.saveText.text = "Saved"
+            holder.saveText.text = "Successfully Saved"
         }
 
     }
@@ -91,7 +91,7 @@ class TopHotelAdapter(
     }
 
     fun setListOfTopHotels(topHotels: ArrayList<GetTopHotelsResponseItem>) {
-        listOfTopHotels.addAll(topHotels)
+        listOfTopHotels = topHotels
         Log.d("newList", listOfTopHotels.toString())
         notifyDataSetChanged()
     }

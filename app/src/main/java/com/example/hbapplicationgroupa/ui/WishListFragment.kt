@@ -16,6 +16,8 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,14 +27,21 @@ class WishListFragment : Fragment(),
                          WishListAdapter.WishListPreviewButtonClickListener,
                          WishListAdapter.WishListRemoveButtonClickListener
                         {
-    private var _binding: FragmentWishListBinding? = null
-    private val binding get() = _binding!!
+//    private var _binding: FragmentWishListBinding? = null
+//    private val binding get() = _binding!!
+//class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
 
     //initializing vm and recyclerview
     val customerViewModel: CustomerViewModel by viewModels()
     private lateinit var wishListRecyclerView : RecyclerView
 
-    lateinit var wishListAdapter: WishListAdapter
+    private lateinit var arrayLists : List<PageItem>
+    private lateinit var selectedState: String
+    private lateinit var hotelId: String
+    private lateinit var wishListAdapter: WishListAdapter
+
+    private var _binding: FragmentWishListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentWishListBinding.inflate(inflater, container, false)
@@ -41,26 +50,28 @@ class WishListFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arrayLists = listOf()
 
         wishListRecyclerView = binding.wishListRecyclerView
 
         //show progress bar while pulling api data
-        showProgressBar()
 
         //setting recycler view
         setupRecyclerView()
 
+        showProgressBar()
         //observing data and setting it on the recyclerView
             AuthPreference.initPreference(requireActivity())
             val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
 
-            customerViewModel.getWishList(authToken, 50, 1)
+            customerViewModel.getWishList(authToken, 10, 1)
             customerViewModel.wishListLiveData.observe(viewLifecycleOwner, {
                 if (it.isNullOrEmpty()) {
                     Log.d("wishList fragError", "No data from the Vm")
                     hideProgressBar()
                     Toast.makeText(requireContext(), "No WishList Saved", Toast.LENGTH_LONG).show()
                 } else {
+                    arrayLists = it
                     wishListAdapter.setDataToAdapter(it)
                     hideProgressBar()
                     Log.d("wishList fragSuccess", it.toString())
@@ -78,21 +89,28 @@ class WishListFragment : Fragment(),
 
     //Click listener for navigation of saved items to hotel description fragment
     override fun wishListClicked(position: Int) {
-        findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
+        val item = arrayLists[position]
+        hotelId = item.hotelId!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //Click listener for navigation of book btn to booking details
-    override fun wishListPreviewBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_wishListFragment_to_hotelDescription2Fragment)
+    override fun wishListPreviewBtnClicked(position: Int) {val item = arrayLists[position]
+        hotelId = item.hotelId!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //remove icon item click
-
     override fun wishlistRemoveBtnClicked(position: Int) {
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        customerViewModel.removeWishList(authToken, wishListAdapter.listOfWishList[position].hotelId)
-
+        customerViewModel.removeWishList(authToken, arrayLists[position].hotelId!!)
+        customerViewModel.getWishList(authToken, 10, 1)
+        Toast.makeText(requireContext(),
+            "${arrayLists[position].hotelName} is successfully deleted from WishList",
+            Toast.LENGTH_SHORT).show()
     }
 
     //setting adapter
@@ -109,8 +127,8 @@ class WishListFragment : Fragment(),
     }
 
     private fun hideProgressBar() {
-        binding.wishListProgressBar.visibility = View.INVISIBLE
-        binding.tvNotificationWishList.visibility = View.INVISIBLE
+        binding.wishListProgressBar.visibility = View.GONE
+        binding.tvNotificationWishList.visibility = View.GONE
     }
 
     private fun showProgressBar() {

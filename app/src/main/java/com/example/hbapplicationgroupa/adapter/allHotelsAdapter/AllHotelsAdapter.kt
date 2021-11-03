@@ -68,7 +68,7 @@ class AllHotelsAdapter(
 
         holder.saveIcon.setOnClickListener{
             allHotelSaveIconClickListener.allHotelSaveIconClickListener(position)
-            holder.saveTextView.text = "saved"
+            holder.saveTextView.text = "Successfully saved"
         }
 
     }

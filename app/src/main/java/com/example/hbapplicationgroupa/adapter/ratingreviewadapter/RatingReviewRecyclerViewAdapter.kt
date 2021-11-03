@@ -1,5 +1,7 @@
 package com.example.hbapplicationgroupa.adapter.ratingreviewadapter
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,15 +9,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.borjabravo.readmoretextview.ReadMoreTextView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.model.adaptermodels.RatingReviewModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.PageItem
 import com.mikhaellopez.circularimageview.CircularImageView
 
 /**
  * RecyclerView Adapter for rating_reviewsRecyclerView
  */
 class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyclerViewAdapter.RatingViewHolder>() {
-    var reviewDataList : ArrayList<RatingReviewModel> = arrayListOf()
+    var reviewDataList : List<PageItem> = arrayListOf()
     class RatingViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val raterImage: CircularImageView = view.findViewById(R.id.ratingReview_iv)
         private val raterName: TextView = view.findViewById(R.id.ratingReviewName_tv)
@@ -28,26 +33,31 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
         private val starFive: ImageView = view.findViewById(R.id.ratingStarFive_iv)
 
         //This method binds RatingViewHolder properties with RatingReviewModel data
-        fun bindReviewData(reviewData : RatingReviewModel){
-            raterImage.setImageResource(reviewData.reviewImage)
-            raterName.text = reviewData.reviewName
-            ratingDate.text = reviewData.reviewDate
-            raterReview.text = reviewData.reviewBody
-            if (reviewData.starOne != null){
-                starOne.setImageResource(reviewData.starOne)
-            }
-            if (reviewData.starTwo != null){
-                starTwo.setImageResource(reviewData.starTwo)
-            }
-            if (reviewData.starThree != null){
-                starThree.setImageResource(reviewData.starThree)
-            }
-            if (reviewData.starFour != null){
-                starFour.setImageResource(reviewData.starFour)
-            }
-            if (reviewData.starFive != null){
-                starFive.setImageResource(reviewData.starFive)
-            }
+        fun bindReviewData(reviewData : PageItem){
+            Glide.with(itemView)
+                .load(reviewData.avatar)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.smith)
+                .into(raterImage)
+            raterName.text = reviewData.firstName
+            ratingDate.text = reviewData.createdAt
+            raterReview.text = reviewData.comment
+
+//            if (reviewData.starOne != null){
+//                starOne.setImageResource(reviewData.starOne)
+//            }
+//            if (reviewData.starTwo != null){
+//                starTwo.setImageResource(reviewData.starTwo)
+//            }
+//            if (reviewData.starThree != null){
+//                starThree.setImageResource(reviewData.starThree)
+//            }
+//            if (reviewData.starFour != null){
+//                starFour.setImageResource(reviewData.starFour)
+//            }
+//            if (reviewData.starFive != null){
+//                starFive.setImageResource(reviewData.starFive)
+//            }
         }
     }
 
@@ -63,4 +73,9 @@ class RatingReviewRecyclerViewAdapter() : RecyclerView.Adapter<RatingReviewRecyc
     override fun getItemCount(): Int {
         return reviewDataList.size
     }
+
+    fun setData(){
+        notifyDataSetChanged()
+    }
+
 }

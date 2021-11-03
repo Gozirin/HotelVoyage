@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
-import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
@@ -31,7 +29,10 @@ class AllHotelsFragments : Fragment(),
     val viewModel: HotelViewModel by viewModels()
     val customerViewModel: CustomerViewModel by viewModels()
     val arrayList =  ArrayList<PageItem>()
+  //  val customerViewModel: CustomerViewModel by viewModels()
+    lateinit var arrayLists : List<PageItem>
     lateinit var selectedState: String
+    lateinit var hotelId: String
 
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
@@ -48,7 +49,7 @@ class AllHotelsFragments : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        arrayLists = listOf()
 
         //Handling on back icon to go back to explore page
         binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
@@ -85,6 +86,7 @@ class AllHotelsFragments : Fragment(),
             response.pageItems.let {responseList ->
                 //Log.d("ObservingVM", response.pageItems.toString())
                     if (responseList != null) {
+                        arrayLists = responseList
                         allHotelsAdapter.listOfAllHotels.addAll(responseList)
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
@@ -94,11 +96,17 @@ class AllHotelsFragments : Fragment(),
     }
 
     override fun allHotelsItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
+        val item = arrayLists[position]
+        hotelId = item.id!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     override fun allHotelsPreviewBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_allHotelsFragments_to_hotelDescription2Fragment)
+        val item = arrayLists[position]
+        hotelId = item.id!!
+        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     private fun hideProgressBar() {
@@ -164,12 +172,13 @@ class AllHotelsFragments : Fragment(),
      override fun allHotelSaveIconClickListener(position: Int) {
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        val hotelWish = allHotelsAdapter.listOfAllHotels[position]
+        val hotelWish = arrayLists[position]
         hotelWish.id?.let {
-           customerViewModel.addWishList(authToken,
-                hotelWish,
-                it
-            )
+           customerViewModel.addWishList(authToken, it)
+            customerViewModel.getWishList(authToken, 50, 1)
+//            Toast.makeText(requireContext(),
+//                "${arrayLists[position].name} is successfully deleted from WishList",
+//                Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.databinding.WishListItemsBinding
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 
 
@@ -22,7 +23,7 @@ class WishListAdapter(var context: Context,
                       ) :
     RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
-     var listOfWishList = mutableListOf<WishlistByPageNumberResponseItems>()
+     var listOfWishList = listOf<PageItem>()
 
     inner class WishListViewHolder(binding: WishListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
         var hotelPrice: TextView = binding.tvHotelprice
@@ -55,12 +56,9 @@ class WishListAdapter(var context: Context,
 
     override fun onBindViewHolder(holder: WishListViewHolder, position: Int) {
         holder.hotelName.text = listOfWishList[position].hotelName
-        Log.d("Name", listOfWishList[position].hotelName)
-        holder.hotelPrice.text = listOfWishList[position].price.toString()
-        holder.hotelRating.text = listOfWishList[position].percentageRating.toInt().toString()
         holder.savedImage.let {
             Glide.with(it.context)
-                .load(listOfWishList[position].ImageUrl)
+                .load(listOfWishList[position].imageUrl)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.mipmap.ic_launcher)
@@ -90,8 +88,8 @@ class WishListAdapter(var context: Context,
     override fun getItemCount() = listOfWishList.size
 
     //setting data to listOfWishList
-    fun setDataToAdapter(list: ArrayList<WishlistByPageNumberResponseItems>){
-        listOfWishList.clear()
+    fun setDataToAdapter(list: List<PageItem>){
+//        listOfWishList.clear()
         listOfWishList = list
         notifyDataSetChanged()
     }

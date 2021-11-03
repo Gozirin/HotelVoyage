@@ -2,24 +2,19 @@ package com.example.hbapplicationgroupa.viewmodel
 
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingPagingDataSource
 
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.lang.Exception
@@ -30,7 +25,10 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.PageItem
+import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 
 import javax.inject.Inject
 
@@ -39,6 +37,7 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
 
     private val _updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = MutableLiveData()
       val updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = _updateProfileImageLiveData
+
 
   //
 //    fun makeApiCall(authToken: String, image: MultipartBody.Part){
@@ -58,9 +57,11 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     val addReviewResponse: LiveData<ReviewByHotelIdResponseModel> = _addReviewResponse
 
     // wishlist livedata
-    private val _wishListLiveData: MutableLiveData<ArrayList<WishlistByPageNumberResponseItems>> =
+    private val _wishListLiveData: MutableLiveData<List<PageItem>> =
         MutableLiveData()
-    val wishListLiveData: LiveData<ArrayList<WishlistByPageNumberResponseItems>> = _wishListLiveData
+    val wishListLiveData: LiveData<List<PageItem>> = _wishListLiveData
+
+
 
     fun getWishList(authToken: String, pageSize: Int, pageNumber: Int) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -73,11 +74,17 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
 
                 if (response.isSuccessful) {
                     Log.d("getWishListVM", response.body().toString())
-                    response.body()?.Data.let {
-                        _wishListLiveData.postValue(it)
+                    response.body()?.data.let {
+                        _wishListLiveData.postValue(it?.pageItems!!)
+                        Log.d("WishLiveData", "${it.pageItems}")
                     }
                 } else {
-                    Log.d("getWishListVMerror", response.body()?.errors.toString())
+                    response.body()?.data.let {
+                        _wishListLiveData.postValue(it?.pageItems!!)
+                        Log.d("WishLiveData-Error", "${it.pageItems}")
+                    }
+
+//                    Log.d("getWishListVMerror", response.body()?.errors.toString())
                 }
             }catch(e: Exception) {
                 e.printStackTrace()
@@ -88,26 +95,17 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     //add customer hotel wishlist
     fun addWishList(
         token: String,
-        hotelWishlist: com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem,
         hotelId: String){
         try {
             viewModelScope.launch(Dispatchers.IO){
                 val response = customerRepository.addCustomerWishlistById(
                     token,
-                    hotelWishlist,
                     hotelId
                 )
                 if (response.isSuccessful){
-//                    Toast.makeText(getApplicationContext(),
-//                        " ${response.body()?.message}",
-//                        Toast.LENGTH_SHORT)
-//                        .show()
                     Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }else {
-//                    Toast.makeText(getApplicationContext(),
-//                            " ${response.body()?.message}",
-//                            Toast.LENGTH_SHORT)
-//                            .show()
+
                     Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }
             }
@@ -117,7 +115,6 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
         }
     }
 
-
     //remove customer hotel wishlist
     fun removeWishList(token: String, hotelId: String){
         try {
@@ -126,16 +123,8 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
                     token, hotelId
                 )
                 if (response.body()?.succeeded == true){
-//                    Toast.makeText(getApplicationContext(),
-//                        " ${response.body()?.message}",
-//                        Toast.LENGTH_SHORT)
-//                        .show()
                 Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }else{
-//                    Toast.makeText(getApplicationContext(),
-//                        " ${response.body()?.message}",
-//                        Toast.LENGTH_SHORT)
-//                        .show()
                     Log.d("ADDWISHLISTVM", response.body()?.message.toString())
                 }
             }
@@ -152,11 +141,29 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
 
 
 
+    //booking history Live Data
+    private val _getPastBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
+    val getPastBookingLiveData: LiveData<GetCustomerBookingResponse> = _getPastBookingLiveData
+
+    fun getPastBooking (pageNumber: Int, pageSize: Int, authToken: String){
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
+                if (response.isSuccessful){
+                    _getPastBookingLiveData.value = response.body()
+                }else{
+                    _getPastBookingLiveData.value = response.body()
+                }
+            }catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
     //    booking history flow data using pagination from PastBookingPagingDataSource
-    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
-        PastBookingPagingDataSource(api)
-    }.flow
-        .cachedIn(viewModelScope)
+//    val bookingHistory: Flow<PagingData<PageItem>> = Pager(PagingConfig(pageSize = 5)) {
+//        PastBookingPagingDataSource(api)
+//    }.flow
+//        .cachedIn(viewModelScope)
 //    private val _getUserBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
 //    val getUserBookingLiveData : LiveData<GetCustomerBookingResponse> = _getUserBookingLiveData
 //

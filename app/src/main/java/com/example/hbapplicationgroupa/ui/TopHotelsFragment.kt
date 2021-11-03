@@ -13,19 +13,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
 import com.example.hbapplicationgroupa.database.AuthPreference
-import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class TopHotelsFragment : Fragment(),
@@ -43,6 +38,8 @@ class TopHotelsFragment : Fragment(),
     val hotelViewModel : HotelViewModel by viewModels()
     val customerViewModel : CustomerViewModel by viewModels()
     lateinit var recyclerView: RecyclerView
+    lateinit var hotelId: String
+    lateinit var hotelList: List<GetTopHotelsResponseItem>
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -52,7 +49,7 @@ class TopHotelsFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        hotelList = listOf()
 
         //connecting the view with the data response
         showProgressBar()
@@ -62,6 +59,7 @@ class TopHotelsFragment : Fragment(),
         hotelViewModel.topHotelsLiveData.observe(viewLifecycleOwner,{
             Log.d("Frag -> TopHotel", it.toString())
             topHotelAdapter.setListOfTopHotels(it)
+            hotelList = it
             hideProgressBar()
         })
 
@@ -81,10 +79,18 @@ class TopHotelsFragment : Fragment(),
     }
 
     override fun topHotelsItemClicked(position: Int) {
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
 //        findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
     }
 
     override fun topHotelsPreviewBtnClicked(position: Int) {
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
 //        findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
     }
 
@@ -101,19 +107,17 @@ class TopHotelsFragment : Fragment(),
 
     @SuppressLint("ResourceAsColor")
     override fun topHotelSaveIconClickListener(position: Int) {
-
     }
 
     override fun topHotelSaveTextClickListener(position: Int) {
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        val hotelWish = allHotelAdapter.listOfAllHotels[position]
-        hotelWish.id?.let {
-            customerViewModel.addWishList(authToken,
-                hotelWish,
-                it
-            )
-        }
+        val hotelWish = hotelList[position]
+        customerViewModel.addWishList(authToken, hotelWish.id)
+        customerViewModel.getWishList(authToken, 50, 1)
+//        Toast.makeText(requireContext(),
+//            "${hotelList[position].name} is successfully deleted from WishList",
+//            Toast.LENGTH_SHORT).show()
     }
 
     //show progress bar

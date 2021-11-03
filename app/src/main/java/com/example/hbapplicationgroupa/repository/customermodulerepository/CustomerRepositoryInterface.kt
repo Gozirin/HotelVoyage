@@ -41,7 +41,6 @@ interface CustomerRepositoryInterface {
 
     suspend fun addCustomerWishlistById(
         token: String,
-        hotelWishList: PageItem,
         hotelId: String
     ): Response<WishlistResponse>
 

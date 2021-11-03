@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.G
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import retrofit2.Response
@@ -43,16 +44,16 @@ interface CustomerModuleApiInterface {
     suspend fun getCustomerWishListByPageNumber(
         //@Path("userId") userId: String,
         @Header("Authorization") token: String,
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
 
     @POST("/api/Customer/{hotelId}/add-wishlist")
     suspend fun addCustomerWishListByHotelId(
         @Header("Authorization") token: String,
-        @Body hotelWishlist: PageItem,
         @Path("hotelId") hotelId: String
     ): Response<WishlistResponse>
+
 
     @DELETE("/api/Customer/{hotelId}/remove-wishlist")
     suspend fun removeCustomerWishListByHotelId(

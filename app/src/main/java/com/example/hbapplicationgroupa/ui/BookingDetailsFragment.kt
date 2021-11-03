@@ -236,10 +236,12 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
             if (response != null) {
                 fetchedRoomNumbers = response.data
             }
+
             for (i in fetchedRoomNumbers!!.indices) {
-                if (fetchedRoomNumbers!![i].roomNo == roomNumber) {
-                    roomId = fetchedRoomNumbers!![i].id
-                }
+                roomId = fetchedRoomNumbers!![i].id
+//                if (fetchedRoomNumbers!![i].roomNo == roomNumber) {
+//                    roomId = fetchedRoomNumbers!![i].id
+//                }
             }
             Log.d("XYZ", "getHotelRoomIdByRoomTypeIdfetchedRoomNumbers: $fetchedRoomNumbers")
 

@@ -75,7 +75,7 @@ class TopDealAdapter(
 
         holder.saveIcon.setOnClickListener{
             topDealSaveIconClickListener.topDealSaveIconClicked(position)
-            holder.saveText.text = "Saved"
+            holder.saveText.text = "Successfully Saved"
         }
 
     }

@@ -6,17 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.R
-import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topdeal.TopDealAdapter
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentTopDealsBinding
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.utils.QUERY_PAGE_SIZE
 import com.example.hbapplicationgroupa.utils.Resources
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
@@ -31,12 +31,13 @@ class TopDealsFragment : Fragment(),
 
     private lateinit var topDealAdapter: TopDealAdapter
     val viewModel: HotelViewModel by viewModels()
+    lateinit var hotelList: List<GetTopDealsResponseItem>
     val customerViewModel: CustomerViewModel by viewModels()
-    private lateinit var allHotelsAdapter: AllHotelsAdapter
 
     //Set up view binding here
     private var _binding: FragmentTopDealsBinding? = null
     private val binding get() = _binding!!
+    lateinit var hotelId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +50,7 @@ class TopDealsFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        hotelList = listOf()
         setupRecyclerView()
 
         viewModel._topDealsLiveData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {response->
@@ -61,6 +62,7 @@ class TopDealsFragment : Fragment(),
                         topDealAdapter.notifyDataSetChanged()
                         val totalPages = 6000 / QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.pageNumber == totalPages
+                        hotelList = newsResponse.data
                     }
 
                 }
@@ -131,11 +133,17 @@ class TopDealsFragment : Fragment(),
 
 
     override fun topHotelsItemClicked(position: Int) {
-        findNavController().navigate(R.id.action_topDealsFragment_to_hotelDescription2Fragment)
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopDealsFragmentDirections.actionTopDealsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     override fun topHotelsPreviewBtnClicked(position: Int) {
-        findNavController().navigate(R.id.action_topDealsFragment_to_bookingDetailsFragment)
+        val item = hotelList[position]
+        hotelId = item.id
+        val action = TopDealsFragmentDirections.actionTopDealsFragmentToHotelDescription2Fragment(hotelId)
+        findNavController().navigate(action)
     }
 
     //Method to handle back press
@@ -163,12 +171,12 @@ class TopDealsFragment : Fragment(),
     override fun topDealSaveIconClicked(position: Int) {
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        val hotelWish = allHotelsAdapter.listOfAllHotels[position]
-        hotelWish.id?.let {
-            customerViewModel.addWishList(authToken,
-                hotelWish,
-                it
-            )
-        }
+        val item = hotelList[position]
+        customerViewModel.addWishList(authToken, item.id)
+        customerViewModel.getWishList(authToken, 50, 1)
+//        Toast.makeText(requireContext(),
+//            "${hotelList[position].name} is successfully deleted from WishList",
+//            Toast.LENGTH_SHORT).show()
+
     }
 }

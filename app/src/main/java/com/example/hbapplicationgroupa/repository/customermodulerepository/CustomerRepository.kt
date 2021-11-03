@@ -8,6 +8,7 @@ import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.G
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
@@ -45,15 +46,14 @@ class CustomerRepository @Inject constructor(
         pageSize: Int,
         pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel> {
-        return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageNumber, pageSize)
+        return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageSize, pageNumber)
     }
 
     override suspend fun addCustomerWishlistById(
         token: String,
-        hotelWishList: PageItem,
         hotelId: String
     ): Response<WishlistResponse> {
-        return customerModuleApiInterface.addCustomerWishListByHotelId(token, hotelWishList, hotelId)
+        return customerModuleApiInterface.addCustomerWishListByHotelId(token, hotelId)
     }
 
     override suspend fun removeCustomerWishlistByHotelId(
