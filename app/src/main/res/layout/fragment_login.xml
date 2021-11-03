@@ -140,16 +140,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tv_account"/>
 
-    <ProgressBar
-        android:id="@+id/loginProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_password"
-        app:layout_constraintBottom_toTopOf="@id/tv_account"
-        android:visibility="gone"/>
-
     <TextView
         android:id="@+id/tv_account"
         android:layout_width="wrap_content"
@@ -195,4 +185,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvLoginRegisterText"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ProgressBar
+        android:id="@+id/loginProgressBar"
+        android:layout_width="wrap_content"
+        android:elevation="5dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/btn_login_screen"
+        app:layout_constraintBottom_toBottomOf="@id/btn_login_screen"
+        app:layout_constraintStart_toStartOf="@id/btn_login_screen"
+        app:layout_constraintEnd_toEndOf="@id/btn_login_screen"
+        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

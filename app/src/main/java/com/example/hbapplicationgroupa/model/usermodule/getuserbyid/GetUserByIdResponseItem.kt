@@ -7,12 +7,15 @@ import androidx.room.PrimaryKey
 data class GetUserByIdResponseItem(
     @PrimaryKey(autoGenerate = true)
     val tableNumber: Int,
-    val FirstName: String,
-    val LastName: String,
-    val EmailAddress: String,
-    val UserName: String,
-    val Password: String,
-    val PhoneNumber: String,
-    val Gender: String,
-    val Age: Int
+    val firstName: String,
+    val lastName: String,
+    val avatar: String,
+    val age: Int,
+    val id: String,
+    val email: String,
+    val phoneNumber: String,
+    val userName: String,
+    val creditCard: String,
+    val address: String,
+    val state: String
 )

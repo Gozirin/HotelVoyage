@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.whenStarted
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.wishlistadapter.WishListAdapter
+import com.example.hbapplicationgroupa.connectivity.ConnectivityLiveData
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentWishListBinding
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
@@ -27,9 +29,6 @@ class WishListFragment : Fragment(),
                          WishListAdapter.WishListPreviewButtonClickListener,
                          WishListAdapter.WishListRemoveButtonClickListener
                         {
-//    private var _binding: FragmentWishListBinding? = null
-//    private val binding get() = _binding!!
-//class WishListFragment : Fragment(), WishListAdapter.WishListItemClickListener, WishListAdapter.WishListBookButtonClickListener {
 
     //initializing vm and recyclerview
     val customerViewModel: CustomerViewModel by viewModels()
@@ -39,6 +38,7 @@ class WishListFragment : Fragment(),
     private lateinit var selectedState: String
     private lateinit var hotelId: String
     private lateinit var wishListAdapter: WishListAdapter
+    private lateinit var connectivityLiveData: ConnectivityLiveData
 
     private var _binding: FragmentWishListBinding? = null
     private val binding get() = _binding!!
@@ -135,5 +135,4 @@ class WishListFragment : Fragment(),
         binding.wishListProgressBar.visibility = View.VISIBLE
         binding.tvNotificationWishList.visibility = View.VISIBLE
     }
-
  }

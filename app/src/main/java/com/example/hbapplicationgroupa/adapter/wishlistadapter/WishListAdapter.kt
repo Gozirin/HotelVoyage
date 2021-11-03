@@ -19,7 +19,7 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistb
 class WishListAdapter(var context: Context,
                       private val wishListItemClickListener: WishListItemClickListener,
                       private val wishListPreviewButtonClickListener: WishListPreviewButtonClickListener,
-                      private val wishListRemoveButtonClickListener: WishListRemoveButtonClickListener
+                      private val wishListRemoveButtonClickListener: WishListRemoveButtonClickListener,
                       ) :
     RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
@@ -76,7 +76,6 @@ class WishListAdapter(var context: Context,
             // set the onclick listener to the booking button
             previewBtn.setOnClickListener {
                 wishListPreviewButtonClickListener.wishListPreviewBtnClicked(position)
-//
             }
 
             //click listener for each saved Item

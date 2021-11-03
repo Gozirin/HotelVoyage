@@ -146,6 +146,7 @@
     <string name="expiry_forwardSlash">/</string>
     <string name="preview">Preview</string>
     <string name="gra_ikeja_lagos">GRA, Ikeja, Lagos</string>
+    <string name="room">Room</string>
 
     <string-array name="gender">
         <item>Gender</item>

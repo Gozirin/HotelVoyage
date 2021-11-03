@@ -3,15 +3,13 @@ package com.example.hbapplicationgroupa.network
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserphotobyuserid.UpdateUserPhotoByUserIdResponseModel
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.PATCH
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface UserModuleApiInterface {
-    @GET("api/v1/Users/get-user/{userId}")
+    @GET("api/Customer")
     suspend fun getUserById(
-        @Path("id") id: String
+        @Header("Authorization")
+        token: String
     ): Response<GetUserByIdResponseModel>
 
     @PATCH("api/v1/Users/update-user/{userId}/user-photo")

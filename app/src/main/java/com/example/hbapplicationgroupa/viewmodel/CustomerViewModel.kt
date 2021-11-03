@@ -29,27 +29,31 @@ import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.G
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
+import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 
 import javax.inject.Inject
 
 @HiltViewModel
-class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository, private val api: CustomerModuleApiInterface): ViewModel() {
+class CustomerViewModel @Inject constructor(
+    private val customerRepository: CustomerRepository,
+    private val api: CustomerModuleApiInterface
+    ): ViewModel() {
 
     private val _updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = MutableLiveData()
       val updateProfileImageLiveData: MutableLiveData<Response<UpdateProfileImage>> = _updateProfileImageLiveData
 
-
-  //
-//    fun makeApiCall(authToken: String, image: MultipartBody.Part){
-//        viewModelScope.launch(Dispatchers.IO){
-//            try {
-//                val response = customerRepository.updateProfileImage(authToken,image)
-//                _updateProfileImageLiveData.postValue(response)
-//            }catch (e:Exception){
-//                Log.d("MQ", "updateImage: ${e.message}")
-//            }
-//        }
-//    }
+    fun makeApiCall(authToken: String, image: MultipartBody.Part){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                val response = customerRepository.updateProfileImage(authToken,image)
+                _updateProfileImageLiveData.postValue(response)
+            }catch (e:Exception){
+                Log.d("MQ", "updateImage: ${e.message}")
+            }
+        }
+    }
 
     //class CustomerViewModel @Inject constructor(private val customerRepository: CustomerRepository): ViewModel() {
     private val _addReviewResponse: MutableLiveData<ReviewByHotelIdResponseModel> =
@@ -57,9 +61,9 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
     val addReviewResponse: LiveData<ReviewByHotelIdResponseModel> = _addReviewResponse
 
     // wishlist livedata
-    private val _wishListLiveData: MutableLiveData<List<PageItem>> =
+    private val _wishListLiveData: MutableLiveData<List<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> =
         MutableLiveData()
-    val wishListLiveData: LiveData<List<PageItem>> = _wishListLiveData
+    val wishListLiveData: LiveData<List<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> = _wishListLiveData
 
 
 
@@ -210,6 +214,23 @@ class CustomerViewModel @Inject constructor(private val customerRepository: Cust
         }
     }
 
+    private val _getCustomerDetailsLiveData: MutableLiveData<GetUserByIdResponseModel> = MutableLiveData()
+    val getCustomerDetailsLiveData: LiveData<GetUserByIdResponseModel> = _getCustomerDetailsLiveData
+
+    fun getCustomerDetails(token: String){
+        viewModelScope.launch {
+            try {
+                val response = customerRepository.getUserById(token)
+                if (response.isSuccessful){
+                    _getCustomerDetailsLiveData.value = response.body()
+                }else{
+                    _getCustomerDetailsLiveData.value = response.body()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     fun addReview(comment: String, hotelId: String, token: String) {
         val addReviewModel = HotelIdModel(comment, hotelId)

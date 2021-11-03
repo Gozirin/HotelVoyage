@@ -11,6 +11,11 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
+import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -54,6 +59,13 @@ interface CustomerModuleApiInterface {
         @Path("hotelId") hotelId: String
     ): Response<WishlistResponse>
 
+    //function to upload to our backend
+    @Multipart
+    @PATCH("api/Customer/update-image")
+    suspend fun uploadImage(
+        @Header("Authorization") authToken: String,
+        @Part image: MultipartBody.Part
+    ): Response<UpdateProfileImage>
 
     @DELETE("/api/Customer/{hotelId}/remove-wishlist")
     suspend fun removeCustomerWishListByHotelId(
@@ -68,6 +80,12 @@ interface CustomerModuleApiInterface {
         @Header("Authorization") authToken: String,
         @Body updateUserModel: UpdateUserByIdModel
     ) : Response<UpdateUserByIdResponseModel>
+
+    @GET("api/Customer")
+    suspend fun getCustomerDetails(
+        @Header("Authorization")
+        token: String
+    ): Response<GetUserByIdResponseModel>
 
 //    @PATCH("Customer/update-review/{hotelId}")
 //    suspend fun updateCustomerReviewByHotelId(@Path("hotelId") hotelId: String): Response<WorkOnThis>
