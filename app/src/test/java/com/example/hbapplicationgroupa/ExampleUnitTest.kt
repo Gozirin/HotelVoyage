@@ -1,4 +1,4 @@
-//package com.example.hbapplicationgroupa
+package com.example.hbapplicationgroupa
 //
 //import org.junit.Assert.*
 //import org.junit.Test
