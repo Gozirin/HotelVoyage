@@ -59,7 +59,8 @@ class ExploreHomeTopDealsAdapter(
         return listOfTopDealHotels.size
     }
 
-    fun setListOfTopDeals(topDeals: List<GetTopDealsResponseItem>) {
+    fun setListOfTopDeals(topDeals: MutableList<GetTopDealsResponseItem>) {
         listOfTopDealHotels.addAll(topDeals)
+//        notifyDataSetChanged()
     }
 }
