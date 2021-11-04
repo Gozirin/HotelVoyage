@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsR
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBookingResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemData
@@ -193,8 +194,8 @@ class HotelRepository @Inject constructor(
         return hotelModuleApiInterface.getHotelRoomIdByRoomType(hotelId, roomTypeId)
     }
 
-    override suspend fun pushPaymentTransactionDetails(verifyBooking: VerifyBooking): Response<VerifyBooking> {
-       return hotelModuleApiInterface.pushPaymentTransactionDetails(verifyBooking)
+    override suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse> {
+       return hotelModuleApiInterface.pushPaymentTransactionDetails()
     }
 
 }

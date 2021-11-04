@@ -143,10 +143,11 @@
     <string name="new_password">New Password</string>
     <string name="allhotels">allhotels</string>
     <string name="hotels">Hotels</string>
-    <string name="expiry_forwardSlash">/</string>
     <string name="preview">Preview</string>
     <string name="gra_ikeja_lagos">GRA, Ikeja, Lagos</string>
     <string name="room">Room</string>
+    <string name="expiry_slash">%1$s/</string>
+    <string name="expiry_space"> %1$s</string>
 
     <string-array name="gender">
         <item>Gender</item>

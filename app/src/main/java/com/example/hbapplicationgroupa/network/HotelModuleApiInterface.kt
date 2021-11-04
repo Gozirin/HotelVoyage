@@ -5,6 +5,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsR
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBookingResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemReviews
@@ -105,5 +106,5 @@ interface HotelModuleApiInterface {
     ): Response<GetHotelRoomByIdResponseModel>
 
     @POST("/api/Hotel/verify-booking")
-    suspend fun pushPaymentTransactionDetails(@Body verifyBooking: VerifyBooking): Response<VerifyBooking>
+    suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse>
 }

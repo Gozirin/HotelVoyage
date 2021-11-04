@@ -14,6 +14,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBookingResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
@@ -106,8 +107,8 @@ class HotelViewModel @Inject constructor(
     val hotelRooms: LiveData<GetHotelRoomByIdResponseModel>
         get() = _hotelRooms
 
-    private var _bookingVerificationDetails: MutableLiveData<VerifyBooking> = MutableLiveData()
-    val bookingVerificationDetails: LiveData<VerifyBooking>
+    private var _bookingVerificationDetails: MutableLiveData<VerifyBookingResponse> = MutableLiveData()
+    val bookingVerificationDetails: LiveData<VerifyBookingResponse>
         get() = _bookingVerificationDetails
 
 //    init {
@@ -322,10 +323,10 @@ class HotelViewModel @Inject constructor(
         }
     }
 
-    fun pushPaymentTransactionDetails(verificationDetails: VerifyBooking) {
+    fun pushPaymentTransactionDetails() {
         viewModelScope.launch {
             try {
-                val response = hotelRepositoryInterface.pushPaymentTransactionDetails(verificationDetails)
+                val response = hotelRepositoryInterface.pushPaymentTransactionDetails()
                 _bookingVerificationDetails.postValue(response.body())
             }catch (e: Exception) {
 

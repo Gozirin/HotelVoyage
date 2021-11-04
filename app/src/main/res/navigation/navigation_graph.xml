@@ -179,9 +179,7 @@
             app:destination="@id/numberOfPeopleBottomSheetDialogFragment" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_paymentCheckoutFragment"
-            app:destination="@id/paymentCheckoutFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in" />
+            app:destination="@id/paymentCheckoutFragment" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_hotelDescription2Fragment"
             app:destination="@id/hotelDescription2Fragment"
@@ -213,6 +211,9 @@
             android:name="roomItem"
             app:argType="com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_bookingDetailsFragment_to_paymentCheckoutFragment2"
+            app:destination="@id/paymentCheckoutFragment" />
 
     </fragment>
     <dialog
@@ -510,14 +511,20 @@
             android:id="@+id/action_paymentCheckoutFragment_to_paymentDetailsFragment"
             app:destination="@id/paymentDetailsFragment" />
         <argument
-            android:name="transactionUrl"
+            android:name="checkIn"
+            app:argType="string" />
+        <argument
+            android:name="checkOut"
+            app:argType="string" />
+        <argument
+            android:name="numberOfPeople"
+            app:argType="integer" />
+        <argument
+            android:name="roomId"
             app:argType="string" />
         <argument
             android:name="price"
             app:argType="float" />
-        <argument
-            android:name="bookingReference"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/topDealsFragment"
@@ -602,5 +609,14 @@
         <action
             android:id="@+id/action_paymentDetailsFragment_to_bookingConfirmationFragment"
             app:destination="@id/bookingConfirmationFragment" />
+        <argument
+            android:name="bookingReference"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="float" />
+        <action
+            android:id="@+id/action_paymentDetailsFragment_to_paymentCheckoutFragment"
+            app:destination="@id/paymentCheckoutFragment" />
     </fragment>
 </navigation>

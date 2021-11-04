@@ -7,6 +7,7 @@ import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.GetAllHotelsR
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBookingResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.getallhotels.GetAllHotelsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelamenities.GetHotelAmenitiesResponseModel
@@ -93,6 +94,6 @@ interface HotelRepositoryInterface {
 
     suspend fun getHotelRoomIdByRoomType(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
 
-    suspend fun pushPaymentTransactionDetails(verifyBooking: VerifyBooking): Response<VerifyBooking>
+    suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse>
 
 }
