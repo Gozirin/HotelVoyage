@@ -13,17 +13,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
-import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentTopHotelsBinding
-import com.example.hbapplicationgroupa.model.adaptermodels.Hotel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class TopHotelsFragment : Fragment(),
@@ -37,7 +34,9 @@ class TopHotelsFragment : Fragment(),
     private val binding get() = _binding!!
 
     private lateinit var topHotelAdapter: TopHotelAdapter
+    private lateinit var allHotelAdapter: AllHotelsAdapter
     val hotelViewModel : HotelViewModel by viewModels()
+    val customerViewModel : CustomerViewModel by viewModels()
     lateinit var recyclerView: RecyclerView
     lateinit var hotelId: String
     lateinit var hotelList: List<GetTopHotelsResponseItem>
@@ -72,8 +71,8 @@ class TopHotelsFragment : Fragment(),
 
         //setting view button
         binding.topHotelSearchView.setOnSearchClickListener{
-            it.setBackgroundResource(R.color.splash_screen_background_color)
-            Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
+//            it.setBackgroundResource(R.color.splash_screen_background_color)
+//            Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
         }
 
         onBackPressed()
@@ -84,6 +83,7 @@ class TopHotelsFragment : Fragment(),
         hotelId = item.id
         val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
+//        findNavController().navigate(R.id.action_topHotelsFragment_to_hotelDescription2Fragment)
     }
 
     override fun topHotelsPreviewBtnClicked(position: Int) {
@@ -91,6 +91,7 @@ class TopHotelsFragment : Fragment(),
         hotelId = item.id
         val action = TopHotelsFragmentDirections.actionTopHotelsFragmentToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
+//        findNavController().navigate(R.id.action_topHotelsFragment_to_bookingDetailsFragment)
     }
 
     //Method to handle back press
@@ -106,11 +107,17 @@ class TopHotelsFragment : Fragment(),
 
     @SuppressLint("ResourceAsColor")
     override fun topHotelSaveIconClickListener(position: Int) {
-
     }
 
     override fun topHotelSaveTextClickListener(position: Int) {
-        //TODO("Not yet implemented")
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val hotelWish = hotelList[position]
+        customerViewModel.addWishList(authToken, hotelWish.id)
+        customerViewModel.getWishList(authToken, 50, 1)
+//        Toast.makeText(requireContext(),
+//            "${hotelList[position].name} is successfully deleted from WishList",
+//            Toast.LENGTH_SHORT).show()
     }
 
     //show progress bar

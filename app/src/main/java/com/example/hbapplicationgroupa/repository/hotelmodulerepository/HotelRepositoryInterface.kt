@@ -94,6 +94,6 @@ interface HotelRepositoryInterface {
 
     suspend fun getHotelRoomIdByRoomType(hotelId: String, roomTypeId: String): Response<GetHotelRoomByIdResponseModel>
 
-    suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse>
+    suspend fun pushPaymentTransactionDetails(authToken: String, verifyBooking: VerifyBooking): Response<VerifyBookingResponse>
 
 }

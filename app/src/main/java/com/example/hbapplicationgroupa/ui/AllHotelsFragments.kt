@@ -1,7 +1,6 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +12,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.allHotelsAdapter.AllHotelsAdapter
-import com.example.hbapplicationgroupa.adapter.pastbookings_adapter.PastBookingsAdapter
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentAllHotelsFragmentBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
-import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
-import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.pow
-import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class AllHotelsFragments : Fragment(),
@@ -31,12 +27,12 @@ class AllHotelsFragments : Fragment(),
 
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
+    val customerViewModel: CustomerViewModel by viewModels()
+    val arrayList =  ArrayList<PageItem>()
   //  val customerViewModel: CustomerViewModel by viewModels()
-    lateinit var arrayList : List<PageItem>
+    lateinit var arrayLists : List<PageItem>
     lateinit var selectedState: String
     lateinit var hotelId: String
-
-
 
     //setting up view binding
     private var _binding: FragmentAllHotelsFragmentBinding? = null
@@ -53,7 +49,7 @@ class AllHotelsFragments : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arrayList = listOf()
+        arrayLists = listOf()
 
         //Handling on back icon to go back to explore page
         binding.allHotelsBackBtn.setOnClickListener{ findNavController().popBackStack()}
@@ -79,7 +75,7 @@ class AllHotelsFragments : Fragment(),
         onBackPressed()
         setupRecyclerView()
         //showing progress bar while api data is loading or no internet
-        showProgressBar("loading hotels, Please, make sure your internet is active")
+//        showProgressBar("loading hotels, Please, make sure your internet is active")
 
         showProgressBar()
         filterAllHotelByLocationObserver()
@@ -90,7 +86,7 @@ class AllHotelsFragments : Fragment(),
             response.pageItems.let {responseList ->
                 //Log.d("ObservingVM", response.pageItems.toString())
                     if (responseList != null) {
-                        arrayList = responseList
+                        arrayLists = responseList
                         allHotelsAdapter.listOfAllHotels.addAll(responseList)
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
@@ -100,14 +96,14 @@ class AllHotelsFragments : Fragment(),
     }
 
     override fun allHotelsItemClicked(position: Int) {
-        val item = arrayList[position]
+        val item = arrayLists[position]
         hotelId = item.id!!
         val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
     }
 
     override fun allHotelsPreviewBtnClicked(position: Int) {
-        val item = arrayList[position]
+        val item = arrayLists[position]
         hotelId = item.id!!
         val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
@@ -119,7 +115,7 @@ class AllHotelsFragments : Fragment(),
 
     private fun showProgressBar(message: String = " Please, make sure your Internet is active") {
         binding.fragmentAllHotelsProgressBarPb.visibility = View.VISIBLE
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     //set up recycler view
@@ -154,9 +150,9 @@ class AllHotelsFragments : Fragment(),
             if (it == null){
                 Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
             }else{
-        allHotelsAdapter.listOfAllHotels = it.data?.pageItems as MutableList<PageItem>
+        allHotelsAdapter.listOfAllHotels = it.data.pageItems as MutableList<PageItem>
                 allHotelsAdapter.notifyDataSetChanged()
-                Log.d("All hotels: ", "${it.data.pageItems}")
+                //Log.d("All hotels: ", "${it.data.pageItems}")
                 Toast.makeText(requireContext(),"${it.data.pageItems}", Toast.LENGTH_SHORT).show()
             }
         })
@@ -173,15 +169,18 @@ class AllHotelsFragments : Fragment(),
         }
     }
     //set save icon to save hotel to wishList
-    val saveText = view?.findViewById<TextView>(R.id.allHotels_recyclerview_textview)
-    val saveIcon = view?.findViewById<ImageView>(R.id.allHotels_recyclerview_imageview_save)
-
-    override fun allHotelSaveIconClickListener(position: Int) {
-        var wishList = allHotelsAdapter.listOfAllHotels[position]
-         saveIcon?.setOnClickListener{
-             //customerViewModel.saveHotelWishToDb(wishList)
-             it.setBackgroundColor(R.drawable.bookmark_icon)
-             saveText?.text = "Saved"
-         }
+     override fun allHotelSaveIconClickListener(position: Int) {
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val hotelWish = arrayLists[position]
+        hotelWish.id?.let {
+           customerViewModel.addWishList(authToken, it)
+            customerViewModel.getWishList(authToken, 50, 1)
+//            Toast.makeText(requireContext(),
+//                "${arrayLists[position].name} is successfully deleted from WishList",
+//                Toast.LENGTH_SHORT).show()
+        }
     }
+
+
 }

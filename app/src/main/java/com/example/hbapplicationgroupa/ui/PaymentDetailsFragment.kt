@@ -30,6 +30,7 @@ import co.paystack.android.exceptions.ExpiredAccessCodeException
 import co.paystack.android.model.Card
 import co.paystack.android.model.Charge
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
 import com.example.hbapplicationgroupa.databinding.FragmentPaymentDetailsBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
@@ -63,7 +64,7 @@ class PaymentDetailsFragment : Fragment() {
     private val hotelViewModel: HotelViewModel by viewModels()
     private var verificationDetails: VerifyBooking? = null
     private val publicTestKey = "pk_test_0e715dd3b6435c09f4d4bbc4b5f43150c3bf4b02"
-   // "pk_test_515f61d7b258bbc0cfcd1367e2a62c1ca5d267b0"
+    //"pk_test_515f61d7b258bbc0cfcd1367e2a62c1ca5d267b0"
     val email = "gbohunmimakinde@gmail.com"
 
     override fun onCreateView(
@@ -80,6 +81,7 @@ class PaymentDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d("XYZ", "onViewCreated: ${args.bookingReference}")
         binding.paymentDetailsPayButton.text = "Pay N${args.price}"
 
         connectivityLiveData = ConnectivityLiveData(requireActivity().application)
@@ -245,10 +247,13 @@ class PaymentDetailsFragment : Fragment() {
                         this@PaymentDetailsFragment.performCharge()
                         findNavController().navigate(R.id.action_paymentDetailsFragment_to_paymentCheckoutFragment)
                     }
+
                     transaction!!.reference != null -> {
 
                         Toast.makeText(requireContext(), error!!.message?:"", Toast.LENGTH_LONG).show()
                         findNavController().navigate(R.id.action_paymentDetailsFragment_to_paymentCheckoutFragment)
+
+                        Log.d("XYZ", "onErrorTrRef: ${error!!.message}")
 
                         //also you can do a verification on your backend server here
 
@@ -256,6 +261,7 @@ class PaymentDetailsFragment : Fragment() {
                     else -> {
 
                         Toast.makeText(requireContext(), error!!.message?:"", Toast.LENGTH_LONG).show()
+                        Log.d("XYZ", "onErrorOfError: ${error!!.message}")
                         findNavController().navigate(R.id.action_paymentDetailsFragment_to_paymentCheckoutFragment)
 
                     }
@@ -302,8 +308,9 @@ class PaymentDetailsFragment : Fragment() {
 //    }
 
     private fun pushPaymentVerificationDetails() {
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
                 verificationDetails = VerifyBooking("", transactionReference!!)
-        hotelViewModel.pushPaymentTransactionDetails()
+        hotelViewModel.pushPaymentTransactionDetails(authToken, verificationDetails!!)
         hotelViewModel.bookingVerificationDetails.observe(viewLifecycleOwner, {
             if (it != null && it.message == "Booking Verified") {
                 Toast.makeText(requireContext(), "Payment Successful!", Toast.LENGTH_LONG).show()

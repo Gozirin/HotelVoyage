@@ -194,8 +194,8 @@ class HotelRepository @Inject constructor(
         return hotelModuleApiInterface.getHotelRoomIdByRoomType(hotelId, roomTypeId)
     }
 
-    override suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse> {
-       return hotelModuleApiInterface.pushPaymentTransactionDetails()
+    override suspend fun pushPaymentTransactionDetails(authToken: String, verifyBooking: VerifyBooking): Response<VerifyBookingResponse> {
+       return hotelModuleApiInterface.pushPaymentTransactionDetails(authToken, verifyBooking)
     }
 
 }

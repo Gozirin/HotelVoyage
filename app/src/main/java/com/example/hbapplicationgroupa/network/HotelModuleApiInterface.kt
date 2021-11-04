@@ -106,5 +106,5 @@ interface HotelModuleApiInterface {
     ): Response<GetHotelRoomByIdResponseModel>
 
     @POST("/api/Hotel/verify-booking")
-    suspend fun pushPaymentTransactionDetails(): Response<VerifyBookingResponse>
+    suspend fun pushPaymentTransactionDetails(@Header("Authorization") authToken: String, @Body verifyBooking: VerifyBooking): Response<VerifyBookingResponse>
 }
