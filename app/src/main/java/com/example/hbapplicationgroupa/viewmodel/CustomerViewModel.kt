@@ -140,10 +140,10 @@ class CustomerViewModel @Inject constructor(
     private val _getPastBookingLiveData: MutableLiveData<GetCustomerBookingResponse> = MutableLiveData()
     val getPastBookingLiveData: LiveData<GetCustomerBookingResponse> = _getPastBookingLiveData
 
-    fun getPastBooking (pageNumber: Int, pageSize: Int, authToken: String){
+    fun getPastBooking (authToken: String){
         viewModelScope.launch {
             try {
-                val response = customerRepository.getCustomerBookingsByUserId(pageNumber, pageSize, authToken)
+                val response = customerRepository.getCustomerBookingsByUserId(authToken)
                 if (response.isSuccessful){
                     _getPastBookingLiveData.value = response.body()
                 }else{
