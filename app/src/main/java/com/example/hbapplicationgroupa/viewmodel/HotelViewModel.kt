@@ -6,17 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.Data
 import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotelResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBookingResponse
 import com.example.hbapplicationgroupa.model.hotelmodule.filterallhotelbylocation.FilterAllHotelByLocation
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelratings.GetHotelRatingsResponseModel
-import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelreviews.GetHotelReviewsResponseModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseModel
 
@@ -25,7 +22,6 @@ import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHote
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
-import com.example.hbapplicationgroupa.utils.Resource
 import com.example.hbapplicationgroupa.utils.Resources
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -107,8 +103,8 @@ class HotelViewModel @Inject constructor(
     val hotelRooms: LiveData<GetHotelRoomByIdResponseModel>
         get() = _hotelRooms
 
-    private var _bookingVerificationDetails: MutableLiveData<VerifyBooking> = MutableLiveData()
-    val bookingVerificationDetails: LiveData<VerifyBooking>
+    private var _bookingVerificationDetails: MutableLiveData<VerifyBookingResponse> = MutableLiveData()
+    val bookingVerificationDetails: LiveData<VerifyBookingResponse>
         get() = _bookingVerificationDetails
 
 //    init {
@@ -292,10 +288,10 @@ class HotelViewModel @Inject constructor(
         }
     }
 
-    fun pushPaymentTransactionDetails(verificationDetails: VerifyBooking) {
+    fun pushPaymentTransactionDetails(authToken: String, verifyBooking: VerifyBooking) {
         viewModelScope.launch {
             try {
-                val response = hotelRepositoryInterface.pushPaymentTransactionDetails(verificationDetails)
+                val response = hotelRepositoryInterface.pushPaymentTransactionDetails(authToken, verifyBooking)
                 _bookingVerificationDetails.postValue(response.body())
             }catch (e: Exception) {
 

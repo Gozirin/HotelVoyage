@@ -129,6 +129,7 @@
                     android:src="@drawable/paystacklogo" />
 
                 <TextView
+                    android:id="@+id/paymentOption_paystack_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -178,6 +179,7 @@
                     android:src="@drawable/flutterwavelogo" />
 
                 <TextView
+                    android:id="@+id/paymentOption_flutterwave_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
