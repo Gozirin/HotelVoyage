@@ -95,7 +95,7 @@
         <entry key="app/src/main/res/layout/onboarding_view_pager.xml" value="0.25" />
         <entry key="app/src/main/res/layout/past_booking_items.xml" value="0.1" />
         <entry key="app/src/main/res/layout/people_number_bottom_sheet_view_holder.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/rating_review_recyclerview_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/rating_review_recyclerview_layout.xml" value="0.18" />
         <entry key="app/src/main/res/layout/room_number_bottom_sheet_view_holder.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/layout/top_deal_recyclerview_view_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/top_hotel_recyclerview_view_item.xml" value="0.25" />
