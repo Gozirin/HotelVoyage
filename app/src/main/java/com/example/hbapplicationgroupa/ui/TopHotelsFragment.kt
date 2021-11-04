@@ -107,6 +107,12 @@ class TopHotelsFragment : Fragment(),
 
     @SuppressLint("ResourceAsColor")
     override fun topHotelSaveIconClickListener(position: Int) {
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val hotelWish = hotelList[position]
+        customerViewModel.addWishList(authToken, hotelWish.id)
+        customerViewModel.getWishList(authToken, 10, 1)
+        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun topHotelSaveTextClickListener(position: Int) {
@@ -114,7 +120,7 @@ class TopHotelsFragment : Fragment(),
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
         val hotelWish = hotelList[position]
         customerViewModel.addWishList(authToken, hotelWish.id)
-        customerViewModel.getWishList(authToken, 50, 1)
+        customerViewModel.getWishList(authToken, 10, 1)
 //        Toast.makeText(requireContext(),
 //            "${hotelList[position].name} is successfully deleted from WishList",
 //            Toast.LENGTH_SHORT).show()
