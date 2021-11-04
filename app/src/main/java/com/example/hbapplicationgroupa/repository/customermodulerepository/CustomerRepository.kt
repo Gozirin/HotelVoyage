@@ -24,11 +24,11 @@ class CustomerRepository @Inject constructor(
 
     override suspend fun getCustomerBookingsByUserId(
 //        userId: String,
-        pageSize: Int,
-        pageNumber: Int,
+//        pageSize: Int,
+//        pageNumber: Int,
         authToken: String
     ): Response<GetCustomerBookingResponse> {
-        return customerModuleApiInterface.getCustomerBookingsByUserId(pageSize, pageNumber, authToken)
+        return customerModuleApiInterface.getCustomerBookingsByUserId(authToken)
     }
 
     override suspend fun addCustomerReviewByHotelId(hotelIdModel: HotelIdModel, token:String): Response<ReviewByHotelIdResponseModel> {

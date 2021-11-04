@@ -20,8 +20,8 @@ interface CustomerRepositoryInterface {
 
     suspend fun getCustomerBookingsByUserId(
 //        userId: String,
-        pageSize: Int,
-        pageNumber: Int,
+//        pageSize: Int,
+//        pageNumber: Int,
         authToken: String
     ): Response<GetCustomerBookingResponse>
 

@@ -41,10 +41,12 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
     private lateinit var hotelName: String
     var hotelBookingInfo: BookHotel? = null
     private lateinit var roomId: String
-    private var roomNumber by Delegates.notNull<Int>()
-    private lateinit var transactionURL: String
+    private lateinit var checkIn: String
+    private lateinit var checkOut: String
+    private var numberOfPeople = 0
+//    private lateinit var transactionURL: String
     private var price by Delegates.notNull<Float>()
-    private lateinit var bookingReference: String
+//    private lateinit var bookingReference: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentBookingDetailsBinding.inflate(inflater, container, false)
@@ -111,7 +113,12 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
                 return@setOnClickListener
             }
             else{
-                pushBookHotelData()
+                passBookingInfoOnNavigationToPaymentCheckout()
+                Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
+                    .show()
+                val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId, price)
+                findNavController().navigate(action)
+
 //               findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }
         }
@@ -258,43 +265,52 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 //            }
     }
 
-
-    private fun pushBookHotelData() {
-            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        var numberOfPeople = 0
+    private fun passBookingInfoOnNavigationToPaymentCheckout() {
         for (i in binding.peopleEditText.text.toString()) {
             if (i.isDigit()) {
-                numberOfPeople+=i.digitToInt()
+                numberOfPeople += i.digitToInt()
             }
+            checkIn = binding.checkInEditText.text.toString()
+            checkOut = binding.checkOutEditText.text.toString()
+            price = args.roomItem!!.price
         }
-//        for (i in fetchedRoomNumbers!!.indices) {
-//            if (fetchedRoomNumbers!![i].roomNo == roomNumber) {
-//                roomId = fetchedRoomNumbers!![i].id
+    }
+
+
+//    private fun pushBookHotelData() {
+//            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+//
+//        for (i in binding.peopleEditText.text.toString()) {
+//            if (i.isDigit()) {
+//                numberOfPeople+=i.digitToInt()
 //            }
 //        }
-            hotelBookingInfo = BookHotel(
-                roomId,
-                binding.checkInEditText.text.toString(),
-                binding.checkOutEditText.text.toString(),
-                numberOfPeople,
-                "paystack"
-            )
-        Log.d("XYZ", "pushBookHotelData: ${args.roomItem!!.id}")
-        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
-            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
-                if (it != null) {
-                    price = it.data.price.toFloat()
-                    transactionURL = it.data.paymentUrl
-                    bookingReference = it.data.paymentReference
-                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
-                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
-                        .show()
-                   // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
-                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(transactionURL, price, bookingReference)
-                    findNavController().navigate(action)
-                }
-            })
-        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-        }
+//
+//        checkIn = binding.checkInEditText.text.toString()
+//        checkOut = binding.checkOutEditText.text.toString()
+//            hotelBookingInfo = BookHotel(
+//                roomId,
+//                binding.checkInEditText.text.toString(),
+//                binding.checkOutEditText.text.toString(),
+//                numberOfPeople,
+//                "paystack"
+//            )
+//        Log.d("XYZ", "pushBookHotelData: ${args.roomItem!!.id}")
+//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
+//            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
+//            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+//                if (it != null) {
+//                    price = it.data.price.toFloat()
+//                    transactionURL = it.data.paymentUrl
+//                    bookingReference = it.data.paymentReference
+//                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
+//                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
+//                        .show()
+//                   // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
+//                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId)
+//                    findNavController().navigate(action)
+//                }
+//            })
+//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
+//        }
 }

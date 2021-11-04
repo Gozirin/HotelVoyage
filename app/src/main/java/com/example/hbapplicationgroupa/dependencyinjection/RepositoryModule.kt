@@ -2,15 +2,13 @@ package com.example.hbapplicationgroupa.dependencyinjection
 
 import com.example.hbapplicationgroupa.database.dao.HotelByIdDao
 import com.example.hbapplicationgroupa.database.dao.WishlistByPageNumberDao
-import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
-import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
-import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
-import com.example.hbapplicationgroupa.network.UserModuleApiInterface
+import com.example.hbapplicationgroupa.network.*
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepository
 import com.example.hbapplicationgroupa.repository.authmodulerepository.AuthRepositoryInterface
 import com.example.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepository
 import com.example.hbapplicationgroupa.repository.hotelmodulerepository.HotelRepositoryInterface
+import com.example.hbapplicationgroupa.repository.paystackrepository.PaystackRepository
 import com.example.hbapplicationgroupa.repository.usermodulerepository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -75,4 +73,6 @@ class RepositoryModule {
         fun provideUserRepository(userModuleApiInterface: UserModuleApiInterface): UserRepository {
             return UserRepository(userModuleApiInterface)
         }
+
+
     }

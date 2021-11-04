@@ -62,7 +62,7 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
 
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-        getPastBookings(10, 1, authToken)
+        getPastBookings(authToken)
         observeBookingHistoryFlow()
         displayNoBookingImage()
         onBackPressed()
@@ -84,8 +84,8 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         findNavController().navigate(action)
     }
 
-    private fun getPastBookings( pageSize: Int, pageNumber: Int, authToken: String){
-        viewModel.getPastBooking(pageSize, pageNumber,  authToken)
+    private fun getPastBookings(authToken: String){
+        viewModel.getPastBooking(authToken)
     }
 
     private fun observeBookingHistoryFlow(){

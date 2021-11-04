@@ -27,8 +27,8 @@ interface CustomerModuleApiInterface {
     @GET("/api/Customer/bookings")
     suspend fun getCustomerBookingsByUserId(
 //        @Path("userId") userId: String,
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int,
+//        @Query("pageSize") pageSize: Int,
+//        @Query("pageNumber") pageNumber: Int,
         @Header("Authorization") authToken: String
     ): Response<GetCustomerBookingResponse>
 
