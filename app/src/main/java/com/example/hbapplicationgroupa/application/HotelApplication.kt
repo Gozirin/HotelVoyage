@@ -5,4 +5,12 @@ import co.paystack.android.PaystackSdk
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class HotelApplication : Application()
+class HotelApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+
+        //Initialize Paystack
+        PaystackSdk.initialize(applicationContext);
+
+    }
+}

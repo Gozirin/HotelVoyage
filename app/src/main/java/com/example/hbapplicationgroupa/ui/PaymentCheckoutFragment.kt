@@ -20,26 +20,32 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.hbapplicationgroupa.MainActivity
 import com.example.hbapplicationgroupa.R
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentPaymentCheckoutBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.internal.operators.maybe.MaybeToPublisher.instance
 import io.reactivex.internal.schedulers.TrampolineScheduler.instance
 import io.reactivex.internal.util.ListAddBiConsumer.instance
+import kotlin.properties.Delegates
 
 
+@AndroidEntryPoint
 class PaymentCheckoutFragment : Fragment() {
     //Set up view binding here
     private var _binding: FragmentPaymentCheckoutBinding? = null
     private val binding get() = _binding!!
     private val hotelViewModel: HotelViewModel by viewModels()
     private val args: PaymentCheckoutFragmentArgs by navArgs()
-    private var transactionReference = ""
-    private var paymentUrl = ""
+//    private lateinit var transactionReference: String
+//    private var paymentUrl = ""
+    private var price = 0.0F
     private var bookingReference = ""
-    private var verificationDetails: VerifyBooking? = null
-    private var selectedPaymentOption: String? = null
+    private lateinit var verificationDetails: VerifyBooking
+    private lateinit var hotelBookingInfo: BookHotel
+    private var selectedPaymentOption = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         //Enabled view binding here
@@ -52,16 +58,25 @@ class PaymentCheckoutFragment : Fragment() {
 
         val price = args.price.toString()
         binding.paymentOptionAmountTv.text = "N$price"
-
-        paymentUrl = args.transactionUrl
-        Log.d("XYZ", "goToPaystack: ${args.transactionUrl}")
-        Log.d("XYZ", "goToPaystack: $paymentUrl")
-
-       bookingReference = args.bookingReference
+//
+//        paymentUrl = args.transactionUrl
+//        Log.d("XYZ", "goToPaystack: ${args.transactionUrl}")
+//        Log.d("XYZ", "goToPaystack: $paymentUrl")
+//
+//       bookingReference = args.bookingReference
 
 
         val navToPaystack = binding.paymentOptionPaystack
         val navToFlutterwave = binding.paymentOptionFlutterwave
+
+        if (navToPaystack.isPressed) {
+            selectedPaymentOption = binding.paymentOptionPaystackTv.text.toString()
+        }
+        if (navToFlutterwave.isPressed) {
+            selectedPaymentOption = binding.paymentOptionFlutterwaveTv.text.toString()
+        }
+
+
 //        val navToMasterCard = binding.paymentOptionGpay
 //        val navToDebitCard = binding.paymentOptionGpay
 //        val navToPaytm = binding.paymentOptionGpay
@@ -84,7 +99,7 @@ class PaymentCheckoutFragment : Fragment() {
         //Visa navigation
         //val navToVisa = binding.paymentOptionGpay
         navToPaystack.setOnClickListener{
-            goToPaymentUrl()
+            pushBookHotelData()
             Toast.makeText(requireContext(), "Redirecting to Paystack", Toast.LENGTH_SHORT).show()
 //            findNavController().navigate(R.id.action_paymentCheckoutFragment_to_paymentDetailsFragment)
         }
@@ -144,32 +159,39 @@ class PaymentCheckoutFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
+    private fun pushBookHotelData() {
+            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+            hotelBookingInfo = BookHotel(
+                args.roomId,
+                args.checkIn,
+                args.checkOut,
+                args.numberOfPeople,
+                "paystack"
+            )
+        Log.d("XYZ", "pushBookHotelData: ${args.roomId}")
+        Log.d("XYZ", "pushBookHotelDatapaymentoption: $selectedPaymentOption ")
+            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
+            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+                if (it != null) {
+                    price = it.data.price.toFloat()
+//                    transactionURL = it.data.paymentUrl
+                    bookingReference = it.data.paymentReference
+                    Log.d("XYZ", "pushBookHotelDataroomIdpaymentreference: ${it.data.paymentReference} ")
+                }
+                val action = PaymentCheckoutFragmentDirections.actionPaymentCheckoutFragmentToPaymentDetailsFragment(bookingReference, price)
+                findNavController().navigate(action)
+            })
+        }
+
     //direct user to web payment service
-    private fun goToPaymentUrl() {
-        val openUrlIntent = Intent()
-            .setAction(ACTION_VIEW)
-            .addCategory(CATEGORY_BROWSABLE)
-            .setData(Uri.parse(paymentUrl))
-        startActivity(openUrlIntent)
+//    private fun goToPaymentUrl() {
+//        val openUrlIntent = Intent()
+//            .setAction(ACTION_VIEW)
+//            .addCategory(CATEGORY_BROWSABLE)
+//            .setData(Uri.parse(paymentUrl))
+//        startActivity(openUrlIntent)
 //        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(paymentUrl))
 //        startActivity(intent)
-    }
-
-    private fun pushPaymentVerificationDetails() {
-        verificationDetails = VerifyBooking(bookingReference, transactionReference)
-        hotelViewModel.pushPaymentTransactionDetails(verificationDetails!!)
-        hotelViewModel.bookingVerificationDetails.observe(viewLifecycleOwner, {
-            if (it != null) {
-                Toast.makeText(requireContext(), "Payment Successful!", Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_paymentDetailsFragment_to_bookingConfirmationFragment)
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Unsuccessful. Please try again ",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        })
     }
 
 //    fun getPaymentUrl() {
@@ -184,23 +206,3 @@ class PaymentCheckoutFragment : Fragment() {
 //        intent.data = Uri.parse("")
 //        startActivity(intent)
 //    }
-
-//    private fun paymentOptionSelected() {
-//        if (navToGPay.isPressed) {
-//            selectedPaymentOption = navToGPay.toString()
-//        }
-//        if (navToVisa.isPressed) {
-//            selectedPaymentOption = navToVisa.toString()
-//        }
-//        if (navToMasterCard.isPressed) {
-//            selectedPaymentOption = navToMasterCard.toString()
-//        }
-//        if (navToDebitCard.isPressed) {
-//            selectedPaymentOption = navToDebitCard.toString()
-//        }
-//        if (navToPaytm.isPressed) {
-//            selectedPaymentOption = navToPaytm.toString()
-//        }
-//    }
-
-}
