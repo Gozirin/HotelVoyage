@@ -65,8 +65,8 @@
                 android:id="@+id/allHotelsLocationIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/allhotels"
                 android:layout_marginStart="20sp"
+                android:contentDescription="@string/allhotels"
                 android:src="@drawable/ic_location_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,14 +77,12 @@
                 android:id="@+id/allHotelsLocationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="18sp"
                 android:textColor="@color/black"
+                android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/allHotelsLocationIcon"
                 app:layout_constraintStart_toEndOf="@+id/allHotelsLocationIcon"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="20dp"/>
+                app:layout_constraintTop_toTopOf="@+id/allHotelsLocationIcon" />
 
             <ImageView
                 android:id="@+id/allHotels_filter_icon"
