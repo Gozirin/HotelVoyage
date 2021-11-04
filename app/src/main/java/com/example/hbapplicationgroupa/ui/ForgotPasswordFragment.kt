@@ -1,11 +1,11 @@
 package com.example.hbapplicationgroupa.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
  import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -28,11 +28,12 @@ class ForgotPasswordFragment : Fragment () {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnForgotPassword.setOnClickListener {
-            val userEmail = binding.tvEmailTextForgotpassword.text.toString()
+            val userEmail = binding.tvEmailTextForgotpassword.text.toString().trim()
 
             // check if the email is valid email address
             if (!ValidateEmail.isEmailValid(userEmail)){
@@ -41,7 +42,12 @@ class ForgotPasswordFragment : Fragment () {
                 viewModel.sendForgortPasswordEmail(userEmail)
                 viewModel.forgotPasswordEmail.observe(viewLifecycleOwner, Observer {
                     val response = viewModel.forgotPasswordEmail.value
-                    Toast.makeText(context, "$response", Toast.LENGTH_LONG).show()
+                    if (response?.data == null) {
+                        "Account does not exist".also { binding.tvForgotPasswordFamilyText.text = it }
+                        binding.forgotPasswordResponseTv.visibility = View.GONE
+                    }  else{
+                        binding.forgotPasswordResponseTv.text = " A link has been sent to ${response.data} check your mail to reset password"
+                    }
                 })
             }
         }
