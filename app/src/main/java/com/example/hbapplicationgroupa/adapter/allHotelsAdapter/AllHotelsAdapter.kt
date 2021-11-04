@@ -48,7 +48,9 @@ class AllHotelsAdapter(
 
     override fun onBindViewHolder(holder: AllHotelsViewHolder, position: Int) {
         holder.nameOfAllHotel.text = listOfAllHotels[position].name
-        holder.priceOfAllHotel.text = listOfAllHotels[position].roomTypes?.get(0)?.price.toString()
+        listOfAllHotels[position].roomTypes?.forEach {
+            holder.priceOfAllHotel.text = it.price.toString()
+        }
         holder.ratingOfAllHotel.text = listOfAllHotels[position].rating?.let { ceil(it).toString() }
         holder.imageOfAllHotel.let {
             Glide.with(it.context)
