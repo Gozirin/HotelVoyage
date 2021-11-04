@@ -20,14 +20,14 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.UploadRequestBody
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
-import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.utils.TO_READ_EXTERNAL_STORAGE
-import com.example.hbapplicationgroupa.utils.UpdateProfileBottomSheetOnClickInterface
 import com.example.hbapplicationgroupa.utils.getFileName
 import com.example.hbapplicationgroupa.utils.snackbar
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
@@ -165,6 +165,11 @@ class ProfileFragment : Fragment() {
                 binding.profileProgressBar.visibility = View.GONE
                 binding.fragmentProfileSv.visibility = View.VISIBLE
 
+                Glide.with(this)
+                    .load(it.data.avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.ivImageUserProfile)
+
                 Log.d("GKB", "getCustomerDetails: $customerInfo")
             }else{
                 binding.profileProgressBar.visibility = View.VISIBLE
@@ -241,10 +246,6 @@ class ProfileFragment : Fragment() {
             }
         }
     }
-
-//    override fun passNameToProfileFragment(firstName: String, lastName: String) {
-//        binding.fragmentProfileNameTv.text = "$firstName $lastName"
-//    }
 }
 
 

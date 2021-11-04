@@ -14,6 +14,7 @@ class AuthPreference() {
         val MY_PREF = "my_pref"
         val TOKEN_KEY = "token_key"
         val ID_KEY = "id_key"
+        val REFRESH_KEY = "refresh_key"
 
         lateinit var myPreference: SharedPreferences
 
@@ -44,6 +45,16 @@ class AuthPreference() {
         //delete token. called when user logs out.
         fun clear(key: String){
             myPreference.edit().remove(key).apply()
+        }
+
+        //set refresh Token
+        fun setRefreshToken(refreshToken: String){
+            myPreference.edit().putString(REFRESH_KEY, refreshToken).apply()
+        }
+
+        //get refresh Token
+        fun getRefreshToken(key: String): String?{
+            return myPreference.getString(key, null)
         }
     }
 }

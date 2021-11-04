@@ -48,41 +48,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/ratingReviewName_tv"
         app:layout_constraintTop_toTopOf="@id/ratingReviewName_tv">
-        <ImageView
-            android:id="@+id/ratingStarOne_iv"
+        <RatingBar
+            android:id="@+id/reviewRating"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="@color/c_red"
+            android:rating="4.5"
+            android:stepSize="0.5"
+           app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-        <ImageView
-            android:id="@+id/ratingStarTwo_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ratingStarOne_iv"/>
-        <ImageView
-            android:id="@+id/ratingStarThree_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ratingStarTwo_iv"/>
-        <ImageView
-            android:id="@+id/ratingStarFour_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ratingStarThree_iv"/>
-        <ImageView
-            android:id="@+id/ratingStarFive_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ratingStarFour_iv"/>
+            tools:targetApi="lollipop"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/ratingStarOne_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratingStarTwo_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/ratingStarOne_iv"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratingStarThree_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/ratingStarTwo_iv"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratingStarFour_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/ratingStarThree_iv"/>-->
+<!--        <ImageView-->
+<!--            android:id="@+id/ratingStarFive_iv"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/ratingStarFour_iv"/>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.borjabravo.readmoretextview.ReadMoreTextView

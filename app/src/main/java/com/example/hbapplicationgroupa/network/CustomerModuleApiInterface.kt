@@ -1,13 +1,14 @@
 package com.example.hbapplicationgroupa.network
 
-import com.example.hbapplicationgroupa.model.adaptermodels.WishListData
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.HotelIdRatingsModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsbyhotelid.RatingsByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
-import com.example.hbapplicationgroupa.model.customermodule.getcustomerbookingbyuserid.BookingByUserIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
@@ -48,18 +49,30 @@ interface CustomerModuleApiInterface {
     suspend fun getCustomerWishListByPageNumber(
         //@Path("userId") userId: String,
         @Header("Authorization") token: String,
-        @Query("pageSize") pageSize: Int,
-        @Query("pageNumber") pageNumber: Int
+        @Query("PageSize") pageSize: Int,
+        @Query("PageNumber") pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel>
 
+    @POST("/api/Customer/{hotelId}/add-wishlist")
+    suspend fun addCustomerWishListByHotelId(
+        @Header("Authorization") token: String,
+        @Path("hotelId") hotelId: String
+    ): Response<WishlistResponse>
 
-    // function to upload to our backend
+    //function to upload to our backend
     @Multipart
     @PATCH("api/Customer/update-image")
     suspend fun uploadImage(
         @Header("Authorization") authToken: String,
         @Part image: MultipartBody.Part
     ): Response<UpdateProfileImage>
+
+    @DELETE("/api/Customer/{hotelId}/remove-wishlist")
+    suspend fun removeCustomerWishListByHotelId(
+        @Header("Authorization") token: String,
+        @Path("hotelId") hotelId : String
+    ): Response<WishlistResponse>
+
 
 
     @PUT("api/Customer/update")

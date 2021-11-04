@@ -2,6 +2,7 @@ package com.example.hbapplicationgroupa.ui
 
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +18,9 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentLoginBinding
 import com.example.hbapplicationgroupa.utils.*
-import com.example.hbapplicationgroupa.utils.LoginValidations.enable
 import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -78,6 +79,20 @@ class LoginFragment : Fragment() {
                     //Saving auth Token and Id to Shared Preference
                     AuthPreference.setToken(it.data!!.token)
                     AuthPreference.setId(it.data.id)
+                    AuthPreference.setRefreshToken(it.data.refreshToken)
+
+                    //refreshing token from api after 8 mins
+                    val token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+                        Log.d("TOKEN", token)
+                    val userId = AuthPreference.getId(AuthPreference.ID_KEY)
+                        Log.d("ID_KEY", userId.toString())
+                    val refreshKey = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
+                        Log.d("REFRESH_KEY", refreshKey.toString())
+                    if (userId != null) {
+                        if (refreshKey != null) {
+                            refreshTokenCountDown(token, userId, refreshKey)
+                        }
+                    }
                     binding.btnLoginScreen.text = "Login"
                 }
                 400 -> {
@@ -111,6 +126,40 @@ class LoginFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
+
+    //observing refresh token live data
+    private fun observeRefreshTokenLiveData(token: String, userId: String, refreshToken: String){
+        try {
+            viewModel.refreshToken(token, userId, refreshToken)
+            viewModel.refreshTokenLiveData.observe(viewLifecycleOwner, {
+                it.newJwtAccessToken?.let { token ->
+                    AuthPreference.clear(AuthPreference.TOKEN_KEY)
+                    AuthPreference.clear(AuthPreference.REFRESH_KEY)
+                    AuthPreference.setToken(token)
+                    AuthPreference.setRefreshToken(it.newRefreshToken.toString())
+                Log.d("NewToken", token)
+                }
+                Log.d("NEW ACESS TOKEN", it.newJwtAccessToken.toString())
+                Log.d("REFRESH TOKEN", it.newRefreshToken.toString())
+            })
+        }catch (e: Exception){
+            Log.d("REFRESHTOKEN ERROR", "Error Refreshing Token")
+        }
+    }
+
+    //time countdown to refresh token
+    fun refreshTokenCountDown(token: String, userId: String, refreshToken: String){
+        val timer = object: CountDownTimer((8*60*1000).toLong(), 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                }
+
+            override fun onFinish() {
+                observeRefreshTokenLiveData(token, userId, refreshToken)
+            }
+        }
+        timer.start()
     }
 }
 

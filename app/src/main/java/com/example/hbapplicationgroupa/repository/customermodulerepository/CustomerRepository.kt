@@ -6,6 +6,9 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyh
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseModel
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistResponse
+import com.example.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
+import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.updatecusomerimage.UpdateProfileImage
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.model.usermodule.updateuserbyid.UpdateUserByIdModel
@@ -43,11 +46,26 @@ class CustomerRepository @Inject constructor(
     override suspend fun getCustomerWishListByPageNumber(
 //        userId: String,
         token: String,
-        pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
+        pageNumber: Int
     ): Response<WishlistByPageNumberResponseModel> {
-        return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageNumber, pageSize)
+        return customerModuleApiInterface.getCustomerWishListByPageNumber(token, pageSize, pageNumber)
     }
+
+    override suspend fun addCustomerWishlistById(
+        token: String,
+        hotelId: String
+    ): Response<WishlistResponse> {
+        return customerModuleApiInterface.addCustomerWishListByHotelId(token, hotelId)
+    }
+
+    override suspend fun removeCustomerWishlistByHotelId(
+        token: String,
+        hotelId: String
+    ): Response<WishlistResponse> {
+        return customerModuleApiInterface.removeCustomerWishListByHotelId(token, hotelId)
+    }
+
 
     override suspend fun updateUser(
         authToken: String,
