@@ -16,14 +16,14 @@ import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistb
 import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.WishlistByPageNumberResponseItems
 
 
-class WishListAdapter(var context: Context,
-                      private val wishListItemClickListener: WishListItemClickListener,
-                      private val wishListPreviewButtonClickListener: WishListPreviewButtonClickListener,
-                      private val wishListRemoveButtonClickListener: WishListRemoveButtonClickListener,
-                      ) :
-    RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
+class WishListAdapter(
+    var context: Context,
+    private val wishListItemClickListener: WishListItemClickListener,
+    private val wishListPreviewButtonClickListener: WishListPreviewButtonClickListener,
+    private val wishListRemoveButtonClickListener: WishListRemoveButtonClickListener
+    ): RecyclerView.Adapter<WishListAdapter.WishListViewHolder>() {
 
-     var listOfWishList = listOf<PageItem>()
+     var listOfWishList = arrayListOf<PageItem>()
 
     inner class WishListViewHolder(binding: WishListItemsBinding) : RecyclerView.ViewHolder(binding.root) {
         var hotelPrice: TextView = binding.tvHotelprice
@@ -33,6 +33,10 @@ class WishListAdapter(var context: Context,
         val removeIcon: ImageView = binding.removeIcon
         val previewBtn: Button = binding.bookingBtn
         val savedImage: ImageView = binding.hotelImageView
+
+    }
+
+    fun removeHotelFromWishList(){
 
     }
 
@@ -71,6 +75,11 @@ class WishListAdapter(var context: Context,
             // set the onclick listener to the bookmark icon
             removeIcon.setOnClickListener {
                 wishListRemoveButtonClickListener.wishlistRemoveBtnClicked(position)
+                while (position < listOfWishList.size){
+                    listOfWishList.remove(listOfWishList[position])
+                    break
+                }
+                notifyDataSetChanged()
             }
 
             // set the onclick listener to the booking button
@@ -87,7 +96,7 @@ class WishListAdapter(var context: Context,
     override fun getItemCount() = listOfWishList.size
 
     //setting data to listOfWishList
-    fun setDataToAdapter(list: List<PageItem>){
+    fun setDataToAdapter(list: ArrayList<PageItem>){
 //        listOfWishList.clear()
         listOfWishList = list
         notifyDataSetChanged()
