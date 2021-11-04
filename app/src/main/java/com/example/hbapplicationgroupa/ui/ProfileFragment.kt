@@ -20,6 +20,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.UploadRequestBody
 import com.example.hbapplicationgroupa.database.AuthPreference
@@ -159,8 +161,12 @@ class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
         viewModel.getCustomerDetails(authToken)
         viewModel.getCustomerDetailsLiveData.observe(viewLifecycleOwner, {
             customerInfo = it.data
-            binding.fragmentProfileNameTv.text = "${customerInfo.firstName} ${customerInfo.lastName}"
-            binding.fragmentProfileEmailTv.text = customerInfo.email
+            binding.fragmentProfileNameTv.text = it.data.firstName + " " + it.data.lastName
+            binding.fragmentProfileEmailTv.text = it.data.email
+            Glide.with(this)
+                .load(it.data.avatar)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(binding.ivImageUserProfile)
             Log.d("GKB", "getCustomerDetails: $customerInfo")
         })
     }

@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmai
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.refreshToken.RefreshTokenResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
@@ -55,5 +56,10 @@ interface AuthModuleApiInterface {
         @Body confirmEmailModel: ConfirmEmailModel
     ): Response<ConfirmEmailResponse>
 
-
+    @GET("/api/Authentication/refresh-token")
+    suspend fun refreshToken(
+        token: String,
+        userId: String,
+        refreshToken: String
+    ): Response<RefreshTokenResponseModel>
 }

@@ -1,19 +1,19 @@
 package com.example.hbapplicationgroupa.viewmodel
 
-
-import android.util.Log
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
-import com.example.hbapplicationgroupa.utils.TestCoroutineRule
-import com.example.hbapplicationgroupa.viewModel.HotelViewModel
-import com.google.common.truth.Truth.assertThat
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
-import org.junit.rules.TestRule
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
+//
+//import android.util.Log
+//import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+//import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseModel
+//import com.example.hbapplicationgroupa.utils.TestCoroutineRule
+//import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+//import com.google.common.truth.Truth.assertThat
+//import kotlinx.coroutines.ExperimentalCoroutinesApi
+//import org.junit.Before
+//import org.junit.Rule
+//import org.junit.Test
+//import org.junit.rules.TestRule
+//import org.junit.runner.RunWith
+//import org.mockito.junit.MockitoJUnitRunner
 
 //
 //@ExperimentalCoroutinesApi

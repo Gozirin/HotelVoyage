@@ -9,6 +9,7 @@ import com.example.hbapplicationgroupa.model.authmodule.confirmemail.ConfirmEmai
 import com.example.hbapplicationgroupa.model.authmodule.forgotpassword.ForgotPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserModel
 import com.example.hbapplicationgroupa.model.authmodule.loginuser.LoginUserResponseModel
+import com.example.hbapplicationgroupa.model.authmodule.refreshToken.RefreshTokenResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordModel
 import com.example.hbapplicationgroupa.model.authmodule.resetpassword.ResetPasswordResponseModel
 import com.example.hbapplicationgroupa.model.authmodule.updatepassword.UpdatePasswordModel
@@ -46,5 +47,13 @@ class AuthRepository @Inject constructor(
 
     override suspend fun confirmEmail(confirmEmailModel: ConfirmEmailModel): Response<ConfirmEmailResponse> {
         return authModuleApiInterface.confirmEmail(confirmEmailModel)
+    }
+
+    override suspend fun refreshToken(
+        token: String,
+        userId: String,
+        refreshToken: String
+    ): Response<RefreshTokenResponseModel> {
+        return authModuleApiInterface.refreshToken(token, userId, refreshToken)
     }
 }
