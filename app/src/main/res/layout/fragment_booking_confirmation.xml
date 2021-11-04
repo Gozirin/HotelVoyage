@@ -75,6 +75,16 @@
         app:layout_constraintStart_toStartOf="@+id/congratulations_text_view"
         app:layout_constraintTop_toBottomOf="@+id/congratulations_text_view" />
 
+    <TextView
+        android:id="@+id/booking_confirmation_message_text_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction receipt has been sent to your email address"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/congratulations_text_view"
+        app:layout_constraintEnd_toEndOf="@id/congratulations_text_view"
+        app:layout_constraintTop_toBottomOf="@id/booking_confirmation_message_text_view"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/go_back_to_home_button"
         android:layout_width="0dp"

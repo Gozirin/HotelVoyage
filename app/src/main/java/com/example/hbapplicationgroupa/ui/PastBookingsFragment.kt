@@ -46,7 +46,7 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hotelList = listOf()
-
+        viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
         binding.fragmentBookingBackIv.setOnClickListener {
             findNavController().navigate(R.id.action_pastBookingsFragment2_to_profileFragment)
         }
@@ -62,8 +62,8 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
 
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        getPastBookings(10, 1, authToken)
         observeBookingHistoryFlow()
-        getPastBookings(1, 10, authToken)
         displayNoBookingImage()
         onBackPressed()
     }
@@ -84,13 +84,12 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
         findNavController().navigate(action)
     }
 
-    private fun getPastBookings(pageNumber: Int, pageSize: Int, authToken: String){
-        viewModel.getPastBooking(pageNumber, pageSize, authToken)
+    private fun getPastBookings( pageSize: Int, pageNumber: Int, authToken: String){
+        viewModel.getPastBooking(pageSize, pageNumber,  authToken)
     }
 
     private fun observeBookingHistoryFlow(){
         binding.pastBookingProgressBar.visibility = View.VISIBLE
-        viewModel = ViewModelProvider(this)[CustomerViewModel::class.java]
         viewModel.getPastBookingLiveData.observe(viewLifecycleOwner, Observer {
             if (it.data.pageItems.isNotEmpty()){
                 adapter.bookingList = it.data.pageItems
