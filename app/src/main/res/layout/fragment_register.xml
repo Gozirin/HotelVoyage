@@ -65,7 +65,8 @@
                 android:src="@drawable/iv_image"
                 local:layout_constraintEnd_toEndOf="parent"
                 local:layout_constraintStart_toStartOf="parent"
-                local:layout_constraintTop_toTopOf="parent" />
+                local:layout_constraintTop_toTopOf="parent"
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tv_register_name"
@@ -336,8 +337,6 @@
                 android:id="@+id/gender_error"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="5dp"
                 android:text="Gender must be male or female"
                 android:textColor="#ED4639"
                 android:visibility="gone"
@@ -380,8 +379,6 @@
                 android:id="@+id/radio_button_must_be_checked_err"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginVertical="5dp"
                 android:text="Agree with terms &amp; conditions"
                 android:textColor="#ED4639"
                 android:visibility="gone"
