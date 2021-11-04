@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".ui.RegisterFragment">
 
     <androidx.appcompat.widget.Toolbar
@@ -61,10 +60,10 @@
                 android:layout_height="230dp"
                 android:layout_marginTop="70dp"
                 android:src="@drawable/iv_image"
-                android:layout_marginBottom="10dp"
                 local:layout_constraintEnd_toEndOf="parent"
                 local:layout_constraintStart_toStartOf="parent"
-                local:layout_constraintTop_toTopOf="parent" />
+                local:layout_constraintTop_toTopOf="parent"
+                />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tv_register_name"
@@ -83,11 +82,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusedByDefault="false"
                     android:hint="@string/registration_hintName"
-                    android:textColorHint="@color/black"
-                    app:boxStrokeColor="@null"
-                    app:boxStrokeWidth="0dp"
                     app:endIconMode="clear_text"
                     app:helperTextTextColor="#ED4639"
                     app:startIconDrawable="@drawable/reg_person_image"
@@ -101,7 +96,6 @@
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tv_User_name"
@@ -120,11 +114,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusedByDefault="false"
                     android:hint="User Name"
-                    android:textColorHint="@color/black"
-                    app:boxStrokeColor="@null"
-                    app:boxStrokeWidth="0dp"
                     app:endIconMode="clear_text"
                     app:helperTextTextColor="#ED4639"
                     app:startIconDrawable="@drawable/reg_person_image"
@@ -144,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp"
@@ -156,11 +146,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusedByDefault="false"
                     android:hint="@string/registration_email_field"
-                    android:textColorHint="@color/black"
-                    app:boxStrokeColor="@null"
-                    app:boxStrokeWidth="0dp"
                     app:endIconMode="clear_text"
                     app:helperTextTextColor="#ED4639"
                     app:startIconDrawable="@drawable/reg_email_icon"
@@ -170,6 +156,7 @@
                         android:id="@+id/tvEmailText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
                         android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
@@ -179,7 +166,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp"
@@ -191,10 +178,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="FirstName"
-                    android:textColorHint="@color/black"
-                    app:boxBackgroundColor="@null"
-                    app:boxStrokeWidth="0dp"
+                    android:hint="First Name"
                     app:endIconMode="clear_text"
                     app:helperTextTextColor="#ED4639"
                     app:hintTextColor="@color/black"
@@ -205,14 +189,11 @@
                         android:id="@+id/fragment_register_firstName_etv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
-
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/edt_register_PhoneNumber"
@@ -232,9 +213,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
-                    android:textColorHint="@color/black"
-                    app:boxBackgroundColor="@null"
-                    app:boxStrokeWidth="0dp"
                     app:helperTextTextColor="#ED4639"
                     app:hintTextColor="@color/black"
                     app:startIconDrawable="@drawable/phone_image"
@@ -244,7 +222,6 @@
                         android:id="@+id/fragment_register_phoneNumber_etv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
                         android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="18sp" />
@@ -268,11 +245,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:focusedByDefault="false"
                     android:hint="Password"
-                    android:textColorHint="@color/black"
-                    app:boxStrokeColor="@null"
-                    app:boxStrokeWidth="0dp"
                     app:endIconMode="password_toggle"
                     app:helperTextTextColor="#ED4639"
                     app:hintTextColor="@color/black"
@@ -357,8 +330,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_password" />
 
-
-
             <TextView
                 android:id="@+id/tv_registrationTAndC"
                 android:layout_width="0dp"
@@ -409,7 +380,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_registrationTAndC" />
 
-
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_register"
                 android:layout_width="294dp"
@@ -427,6 +397,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_registrationLoginText" />
+
             <ProgressBar
                 android:id="@+id/fragment_register_progressBar_pb"
                 android:layout_width="wrap_content"
@@ -438,5 +409,4 @@
                 app:layout_constraintTop_toTopOf="@id/btn_register"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

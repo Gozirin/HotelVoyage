@@ -91,14 +91,15 @@ class WishListFragment : Fragment(),
     override fun wishListClicked(position: Int) {
         val item = arrayLists[position]
         hotelId = item.hotelId!!
-        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        val action = WishListFragmentDirections.actionWishListFragmentToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
     }
 
     //Click listener for navigation of book btn to booking details
-    override fun wishListPreviewBtnClicked(position: Int) {val item = arrayLists[position]
+    override fun wishListPreviewBtnClicked(position: Int) {
+        val item = arrayLists[position]
         hotelId = item.hotelId!!
-        val action = AllHotelsFragmentsDirections.actionAllHotelsFragmentsToHotelDescription2Fragment(hotelId)
+        val action = WishListFragmentDirections.actionWishListFragmentToHotelDescription2Fragment(hotelId)
         findNavController().navigate(action)
     }
 
@@ -108,6 +109,7 @@ class WishListFragment : Fragment(),
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
         customerViewModel.removeWishList(authToken, arrayLists[position].hotelId!!)
         customerViewModel.getWishList(authToken, 10, 1)
+        wishListAdapter.notifyDataSetChanged()
         Toast.makeText(requireContext(),
             "${arrayLists[position].hotelName} is successfully deleted from WishList",
             Toast.LENGTH_SHORT).show()
