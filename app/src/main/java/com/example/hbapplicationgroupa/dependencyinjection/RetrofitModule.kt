@@ -1,10 +1,8 @@
 package com.example.hbapplicationgroupa.dependencyinjection
 
-import com.example.hbapplicationgroupa.network.AuthModuleApiInterface
-import com.example.hbapplicationgroupa.network.CustomerModuleApiInterface
-import com.example.hbapplicationgroupa.network.HotelModuleApiInterface
-import com.example.hbapplicationgroupa.network.UserModuleApiInterface
+import com.example.hbapplicationgroupa.network.*
 import com.example.hbapplicationgroupa.utils.BASE_URL
+import com.example.hbapplicationgroupa.utils.BASE_URL_PAYSTACK
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
