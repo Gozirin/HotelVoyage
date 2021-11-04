@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,8 @@ class UpdateUserProfileFragment : Fragment() {
         AuthPreference.initPreference(requireActivity())
         val authToken = "Bearer ${AuthPreference.getId(AuthPreference.TOKEN_KEY)}"
 
+        prePopulateFields()
+
         binding.updateProfileButton.setOnClickListener {
             val sdf = DateFormat.getDateTimeInstance()
             val currentDate = sdf.format(Date())
@@ -57,7 +60,6 @@ class UpdateUserProfileFragment : Fragment() {
             )
 
             observeUpdateUserLiveData()
-            prePopulateFields()
         }
     }
 
@@ -94,6 +96,7 @@ class UpdateUserProfileFragment : Fragment() {
 
     private fun prePopulateFields(){
         binding.updateProfileFirstNameEt.setText(args.userDetails.firstName)
+        Log.d("GKBB", "FIRSTNAME --> ${args.userDetails.firstName}")
         binding.updateProfileLastNameEt.setText(args.userDetails.lastName)
         binding.updateProfilePhoneNumberEt.setText(args.userDetails.phoneNumber)
         binding.updateProfileAgeEt.setText(args.userDetails.age.toString())
