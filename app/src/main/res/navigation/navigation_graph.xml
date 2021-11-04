@@ -59,6 +59,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_profileFragment_to_updateUserProfileFragment"
+            app:destination="@id/updateUserProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreHomeFragment"
@@ -602,5 +605,17 @@
         <action
             android:id="@+id/action_paymentDetailsFragment_to_bookingConfirmationFragment"
             app:destination="@id/bookingConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateUserProfileFragment"
+        android:name="com.example.hbapplicationgroupa.ui.UpdateUserProfileFragment"
+        android:label="fragment_update_user_profile"
+        tools:layout="@layout/fragment_update_user_profile" >
+        <action
+            android:id="@+id/action_updateUserProfileFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <argument
+            android:name="userDetails"
+            app:argType="com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem" />
     </fragment>
 </navigation>
