@@ -284,7 +284,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
         viewModel.getCustomerDetailsLiveData.observe(viewLifecycleOwner, {
             if (it.succeeded){
                 customerInfo = it.data
-                binding.phoneTextInputEditText.setText("$customerInfo.phoneNumber")
+                binding.phoneTextInputEditText.setText("${customerInfo.phoneNumber}")
 
                 binding.bookingDetailsProgressBar.visibility = View.GONE
                 binding.bookingDetailsSv.visibility = View.VISIBLE
