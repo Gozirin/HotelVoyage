@@ -87,7 +87,7 @@ class AllHotelsFragments : Fragment(),
                 //Log.d("ObservingVM", response.pageItems.toString())
                     if (responseList != null) {
                         arrayLists = responseList
-                        allHotelsAdapter.listOfAllHotels.addAll(responseList)
+                        allHotelsAdapter.listOfAllHotels = responseList.toMutableList()
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
                 }

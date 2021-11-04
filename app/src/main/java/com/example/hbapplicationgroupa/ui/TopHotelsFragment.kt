@@ -53,7 +53,6 @@ class TopHotelsFragment : Fragment(),
 
         //connecting the view with the data response
         showProgressBar()
-        Toast.makeText(requireContext(), "Please, Ensure your internet is active", Toast.LENGTH_LONG).show()
         setupRecyclerView()
         hotelViewModel.fetchTopScreenHotels()
         hotelViewModel.topHotelsLiveData.observe(viewLifecycleOwner,{
@@ -112,7 +111,6 @@ class TopHotelsFragment : Fragment(),
         val hotelWish = hotelList[position]
         customerViewModel.addWishList(authToken, hotelWish.id)
         customerViewModel.getWishList(authToken, 10, 1)
-        Toast.makeText(requireContext(), "clicked", Toast.LENGTH_SHORT).show()
     }
 
     override fun topHotelSaveTextClickListener(position: Int) {

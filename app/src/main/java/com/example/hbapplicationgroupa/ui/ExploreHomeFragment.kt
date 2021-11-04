@@ -227,6 +227,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                     getTopHotels()
                     getTopDeals()
                     binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
+                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.GONE
                 }
                 false -> {
                     binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE

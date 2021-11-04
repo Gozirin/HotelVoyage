@@ -67,14 +67,14 @@ class PaymentCheckoutFragment : Fragment() {
 
 
         val navToPaystack = binding.paymentOptionPaystack
-        val navToFlutterwave = binding.paymentOptionFlutterwave
+//        val navToFlutterwave = binding.paymentOptionFlutterwave
 
         if (navToPaystack.isPressed) {
             selectedPaymentOption = binding.paymentOptionPaystackTv.text.toString()
         }
-        if (navToFlutterwave.isPressed) {
-            selectedPaymentOption = binding.paymentOptionFlutterwaveTv.text.toString()
-        }
+//        if (navToFlutterwave.isPressed) {
+//            selectedPaymentOption = binding.paymentOptionFlutterwaveTv.text.toString()
+//        }
 
 
 //        val navToMasterCard = binding.paymentOptionGpay
@@ -107,12 +107,12 @@ class PaymentCheckoutFragment : Fragment() {
 
         //google pay navigation
        // val navToGPay = binding.paymentOptionGpay
-        navToFlutterwave.setOnClickListener{
-
-            Toast.makeText(requireContext(), "Redirecting to Flutterwave", Toast.LENGTH_SHORT).show()
-
+//        navToFlutterwave.setOnClickListener{
+//
+//            Toast.makeText(requireContext(), "Redirecting to Flutterwave", Toast.LENGTH_SHORT).show()
+//
 //            findNavController().navigate(R.id.action_paymentCheckoutFragment_to_paymentDetailsFragment)
-        }
+//        }
 
 
         //MasterCard navigation

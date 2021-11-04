@@ -159,47 +159,46 @@
                 app:layout_constraintTop_toBottomOf="@+id/paymentOption_paystack"
                 tools:layout_editor_absoluteX="16dp" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/paymentOption_flutterwave"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                app:layout_constraintTop_toBottomOf="@+id/paymentOption_paystack"
-                tools:layout_editor_absoluteX="24dp">
+<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--                android:id="@+id/paymentOption_flutterwave"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="20dp"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="2"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/paymentOption_paystack"-->
+<!--                tools:layout_editor_absoluteX="24dp">-->
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/flutterwavelogo" />
+<!--                <com.mikhaellopez.circularimageview.CircularImageView-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:src="@drawable/flutterwavelogo" />-->
 
-                <TextView
-                    android:id="@+id/paymentOption_flutterwave_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="0dp"
-                    android:layout_weight="1.6"
-                    android:paddingVertical="20dp"
-                    android:paddingStart="30dp"
-                    android:paddingEnd="10dp"
-                    android:text="Flutterwave"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginHorizontal="0dp"-->
+<!--                    android:layout_weight="1.6"-->
+<!--                    android:paddingVertical="20dp"-->
+<!--                    android:paddingStart="30dp"-->
+<!--                    android:paddingEnd="10dp"-->
+<!--                    android:text="Flutterwave"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textSize="20sp" />-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/ic_forward"
-                    android:contentDescription="@string/payment_options"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
+<!--                <ImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="0.2"-->
+<!--                    android:src="@drawable/ic_forward"-->
+<!--                    android:contentDescription="@string/payment_options"/>-->
+<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
 
 <!--            <View-->
 <!--                android:layout_width="match_parent"-->
@@ -356,7 +355,7 @@
                 android:background="#F5F5F5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/paymentOption_flutterwave" />
+                app:layout_constraintTop_toBottomOf="@+id/paymentOption_paystack" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
