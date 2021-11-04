@@ -88,7 +88,7 @@
                         android:layout_height="50dp"
                         android:layout_marginStart="8dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_filter"
+                        android:src="@drawable/onilne_shopping_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/explore_home_explore_text_1"
                         app:tint="@color/white" />
@@ -112,7 +112,6 @@
                         android:id="@+id/explore_home_explore_text_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="@string/your_favourite_and_relaxing"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -124,7 +123,6 @@
                         android:id="@+id/explore_home_explore_text_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
                         android:text="@string/stay"
                         android:textColor="@color/white"
                         android:textSize="20sp"
@@ -135,6 +133,7 @@
                         android:id="@+id/explore_home_view_and_arrow_btn"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
+                        android:layout_marginTop="8dp"
                         android:background="#EC726B"
                         android:clickable="true"
                         android:focusable="true"
@@ -217,7 +216,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exploreHomeFragmentRecyclerView1"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -258,7 +257,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/exploreHomeFragmentRecyclerView2"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -280,20 +279,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintTop_toTopOf="@+id/exploreHomeFragmentRecyclerView1"
+                app:layout_constraintBottom_toBottomOf="@+id/exploreHomeFragmentRecyclerView1"
+                app:layout_constraintEnd_toEndOf="@+id/exploreHomeFragmentRecyclerView1"
+                app:layout_constraintStart_toStartOf="@+id/exploreHomeFragmentRecyclerView1"/>
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/exploreHomeFragmentProgressBar2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintBottom_toBottomOf="@id/exploreHomeFragmentRecyclerView2"-->
-<!--                app:layout_constraintEnd_toEndOf="@id/exploreHomeFragmentRecyclerView2"-->
-<!--                app:layout_constraintStart_toStartOf="@id/exploreHomeFragmentRecyclerView2"-->
-<!--                app:layout_constraintTop_toTopOf="@id/exploreHomeFragmentRecyclerView2" />-->
-
+            <ProgressBar
+                android:id="@+id/exploreHomeFragmentProgressBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/exploreHomeFragmentRecyclerView2"
+                app:layout_constraintEnd_toEndOf="@id/exploreHomeFragmentRecyclerView2"
+                app:layout_constraintStart_toStartOf="@id/exploreHomeFragmentRecyclerView2"
+                app:layout_constraintTop_toTopOf="@id/exploreHomeFragmentRecyclerView2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

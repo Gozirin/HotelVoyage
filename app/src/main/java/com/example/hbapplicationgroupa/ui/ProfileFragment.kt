@@ -27,9 +27,7 @@ import com.example.hbapplicationgroupa.UploadRequestBody
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentProfileBinding
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
-import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import com.example.hbapplicationgroupa.utils.TO_READ_EXTERNAL_STORAGE
-import com.example.hbapplicationgroupa.utils.UpdateProfileBottomSheetOnClickInterface
 import com.example.hbapplicationgroupa.utils.getFileName
 import com.example.hbapplicationgroupa.utils.snackbar
 import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
@@ -40,7 +38,7 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
+class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var dialog: Dialog
@@ -94,9 +92,8 @@ class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
 
         //Display bottom sheet to update user's profile
         binding.fragmentProfileTitleTv.setOnClickListener {
-            UpdateProfileBottomSheetDialogFragment(customerInfo, this).show(
-                requireActivity().supportFragmentManager, "updateProfileBottomSheet"
-            )
+            val action = ProfileFragmentDirections.actionProfileFragmentToUpdateUserProfileFragment(customerInfo)
+            findNavController().navigate(action)
         }
     }
 
@@ -160,14 +157,26 @@ class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
         val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
         viewModel.getCustomerDetails(authToken)
         viewModel.getCustomerDetailsLiveData.observe(viewLifecycleOwner, {
-            customerInfo = it.data
-            binding.fragmentProfileNameTv.text = it.data.firstName + " " + it.data.lastName
-            binding.fragmentProfileEmailTv.text = it.data.email
-            Glide.with(this)
-                .load(it.data.avatar)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(binding.ivImageUserProfile)
-            Log.d("GKB", "getCustomerDetails: $customerInfo")
+            if (it.succeeded){
+                customerInfo = it.data
+                binding.fragmentProfileNameTv.text = "${customerInfo.firstName} ${customerInfo.lastName}"
+                binding.fragmentProfileEmailTv.text = customerInfo.email
+
+                binding.profileProgressBar.visibility = View.GONE
+                binding.fragmentProfileSv.visibility = View.VISIBLE
+
+                Glide.with(this)
+                    .load(it.data.avatar)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(binding.ivImageUserProfile)
+
+                Log.d("GKB", "getCustomerDetails: $customerInfo")
+            }else{
+                binding.profileProgressBar.visibility = View.VISIBLE
+                binding.fragmentProfileSv.visibility = View.GONE
+
+                Log.d("GKB", "getCustomerDetails: SOMETHING WENT WRONG")
+            }
         })
     }
 
@@ -236,10 +245,6 @@ class ProfileFragment : Fragment(), UpdateProfileBottomSheetOnClickInterface {
 
             }
         }
-    }
-
-    override fun passNameToProfileFragment(firstName: String, lastName: String) {
-        binding.fragmentProfileNameTv.text = "$firstName $lastName"
     }
 }
 

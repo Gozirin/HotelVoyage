@@ -20,6 +20,7 @@ import com.example.hbapplicationgroupa.model.customermodule.addcustomerratingsby
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.HotelIdModel
 import com.example.hbapplicationgroupa.model.customermodule.addcustomerreviewbyhotelid.ReviewByHotelIdResponseModel
 import com.example.hbapplicationgroupa.model.customermodule.getCustomerBooking.GetCustomerBookingResponse
+import com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem
 import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseModel
 import okhttp3.MultipartBody
 
@@ -51,9 +52,9 @@ class CustomerViewModel @Inject constructor(
     val addReviewResponse: LiveData<ReviewByHotelIdResponseModel> = _addReviewResponse
 
     // wishlist livedata
-    private val _wishListLiveData: MutableLiveData<List<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> =
+    private val _wishListLiveData: MutableLiveData<ArrayList<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> =
         MutableLiveData()
-    val wishListLiveData: LiveData<List<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> = _wishListLiveData
+    val wishListLiveData: LiveData<ArrayList<com.example.hbapplicationgroupa.model.customermodule.getcustomerwishlistbypagenumber.PageItem>> = _wishListLiveData
 
 
 
@@ -69,12 +70,12 @@ class CustomerViewModel @Inject constructor(
                 if (response.isSuccessful) {
                     Log.d("getWishListVM", response.body().toString())
                     response.body()?.data.let {
-                        _wishListLiveData.postValue(it?.pageItems!!)
+                        _wishListLiveData.postValue(it?.pageItems!! as ArrayList<PageItem>?)
                         Log.d("WishLiveData", "${it.pageItems}")
                     }
                 } else {
                     response.body()?.data.let {
-                        _wishListLiveData.postValue(it?.pageItems!!)
+                        _wishListLiveData.postValue(it?.pageItems!! as ArrayList<PageItem>?)
                         Log.d("WishLiveData-Error", "${it.pageItems}")
                     }
 

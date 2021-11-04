@@ -16,14 +16,18 @@ import com.aminography.primecalendar.civil.CivilCalendar
 import com.aminography.primedatepicker.common.BackgroundShapeType
 import com.aminography.primedatepicker.picker.PrimeDatePicker
 import com.aminography.primedatepicker.picker.theme.LightThemeFactory
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.roomnumber_bottmshit_adapter.RoomIdByRoomTypeAdapterInterface
 import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentBookingDetailsBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.gethotelroombyid.GetHotelRoomByIdResponseItem
+import com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem
 import com.example.hbapplicationgroupa.utils.*
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
+import com.example.hbapplicationgroupa.viewmodel.CustomerViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,6 +41,8 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
     private val binding get() = _binding!!
     private val args: BookingDetailsFragmentArgs by navArgs()
     private val hotelViewModel: HotelViewModel by viewModels()
+    private val viewModel: CustomerViewModel by viewModels()
+    private lateinit var customerInfo: GetUserByIdResponseItem
     private var fetchedRoomNumbers: ArrayList<GetHotelRoomByIdResponseItem>? = null
     private lateinit var hotelName: String
     var hotelBookingInfo: BookHotel? = null
@@ -89,6 +95,8 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 
         binding.roomsEditText.setText(args.roomItem!!.name)
 
+        getCustomerPhoneNumber()
+
         binding.bookNowButton.setOnClickListener {
             if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
@@ -116,6 +124,10 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
                 passBookingInfoOnNavigationToPaymentCheckout()
                 Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
                     .show()
+
+                binding.bookNowProgressBar.visibility = View.VISIBLE
+                binding.bookNowButton.setText("Booking")
+
                 val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId, price)
                 findNavController().navigate(action)
 
@@ -265,6 +277,28 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 //            }
     }
 
+    private fun getCustomerPhoneNumber(){
+        AuthPreference.initPreference(requireActivity())
+        val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        viewModel.getCustomerDetails(authToken)
+        viewModel.getCustomerDetailsLiveData.observe(viewLifecycleOwner, {
+            if (it.succeeded){
+                customerInfo = it.data
+                binding.phoneTextInputEditText.setText("${customerInfo.phoneNumber}")
+
+                binding.bookingDetailsProgressBar.visibility = View.GONE
+                binding.bookingDetailsSv.visibility = View.VISIBLE
+            }else{
+                binding.bookingDetailsProgressBar.visibility = View.GONE
+                binding.bookingDetailsSv.visibility = View.VISIBLE
+
+                Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
+
+                Log.d("GKB", "getCustomerDetails: SOMETHING WENT WRONG")
+            }
+        })
+    }
+
     private fun passBookingInfoOnNavigationToPaymentCheckout() {
         for (i in binding.peopleEditText.text.toString()) {
             if (i.isDigit()) {
@@ -284,6 +318,32 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 //            if (i.isDigit()) {
 //                numberOfPeople+=i.digitToInt()
 //            }
+//        }
+//            hotelBookingInfo = BookHotel(
+//                roomId,
+//                binding.checkInEditText.text.toString(),
+//                binding.checkOutEditText.text.toString(),
+//                numberOfPeople,
+//                "paystack"
+//            )
+//        Log.d("XYZ", "pushBookHotelData: ${args.roomItem!!.id}")
+//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
+//            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
+//            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
+//                if (it != null) {
+//                    price = it.data.price.toFloat()
+//                    transactionURL = it.data.paymentUrl
+//                    bookingReference = it.data.paymentReference
+//                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
+//                    Log.d("GKB", "TRANSACTION URL --> $transactionURL ")
+//                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
+//                        .show()
+//                   // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
+//                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(transactionURL, price, bookingReference)
+//                    findNavController().navigate(action)
+//                }
+//            })
+//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
 //        }
 //
 //        checkIn = binding.checkInEditText.text.toString()

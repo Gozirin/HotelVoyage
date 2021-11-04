@@ -153,6 +153,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                // binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
                 it.data.let { topHotels -> renderTopHotelsList(topHotels) }
                 binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
+                binding.exploreHomeFragmentProgressBar1.visibility = View.INVISIBLE
             }
 //            when (it.statusCode) {
 //                200 -> {
@@ -202,6 +203,7 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                   renderTopDealsList(it.data)
 //                it.data.let { topDeals -> renderTopDealsList(topDeals) }
                 binding.exploreHomeFragmentRecyclerView2.visibility = View.VISIBLE
+                binding.exploreHomeFragmentProgressBar2.visibility = View.INVISIBLE
             }
         })
         return  hotelViewModel

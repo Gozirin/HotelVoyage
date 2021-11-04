@@ -1,9 +1,12 @@
 package com.example.hbapplicationgroupa.model.usermodule.getuserbyid
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "getUserById")
+@Parcelize
 data class GetUserByIdResponseItem(
     @PrimaryKey(autoGenerate = true)
     val tableNumber: Int,
@@ -18,4 +21,4 @@ data class GetUserByIdResponseItem(
     val creditCard: String,
     val address: String,
     val state: String
-)
+) : Parcelable
