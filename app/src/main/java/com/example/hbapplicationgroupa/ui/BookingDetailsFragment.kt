@@ -87,6 +87,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 
         binding.roomsEditText.setText(args.roomItem!!.name)
 
+        transactionURL = ""
         binding.bookNowButton.setOnClickListener {
             if (!phoneNumberIsNotEmpty(binding.phoneTextInputEditText.text.toString())){
                 binding.contactNumberTextInputLayout.error = "Kindly enter your phone number"
@@ -288,6 +289,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
                     transactionURL = it.data.paymentUrl
                     bookingReference = it.data.paymentReference
                     Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
+                    Log.d("GKB", "TRANSACTION URL --> $transactionURL ")
                     Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
                         .show()
                    // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
