@@ -55,17 +55,6 @@
                     app:layout_constraintStart_toEndOf="@+id/topDeal_backBtn"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/topDeal_searchView"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="16dp"
-                    app:searchHintIcon="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -78,57 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="20dp"
-        app:layout_constraintTop_toBottomOf="@id/topHotel_cardview_appBar">
-
-        <ImageView
-            android:id="@+id/topDealLocationIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_location_icon"
-            app:layout_constraintBottom_toBottomOf="@id/topDealLocationTxt"
-            app:layout_constraintEnd_toStartOf="@id/topDealLocationTxt"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/topDealLocationTxt"
-            app:tint="#FCEA0707"
-            android:contentDescription="@string/top_hotels"/>
-
-        <TextView
-            android:id="@+id/topDealLocationTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/banglore"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/topDealLocationIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="20dp"/>
-
-        <ImageView
-            android:id="@+id/topDeal_filter_icon"
-            android:layout_width="27dp"
-            android:layout_height="23dp"
-            android:src="@drawable/ic_filter"
-            app:layout_constraintBottom_toBottomOf="@id/topDeal_filter"
-            app:layout_constraintEnd_toStartOf="@+id/topDeal_filter"
-            app:layout_constraintTop_toTopOf="@id/topDeal_filter"
-            app:tint="#FCEA0707"
-            android:contentDescription="@string/top_hotels"/>
-
-        <TextView
-            android:id="@+id/topDeal_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/filter_by"
-            android:textColor="#FCEA0707"
-            android:textSize="18sp"
-            app:layout_constraintTop_toTopOf="@id/topDealLocationTxt"
-            app:layout_constraintBottom_toBottomOf="@id/topDealLocationTxt"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/topHotel_cardview_appBar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/topDeal_recyclerview"
