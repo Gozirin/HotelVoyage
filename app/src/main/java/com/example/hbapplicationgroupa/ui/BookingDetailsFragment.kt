@@ -63,10 +63,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
         super.onViewCreated(view, savedInstanceState)
 
 
-        Log.d("XYZ", "onViewCreatedroomName: ${args.roomItem!!.name}")
-        Log.d("XYZ", "onViewCreatedroomTypeId: ${args.roomItem!!.id}")
-        Log.d("XYZ", "onViewCreatedhotelId: ${args.hotelId}")
-
         //Show the calendar for date selection
         AuthPreference.initPreference(requireActivity())
 

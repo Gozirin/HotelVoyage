@@ -145,3 +145,36 @@ fun roomTypeIsNotEmpty(roomType: String): Boolean{
     }
     return false
 }
+
+
+fun findNumberOfDays(chekOut:String, checkIn:String):Int{
+    val arrayOfMonths= arrayListOf("January","February","March","April","May","June","July",
+        "August","September","October","November","December")
+
+    val splitCheckIn = checkIn.split(","," ")
+    val splitCheckOut = chekOut.split(","," ")
+
+    val checkOutYear = splitCheckOut[2].toInt()
+
+    val checkInMonth = splitCheckIn[1]
+    val checkOutMonth = splitCheckOut[1]
+
+    var checkInMonthPosition = 0
+    for (i in arrayOfMonths.indices){
+        if (checkInMonth == arrayOfMonths[i]){
+            checkInMonthPosition = i
+        }
+    }
+    val febSpecial = if (checkOutYear % 4 == 0) 29 else 28
+    val arrayOfDaysInMonth= arrayListOf(31,febSpecial,31,30,31,30,31,31,30,31,30,31)
+
+    val checkInDay = splitCheckIn[0].toInt()
+    val checkOutDay = splitCheckOut[0].toInt()
+
+    val diffInMonthToDay = if(checkInMonth != checkOutMonth){
+        checkOutDay + (arrayOfDaysInMonth[checkInMonthPosition] - checkInDay)
+    }else{
+        checkOutDay - checkInDay
+    }
+    return diffInMonthToDay
+}

@@ -24,6 +24,7 @@ import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentPaymentCheckoutBinding
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.BookHotel
 import com.example.hbapplicationgroupa.model.hotelmodule.bookhotel.VerifyBooking
+import com.example.hbapplicationgroupa.utils.findNumberOfDays
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.internal.operators.maybe.MaybeToPublisher.instance
@@ -55,8 +56,15 @@ class PaymentCheckoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val checkInDate = args.checkIn
+        val checkOutDate = args.checkOut
+        val numberOfDays = findNumberOfDays(checkOutDate,checkInDate)
+        val priceDiscount = (args.price - (args.price * 0.1))
 
-        val price = args.price.toString()
+        val price = when {
+            numberOfDays >1 -> "${priceDiscount * numberOfDays}"
+            else -> "${args.price * numberOfDays}"
+        }
         binding.paymentOptionAmountTv.text = "N$price"
 //
 //        paymentUrl = args.transactionUrl
