@@ -107,7 +107,6 @@ class UpdateUserProfileFragment : Fragment() {
 
     private fun prePopulateFields(){
         binding.updateProfileFirstNameEt.setText(args.userDetails.firstName)
-        Log.d("GKBB", "FIRSTNAME --> ${args.userDetails.firstName}")
         binding.updateProfileLastNameEt.setText(args.userDetails.lastName)
         binding.updateProfilePhoneNumberEt.setText(args.userDetails.phoneNumber)
         binding.updateProfileAgeEt.setText(args.userDetails.age.toString())

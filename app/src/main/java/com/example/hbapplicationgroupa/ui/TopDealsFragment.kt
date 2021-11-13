@@ -174,9 +174,5 @@ class TopDealsFragment : Fragment(),
         val item = hotelList[position]
         customerViewModel.addWishList(authToken, item.id)
         customerViewModel.getWishList(authToken, 50, 1)
-//        Toast.makeText(requireContext(),
-//            "${hotelList[position].name} is successfully deleted from WishList",
-//            Toast.LENGTH_SHORT).show()
-
     }
 }

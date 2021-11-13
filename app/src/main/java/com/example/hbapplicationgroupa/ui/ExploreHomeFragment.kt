@@ -155,34 +155,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                 binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
                 binding.exploreHomeFragmentProgressBar1.visibility = View.INVISIBLE
             }
-//            when (it.statusCode) {
-//                200 -> {
-//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-//                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
-//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
-//                   // Log.d("ExploreHome 2: ", it.toString())
-//                }
-//
-//                400 -> {
-//                    //handle error
-//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-//                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
-//                }
-//            }
         })
-//        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
-//            //2
-//            when (isAvailable) {
-//                true -> {
-//                    //3
-//                    hotelViewModel.exploreHomeTopHotels
-//                }
-//                false -> {
-//                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
-//                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        })
+
        return hotelViewModel
     }
 
@@ -237,10 +211,5 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                 }
             }
         })
-
-
     }
-
-
-
 }

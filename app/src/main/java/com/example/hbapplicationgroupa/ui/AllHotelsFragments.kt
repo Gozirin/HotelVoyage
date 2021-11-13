@@ -200,9 +200,7 @@ class AllHotelsFragments : Fragment(),
         hotelWish.id?.let {
            customerViewModel.addWishList(authToken, it)
             customerViewModel.getWishList(authToken, 50, 1)
-//            Toast.makeText(requireContext(),
-//                "${arrayLists[position].name} is successfully deleted from WishList",
-//                Toast.LENGTH_SHORT).show()
+
         }
     }
 

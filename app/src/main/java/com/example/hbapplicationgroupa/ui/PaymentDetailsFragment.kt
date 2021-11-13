@@ -293,8 +293,6 @@ class PaymentDetailsFragment : Fragment() {
             })
         }
     }
-
-
 //    private fun initTransactionResponse() {
 //        val payAuthToken = "Bearer $publicTestKey"
 //        val paymentInfo = InitializeTransaction(email, args.price.toString(), args.bookingReference)

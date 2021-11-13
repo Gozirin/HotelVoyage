@@ -155,12 +155,7 @@ fun findNumberOfDays(chekOut:String, checkIn:String):Int{
 
     val splitCheckIn = checkIn.split(","," ")
     val splitCheckOut = chekOut.split(","," ")
-    Log.d("findNumberOfDays", "findNumberOfDays: $splitCheckOut ")
-
     val checkOutYear = splitCheckOut[3].toInt()
-
-    Log.d("findNumberOfDays", "findNumberOfDays: $checkOutYear ")
-
     val checkInMonth = splitCheckIn[1]
     val checkOutMonth = splitCheckOut[1]
 
