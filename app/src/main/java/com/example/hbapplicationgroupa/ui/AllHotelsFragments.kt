@@ -1,6 +1,7 @@
 package com.example.hbapplicationgroupa.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,7 @@ class AllHotelsFragments : Fragment(),
     lateinit var allHotelsAdapter: AllHotelsAdapter
     val viewModel: HotelViewModel by viewModels()
     val customerViewModel: CustomerViewModel by viewModels()
-    val arrayList =  ArrayList<PageItem>()
+    var arrayList =  ArrayList<PageItem>()
   //  val customerViewModel: CustomerViewModel by viewModels()
     lateinit var arrayLists : List<PageItem>
     lateinit var selectedState: String
@@ -65,9 +66,31 @@ class AllHotelsFragments : Fragment(),
         binding.allHotelsFilters.onItemClickListener = object :AdapterView.OnItemClickListener{
             override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
               selectedState = languages[p2].toString()
-              search(selectedState)
-                binding.allHotelsLocationTxt.text = selectedState
-                binding.allHotelsLocationTxt.visibility = View.VISIBLE
+                if(selectedState != "All Hotel"){
+                    binding.allHotelsLocationTxt.text = selectedState
+                    binding.allHotelsLocationTxt.visibility = View.VISIBLE
+                    val temptList = mutableListOf<PageItem>()
+                    for (i in arrayList) {
+                        if (i.state == selectedState) {
+                            temptList.add(i)
+                        }
+                    }
+                    if (temptList.size <= 0) {
+                        binding.tvNotificationAllHotels.visibility = View.VISIBLE
+
+                        binding.tvNotificationAllHotels.text = "No Hotel in this Location"
+                    }else {
+                        binding.tvNotificationAllHotels.visibility = View.GONE
+                    }
+                    allHotelsAdapter.listOfAllHotels = temptList
+                    allHotelsAdapter.notifyDataSetChanged()
+                }else{
+                    viewModel.fetchAllHotels()
+                    binding.allHotelsLocationTxt.visibility = View.GONE
+                    binding.tvNotificationAllHotels.visibility = View.GONE
+
+                }
+
 
             }
         }
@@ -87,6 +110,7 @@ class AllHotelsFragments : Fragment(),
                 //Log.d("ObservingVM", response.pageItems.toString())
                     if (responseList != null) {
                         arrayLists = responseList
+                        arrayList = responseList as ArrayList<PageItem>
                         allHotelsAdapter.listOfAllHotels = responseList.toMutableList()
                     hideProgressBar()
                     allHotelsAdapter.notifyDataSetChanged()
