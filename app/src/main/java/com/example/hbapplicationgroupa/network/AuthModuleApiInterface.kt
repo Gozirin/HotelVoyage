@@ -56,10 +56,10 @@ interface AuthModuleApiInterface {
         @Body confirmEmailModel: ConfirmEmailModel
     ): Response<ConfirmEmailResponse>
 
-    @GET("/api/Authentication/refresh-token")
+    @POST("/api/Authentication/refresh-token")
     suspend fun refreshToken(
-        token: String,
-        userId: String,
-        refreshToken: String
+        @Header("Authorization")token: String,
+        @Query("UserId")userId: String,
+        @Query("RefreshToken")refreshToken: String
     ): Response<RefreshTokenResponseModel>
 }

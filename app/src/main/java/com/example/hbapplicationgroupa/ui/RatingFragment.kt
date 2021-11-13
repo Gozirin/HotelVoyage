@@ -88,6 +88,7 @@ class RatingFragment : Fragment() {
                 val average = ratings/it.data.size
                 val number3digits:Double = String.format("%.1f", average).toDouble()
                 binding.ratingRatingValueTv.text = "$number3digits"
+                binding.ratingRatingProgressBar.rating = number3digits.toFloat()
                 ratingReviewRecyclerViewAdapter.notifyDataSetChanged()
             }
         })

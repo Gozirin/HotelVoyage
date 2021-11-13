@@ -20,12 +20,14 @@ import com.example.hbapplicationgroupa.R
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopDealsAdapter
 import com.example.hbapplicationgroupa.adapter.exploreHomeAdapter.ExploreHomeTopHotelsAdapter
 import com.example.hbapplicationgroupa.adapter.topHotel.TopHotelAdapter
+import com.example.hbapplicationgroupa.database.AuthPreference
 import com.example.hbapplicationgroupa.databinding.FragmentExploreHomeBinding
 import com.example.hbapplicationgroupa.viewModel.HotelViewModel
 import com.example.hbapplicationgroupa.model.hotelmodule.gettopdeals.GetTopDealsResponseItem
 import com.example.hbapplicationgroupa.model.hotelmodule.gettophotels.GetTopHotelsResponseItem
 import com.example.hbapplicationgroupa.utils.ConnectivityLiveData
 import com.example.hbapplicationgroupa.utils.Status
+import com.example.hbapplicationgroupa.viewModel.AuthViewModel
 
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -34,12 +36,12 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClickListener, ExploreHomeTopDealsAdapter.TopDealsClickListener {
 
     private lateinit var topHotelsAdapter: ExploreHomeTopHotelsAdapter
-    private lateinit var topHotelsScreenAdapter: TopHotelAdapter
     private lateinit var topDealsAdapter: ExploreHomeTopDealsAdapter
     private lateinit var topHotelsRecyclerView: RecyclerView
     private lateinit var topDealsRecyclerView: RecyclerView
     private lateinit var dialog: Dialog
     private val hotelViewModel: HotelViewModel by viewModels()
+    private val viewModel: AuthViewModel by viewModels()
     private lateinit var connectivityLiveData: ConnectivityLiveData
 
 
@@ -57,6 +59,9 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         super.onViewCreated(view, savedInstanceState)
         dialog = Dialog(requireContext())
         onBackPressed()
+//        refresh token on launch of explore fragment
+
+        refreshToteknOnLaunchOfExploreFragment()
 
         connectivityLiveData = ConnectivityLiveData(requireActivity().application)
 
@@ -83,6 +88,18 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
         //navigation to all hotels screen
         binding.exploreHomeAllHotelsTv.setOnClickListener {
             findNavController().navigate(R.id.action_exploreHomeFragment_to_allHotelsFragments)
+        }
+    }
+
+    private fun refreshToteknOnLaunchOfExploreFragment() {
+        //refreshing token from api after 8 mins
+        val token = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
+        val userId = AuthPreference.getId(AuthPreference.ID_KEY)
+        val refreshKey = AuthPreference.getRefreshToken(AuthPreference.REFRESH_KEY)
+        if (userId != null) {
+            if (refreshKey != null) {
+                observeRefreshTokenLiveData(token, userId, refreshKey)
+            }
         }
     }
 
@@ -155,34 +172,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                 binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
                 binding.exploreHomeFragmentProgressBar1.visibility = View.INVISIBLE
             }
-//            when (it.statusCode) {
-//                200 -> {
-//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-//                    it.data.let { topHotels -> renderTopHotelsList(topHotels) }
-//                    binding.exploreHomeFragmentRecyclerView1.visibility = View.VISIBLE
-//                   // Log.d("ExploreHome 2: ", it.toString())
-//                }
-//
-//                400 -> {
-//                    //handle error
-//                    binding.exploreHomeFragmentProgressBar1.visibility = View.GONE
-//                    Toast.makeText(requireContext(), "Network Error", Toast.LENGTH_LONG).show()
-//                }
-//            }
         })
-//        connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
-//            //2
-//            when (isAvailable) {
-//                true -> {
-//                    //3
-//                    hotelViewModel.exploreHomeTopHotels
-//                }
-//                false -> {
-//                    binding.exploreHomeFragmentTopHotelErrorMsg.visibility = View.VISIBLE
-//                    //Toast.makeText(this, "Error fetching data, please refresh App", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        })
+
        return hotelViewModel
     }
 
@@ -237,10 +228,25 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
                 }
             }
         })
-
-
     }
 
-
-
+    //observing refresh token live data
+    private fun observeRefreshTokenLiveData(token: String, userId: String, refreshToken: String){
+        try {
+            viewModel.refreshToken(token, userId, refreshToken)
+            viewModel.refreshTokenLiveData.observe(viewLifecycleOwner, {
+                it.newJwtAccessToken?.let { token ->
+                    AuthPreference.clear(AuthPreference.TOKEN_KEY)
+                    AuthPreference.clear(AuthPreference.REFRESH_KEY)
+                    AuthPreference.setToken(token)
+                    AuthPreference.setRefreshToken(it.newRefreshToken.toString())
+                    Log.d("NewToken", token)
+                }
+                Log.d("NEW ACESS TOKEN", it.newJwtAccessToken.toString())
+                Log.d("REFRESH TOKEN", it.newRefreshToken.toString())
+            })
+        }catch (e: Exception){
+            Log.d("REFRESHTOKEN ERROR", "Error Refreshing Token")
+        }
+    }
 }

@@ -158,9 +158,7 @@
 
     // String array for filtering All Hotel
     <string-array name="states">
-        <item>Iowa</item>
-        <item>North Carolina</item>
-        <item>California</item>
+        <item>All Hotel</item>
         <item>Abia</item>
         <item>Adamawa</item>
         <item>Akwa-Ibom</item>

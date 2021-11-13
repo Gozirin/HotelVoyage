@@ -107,11 +107,11 @@ class HotelDescription2Fragment : Fragment(), HotelRoomServiceRecyclerViewAdapte
 
         //Click listener on TextView with Show in Map text
         binding.hotelDescShowInMapLinkTv.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_two), Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_two), Toast.LENGTH_SHORT).show()
         }
         //Click Listener for More button
         binding.hotelDescAmenitiesMoreIb.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_three), Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), getString(R.string.hotel_desc_toast_string_three), Toast.LENGTH_SHORT).show()
         }
         //Click Listener for Book button
 //        binding.hotelDescBookBtn.setOnClickListener {

@@ -101,11 +101,6 @@ class PastBookingsFragment : Fragment(), PastBookingsAdapter.PastBookingBookClic
                 binding.noBookingTxt.text = "You have made no bookings"
             }
         })
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewModel.bookingHistory.collectLatest {
-//                adapter.submitData(it)
-//            }
-//        }
     }
     //Method to handle back press
     private fun onBackPressed(){

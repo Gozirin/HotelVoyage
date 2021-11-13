@@ -63,10 +63,6 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
         super.onViewCreated(view, savedInstanceState)
 
 
-        Log.d("XYZ", "onViewCreatedroomName: ${args.roomItem!!.name}")
-        Log.d("XYZ", "onViewCreatedroomTypeId: ${args.roomItem!!.id}")
-        Log.d("XYZ", "onViewCreatedhotelId: ${args.hotelId}")
-
         //Show the calendar for date selection
         AuthPreference.initPreference(requireActivity())
 
@@ -309,68 +305,4 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
             price = args.roomItem!!.price
         }
     }
-
-
-//    private fun pushBookHotelData() {
-//            val authToken = "Bearer ${AuthPreference.getToken(AuthPreference.TOKEN_KEY)}"
-//
-//        for (i in binding.peopleEditText.text.toString()) {
-//            if (i.isDigit()) {
-//                numberOfPeople+=i.digitToInt()
-//            }
-//        }
-//            hotelBookingInfo = BookHotel(
-//                roomId,
-//                binding.checkInEditText.text.toString(),
-//                binding.checkOutEditText.text.toString(),
-//                numberOfPeople,
-//                "paystack"
-//            )
-//        Log.d("XYZ", "pushBookHotelData: ${args.roomItem!!.id}")
-//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-//            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
-//            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
-//                if (it != null) {
-//                    price = it.data.price.toFloat()
-//                    transactionURL = it.data.paymentUrl
-//                    bookingReference = it.data.paymentReference
-//                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
-//                    Log.d("GKB", "TRANSACTION URL --> $transactionURL ")
-//                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
-//                        .show()
-//                   // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
-//                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(transactionURL, price, bookingReference)
-//                    findNavController().navigate(action)
-//                }
-//            })
-//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-//        }
-//
-//        checkIn = binding.checkInEditText.text.toString()
-//        checkOut = binding.checkOutEditText.text.toString()
-//            hotelBookingInfo = BookHotel(
-//                roomId,
-//                binding.checkInEditText.text.toString(),
-//                binding.checkOutEditText.text.toString(),
-//                numberOfPeople,
-//                "paystack"
-//            )
-//        Log.d("XYZ", "pushBookHotelData: ${args.roomItem!!.id}")
-//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-//            hotelViewModel.pushBookHotel(authToken, hotelBookingInfo!!)
-//            hotelViewModel.bookingInfo.observe(viewLifecycleOwner, {
-//                if (it != null) {
-//                    price = it.data.price.toFloat()
-//                    transactionURL = it.data.paymentUrl
-//                    bookingReference = it.data.paymentReference
-//                    Log.d("XYZ", "pushBookHotelDataroomId: ${it.data.paymentUrl} ")
-//                    Toast.makeText(requireContext(), "Booking Details Captured", Toast.LENGTH_LONG)
-//                        .show()
-//                   // val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(hotelBookingInfo)
-//                     val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId)
-//                    findNavController().navigate(action)
-//                }
-//            })
-//        Log.d("XYZ", "pushBookHotelDataroomId: $roomId ")
-//        }
 }

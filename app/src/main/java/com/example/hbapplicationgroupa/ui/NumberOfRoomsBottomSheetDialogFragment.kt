@@ -40,21 +40,10 @@ class NumberOfRoomsBottomSheetDialogFragment(
         }
     }
 
-   // Pass name of room when a room is selected to the booking details fragment
-//    override fun getSelectedRoomTypes(position: Int, name: String) {
-//        binding.doneButton.setOnClickListener {
-//            roomTypeAdapterInterface.getSelectedRoomTypes(position, name)
-//            dismiss()
-//
-//        }
-//        Log.d("GKB", "$name was selected")
-//    }
-
     override fun getSelectedRoomIdByRoomTypes(position: Int, data: String, toBookRoomId: String) {
         binding.doneButton.setOnClickListener {
             roomTypeAdapterInterface.getSelectedRoomIdByRoomTypes(position, data, toBookRoomId)
             dismiss()
         }
-        Log.d("GKB", "$data was selected")
     }
 }

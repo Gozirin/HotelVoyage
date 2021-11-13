@@ -91,19 +91,4 @@ class PrivacyPolicyFragment : Fragment() {
                 0)
         }
     }
-
-//    override fun onRequestPermissionsResult(
-//        requestCode: Int,
-//        permissions: Array<out String>,
-//        grantResults: IntArray
-//    ) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-//        if (requestCode == 0 && grantResults.isNotEmpty()) {
-//            for (i in grantResults.indices) {
-//                if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
-//                    accessContact()
-//                }
-//            }
-//        }
-//    }
 }

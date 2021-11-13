@@ -69,11 +69,6 @@ class TopHotelsFragment : Fragment(),
         }
 
         //setting view button
-        binding.topHotelSearchView.setOnSearchClickListener{
-//            it.setBackgroundResource(R.color.splash_screen_background_color)
-//            Toast.makeText(context, "Searching for Top Luxurious Hotels", Toast.LENGTH_LONG).show()
-        }
-
         onBackPressed()
     }
 
