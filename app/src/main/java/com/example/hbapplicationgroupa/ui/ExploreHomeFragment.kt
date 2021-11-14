@@ -209,8 +209,8 @@ class ExploreHomeFragment : Fragment(), ExploreHomeTopHotelsAdapter.TopHotelClic
 
     private fun checkNetworkStatus() {
         binding.exploreHomeFragmentProgressBar1.visibility = View.VISIBLE
-        binding.exploreHomeFragmentRecyclerView1.visibility = View.GONE
-        binding.exploreHomeFragmentRecyclerView2.visibility = View.GONE
+        binding.exploreHomeFragmentRecyclerView1.visibility = View.INVISIBLE
+        binding.exploreHomeFragmentRecyclerView2.visibility = View.INVISIBLE
 
         connectivityLiveData.observe(viewLifecycleOwner, Observer { isAvailable ->
             //2
