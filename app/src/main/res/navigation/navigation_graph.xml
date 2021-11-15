@@ -212,7 +212,7 @@
             app:argType="string" />
         <argument
             android:name="roomItem"
-            app:argType="com.example.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes"
+            app:argType="com.decagon.hbapplicationgroupa.model.hotelmodule.gethotelbyid.GetHotelByIdResponseItemRoomTypes"
             app:nullable="true" />
         <action
             android:id="@+id/action_bookingDetailsFragment_to_paymentCheckoutFragment2"
@@ -632,6 +632,6 @@
             app:destination="@id/profileFragment" />
         <argument
             android:name="userDetails"
-            app:argType="com.example.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem" />
+            app:argType="com.decagon.hbapplicationgroupa.model.usermodule.getuserbyid.GetUserByIdResponseItem" />
     </fragment>
 </navigation>
