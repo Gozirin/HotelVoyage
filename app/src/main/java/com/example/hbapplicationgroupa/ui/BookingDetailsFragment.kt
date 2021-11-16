@@ -61,6 +61,7 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        roomId = ""
 
 
         //Show the calendar for date selection
@@ -123,9 +124,13 @@ class BookingDetailsFragment: Fragment(), PeopleBottomSheetOnClickInterface,
 
                 binding.bookNowProgressBar.visibility = View.VISIBLE
                 binding.bookNowButton.setText("Booking")
-
-                val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId, price)
-                findNavController().navigate(action)
+                if (roomId != ""){
+                    val action = BookingDetailsFragmentDirections.actionBookingDetailsFragmentToPaymentCheckoutFragment(checkIn, checkOut, numberOfPeople, roomId, price)
+                    findNavController().navigate(action)
+                }else{
+                    Toast.makeText(requireContext(), "please select a room", Toast.LENGTH_SHORT).show()
+                }
+                
 
 //               findNavController().navigate(R.id.action_bookingDetailsFragment_to_paymentCheckoutFragment)
             }

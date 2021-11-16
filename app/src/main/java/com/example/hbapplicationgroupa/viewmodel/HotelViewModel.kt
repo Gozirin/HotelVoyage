@@ -144,14 +144,22 @@ class HotelViewModel @Inject constructor(
         }
     }
 
-        init {
-            getTopDealss(10)
-        }
+//        init {
+//            getTopDealss(10)
+//        }
 
     fun getTopDealss(pageSize: Int) = viewModelScope.launch {
+
         _topDealsLiveData.postValue(Resources.Loading())
-        val response = hotelRepositoryInterface.getTopDealss(pageSize, pageNumber)
-        _topDealsLiveData.postValue(handleTopDealssResponse(response))
+        try{
+            val response = hotelRepositoryInterface.getTopDealss(pageSize, pageNumber)
+            if(response.isSuccessful){
+                _topDealsLiveData.postValue(handleTopDealssResponse(response))
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
     }
 
     private fun handleTopDealssResponse(response: Response<GetTopDealsResponseModel>): Resources<GetTopDealsResponseModel> {
@@ -241,7 +249,6 @@ class HotelViewModel @Inject constructor(
                    val response = hotelRepositoryInterface.filterAllHotelByLocation(location, pageSize, pageNumber)
                    filterAllHotelByLocationLiveData.postValue(response.body())
                }catch (e: Exception){
-                   Log.d("MQ", ": ${e.message}")
                }
 
         }
@@ -261,7 +268,6 @@ class HotelViewModel @Inject constructor(
                 val response = hotelRepositoryInterface.getHotelReview2(hotelId, token)
                 _hotelReview.postValue(response.body())
             } catch (e: Exception) {
-                Log.d("Review", "${e.message}")
             }
         }
     }
