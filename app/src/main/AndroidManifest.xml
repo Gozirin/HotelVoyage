@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hbapplicationgroupa">
+    package="com.decagon.hbapplicationgroupa">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -10,7 +10,7 @@
 
     <application
         android:usesCleartextTraffic="true"
-        android:name=".application.HotelApplication"
+        android:name="com.decagon.hbapplicationgroupa.application.HotelApplication"
         android:allowBackup="true"
         android:screenOrientation="portrait"
         android:icon="@mipmap/logo_round"
@@ -20,7 +20,7 @@
         android:theme="@style/Theme.HBApplicationGroupA">
         <activity
             android:exported="true"
-            android:name=".MainActivity">
+            android:name="com.decagon.hbapplicationgroupa.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
