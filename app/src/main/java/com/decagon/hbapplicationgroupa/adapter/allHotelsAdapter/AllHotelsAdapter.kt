@@ -15,17 +15,16 @@ import com.decagon.hbapplicationgroupa.model.hotelmodule.allhotels.PageItem
 import com.decagon.hbapplicationgroupa.repository.customermodulerepository.CustomerRepository
 import kotlin.math.ceil
 
-
 class AllHotelsAdapter(
-        val allHotelsItemClickListener: AllHotelsItemClickListener,
-        val allHotelsBookBtnClickListener: AllHotelsBookBtnClickListener,
-        val allHotelSaveIconClickListener: AllHotelSaveIconClickListener
-): RecyclerView.Adapter<AllHotelsAdapter.AllHotelsViewHolder>() {
+    val allHotelsItemClickListener: AllHotelsItemClickListener,
+    val allHotelsBookBtnClickListener: AllHotelsBookBtnClickListener,
+    val allHotelSaveIconClickListener: AllHotelSaveIconClickListener
+) : RecyclerView.Adapter<AllHotelsAdapter.AllHotelsViewHolder>() {
 
     var listOfAllHotels: MutableList<PageItem> = mutableListOf()
     private lateinit var customerRepository: CustomerRepository
 
-    inner class AllHotelsViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    inner class AllHotelsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_name)
         val priceOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_price)
         val ratingOfAllHotel: TextView = itemView.findViewById(R.id.allHotels_recyclerview_hotel_rating)
@@ -35,7 +34,6 @@ class AllHotelsAdapter(
         val allHotelBookBtn: AppCompatButton = itemView.findViewById(R.id.allHotelsBookBtn)
         val allHotelView: CardView = itemView.findViewById(R.id.allHotelsView)
         val bind: TextView = itemView.findViewById(R.id.tv_notification)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllHotelsViewHolder {
@@ -59,19 +57,18 @@ class AllHotelsAdapter(
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.imageOfAllHotel)
         }
-        holder.allHotelView.setOnClickListener{
+        holder.allHotelView.setOnClickListener {
             allHotelsItemClickListener.allHotelsItemClicked(position)
         }
 
-        holder.allHotelBookBtn.setOnClickListener{
+        holder.allHotelBookBtn.setOnClickListener {
             allHotelsBookBtnClickListener.allHotelsPreviewBtnClicked(position)
         }
 
-        holder.saveIcon.setOnClickListener{
+        holder.saveIcon.setOnClickListener {
             allHotelSaveIconClickListener.allHotelSaveIconClickListener(position)
             holder.saveTextView.text = "Successfully saved"
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -86,12 +83,11 @@ class AllHotelsAdapter(
         fun allHotelsPreviewBtnClicked(position: Int)
     }
 
-    interface AllHotelSaveIconClickListener{
+    interface AllHotelSaveIconClickListener {
         fun allHotelSaveIconClickListener(position: Int)
     }
 
-
-    fun setList(list: MutableList<PageItem>){
+    fun setList(list: MutableList<PageItem>) {
         listOfAllHotels.clear()
         listOfAllHotels = list
         notifyDataSetChanged()
